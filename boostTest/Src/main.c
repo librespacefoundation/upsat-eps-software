@@ -57,9 +57,18 @@ I2C_HandleTypeDef hi2c1;
 TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_tx;
+DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+
+/* Buffer used for transmission */
+uint8_t aTxStartMessage[] = "\n\r ****UART-Hyperterminal communication based on DMA****\n\r Enter 10 characters using keyboard :\n\r";
+uint8_t aTxEndMessage[] = "\n\r Example Finished\n\r";
+
+/* Buffer used for reception */
+uint8_t aRxBuffer[10];
 
 /* USER CODE END PV */
 
@@ -77,16 +86,20 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+void HAL_TIM_SetPWMreg(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Value);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
 //__attribute__((__section__(".data"))) const uint8_t userConfig[4];
 uint32_t measurement_dma[20];
 static uint32_t power =0;
-static uint32_t duty_cycle_step =0;
-static uint32_t duty_cycle =50;
-static increment_flag =1;
+static uint32_t duty_cycle = 0;
+static uint8_t increment_flag = 1;
+static uint8_t adc_reading_complete = 0;
+
+static uint8_t txDoneFlag =0;
+static uint8_t rxDoneFlag =0;
+
 /* USER CODE END 0 */
 
 int main(void)
@@ -115,35 +128,97 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
-  uint32_t v_measurement_table[10];//adc1 input
-  uint32_t i_measurement_table[10];//adc2 input
-
-
-
-
    // -- Enables ADC and starts conversion of the regular channels.
-    HAL_ADC_Start(&hadc);
+    HAL_ADC_Start(&hadc);//paizei na nai perito.
     HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
-    HAL_ADC_Stop(&hadc);
 
-
-    /* PWM */
+    /* PWM  */
+    //Enable and Start running PWM - timer4 channel4 - pin PB9.
     TIM_OC_InitTypeDef sConfigOC;
-
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
     sConfigOC.Pulse = 0x00;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-
     HAL_TIM_Base_Start(&htim4);
     HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4);
     HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
 
-  /*UART*/
-  uint8_t uart_temp[30];
-  sprintf(uart_temp, "Uart thing:     \n");
-  HAL_UART_Transmit(&huart1, uart_temp, 20 , 10000);
+    /*UART*/
+    uint8_t uart_temp[30];
+    sprintf(uart_temp, "UART communication test ...\n");
+    //HAL_UART_Transmit(&huart1, uart_temp, 27 , 10000);
+
+
+
+
+    //HAL_UART_Transmit_DMA(&huart1, uart_temp, 29);
+
+    //while(!txDoneFlag);
+
+
+   /*##-2- Start the transmission process #####################################*/
+    /* User start transmission data through "TxBuffer" buffer */
+    if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)aTxStartMessage, 100)!= HAL_OK)
+    {
+      /* Transfer error in transmission process */
+      //Error_Handler();
+    	HAL_Delay(1);
+    }
+
+    while(!txDoneFlag);
+
+    /*##-3- Put UART peripheral in reception process ###########################*/
+    /* Any data received will be stored in "RxBuffer" buffer : the number max of
+       data received is 10 */
+    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
+    {
+      /* Transfer error in reception process */
+      //Error_Handler();
+    	HAL_Delay(1);
+    }
+
+//    /*##-4- Wait for the end of the transfer ###################################*/
+//    /*  Before starting a new communication transfer, you need to check the current
+//        state of the peripheral; if it’s busy you need to wait for the end of current
+//        transfer before starting a new one.
+//        For simplicity reasons, this example is just waiting till the end of the
+//        transfer, but application may perform other tasks while transfer operation
+//        is ongoing. */
+//    while (HAL_UART_GetState(&huart1) != HAL_UART_STATE_READY)
+//    {
+//    }
+
+    while(!rxDoneFlag);
+
+    txDoneFlag =0;
+    /*##-5- Send the received Buffer ###########################################*/
+    if (HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
+    {
+      /* Transfer error in transmission process */
+      //Error_Handler();
+    	HAL_Delay(1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -154,37 +229,35 @@ int main(void)
   while (1)
   {
 
-
-	  HAL_ADC_Start(&hadc);
+      /*set dma transfer complete flag to zero and start adc conversion*/
+	  adc_reading_complete = 0;
 	  HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
-	  HAL_ADC_Stop(&hadc);
 
-	  HAL_Delay(5);
+	  /*Wait till DMA ADC sequence transfer is ready*/
+	  while(adc_reading_complete==0){
+		  //HAL_Delay(1);
+	  }
 
+	  /*Process Measurements*/
 	  uint32_t voltage_avg =0;
 	  uint32_t current_avg =0;
-
-	for (int sum_index = 0; sum_index < 16; sum_index+=2) {
-		voltage_avg = voltage_avg + measurement_dma[sum_index];
-		current_avg = current_avg + measurement_dma[sum_index+1];
-	}
-	voltage_avg = voltage_avg>>3;
-	current_avg = current_avg>>3;
-
-	voltage_avg = measurement_dma[8];
-	current_avg = measurement_dma[9];
+	  //deinterleave and sum voltage and current measurements.
+	  for (int sum_index = 0; sum_index < 16; sum_index+=2) {
+		  voltage_avg = voltage_avg + measurement_dma[sum_index];
+		  current_avg = current_avg + measurement_dma[sum_index+1];
+	  }
+	  //average of 8 concecutive adc measurements.
+	  voltage_avg = voltage_avg>>3;
+	  current_avg = current_avg>>3;
 
 	  /*power calculation*/
 	  uint32_t power_now = voltage_avg * current_avg;
 
+	  /*MPPT tracking algorithm*/
 
-
-
-
-
+	  // decide duty cycle orientation - set increment flag.
 	  if (power_now<(power)){
 
-		  duty_cycle_step = -duty_cycle_step;
 		  if (increment_flag>0){
 			  increment_flag = 0;
 		  }
@@ -192,8 +265,7 @@ int main(void)
 			  increment_flag = 1;
 		  }
 	  }
-
-
+      //add appropriate offset - create new duty cycle.
 	  if(increment_flag){
 		  duty_cycle = duty_cycle+1;
 	  }
@@ -201,19 +273,15 @@ int main(void)
 		  duty_cycle = duty_cycle-1;
 	  }
 	  power = power_now;
+	  //Check for Overflow and Underflow
 	  if (duty_cycle>350){duty_cycle=0;}
 	  if (duty_cycle>320){duty_cycle=320;}
+      // Set new PWM compare register
+	  HAL_TIM_SetPWMreg(&htim4, TIM_CHANNEL_4, duty_cycle);// htim4.Instance->CCR4 = duty_cycle;
 
-	  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	  sConfigOC.Pulse = duty_cycle;
-	  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-	  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-	  HAL_TIM_Base_Start(&htim4);
-	  HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4);
-	  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
-	  sprintf(uart_temp, "Uart thing:   %u  \n",power_now);
-	  HAL_UART_Transmit(&huart1, uart_temp, 20 , 10000);
+//	  sprintf(uart_temp, "Uart thing:   %u  \n",power_now);
+//	  HAL_UART_Transmit(&huart1, uart_temp, 20 , 10000);
 
 	  HAL_Delay(50);
 
@@ -272,7 +340,7 @@ void MX_ADC_Init(void)
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
   hadc.Instance = ADC1;
-  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV4;
   hadc.Init.Resolution = ADC_RESOLUTION12b;
   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
@@ -330,7 +398,7 @@ void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 0;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 0x140;
+  htim4.Init.Period = 0;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_PWM_Init(&htim4);
 
@@ -375,6 +443,10 @@ void MX_DMA_Init(void)
   /* DMA interrupt init */
   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
 
 }
 
@@ -430,7 +502,94 @@ void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
     //printf("ADC conversion done.\n");
     HAL_ADC_Stop_DMA(hadc);
     HAL_ADC_Stop(hadc);
+    adc_reading_complete = 1;
+
+//    /*UART*/
+//    uint8_t uart_temp[30];
+//    sprintf(uart_temp, "DMA-ADC transfer complete \n");
+//    HAL_UART_Transmit(&huart1, uart_temp, 27 , 10000);
+
 }
+
+
+/**
+  * @brief  Tx Transfer completed callback
+  * @param  huart: UART handle.
+  * @note   This example shows a simple way to report end of DMA Tx transfer, and
+  *         you can add your own implementation.
+  * @retval None
+  */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+   //HAL_Delay(1);
+   txDoneFlag = 1;
+}
+
+/**
+  * @brief  Rx Transfer completed callback
+  * @param  huart: UART handle
+  * @note   This example shows a simple way to report end of DMA Rx transfer, and
+  *         you can add your own implementation.
+  * @retval None
+  */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+ 	//HAL_Delay(1);
+	rxDoneFlag = 1;
+}
+
+
+
+
+/* Set Only Output compare register of the specified timer and channel without
+ * first reseting the output. This function is implemented cause the existing hal
+ * way to change pwm compare register of any channel/timer first disables output.
+ * This is totally unacceptable for a power converter.*/
+void HAL_TIM_SetPWMreg(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Value){
+
+	/* Check the parameters */
+	assert_param(IS_TIM_CHANNELS(Channel));
+
+	switch (Channel)
+	{
+	case TIM_CHANNEL_1:
+	{
+		assert_param(IS_TIM_CC1_INSTANCE(htim->Instance));
+		htim->Instance->CCR1 = Value;
+	}
+	break;
+
+	case TIM_CHANNEL_2:
+	{
+		assert_param(IS_TIM_CC2_INSTANCE(htim->Instance));
+		htim->Instance->CCR2 = Value;
+	}
+	break;
+
+	case TIM_CHANNEL_3:
+	{
+		assert_param(IS_TIM_CC3_INSTANCE(htim->Instance));
+		htim->Instance->CCR3 = Value;
+	}
+	break;
+
+	case TIM_CHANNEL_4:
+	{
+		assert_param(IS_TIM_CC4_INSTANCE(htim->Instance));
+		htim->Instance->CCR4 = Value;
+	}
+	break;
+
+	default:
+		break;
+	}
+
+}
+
+
+
+
+
 
 /* USER CODE END 4 */
 
