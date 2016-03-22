@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
-  * @file    stm32l1xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
+  * File Name          : mxconstants.h
+  * Description        : This file contains the common defines of the application
   ******************************************************************************
   *
   * COPYRIGHT(c) 2016 STMicroelectronics
@@ -30,32 +30,24 @@
   *
   ******************************************************************************
   */
-
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32L1xx_IT_H
-#define __STM32L1xx_IT_H
-
-#ifdef __cplusplus
- extern "C" {
-#endif 
-
 /* Includes ------------------------------------------------------------------*/
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
 
-void SysTick_Handler(void);
-void DMA1_Channel1_IRQHandler(void);
-void DMA1_Channel4_IRQHandler(void);
-void DMA1_Channel5_IRQHandler(void);
-void ADC1_IRQHandler(void);
-void USART1_IRQHandler(void);
+/* USER CODE BEGIN Includes */
 
-#ifdef __cplusplus
-}
-#endif
+/* USER CODE END Includes */
 
-#endif /* __STM32L1xx_IT_H */
+/* Private define ------------------------------------------------------------*/
+
+/* USER CODE BEGIN Private defines */
+
+/* USER CODE END Private defines */
+
+/**
+  * @}
+  */ 
+
+/**
+  * @}
+*/ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

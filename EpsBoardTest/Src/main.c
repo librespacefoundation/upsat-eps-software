@@ -34,17 +34,6 @@
 #include "stm32l1xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-#include "main.h"
-
-#define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_48   /* Start @ of user Flash area */
-#define FLASH_USER_END_ADDR     ADDR_FLASH_PAGE_127 + FLASH_PAGE_SIZE   /* End @ of user Flash area */
-#define DATA_32                 ((uint16_t)0x1234)
-
-uint32_t Address = 0, PAGEError = 0;
-__IO uint32_t data32 = 0 , MemoryProgramStatus = 0;
-
-/*Variable used for Erase procedure*/
-static FLASH_EraseInitTypeDef EraseInitStruct;
 
 /* USER CODE END Includes */
 
@@ -52,23 +41,10 @@ static FLASH_EraseInitTypeDef EraseInitStruct;
 ADC_HandleTypeDef hadc;
 DMA_HandleTypeDef hdma_adc;
 
-I2C_HandleTypeDef hi2c1;
-
-TIM_HandleTypeDef htim4;
-
-UART_HandleTypeDef huart1;
-DMA_HandleTypeDef hdma_usart1_tx;
-DMA_HandleTypeDef hdma_usart1_rx;
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
-/* Buffer used for transmission */
-uint8_t aTxStartMessage[] = "\n\r ****UART-Hyperterminal communication based on DMA****\n\r Enter 10 characters using keyboard :\n\r";
-uint8_t aTxEndMessage[] = "\n\r Example Finished\n\r";
-
-/* Buffer used for reception */
-uint8_t aRxBuffer[10];
 
 /* USER CODE END PV */
 
@@ -77,9 +53,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC_Init(void);
-static void MX_I2C1_Init(void);
-static void MX_TIM4_Init(void);
-static void MX_USART1_UART_Init(void);
+static void MX_TIM3_Init(void);
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                 
@@ -90,16 +64,11 @@ void HAL_TIM_SetPWMreg(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Value
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-//__attribute__((__section__(".data"))) const uint8_t userConfig[4];
 uint32_t measurement_dma[20];
 static uint32_t power =0;
-static uint32_t duty_cycle = 0x10;
+static uint32_t duty_cycle = 0x50;
 static uint8_t increment_flag = 1;
 static uint8_t adc_reading_complete = 0;
-
-static uint8_t txDoneFlag =0;
-static uint8_t rxDoneFlag =0;
-
 /* USER CODE END 0 */
 
 int main(void)
@@ -121,90 +90,29 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_ADC_Init();
-  MX_I2C1_Init();
-  MX_TIM4_Init();
-  MX_USART1_UART_Init();
+  MX_TIM3_Init();
 
   /* USER CODE BEGIN 2 */
+  /*GPIO*/
+  //Toggle heater and test led for one second.
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
 
+  // -- Enables ADC and starts conversion of the regular channels.
+   HAL_ADC_Start(&hadc);//paizei na nai perito.
+   HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
 
-   // -- Enables ADC and starts conversion of the regular channels.
-    HAL_ADC_Start(&hadc);//paizei na nai perito.
-    HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
-
-    /* PWM  */
-    //Enable and Start running PWM - timer4 channel4 - pin PB9.
-    TIM_OC_InitTypeDef sConfigOC;
-    sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = 0x00;
-    sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-    sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-    HAL_TIM_Base_Start(&htim4);
-    HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4);
-    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
-
-
-    /*UART*/
-    uint8_t uart_temp[30];
-    sprintf(uart_temp, "UART communication test ...\n");
-    //HAL_UART_Transmit(&huart1, uart_temp, 27 , 10000);
-
-
-
-
-    HAL_UART_Transmit_DMA(&huart1, uart_temp, 29);
-
-    while(!txDoneFlag);
-
-
-   /*##-2- Start the transmission process #####################################*/
-    /* User start transmission data through "TxBuffer" buffer */
-//    if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)aTxStartMessage, 100)!= HAL_OK)
-//    {
-//      /* Transfer error in transmission process */
-//      //Error_Handler();
-//    	HAL_Delay(1);
-//    }
-
-//    while(!txDoneFlag);
-
-    /*##-3- Put UART peripheral in reception process ###########################*/
-    /* Any data received will be stored in "RxBuffer" buffer : the number max of
-       data received is 10 */
-    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
-    {
-      /* Transfer error in reception process */
-      //Error_Handler();
-    	//HAL_Delay(1);
-    }
-
-//    /*##-4- Wait for the end of the transfer ###################################*/
-//    /*  Before starting a new communication transfer, you need to check the current
-//        state of the peripheral; if it’s busy you need to wait for the end of current
-//        transfer before starting a new one.
-//        For simplicity reasons, this example is just waiting till the end of the
-//        transfer, but application may perform other tasks while transfer operation
-//        is ongoing. */
-//    while (HAL_UART_GetState(&huart1) != HAL_UART_STATE_READY)
-//    {
-//    }
-
-    //rethink about using circular mode it might mess up the whole thing
-    //check back for non circular mode.
-    while(!rxDoneFlag);
-
-    txDoneFlag =0;
-    /*##-5- Send the received Buffer ###########################################*/
-    if (HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
-    {
-      /* Transfer error in transmission process */
-      //Error_Handler();
-    	//HAL_Delay(1);
-    }
-
-    while(!txDoneFlag);
-
-
+   /* PWM  */
+   //Enable and Start running PWM - timer4 channel4 - pin PB9.
+   TIM_OC_InitTypeDef sConfigOC;
+   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+   sConfigOC.Pulse = 0x50;
+   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+   HAL_TIM_Base_Start(&htim3);
+   HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4);
+   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
 
 
@@ -215,8 +123,9 @@ int main(void)
   while (1)
   {
 
+
+
       /*set dma transfer complete flag to zero and start adc conversion*/
-	  //TODO: think of a more adequate filtering strategy
 	  adc_reading_complete = 0;
 	  HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
 
@@ -264,17 +173,19 @@ int main(void)
 	  if (duty_cycle>350){duty_cycle=0;}
 	  if (duty_cycle>320){duty_cycle=320;}
       // Set new PWM compare register
-	  HAL_TIM_SetPWMreg(&htim4, TIM_CHANNEL_4, duty_cycle);// htim4.Instance->CCR4 = duty_cycle;
+	  //duty_cycle =0;
+	  HAL_TIM_SetPWMreg(&htim3, TIM_CHANNEL_4, duty_cycle);// htim4.Instance->CCR4 = duty_cycle;
 
-	  //TODO:  must add a mode for total power loss or else we will mppt  noise...
+	  // must add a mode for total power loss or else we will mppt  noise...
 
-	  //TODO:  must prevet zero locking (now we start with duty cycle 50%)
+	  // must prevet zero locking (now we start with duty cycle 50%)
 
 
 //	  sprintf(uart_temp, "Uart thing:   %u  \n",power_now);
 //	  HAL_UART_Transmit(&huart1, uart_temp, 20 , 10000);
 
 	  HAL_Delay(50);
+
 
   /* USER CODE END WHILE */
 
@@ -302,8 +213,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
-  RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV3;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL4;
+  RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV2;
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -331,7 +242,7 @@ void MX_ADC_Init(void)
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
   hadc.Instance = ADC1;
-  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV4;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
   hadc.Init.Resolution = ADC_RESOLUTION12b;
   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
@@ -349,77 +260,50 @@ void MX_ADC_Init(void)
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Channel = ADC_CHANNEL_19;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_4CYCLES;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Channel = ADC_CHANNEL_18;
   sConfig.Rank = 2;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
 }
 
-/* I2C1 init function */
-void MX_I2C1_Init(void)
-{
-
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 100000;
-  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLED;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLED;
-  HAL_I2C_Init(&hi2c1);
-
-}
-
-/* TIM4 init function */
-void MX_TIM4_Init(void)
+/* TIM3 init function */
+void MX_TIM3_Init(void)
 {
 
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_OC_InitTypeDef sConfigOC;
 
-  htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 0;
-  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 160;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  HAL_TIM_PWM_Init(&htim4);
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 0;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 0xa0;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  HAL_TIM_PWM_Init(&htim3);
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig);
+  HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig);
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = 0x50;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4);
+  sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
+  HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1);
 
-  HAL_TIM_MspPostInit(&htim4);
+  HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2);
 
-}
+  HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3);
 
-/* USART1 init function */
-void MX_USART1_UART_Init(void)
-{
+  HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4);
 
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  HAL_UART_Init(&huart1);
+  HAL_TIM_MspPostInit(&htim3);
 
 }
 
@@ -434,10 +318,7 @@ void MX_DMA_Init(void)
   /* DMA interrupt init */
   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
-  HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
-  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+
 }
 
 /** Configure pins as 
@@ -453,36 +334,19 @@ void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
-  __GPIOC_CLK_ENABLE();
-  __GPIOH_CLK_ENABLE();
   __GPIOA_CLK_ENABLE();
   __GPIOB_CLK_ENABLE();
+  __GPIOC_CLK_ENABLE();
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PB10 PB11 */
-  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_VERY_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : LD4_Pin LD3_Pin */
-  GPIO_InitStruct.Pin = LD4_Pin|LD3_Pin;
+  /*Configure GPIO pins : PC8 PC9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_VERY_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_11, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
 
 }
 
@@ -493,42 +357,7 @@ void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
     HAL_ADC_Stop_DMA(hadc);
     HAL_ADC_Stop(hadc);
     adc_reading_complete = 1;
-
-//    /*UART*/
-//    uint8_t uart_temp[30];
-//    sprintf(uart_temp, "DMA-ADC transfer complete \n");
-//    HAL_UART_Transmit(&huart1, uart_temp, 27 , 10000);
-
 }
-
-
-/**
-  * @brief  Tx Transfer completed callback
-  * @param  huart: UART handle.
-  * @note   This example shows a simple way to report end of DMA Tx transfer, and
-  *         you can add your own implementation.
-  * @retval None
-  */
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
-{
-   //HAL_Delay(1);
-   txDoneFlag = 1;
-}
-
-/**
-  * @brief  Rx Transfer completed callback
-  * @param  huart: UART handle
-  * @note   This example shows a simple way to report end of DMA Rx transfer, and
-  *         you can add your own implementation.
-  * @retval None
-  */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
- 	//HAL_Delay(1);
-2	rxDoneFlag = 1;
-}
-
-
 
 
 /* Set Only Output compare register of the specified timer and channel without
@@ -575,11 +404,6 @@ void HAL_TIM_SetPWMreg(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Value
 	}
 
 }
-
-
-
-
-
 
 /* USER CODE END 4 */
 
