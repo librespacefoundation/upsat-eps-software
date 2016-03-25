@@ -152,9 +152,9 @@ int main(void)
 
 
 
-    HAL_UART_Transmit_DMA(&huart1, uart_temp, 29);
-
-    while(!txDoneFlag);
+//    HAL_UART_Transmit_DMA(&huart1, uart_temp, 29);
+//
+//    while(!txDoneFlag);
 
 
    /*##-2- Start the transmission process #####################################*/
@@ -171,12 +171,12 @@ int main(void)
     /*##-3- Put UART peripheral in reception process ###########################*/
     /* Any data received will be stored in "RxBuffer" buffer : the number max of
        data received is 10 */
-    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
-    {
-      /* Transfer error in reception process */
-      //Error_Handler();
-    	//HAL_Delay(1);
-    }
+//    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
+//    {
+//      /* Transfer error in reception process */
+//      //Error_Handler();
+//    	//HAL_Delay(1);
+//    }
 
 //    /*##-4- Wait for the end of the transfer ###################################*/
 //    /*  Before starting a new communication transfer, you need to check the current
@@ -191,18 +191,18 @@ int main(void)
 
     //rethink about using circular mode it might mess up the whole thing
     //check back for non circular mode.
-    while(!rxDoneFlag);
+//    while(!rxDoneFlag);
 
-    txDoneFlag =0;
-    /*##-5- Send the received Buffer ###########################################*/
-    if (HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
-    {
-      /* Transfer error in transmission process */
-      //Error_Handler();
-    	//HAL_Delay(1);
-    }
-
-    while(!txDoneFlag);
+//    txDoneFlag =0;
+//    /*##-5- Send the received Buffer ###########################################*/
+//    if (HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
+//    {
+//      /* Transfer error in transmission process */
+//      //Error_Handler();
+//    	//HAL_Delay(1);
+//    }
+//
+//    while(!txDoneFlag);
 
 
 
@@ -491,7 +491,7 @@ void MX_GPIO_Init(void)
 void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
     //printf("ADC conversion done.\n");
     HAL_ADC_Stop_DMA(hadc);
-    HAL_ADC_Stop(hadc);
+//    HAL_ADC_Stop(hadc);
     adc_reading_complete = 1;
 
 //    /*UART*/
@@ -525,7 +525,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
  	//HAL_Delay(1);
-2	rxDoneFlag = 1;
+	rxDoneFlag = 1;
 }
 
 

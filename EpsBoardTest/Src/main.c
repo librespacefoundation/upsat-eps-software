@@ -64,11 +64,13 @@ void HAL_TIM_SetPWMreg(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Value
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint32_t measurement_dma[20];
+uint32_t measurement_dma[40];
 static uint32_t power =0;
-static uint32_t duty_cycle = 0x50;
+static uint32_t duty_cycle = 0x00;
 static uint8_t increment_flag = 1;
 static uint8_t adc_reading_complete = 0;
+uint32_t stepsize = 2;
+uint32_t delay_time = 50;
 /* USER CODE END 0 */
 
 int main(void)
@@ -100,8 +102,8 @@ int main(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
 
   // -- Enables ADC and starts conversion of the regular channels.
-   HAL_ADC_Start(&hadc);//paizei na nai perito.
-   HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
+   //HAL_ADC_Start(&hadc);//paizei na nai perito.
+   //HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
 
    /* PWM  */
    //Enable and Start running PWM - timer4 channel4 - pin PB9.
@@ -127,7 +129,7 @@ int main(void)
 
       /*set dma transfer complete flag to zero and start adc conversion*/
 	  adc_reading_complete = 0;
-	  HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
+	  HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 40);
 
 	  /*Wait till DMA ADC sequence transfer is ready*/
 	  while(adc_reading_complete==0){
@@ -138,13 +140,17 @@ int main(void)
 	  uint32_t voltage_avg =0;
 	  uint32_t current_avg =0;
 	  //deinterleave and sum voltage and current measurements.
-	  for (int sum_index = 0; sum_index < 16; sum_index+=2) {
+//	  for (int sum_index = 0; sum_index < 16; sum_index+=2) {
+//		  voltage_avg = voltage_avg + measurement_dma[sum_index+2];
+//		  current_avg = current_avg + measurement_dma[sum_index+3];
+//	  }
+	  for (int sum_index = 0; sum_index < 32; sum_index+=2) {
 		  voltage_avg = voltage_avg + measurement_dma[sum_index];
 		  current_avg = current_avg + measurement_dma[sum_index+1];
 	  }
 	  //average of 8 concecutive adc measurements.
-	  voltage_avg = voltage_avg>>3;
-	  current_avg = current_avg>>3;
+	  voltage_avg = voltage_avg>>4;
+	  current_avg = current_avg>>4;
 
 	  /*power calculation*/
 	  uint32_t power_now = voltage_avg * current_avg;
@@ -162,16 +168,18 @@ int main(void)
 		  }
 	  }
       //add appropriate offset - create new duty cycle.
+
+
 	  if(increment_flag){
-		  duty_cycle = duty_cycle+1;
+		  duty_cycle = duty_cycle+stepsize;
 	  }
 	  else{
-		  duty_cycle = duty_cycle-1;
+		  duty_cycle = duty_cycle-stepsize;
 	  }
 	  power = power_now;
 	  //Check for Overflow and Underflow
 	  if (duty_cycle>350){duty_cycle=0;}
-	  if (duty_cycle>320){duty_cycle=320;}
+	  if (duty_cycle>320){duty_cycle=310;}
       // Set new PWM compare register
 	  //duty_cycle =0;
 	  HAL_TIM_SetPWMreg(&htim3, TIM_CHANNEL_4, duty_cycle);// htim4.Instance->CCR4 = duty_cycle;
@@ -184,7 +192,7 @@ int main(void)
 //	  sprintf(uart_temp, "Uart thing:   %u  \n",power_now);
 //	  HAL_UART_Transmit(&huart1, uart_temp, 20 , 10000);
 
-	  HAL_Delay(50);
+	  HAL_Delay(delay_time);
 
 
   /* USER CODE END WHILE */
@@ -354,8 +362,8 @@ void MX_GPIO_Init(void)
 // ADC DMA interrupt handler
 void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
     //printf("ADC conversion done.\n");
-    HAL_ADC_Stop_DMA(hadc);
-    HAL_ADC_Stop(hadc);
+    //HAL_ADC_Stop_DMA(hadc);
+   // HAL_ADC_Stop(hadc);
     adc_reading_complete = 1;
 }
 
