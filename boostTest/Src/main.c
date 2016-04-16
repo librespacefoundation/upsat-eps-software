@@ -36,15 +36,19 @@
 /* USER CODE BEGIN Includes */
 #include "main.h"
 
-#define FLASH_USER_START_ADDR   ADDR_FLASH_PAGE_48   /* Start @ of user Flash area */
-#define FLASH_USER_END_ADDR     ADDR_FLASH_PAGE_127 + FLASH_PAGE_SIZE   /* End @ of user Flash area */
-#define DATA_32                 ((uint16_t)0x1234)
+/* Defines related to Clock configuration */
 
-uint32_t Address = 0, PAGEError = 0;
-__IO uint32_t data32 = 0 , MemoryProgramStatus = 0;
 
-/*Variable used for Erase procedure*/
-static FLASH_EraseInitTypeDef EraseInitStruct;
+
+/* define address of permanent flags at non volatile memory space */
+#define ADDR_FLASH_STATUS_FLAG  ((uint32_t)0x08080000)
+/* value to check if flag is true */
+#define STATUS_TRUE             ((uint32_t)0xDEADBEEF)
+
+#define ADDR_TC74 (0x4c)//A4 marking on TO23 = 1001 100 7bit address
+
+/* RTC handler declaration */
+//RTC_HandleTypeDef RtcHandle;
 
 /* USER CODE END Includes */
 
@@ -66,6 +70,7 @@ DMA_HandleTypeDef hdma_usart1_rx;
 /* Buffer used for transmission */
 uint8_t aTxStartMessage[] = "\n\r ****UART-Hyperterminal communication based on DMA****\n\r Enter 10 characters using keyboard :\n\r";
 uint8_t aTxEndMessage[] = "\n\r Example Finished\n\r";
+
 
 /* Buffer used for reception */
 uint8_t aRxBuffer[10];
@@ -127,8 +132,44 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
+  /*GPIO*/
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin, GPIO_PIN_SET);
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LD3_Pin, GPIO_PIN_SET);
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(GPIOC, LD3_Pin, GPIO_PIN_RESET);
 
-   // -- Enables ADC and starts conversion of the regular channels.
+
+
+
+  uint32_t flash_status;
+
+  /*FLASH*/
+
+  flash_status = *( (uint32_t *)ADDR_FLASH_STATUS_FLAG);
+
+  while(flash_status!=STATUS_TRUE){
+
+	  HAL_GPIO_WritePin(GPIOC, LD4_Pin, GPIO_PIN_SET);
+	  HAL_Delay(1000);
+	  /*put to sleep for SLEEP_TIME seconds*/
+	  HAL_PWR_EnterSLEEPMode( PWR_MAINREGULATOR_ON,  PWR_SLEEPENTRY_WFI);
+	  HAL_GPIO_WritePin(GPIOC, LD4_Pin, GPIO_PIN_RESET);
+
+	  /* write to memory the proper status true value */
+	  HAL_FLASH_Unlock();
+	  HAL_FLASH_Program(TYPEPROGRAM_WORD, ADDR_FLASH_STATUS_FLAG, STATUS_TRUE);
+	  HAL_FLASH_Lock();
+
+	  /* read back the new tatus to unlock the while loop*/
+	  flash_status = *( (uint32_t *)ADDR_FLASH_STATUS_FLAG);
+  }
+
+
+
+
+  // -- Enables ADC and starts conversion of the regular channels.
     HAL_ADC_Start(&hadc);//paizei na nai perito.
     HAL_ADC_Start_DMA(&hadc, (uint32_t*)measurement_dma, 20);
 
@@ -144,39 +185,94 @@ int main(void)
     HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
 
+
+
     /*UART*/
-    uint8_t uart_temp[30];
-    sprintf(uart_temp, "UART communication test ...\n");
-    //HAL_UART_Transmit(&huart1, uart_temp, 27 , 10000);
+    uint8_t uart_output_buffer[30];
+    sprintf(uart_output_buffer, "UART communication test ...\n");
+    if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)uart_output_buffer, 30)!= HAL_OK)
+    	    {
+    	      /* Transfer error in transmission process */
+    	      //Error_Handler();
+    	    	HAL_Delay(1);
+    	    }
+
+    while(!txDoneFlag);
+
+    uint8_t uart_input_buffer[10];
+    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)uart_input_buffer, 10) != HAL_OK)
+    {
+    	/* Transfer error in reception process */
+    	//Error_Handler();
+    	HAL_Delay(1);
+    }
+
+    while(!rxDoneFlag);
+
+    uint8_t i2c_temp[2]; // = { 0x20, 0x0F};
+    uint8_t i2c_tc74_read_reg = 0x00;
+    uint8_t i2c_tc74_control_reg = 0x01;
+    uint8_t i2c_tc74writebuff[2]  = { 0x01, 0x00};
+    if(uart_input_buffer[0]==57)
+    {
+    	/* get i2c temp and transmit it over uart */
+
+
+    	/*read TC74 control register*/
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74_control_reg, 1, 100);
+    	/*read trasmited temperature data*/
+    	HAL_I2C_Master_Receive(&hi2c1, ( ADDR_TC74 << 1 ), i2c_temp, 1, 100);
+
+
+
+    	/*write to TC74 cotrol register a wake up signal*/
+    	i2c_tc74writebuff[1] = 0b00000000;//wakeup
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74writebuff, 2, 100);
+
+
+    	/*write address of data register to tc 74*/
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74_read_reg, 1, 100);
+    	/*read trasmited temperature data*/
+    	HAL_I2C_Master_Receive(&hi2c1, ( ADDR_TC74 << 1 ), i2c_temp, 1, 100);
+
+
+    	/*write to TC74 cotrol register a sleep up signal*/
+    	i2c_tc74writebuff[1] = 0b10000000;//wakeup
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74writebuff, 2, 100);
 
 
 
 
-//    HAL_UART_Transmit_DMA(&huart1, uart_temp, 29);
-//
-//    while(!txDoneFlag);
 
 
-   /*##-2- Start the transmission process #####################################*/
-    /* User start transmission data through "TxBuffer" buffer */
-//    if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)aTxStartMessage, 100)!= HAL_OK)
-//    {
-//      /* Transfer error in transmission process */
-//      //Error_Handler();
-//    	HAL_Delay(1);
-//    }
 
-//    while(!txDoneFlag);
 
-    /*##-3- Put UART peripheral in reception process ###########################*/
-    /* Any data received will be stored in "RxBuffer" buffer : the number max of
-       data received is 10 */
-//    if (HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer, 10) != HAL_OK)
-//    {
-//      /* Transfer error in reception process */
-//      //Error_Handler();
-//    	//HAL_Delay(1);
-//    }
+    	/*read TC74 control register*/
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74_control_reg, 1, 100);
+    	/*read trasmited temperature data*/
+    	HAL_I2C_Master_Receive(&hi2c1, ( ADDR_TC74 << 1 ), i2c_temp, 1, 100);
+
+
+
+    	/*write to TC74 cotrol register a wake up signal*/
+    	i2c_tc74writebuff[1] = 0b00000000;//wakeup
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74writebuff, 2, 100);
+
+
+    	/*write address of data register to tc 74*/
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74_read_reg, 1, 100);
+    	/*read trasmited temperature data*/
+    	HAL_I2C_Master_Receive(&hi2c1, ( ADDR_TC74 << 1 ), i2c_temp, 1, 100);
+
+
+    	/*write to TC74 cotrol register a sleep up signal*/
+    	i2c_tc74writebuff[1] = 0b10000000;//wakeup
+    	HAL_I2C_Master_Transmit(&hi2c1, ( ADDR_TC74 << 1 ), i2c_tc74writebuff, 2, 100);
+
+
+
+    }
+
 
 //    /*##-4- Wait for the end of the transfer ###################################*/
 //    /*  Before starting a new communication transfer, you need to check the current

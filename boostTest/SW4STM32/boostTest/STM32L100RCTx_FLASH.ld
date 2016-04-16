@@ -62,6 +62,7 @@ MEMORY
 {
 FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 256K
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 16K
+DATA_EEPROM (xrw)      : ORIGIN = 0x08080000, LENGTH = 8K
 }
 
 /* Define output sections */
@@ -171,6 +172,17 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM
+
+
+  /* Persistent Flags data goes into EEPROM */
+  .persistD :
+  {
+    . = ALIGN(4);
+    *(.persistD)         /* .rodata sections (constants, strings, etc.) */
+    *(.persistD*)        /* .rodata* sections (constants, strings, etc.) */
+    . = ALIGN(4);
+  } >DATA_EEPROM
+
 
   
 
