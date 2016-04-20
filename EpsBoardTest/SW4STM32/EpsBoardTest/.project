@@ -25,6 +25,14 @@
 		<nature>fr.ac6.mcu.ide.core.MCUProjectNature</nature>
 	</natures>
 	<linkedResources><link>
+			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_uart.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_uart.c</location>
+		</link><link>
+			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_i2c.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_i2c.c</location>
+		</link><link>
 			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_cortex.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_cortex.c</location>
@@ -36,10 +44,6 @@
 			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal.c</location>
-		</link><link>
-			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_rtc.c</name>
-			<type>1</type>
-			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_rtc.c</location>
 		</link><link>
 			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_pwr_ex.c</name>
 			<type>1</type>
@@ -84,10 +88,6 @@
 			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_rcc.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_rcc.c</location>
-		</link><link>
-			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_rtc_ex.c</name>
-			<type>1</type>
-			<location>PARENT-2-PROJECT_LOC/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_rtc_ex.c</location>
 		</link><link>
 			<name>Drivers/STM32L1xx_HAL_Driver/stm32l1xx_hal_flash_ex.c</name>
 			<type>1</type>

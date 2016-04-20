@@ -41,7 +41,16 @@
 ADC_HandleTypeDef hadc;
 DMA_HandleTypeDef hdma_adc;
 
+I2C_HandleTypeDef hi2c2;
+
 TIM_HandleTypeDef htim3;
+
+UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart3;
+DMA_HandleTypeDef hdma_usart1_rx;
+DMA_HandleTypeDef hdma_usart1_tx;
+DMA_HandleTypeDef hdma_usart3_rx;
+DMA_HandleTypeDef hdma_usart3_tx;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -54,6 +63,9 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_I2C2_Init(void);
+static void MX_USART1_UART_Init(void);
+static void MX_USART3_UART_Init(void);
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                 
@@ -93,6 +105,9 @@ int main(void)
   MX_DMA_Init();
   MX_ADC_Init();
   MX_TIM3_Init();
+  MX_I2C2_Init();
+  MX_USART1_UART_Init();
+  MX_USART3_UART_Init();
 
   /* USER CODE BEGIN 2 */
   /*GPIO*/
@@ -212,7 +227,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-  __PWR_CLK_ENABLE();
+  __HAL_RCC_PWR_CLK_ENABLE();
 
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
@@ -251,15 +266,15 @@ void MX_ADC_Init(void)
     */
   hadc.Instance = ADC1;
   hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
-  hadc.Init.Resolution = ADC_RESOLUTION12b;
+  hadc.Init.Resolution = ADC_RESOLUTION_12B;
   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc.Init.EOCSelection = EOC_SINGLE_CONV;
+  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
   hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
   hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
   hadc.Init.ContinuousConvMode = ENABLE;
-  hadc.Init.NbrOfConversion = 2;
+  hadc.Init.NbrOfConversion = 14;
   hadc.Init.DiscontinuousConvMode = DISABLE;
   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
@@ -268,16 +283,105 @@ void MX_ADC_Init(void)
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.Channel = ADC_CHANNEL_19;
+  sConfig.Channel = ADC_CHANNEL_18;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_4CYCLES;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.Channel = ADC_CHANNEL_18;
+  sConfig.Channel = ADC_CHANNEL_19;
   sConfig.Rank = 2;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Rank = 3;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_10;
+  sConfig.Rank = 4;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Rank = 5;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = 6;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_20;
+  sConfig.Rank = 7;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_21;
+  sConfig.Rank = 8;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = 9;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = 10;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_3;
+  sConfig.Rank = 11;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 12;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_12;
+  sConfig.Rank = 13;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
+  sConfig.Rank = 14;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+}
+
+/* I2C2 init function */
+void MX_I2C2_Init(void)
+{
+
+  hi2c2.Instance = I2C2;
+  hi2c2.Init.ClockSpeed = 100000;
+  hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c2.Init.OwnAddress1 = 0;
+  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c2.Init.OwnAddress2 = 0;
+  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  HAL_I2C_Init(&hi2c2);
 
 }
 
@@ -315,17 +419,62 @@ void MX_TIM3_Init(void)
 
 }
 
+/* USART1 init function */
+void MX_USART1_UART_Init(void)
+{
+
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  HAL_UART_Init(&huart1);
+
+}
+
+/* USART3 init function */
+void MX_USART3_UART_Init(void)
+{
+
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 115200;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  HAL_UART_Init(&huart3);
+
+}
+
 /** 
   * Enable DMA controller clock
   */
 void MX_DMA_Init(void) 
 {
   /* DMA controller clock enable */
-  __DMA1_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* DMA1_Channel2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel2_IRQn);
+  /* DMA1_Channel3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
+  /* DMA1_Channel4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+  /* DMA1_Channel5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
 
 }
 
@@ -342,19 +491,53 @@ void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
-  __GPIOA_CLK_ENABLE();
-  __GPIOB_CLK_ENABLE();
-  __GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin|GPIO_UMBILICAL_Pin 
+                          |GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PC8 PC9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOH, GPIO_COMM_SWITCH_Pin|GPIO_DEPLOY_LEFT_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIO_TC74_POWER_GPIO_Port, GPIO_TC74_POWER_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_HEATERS_Pin|GPIO_DEPLOY_BOTTOM_Pin|GPIO_DEBUG1_Pin|GPIO_DEBUG2_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : GPIO_SU_SWITCH_Pin GPIO_OBC_SWITCH_Pin GPIO_ADCS_SWITCH_Pin GPIO_UMBILICAL_Pin 
+                           GPIO_DEPLOY_ANT1_Pin GPIO_DEPLOY_RIGHT_Pin */
+  GPIO_InitStruct.Pin = GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin|GPIO_UMBILICAL_Pin 
+                          |GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_VERY_LOW;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : GPIO_COMM_SWITCH_Pin GPIO_DEPLOY_LEFT_Pin */
+  GPIO_InitStruct.Pin = GPIO_COMM_SWITCH_Pin|GPIO_DEPLOY_LEFT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : GPIO_TC74_POWER_Pin */
+  GPIO_InitStruct.Pin = GPIO_TC74_POWER_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIO_TC74_POWER_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : GPIO_HEATERS_Pin GPIO_DEPLOY_BOTTOM_Pin GPIO_DEBUG1_Pin GPIO_DEBUG2_Pin */
+  GPIO_InitStruct.Pin = GPIO_HEATERS_Pin|GPIO_DEPLOY_BOTTOM_Pin|GPIO_DEBUG1_Pin|GPIO_DEBUG2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
