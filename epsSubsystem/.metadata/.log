@@ -1,0 +1,55 @@
+!SESSION 2016-04-23 20:19:21.687 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_95
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.core.resources 2 567 2016-04-23 20:20:22.091
+!MESSAGE Failure occurred reading .project file.
+!SUBENTRY 1 org.eclipse.core.resources 2 567 2016-04-23 20:20:22.091
+!MESSAGE Could not read metadata for 'epsSubsystem'.
+!STACK 0
+java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:504)
+	at java.lang.Integer.parseInt(Integer.java:527)
+	at org.eclipse.core.internal.resources.ProjectDescriptionReader.endLinkType(ProjectDescriptionReader.java:765)
+	at org.eclipse.core.internal.resources.ProjectDescriptionReader.endElement(ProjectDescriptionReader.java:384)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:609)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:183)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:357)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2787)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:118)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:642)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:326)
+	at org.eclipse.core.internal.resources.ProjectDescriptionReader.read(ProjectDescriptionReader.java:920)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:840)
+	at org.eclipse.core.internal.resources.Project.updateDescription(Project.java:1426)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:308)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:269)
+	at org.eclipse.ui.internal.wizards.datatransfer.WizardProjectsImportPage.createExistingProject(WizardProjectsImportPage.java:1455)
+	at org.eclipse.ui.internal.wizards.datatransfer.WizardProjectsImportPage.access$20(WizardProjectsImportPage.java:1384)
+	at org.eclipse.ui.internal.wizards.datatransfer.WizardProjectsImportPage$20.execute(WizardProjectsImportPage.java:1319)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2313)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SUBENTRY 1 org.eclipse.core.resources 2 567 2016-04-23 20:20:22.092
+!MESSAGE Empty name detected for linked resource with type '1' and location ''.
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-04-23 20:20:51.553
+!MESSAGE Indexed 'epsSubsystem' (21 sources, 102 headers) in 25.8 sec: 16,158 declarations; 51,260 references; 0 unresolved inclusions; 130 syntax errors; 60 unresolved names (0.089%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-04-23 20:27:19.598
+!MESSAGE Indexed 'epsSubsystem' (21 sources, 102 headers) in 9.18 sec: 16,158 declarations; 51,260 references; 0 unresolved inclusions; 130 syntax errors; 60 unresolved names (0.089%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-04-23 20:29:37.471
+!MESSAGE Indexed 'epsSubsystem' (21 sources, 62 headers) in 2.36 sec: 4,476 declarations; 35,288 references; 0 unresolved inclusions; 55 syntax errors; 0 unresolved names (0%)
