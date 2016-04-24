@@ -34,8 +34,9 @@
 #include "stm32l1xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-#define TIMED_EVENT_PERIOD ((uint8_t)50)
+#define TIMED_EVENT_PERIOD ((uint8_t)50)//in miliseconds
 #define MPPT_STEP_SIZE ((uint32_t)1)
+#define STARTUP_PWM_DUTYCYCLE ((uint32_t)0X50)
 
 typedef struct {
 	uint8_t su_p_switch;/*Science unit control switch - set to turn off - reset to turn on (!inverted logic!)*/
@@ -73,6 +74,7 @@ typedef struct {
 	uint16_t battery_current_plus;
 	uint16_t battery_current_minus;
 	int8_t 	 battery_temp;
+	uint32_t cpu_temperature;
 }EPS_State;
 
 
@@ -80,7 +82,12 @@ typedef struct {
 	uint16_t voltage; /*average voltage at each mppt step*/
 	uint16_t current; /*average curret at each mppt step*/
 	uint32_t previous_power; /*average power at previous mppt step*/
-	uint16_t pwm_duty_cycle; /*duty cycle of power module pwm output*/
+	uint8_t incremennt_flag;/*flag for mppt algorithm must be initialized to 1*/
+	uint32_t pwm_duty_cycle; /*duty cycle of power module pwm output*/
+	//uint8_t  module_id;/*module id index staring from zero.*/
+	TIM_HandleTypeDef *htim_pwm;/*assign wich timer is assigned for this pwm output*/
+	uint32_t timChannel;/*assign the proper timer channel assigned to module pwm output*/
+
 }EPS_PowerModule;
 
 
@@ -105,13 +112,15 @@ DMA_HandleTypeDef hdma_usart3_tx;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
-volatile uint8_t EPS_soft_error_status = 0x00;//initialise global software error status to false.
-volatile uint8_t EPS_event_period_status = 0xFF;//initialise global timed event flag to true.
+volatile uint8_t EPS_soft_error_status = 0x00;//initialize global software error status to false.
+volatile uint8_t EPS_event_period_status = 0xFF;//initialize global timed event flag to true.
+volatile uint8_t adc_reading_complete = 0;//flag to check when dma transfer is complete.
 
 EPS_State eps_board_state;
 EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
 
-uint32_t adc_measurement_dma[200]= { 0 };
+uint32_t adc_measurement_dma_power_modules[137]= { 0 };//20*8 +1
+uint32_t adc_measurement_dma_eps_state[13]= { 0 };//2*6 +1
 
 /* USER CODE END PV */
 
@@ -131,10 +140,17 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void EPS_PowerModule_init(volatile EPS_PowerModule *moduleX);
+void EPS_PowerModule_init(EPS_PowerModule *module_X,uint32_t starting_pwm_dutycycle,TIM_HandleTypeDef *htim, uint32_t timer_channel);
+void EPS_update_power_modules_state(EPS_PowerModule *module_top, EPS_PowerModule *module_bottom, EPS_PowerModule *module_left, EPS_PowerModule *module_right);
 void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX);
+void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX);
 void EPS_update_state(volatile EPS_State *state);
 void EPS_state_init(volatile EPS_State *state);
+
+void ADC_EPS_POWER_MODULES_Init(void);
+void ADC_EPS_STATE_Init(void);
+
+
 
 
 /* USER CODE END PFP */
@@ -170,7 +186,11 @@ int main(void)
   MX_TIM6_Init();
 
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start(&htim3);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);//top
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   //initial checks: chech if deploymet has happened and handle it.
 
   /* USER CODE END 2 */
@@ -182,13 +202,14 @@ int main(void)
   EPS_state_init(&eps_board_state);
 
   //init power modules 1,2,3,4 and mppt
-  EPS_PowerModule_init(&power_module_top);
-  EPS_PowerModule_init(&power_module_bottom);
-  EPS_PowerModule_init(&power_module_left);
-  EPS_PowerModule_init(&power_module_right);
+  EPS_PowerModule_init(&power_module_top, STARTUP_PWM_DUTYCYCLE, &htim3, 1);
+  EPS_PowerModule_init(&power_module_bottom, STARTUP_PWM_DUTYCYCLE, &htim3, 2);
+  EPS_PowerModule_init(&power_module_left, STARTUP_PWM_DUTYCYCLE, &htim3, 3);
+  EPS_PowerModule_init(&power_module_right, STARTUP_PWM_DUTYCYCLE, &htim3, 4);
 
   //kick timer interupt for timed threads.
 
+  HAL_ADC_Stop(&hadc);
 
   while (1)
   {
@@ -204,9 +225,24 @@ int main(void)
 	  if(EPS_event_period_status){
 
 		  //update eps state
+		  EPS_update_state( &eps_board_state);
 
-
+		  //update power modules state
+		  EPS_update_power_modules_state(&power_module_top, &power_module_bottom, &power_module_left, &power_module_right);
 		  //mppt_pwm_update
+//		  EPS_PowerModule_mppt_update_pwm(&power_module_top);
+//		  EPS_PowerModule_mppt_apply_pwm(&power_module_top);//bottom
+//
+//		  //htim3.Instance->CCR1 = power_module_top.pwm_duty_cycle;
+//
+//		  EPS_PowerModule_mppt_update_pwm(&power_module_bottom);
+//		  EPS_PowerModule_mppt_apply_pwm(&power_module_bottom);//left
+//
+//		  EPS_PowerModule_mppt_update_pwm(&power_module_left);
+//		  EPS_PowerModule_mppt_apply_pwm(&power_module_left);//top
+
+		  EPS_PowerModule_mppt_update_pwm(&power_module_right);
+		  EPS_PowerModule_mppt_apply_pwm(&power_module_right);//right
 
 		  EPS_event_period_status = 0x00;//reset event period status so as to be set into the timer interupt.
 	  }
@@ -427,6 +463,8 @@ void MX_TIM3_Init(void)
 
   HAL_TIM_MspPostInit(&htim3);
 
+
+
 }
 
 /* TIM6 init function */
@@ -570,13 +608,21 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void EPS_PowerModule_init(volatile EPS_PowerModule *moduleX){
+void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutycycle, TIM_HandleTypeDef *htim, uint32_t timer_channel){
 
+	module_X->current =0;
+	module_X->voltage =0;
+	module_X->previous_power =0;
+	module_X->pwm_duty_cycle = starting_pwm_dutycycle;
+	//module_X->module_id = module_id;
+	module_X->htim_pwm = htim;
+	module_X->timChannel = timer_channel;
+	module_X->incremennt_flag = 1;
 }
 
 void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
-	static uint8_t increment_flag = 1;//diplotriplotsekare oti to inint to kanei mono sthn arxh vlaks
+	//static uint8_t increment_flag = 1;//diplotriplotsekare oti to inint to kanei mono sthn arxh vlaks
 
 
 	  /*power calculation*/
@@ -587,17 +633,17 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 	// decide duty cycle orientation - set increment flag.
 	  if (power_now_avg  <(moduleX->previous_power)){
 
-		  if (increment_flag>0){
-			  increment_flag = 0;
+		  if (moduleX->incremennt_flag>0){
+			  moduleX->incremennt_flag = 0;
 		  }
 		  else{
-			  increment_flag = 1;
+			  moduleX->incremennt_flag = 1;
 		  }
 	  }
     //add appropriate offset - create new duty cycle.
 
 
-	  if(increment_flag){
+	  if(moduleX->incremennt_flag){
 		  duty_cycle = duty_cycle+MPPT_STEP_SIZE;
 	  }
 	  else{
@@ -612,95 +658,120 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 	  moduleX->previous_power = power_now_avg;
 	  moduleX->pwm_duty_cycle = duty_cycle;
-	  //HAL_TIM_SetPWMreg(&htim3, TIM_CHANNEL_4, duty_cycle);// htim4.Instance->CCR4 = duty_cycle;
+
+}
+
+void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX){
+
+	switch ( moduleX->timChannel ) {
+	case 1:         /*  top module */
+		moduleX->htim_pwm->Instance->CCR1 = moduleX->pwm_duty_cycle;
+		break;
+	case 2:         /*  bottom module */
+		moduleX->htim_pwm->Instance->CCR2 = moduleX->pwm_duty_cycle;
+		break;
+	case 3:         /*  left module */
+		moduleX->htim_pwm->Instance->CCR3 = moduleX->pwm_duty_cycle;
+		break;
+	case 4:         /*  right module */
+		moduleX->htim_pwm->Instance->CCR4 = moduleX->pwm_duty_cycle;
+		break;
+	default:
+		//error handling?
+		break;
+	}
 
 }
 
 void EPS_update_state(volatile EPS_State *state){
 
 	/*adc ting*/
-	  volatile uint8_t adc_reading_complete = 0;
-	  HAL_ADC_Start_DMA(&hadc, (uint32_t*)adc_measurement_dma, 20);
+	ADC_EPS_STATE_Init();
 
-	  /*Wait till DMA ADC sequence transfer is ready*/
-	  while(adc_reading_complete==0){
-		  //HAL_Delay(1);
-	  }
+	adc_reading_complete = 0;
+	HAL_ADC_Start_DMA(&hadc, adc_measurement_dma_eps_state, 12);
+	/*Wait till DMA ADC sequence transfer is ready*/
+	while(adc_reading_complete==0){
+ 	}
 
-	  /*Process Measurements*/
-	  uint32_t voltage_avg_top =0;
-	  uint32_t current_avg_top =0;
-	  uint32_t voltage_avg_bottom =0;
-	  uint32_t current_avg_bottom =0;
-	  uint32_t voltage_avg_left =0;
-	  uint32_t current_avg_left =0;
-	  uint32_t voltage_avg_right =0;
-	  uint32_t current_avg_right =0;
-	  //deinterleave and sum voltage and current measurements.
-	  for (int sum_index = 0; sum_index < 16; sum_index+=2) {
-		  /*top*/
-		  voltage_avg_top = voltage_avg_top + adc_measurement_dma[sum_index];
-		  current_avg_top = current_avg_top + adc_measurement_dma[sum_index+1];
-		  /*bottom*/
-		  voltage_avg_bottom = voltage_avg_bottom + adc_measurement_dma[sum_index];
-		  current_avg_bottom = current_avg_bottom + adc_measurement_dma[sum_index+1];
-		  /*left*/
-		  voltage_avg_left = voltage_avg_left + adc_measurement_dma[sum_index];
-		  current_avg_left = current_avg_left + adc_measurement_dma[sum_index+1];
-		  /*right*/
-		  voltage_avg_right = voltage_avg_right + adc_measurement_dma[sum_index];
-		  current_avg_right = current_avg_right + adc_measurement_dma[sum_index+1];
-	  }
+//	HAL_ADC_Stop_DMA(&hadc);
 
-	  /*filter ting*/
-	  //average of 8 concecutive adc measurements.
-	  state->module_top_voltage_avg = voltage_avg_top>>3;
-	  state->module_top_current_avg = current_avg_top>>3;
-	  state->module_bottom_voltage_avg = voltage_avg_bottom>>3;
-	  state->module_bottom_current_avg = current_avg_bottom>>3;
-	  state->module_left_voltage_avg = voltage_avg_left>>3;
-	  state->module_left_current_avg = current_avg_left>>3;
-	  state->module_right_voltage_avg = voltage_avg_right>>3;
-	  state->module_right_current_avg = current_avg_right>>3;
+	state->battery_voltage = adc_measurement_dma_eps_state[6];
+	state->battery_current_plus = adc_measurement_dma_eps_state[7];
+	state->battery_current_minus = adc_measurement_dma_eps_state[8];
+	state->v3_3_current_avg = adc_measurement_dma_eps_state[9];
+	state->v5_current_avg = adc_measurement_dma_eps_state[10];
+	state->cpu_temperature = adc_measurement_dma_eps_state[11];
 
-
-
-	  //	  /*the rest adc measurements*/
-	  //	  state->v5_current_avg;
-	  //	  state->v3_3_current_avg;
-	  //	  state->battery_voltage;
-	  //	  state->battery_current_plus;
-	  //	  state->battery_current_minus;
-
-
-	  //add cpu temp measurement to struct !
-
-//	  /*read switch state*/
-//	  state->su_p_switch = HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
-//	  state->adcs_p_switch = 0xff;
-//	  state->comm_p_switch = 0xff;
-//	  state->i2c_tc74_p_switch = 0xff;
-//
-//	  state->deploy_left_switch = 0x00;
-//	  state->deploy_right_switch = 0x00;
-//	  state->deploy_bottom_switch = 0x00;
-//	  state->deploy_ant1_switch = 0x00;
-//	  state->umbilical_switch = 0x00;
-//	  state->heaters_switch = 0x00;
-
-	  /*i2c temp sensors*/
-	  //	  state->battery_temp;
-
-
+	/*i2c temp sensors*/
+	//	  state->battery_temp;
 
 
 }
+
+
+
+void EPS_update_power_modules_state(EPS_PowerModule *module_top, EPS_PowerModule *module_bottom, EPS_PowerModule *module_left, EPS_PowerModule *module_right){
+
+	/*adc ting*/
+	ADC_EPS_POWER_MODULES_Init();
+	adc_reading_complete = 0;
+	HAL_ADC_Start_DMA(&hadc, adc_measurement_dma_power_modules, 136);
+
+	/*Process Measurements*/
+	uint32_t voltage_avg_top =0;
+	uint32_t current_avg_top =0;
+	uint32_t voltage_avg_bottom =0;
+	uint32_t current_avg_bottom =0;
+	uint32_t voltage_avg_left =0;
+	uint32_t current_avg_left =0;
+	uint32_t voltage_avg_right =0;
+	uint32_t current_avg_right =0;
+
+	/*Wait till DMA ADC sequence transfer is ready*/
+	while(adc_reading_complete==0){
+		//wait for dma transfer complete.
+	}
+//	HAL_ADC_Stop_DMA(&hadc);//stop transfer and turn off adc peripheral.
+
+	//de-interleave and sum voltage and current measurements.
+	for (int sum_index = 8; sum_index < 136; sum_index+=8) {
+		/*top*/
+		voltage_avg_top = voltage_avg_top + adc_measurement_dma_power_modules[sum_index];
+		current_avg_top = current_avg_top + adc_measurement_dma_power_modules[sum_index+1];
+		/*bottom*/
+		voltage_avg_bottom = voltage_avg_bottom + adc_measurement_dma_power_modules[sum_index+2];
+		current_avg_bottom = current_avg_bottom + adc_measurement_dma_power_modules[sum_index+3];
+		/*left*/
+		voltage_avg_left = voltage_avg_left + adc_measurement_dma_power_modules[sum_index+4];
+		current_avg_left = current_avg_left + adc_measurement_dma_power_modules[sum_index+5];
+		/*right*/
+		voltage_avg_right = voltage_avg_right + adc_measurement_dma_power_modules[sum_index+6];
+		current_avg_right = current_avg_right + adc_measurement_dma_power_modules[sum_index+7];
+	}
+
+	/*filter ting*/
+	//average of 16 concecutive adc measurements.skip the first to avoid adc power up distortion.
+	module_top->voltage = voltage_avg_top>>4;
+	module_top->current = current_avg_top>>4;
+	module_bottom->voltage = voltage_avg_bottom>>4;
+	module_bottom->current = current_avg_bottom>>4;
+	module_left->voltage = voltage_avg_left>>4;
+	module_left->current = current_avg_left>>4;
+	module_right->voltage = voltage_avg_right>>4;
+	module_right->current = current_avg_right>>4;
+
+}
+
+
+
 
 void EPS_state_init(volatile EPS_State *state){
 
 	state->su_p_switch = 0xff;
 	state->adcs_p_switch = 0xff;
 	state->comm_p_switch = 0xff;
+	state->obc_p_switch = 0xff;
 	state->i2c_tc74_p_switch = 0xff;
 
 	state->deploy_left_switch = 0x00;
@@ -729,6 +800,151 @@ void EPS_state_init(volatile EPS_State *state){
 	state->battery_temp = 0x00;
 
 }
+
+
+
+/* ADC init function for eps state only conversion */
+void ADC_EPS_STATE_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+    */
+//  hadc.Instance = ADC1;
+//  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+//  hadc.Init.Resolution = ADC_RESOLUTION_12B;
+//  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+//  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
+//  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+//  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
+//  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
+//  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
+//  hadc.Init.ContinuousConvMode = ENABLE;
+//  hadc.Init.DiscontinuousConvMode = DISABLE;
+//  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+//  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+//  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Init.NbrOfConversion = 6;
+  HAL_ADC_Init(&hadc);
+
+  /*Vbat*/
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = 9;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+   /*Ibat+*/
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = 10;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*Ibat-*/
+  sConfig.Channel = ADC_CHANNEL_3;
+  sConfig.Rank = 11;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*I3v3*/
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 12;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*I5v*/
+  sConfig.Channel = ADC_CHANNEL_12;
+  sConfig.Rank = 13;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*cpu internal temp sensor*/
+  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
+  sConfig.Rank = 14;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+}
+
+
+/* ADC init function to read eps state */
+void ADC_EPS_POWER_MODULES_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+    */
+//  hadc.Instance = ADC1;
+//  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+//  hadc.Init.Resolution = ADC_RESOLUTION_12B;
+//  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+//  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
+//  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+//  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
+//  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
+//  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
+//  hadc.Init.ContinuousConvMode = ENABLE;
+//  hadc.Init.DiscontinuousConvMode = DISABLE;
+//  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+//  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+//  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Init.NbrOfConversion = 8;
+  HAL_ADC_Init(&hadc);
+
+
+  /*module top current*/
+  sConfig.Channel = ADC_CHANNEL_18;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_4CYCLES;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module top voltage*/
+  sConfig.Channel = ADC_CHANNEL_19;
+  sConfig.Rank = 2;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module bottom current*/
+  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Rank = 3;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module bottom voltage*/
+  sConfig.Channel = ADC_CHANNEL_10;
+  sConfig.Rank = 4;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module left current*/
+  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Rank = 5;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module left voltage*/
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = 6;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module right current*/
+  sConfig.Channel = ADC_CHANNEL_20;
+  sConfig.Rank = 7;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+  /*module right voltage*/
+  sConfig.Channel = ADC_CHANNEL_21;
+  sConfig.Rank = 8;
+  HAL_ADC_ConfigChannel(&hadc, &sConfig);
+
+
+
+}
+
+// ADC DMA interrupt handler
+void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
+    //printf("ADC conversion done.\n");
+    //HAL_ADC_Stop_DMA(hadc);
+
+	HAL_ADC_Stop_DMA(hadc);
+	HAL_ADC_Stop(hadc);
+    adc_reading_complete = 1;
+}
+
+
+
+
 
 /* USER CODE END 4 */
 

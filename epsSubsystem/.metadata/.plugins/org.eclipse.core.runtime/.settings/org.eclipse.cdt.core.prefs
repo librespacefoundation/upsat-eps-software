@@ -13,3 +13,4 @@ indexer/skipReferences=false
 indexer/skipTypeReferences=false
 indexer/updatePolicy=0
 indexer/useHeuristicIncludeResolution=true
+macros/workspace=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<macros/>\n
