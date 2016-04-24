@@ -35,8 +35,8 @@
 
 /* USER CODE BEGIN Includes */
 #define TIMED_EVENT_PERIOD ((uint8_t)50)//in miliseconds
-#define MPPT_STEP_SIZE ((uint32_t)1)
-#define STARTUP_PWM_DUTYCYCLE ((uint32_t)0X50)
+#define MPPT_STEP_SIZE ((uint32_t)2)
+#define STARTUP_PWM_DUTYCYCLE ((uint32_t) 50)
 
 typedef struct {
 	uint8_t su_p_switch;/*Science unit control switch - set to turn off - reset to turn on (!inverted logic!)*/
@@ -760,6 +760,11 @@ void EPS_update_power_modules_state(EPS_PowerModule *module_top, EPS_PowerModule
 	module_left->current = current_avg_left>>4;
 	module_right->voltage = voltage_avg_right>>4;
 	module_right->current = current_avg_right>>4;
+
+	module_right->voltage = voltage_avg_top>>4;
+	module_right->current = current_avg_top>>4;
+
+
 
 }
 
