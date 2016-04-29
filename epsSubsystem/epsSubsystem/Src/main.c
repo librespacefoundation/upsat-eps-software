@@ -32,11 +32,12 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_hal.h"
+#include "testit.h"
 
 /* USER CODE BEGIN Includes */
 #define TIMED_EVENT_PERIOD ((uint8_t)50)//in miliseconds
-#define MPPT_STEP_SIZE ((uint32_t)2)
-#define STARTUP_PWM_DUTYCYCLE ((uint32_t) 50)
+#define MPPT_STEP_SIZE ((uint32_t)5)
+#define STARTUP_PWM_DUTYCYCLE ((uint32_t) 70)
 
 typedef struct {
 	uint8_t su_p_switch;/*Science unit control switch - set to turn off - reset to turn on (!inverted logic!)*/
@@ -193,6 +194,21 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   //initial checks: chech if deploymet has happened and handle it.
 
+
+
+  /*UART*/
+
+//
+//  uint8_t uart_output_buffer[15];
+//  sprintf(uart_output_buffer, "UART test ...\n");
+//  if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)uart_output_buffer, 14)!= HAL_OK)
+//  {
+//	  /* Transfer error in transmission process */
+//	  //Error_Handler();
+//	  HAL_Delay(1);
+//  }
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -202,9 +218,9 @@ int main(void)
   EPS_state_init(&eps_board_state);
 
   //init power modules 1,2,3,4 and mppt
-  EPS_PowerModule_init(&power_module_top, STARTUP_PWM_DUTYCYCLE, &htim3, 1);
-  EPS_PowerModule_init(&power_module_bottom, STARTUP_PWM_DUTYCYCLE, &htim3, 2);
-  EPS_PowerModule_init(&power_module_left, STARTUP_PWM_DUTYCYCLE, &htim3, 3);
+  EPS_PowerModule_init(&power_module_top, STARTUP_PWM_DUTYCYCLE, &htim3, 3);
+  EPS_PowerModule_init(&power_module_bottom, STARTUP_PWM_DUTYCYCLE, &htim3, 1);
+  EPS_PowerModule_init(&power_module_left, STARTUP_PWM_DUTYCYCLE, &htim3, 2);
   EPS_PowerModule_init(&power_module_right, STARTUP_PWM_DUTYCYCLE, &htim3, 4);
 
   //kick timer interupt for timed threads.
@@ -230,16 +246,16 @@ int main(void)
 		  //update power modules state
 		  EPS_update_power_modules_state(&power_module_top, &power_module_bottom, &power_module_left, &power_module_right);
 		  //mppt_pwm_update
-//		  EPS_PowerModule_mppt_update_pwm(&power_module_top);
-//		  EPS_PowerModule_mppt_apply_pwm(&power_module_top);//bottom
-//
-//		  //htim3.Instance->CCR1 = power_module_top.pwm_duty_cycle;
-//
-//		  EPS_PowerModule_mppt_update_pwm(&power_module_bottom);
-//		  EPS_PowerModule_mppt_apply_pwm(&power_module_bottom);//left
-//
-//		  EPS_PowerModule_mppt_update_pwm(&power_module_left);
-//		  EPS_PowerModule_mppt_apply_pwm(&power_module_left);//top
+		  EPS_PowerModule_mppt_update_pwm(&power_module_top);
+		  EPS_PowerModule_mppt_apply_pwm(&power_module_top);//bottom
+
+		  //htim3.Instance->CCR1 = power_module_top.pwm_duty_cycle;
+
+		  EPS_PowerModule_mppt_update_pwm(&power_module_bottom);
+		  EPS_PowerModule_mppt_apply_pwm(&power_module_bottom);//left
+
+		  EPS_PowerModule_mppt_update_pwm(&power_module_left);
+		  EPS_PowerModule_mppt_apply_pwm(&power_module_left);//top
 
 		  EPS_PowerModule_mppt_update_pwm(&power_module_right);
 		  EPS_PowerModule_mppt_apply_pwm(&power_module_right);//right
@@ -737,17 +753,17 @@ void EPS_update_power_modules_state(EPS_PowerModule *module_top, EPS_PowerModule
 	//de-interleave and sum voltage and current measurements.
 	for (int sum_index = 8; sum_index < 136; sum_index+=8) {
 		/*top*/
-		voltage_avg_top = voltage_avg_top + adc_measurement_dma_power_modules[sum_index];
-		current_avg_top = current_avg_top + adc_measurement_dma_power_modules[sum_index+1];
+		current_avg_top = current_avg_top + adc_measurement_dma_power_modules[sum_index];
+		voltage_avg_top = voltage_avg_top + adc_measurement_dma_power_modules[sum_index+1];
 		/*bottom*/
-		voltage_avg_bottom = voltage_avg_bottom + adc_measurement_dma_power_modules[sum_index+2];
-		current_avg_bottom = current_avg_bottom + adc_measurement_dma_power_modules[sum_index+3];
+		current_avg_bottom = current_avg_bottom + adc_measurement_dma_power_modules[sum_index+2];
+		voltage_avg_bottom = voltage_avg_bottom + adc_measurement_dma_power_modules[sum_index+3];
 		/*left*/
-		voltage_avg_left = voltage_avg_left + adc_measurement_dma_power_modules[sum_index+4];
-		current_avg_left = current_avg_left + adc_measurement_dma_power_modules[sum_index+5];
+		current_avg_left = current_avg_left + adc_measurement_dma_power_modules[sum_index+4];
+		voltage_avg_left = voltage_avg_left + adc_measurement_dma_power_modules[sum_index+5];
 		/*right*/
-		voltage_avg_right = voltage_avg_right + adc_measurement_dma_power_modules[sum_index+6];
-		current_avg_right = current_avg_right + adc_measurement_dma_power_modules[sum_index+7];
+		current_avg_right = current_avg_right + adc_measurement_dma_power_modules[sum_index+6];
+		voltage_avg_right = voltage_avg_right + adc_measurement_dma_power_modules[sum_index+7];
 	}
 
 	/*filter ting*/
@@ -761,8 +777,7 @@ void EPS_update_power_modules_state(EPS_PowerModule *module_top, EPS_PowerModule
 	module_right->voltage = voltage_avg_right>>4;
 	module_right->current = current_avg_right>>4;
 
-	module_right->voltage = voltage_avg_top>>4;
-	module_right->current = current_avg_top>>4;
+
 
 
 
@@ -816,20 +831,20 @@ void ADC_EPS_STATE_Init(void)
 
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
     */
-//  hadc.Instance = ADC1;
-//  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
-//  hadc.Init.Resolution = ADC_RESOLUTION_12B;
-//  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-//  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
-//  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-//  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
-//  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
-//  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
-//  hadc.Init.ContinuousConvMode = ENABLE;
-//  hadc.Init.DiscontinuousConvMode = DISABLE;
-//  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-//  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-//  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Instance = ADC1;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
+  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
+  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
+  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
+  hadc.Init.ContinuousConvMode = ENABLE;
+  hadc.Init.DiscontinuousConvMode = DISABLE;
+  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc.Init.DMAContinuousRequests = ENABLE;
   hadc.Init.NbrOfConversion = 6;
   HAL_ADC_Init(&hadc);
 
@@ -874,62 +889,62 @@ void ADC_EPS_POWER_MODULES_Init(void)
 
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
     */
-//  hadc.Instance = ADC1;
-//  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
-//  hadc.Init.Resolution = ADC_RESOLUTION_12B;
-//  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-//  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
-//  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-//  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
-//  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
-//  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
-//  hadc.Init.ContinuousConvMode = ENABLE;
-//  hadc.Init.DiscontinuousConvMode = DISABLE;
-//  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-//  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-//  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Instance = ADC1;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
+  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
+  hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
+  hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
+  hadc.Init.ContinuousConvMode = ENABLE;
+  hadc.Init.DiscontinuousConvMode = DISABLE;
+  hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc.Init.DMAContinuousRequests = ENABLE;
   hadc.Init.NbrOfConversion = 8;
   HAL_ADC_Init(&hadc);
 
 
   /*module top current*/
-  sConfig.Channel = ADC_CHANNEL_18;
+  sConfig.Channel = ADC_CHANNEL_5;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_4CYCLES;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module top voltage*/
-  sConfig.Channel = ADC_CHANNEL_19;
+  sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = 2;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module bottom current*/
-  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Channel = ADC_CHANNEL_20;
   sConfig.Rank = 3;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module bottom voltage*/
-  sConfig.Channel = ADC_CHANNEL_10;
+  sConfig.Channel = ADC_CHANNEL_21;
   sConfig.Rank = 4;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module left current*/
-  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Channel = ADC_CHANNEL_11;
   sConfig.Rank = 5;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module left voltage*/
-  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Channel = ADC_CHANNEL_10;
   sConfig.Rank = 6;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module right current*/
-  sConfig.Channel = ADC_CHANNEL_20;
+  sConfig.Channel = ADC_CHANNEL_18;
   sConfig.Rank = 7;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
   /*module right voltage*/
-  sConfig.Channel = ADC_CHANNEL_21;
+  sConfig.Channel = ADC_CHANNEL_19;
   sConfig.Rank = 8;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 

@@ -3,4 +3,4 @@
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.postmortemLaunchType=org.eclipse.cdt.dsf.gdb.launch.coreCLaunch,debug,;
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.remoteApplicationLaunchType=org.eclipse.rse.remotecdt.dsf.debug,debug,;
 eclipse.preferences.version=1
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="power_module_top"/>\n<expression enabled\="true" text\="power_module_right"/>\n<expression enabled\="true" text\="increment_flag"/>\n</watchExpressions>\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="power_module_top"/>\n<expression enabled\="true" text\="power_module_right"/>\n<expression enabled\="true" text\="adc_measurement_dma_power_modules"/>\n<expression enabled\="true" text\="power_module_bottom"/>\n<expression enabled\="true" text\="power_module_left"/>\n</watchExpressions>\n

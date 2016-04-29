@@ -36,7 +36,6 @@
 #include "stm32l1xx_it.h"
 
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -173,6 +172,10 @@ void TIM6_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+
+/**
+* @brief This function handles USART1 global interrupt.
+*/
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
