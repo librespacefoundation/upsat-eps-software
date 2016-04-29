@@ -1,0 +1,8 @@
+#ifndef __HAL_EPS_H
+#define __HAL_EPS_H
+
+
+#define TEST_DEF 1
+
+
+#endif

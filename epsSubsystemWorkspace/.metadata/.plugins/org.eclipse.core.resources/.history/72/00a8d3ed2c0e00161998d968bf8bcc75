@@ -1,0 +1,8 @@
+#ifndef __TESTIT_H
+#define __TESTIT_H
+
+
+#define TEST_DEF 1
+
+
+#endif
