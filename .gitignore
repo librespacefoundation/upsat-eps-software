@@ -11,4 +11,6 @@
 # Do not add CMSIS and Standard Peripheral Library files.
 */Drivers/
 
+# Do not track metadata
+*/.medata/
 

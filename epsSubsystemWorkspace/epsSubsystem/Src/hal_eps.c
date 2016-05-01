@@ -8,6 +8,7 @@ volatile uint8_t EPS_event_period_status = 0xFF;//initialize global timed event 
 
 
 
+
 void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
 
 
@@ -19,7 +20,75 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
 	while(adc_reading_complete==0){
  	}
 
-//	HAL_ADC_Stop_DMA(&hadc);
+	HAL_ADC_Stop_DMA(hadc_eps);
+	//HAL_ADC_Stop(hadc_eps);
+
+
+	state->battery_voltage = adc_measurement_dma_eps_state[6];
+	state->battery_current_plus = adc_measurement_dma_eps_state[7];
+	state->battery_current_minus = adc_measurement_dma_eps_state[8];
+	state->v3_3_current_avg = adc_measurement_dma_eps_state[9];
+	state->v5_current_avg = adc_measurement_dma_eps_state[10];
+	state->cpu_temperature = adc_measurement_dma_eps_state[11];
+
+	/*i2c temp sensors*/
+	//	  state->battery_temp;
+
+
+}
+
+
+void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
+
+	/*initialize adc handle*/
+	hadc_eps->NbrOfConversionRank = 6;
+	HAL_ADC_Init(hadc_eps);
+
+	/*setup conversion sequence for */
+	ADC_ChannelConfTypeDef sConfig;
+	sConfig.SamplingTime = ADC_SAMPLETIME_48CYCLES;
+
+	/*Vbat*/
+	sConfig.Channel = ADC_VBAT;
+	sConfig.Rank = 1;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+	/*Ibat+*/
+	sConfig.Channel = ADC_IBAT_PLUS;
+	sConfig.Rank = 2;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+	/*Ibat-*/
+	sConfig.Channel = ADC_IBAT_MINUS;
+	sConfig.Rank = 3;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+	/*I3v3*/
+	sConfig.Channel = ADC_I3V3;
+	sConfig.Rank = 4;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+	/*I5v*/
+	sConfig.Channel = ADC_I5V;
+	sConfig.Rank = 5;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+	/*cpu internal temp sensor*/
+	sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
+	sConfig.Rank = 6;
+	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
+
+
+	/*Start conversion and dma transfer*/
+	uint32_t adc_measurement_dma_eps_state[13]= { 0 };//2*6 +1
+
+	adc_reading_complete = 0;
+	HAL_ADC_Start_DMA(hadc_eps, adc_measurement_dma_eps_state, 12);
+	/*Wait till DMA ADC sequence transfer is ready*/
+	while(adc_reading_complete==0){
+ 	}
+	HAL_ADC_Stop_DMA(hadc_eps);
+
 
 	state->battery_voltage = adc_measurement_dma_eps_state[6];
 	state->battery_current_plus = adc_measurement_dma_eps_state[7];
@@ -165,6 +234,11 @@ void ADC_EPS_STATE_Init( ADC_HandleTypeDef *hadc_eps)
   hadc_eps->Init.NbrOfConversion = 6;
   HAL_ADC_Init(hadc_eps);
 
+
+
+
+
+
   /*Vbat*/
   sConfig.Channel = ADC_VBAT;
   sConfig.Rank = 9;
@@ -195,7 +269,7 @@ void ADC_EPS_STATE_Init( ADC_HandleTypeDef *hadc_eps)
   sConfig.Rank = 14;
   HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
 
-  HAL_ADC_Stop(hadc_eps);
+ // HAL_ADC_Stop(hadc_eps);
 
 }
 
@@ -212,12 +286,14 @@ void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutyc
 	module_X->timChannel = timer_channel;
 	module_X->incremennt_flag = 1;
 	module_X->hadc_power_module = hadc_power_module;
+	module_X->ADC_channel_current = ADC_channel_current;
+	module_X->ADC_channel_voltage = ADC_channel_voltage;
 
 	//Start pwm with initialized from cube mx pwm duty cycle for timerX at timer_channel.
 	HAL_TIM_PWM_Start(htim, timer_channel);
 
 	//Properly Initialize adc handle for this pwm module
-	ADC_EPS_POWER_MODULE_Init( hadc_power_module, ADC_channel_current, ADC_channel_voltage);
+	//ADC_EPS_POWER_MODULE_Init( hadc_power_module, ADC_channel_current, ADC_channel_voltage);
 
 
 }
@@ -252,15 +328,16 @@ void ADC_EPS_POWER_MODULE_Init(ADC_HandleTypeDef *hadc_power_module, uint32_t AD
   /*module adc channel current*/
   sConfig.Channel = ADC_channel_current;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_4CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_16CYCLES;
   HAL_ADC_ConfigChannel(hadc_power_module, &sConfig);
 
   /*module adc channel voltage*/
   sConfig.Channel = ADC_channel_voltage;
   sConfig.Rank = 2;
+  sConfig.SamplingTime = ADC_SAMPLETIME_16CYCLES;
   HAL_ADC_ConfigChannel(hadc_power_module, &sConfig);
 
-  HAL_ADC_Stop(hadc_power_module);
+  //HAL_ADC_Stop(hadc_power_module);
 
 
 
@@ -268,10 +345,37 @@ void ADC_EPS_POWER_MODULE_Init(ADC_HandleTypeDef *hadc_power_module, uint32_t AD
 
 void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
-	uint32_t adc_measurement_dma_power_modules[17]= { 0 };//2*8 +1
+
+
+
+
+	/*initialize adc handle*/
+	power_module->hadc_power_module->NbrOfConversionRank = 2;
+	HAL_ADC_Init(power_module->hadc_power_module);
+
+	/*setup conversion sequence for */
+	ADC_ChannelConfTypeDef sConfig;
+	sConfig.SamplingTime = ADC_SAMPLETIME_48CYCLES;
+
+	/*power module current*/
+	sConfig.Channel = power_module->ADC_channel_current ;
+	sConfig.Rank = 1;
+	HAL_ADC_ConfigChannel(power_module->hadc_power_module, &sConfig);
+
+	/*power module voltage*/
+	sConfig.Channel = power_module->ADC_channel_voltage ;
+	sConfig.Rank = 2;
+	HAL_ADC_ConfigChannel(power_module->hadc_power_module, &sConfig);
+
+
+
+	uint32_t adc_measurement_dma_power_modules[67]= { 0 };//2*64 +1
+
+
+
 
 	adc_reading_complete = 0;
-	HAL_ADC_Start_DMA(power_module->hadc_power_module, adc_measurement_dma_power_modules, 16);
+	HAL_ADC_Start_DMA(power_module->hadc_power_module, adc_measurement_dma_power_modules, 66);
 
 	/*Process Measurements*/
 	uint32_t voltage_avg =0;
@@ -284,8 +388,13 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	}
 	//ADC must be stopped in the adc dma transfer complete callback.
 
+	HAL_ADC_Stop_DMA(power_module->hadc_power_module);
+	//HAL_ADC_Stop(power_module->hadc_power_module);
+
+
+
 	//de-interleave and sum voltage and current measurements.
-	for (int sum_index = 0; sum_index < 16; sum_index+=2) {
+	for (int sum_index = 2; sum_index < 66; sum_index+=2) {
 		/*top*/
 		current_avg = current_avg + adc_measurement_dma_power_modules[sum_index];
 		voltage_avg = voltage_avg + adc_measurement_dma_power_modules[sum_index+1];
@@ -293,8 +402,8 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
 	/*filter ting*/
 	//average of 16 concecutive adc measurements.skip the first to avoid adc power up distortion.
-	power_module->voltage = current_avg>>4;
-	power_module->current = voltage_avg>>4;
+	power_module->voltage = current_avg>>5;
+	power_module->current = voltage_avg>>5;
 
 
 }
@@ -302,7 +411,6 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
 void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
-	//static uint8_t increment_flag = 1;//diplotriplotsekare oti to inint to kanei mono sthn arxh vlaks
 
 
 	  /*power calculation*/
@@ -310,11 +418,25 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 	  volatile uint32_t power_now_avg = moduleX->voltage * moduleX->current;
 	  uint32_t duty_cycle = moduleX->pwm_duty_cycle;
 
+	  uint32_t step_size = MPPT_STEP_SIZE;
+
+//	  if (moduleX->current<1000){
+//		  step_size = MPPT_STEP_SIZE + 5;
+//		  //moduleX->incremennt_flag = 1;
+//	  }
+
+
+
 	// decide duty cycle orientation - set increment flag.
 	  if (power_now_avg  <(moduleX->previous_power)){
 
 		  if (moduleX->incremennt_flag>0){
-			  moduleX->incremennt_flag = 0;
+
+			  if(moduleX->voltage  <(moduleX->previous_voltage )){
+				  moduleX->incremennt_flag = 0;
+			  }
+
+
 		  }
 		  else{
 			  moduleX->incremennt_flag = 1;
@@ -324,10 +446,10 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 
 	  if(moduleX->incremennt_flag){
-		  duty_cycle = duty_cycle+MPPT_STEP_SIZE;
+		  duty_cycle = duty_cycle+step_size;
 	  }
 	  else{
-		  duty_cycle = duty_cycle-MPPT_STEP_SIZE;
+		  duty_cycle = duty_cycle-step_size;
 	  }
  	  //Check for Overflow and Underflow
 	  if (duty_cycle>350){duty_cycle=0;}
@@ -337,6 +459,7 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 
 	  moduleX->previous_power = power_now_avg;
+	  moduleX->previous_voltage = moduleX->voltage;
 	  moduleX->pwm_duty_cycle = duty_cycle;
 
 }

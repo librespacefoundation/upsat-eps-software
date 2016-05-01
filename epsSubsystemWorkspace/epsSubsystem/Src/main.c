@@ -31,9 +31,21 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l1xx_hal.h"
+//#include "stm32l1xx_hal.h"
 #include "hal_eps.h"
+//#include "../../../ecss_services/services/services.h"
+//#include "../../../ecss_services/platform/eps/eps.h"
+//#include "../../../ecss_services/services/service_utilities.h"
+//#include "../../../ecss_services/services/pkt_pool.c"
 
+//#include "pkt_pool.c"
+//#include "pkt_pool.h"
+//#include "eps.h"
+//#include "service_utilities.h"
+//#include "service_utilities.c"
+
+//#undef __FILE_ID__
+//#define __FILE_ID__ 666
 
 
 /* USER CODE END Includes */
@@ -65,7 +77,6 @@ EPS_State eps_board_state;
 EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
 
 
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,7 +95,6 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
 
 
 
@@ -124,10 +134,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim3);
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);//top
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+
 
 
   //initial checks: chech if deploymet has happened and handle it.
@@ -151,19 +158,34 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   //init eps module  - initialize adc handler and structure.
-  EPS_state_init(&eps_board_state, &hadc_eps_state);
+  //EPS_state_init(&eps_board_state, &hadc_eps_state);
 
   //initialize all power modules and dem mppt cotrol blocks.
-  EPS_PowerModule_init(&power_module_top, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_TOP, &hadc_module_top, ADC_CURRENT_CHANNEL_TOP, ADC_VOLTAGE_CHANNEL_TOP);
-  EPS_PowerModule_init(&power_module_bottom, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_BOTTOM, &hadc_module_bottom, ADC_CURRENT_CHANNEL_BOTTOM, ADC_VOLTAGE_CHANNEL_BOTTOM);
-  EPS_PowerModule_init(&power_module_left, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_LEFT, &hadc_module_left, ADC_CURRENT_CHANNEL_LEFT, ADC_VOLTAGE_CHANNEL_LEFT);
-  EPS_PowerModule_init(&power_module_right, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_RIGHT, &hadc_module_right, ADC_CURRENT_CHANNEL_RIGHT, ADC_VOLTAGE_CHANNEL_RIGHT);
+  EPS_PowerModule_init(&power_module_top, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_TOP, &hadc, ADC_CURRENT_CHANNEL_TOP, ADC_VOLTAGE_CHANNEL_TOP);
+  EPS_PowerModule_init(&power_module_bottom, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_BOTTOM, &hadc, ADC_CURRENT_CHANNEL_BOTTOM, ADC_VOLTAGE_CHANNEL_BOTTOM);
+  EPS_PowerModule_init(&power_module_left, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_LEFT, &hadc, ADC_CURRENT_CHANNEL_LEFT, ADC_VOLTAGE_CHANNEL_LEFT);
+  EPS_PowerModule_init(&power_module_right, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_RIGHT, &hadc, ADC_CURRENT_CHANNEL_RIGHT, ADC_VOLTAGE_CHANNEL_RIGHT);
 
 
-  HAL_ADC_Stop(&hadc);//redundant
+
+
+
+
+ // HAL_ADC_Stop(&hadc);//redundant
+//  HAL_ADC_DeInit(&hadc);
+
+
 
   //kick timer interupt for timed threads.
   HAL_TIM_Base_Start_IT(&htim6);
+
+
+  /*obc */
+  //pkt_pool_INIT();
+  //HAL_UART_Receive_IT(&huart3, eps_data.obc_uart.uart_buf, UART_BUF_SIZE);
+
+  HAL_GPIO_WritePin(GPIO_SU_SWITCH_GPIO_Port, GPIO_SU_SWITCH_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIO_SU_SWITCH_GPIO_Port, GPIO_SU_SWITCH_Pin, GPIO_PIN_RESET);
 
   while (1)
   {
@@ -176,6 +198,7 @@ int main(void)
 
 
 
+
 	  //set error status
 	  EPS_soft_error_status = 0xff;
 
@@ -185,7 +208,10 @@ int main(void)
 
 
 		  //update eps state
-		  EPS_update_state( &eps_board_state, &hadc_eps_state);
+		  //EPS_update_state( &eps_board_state, &hadc_eps_state);
+
+		  //EPS_update_state_adc_measurements(&eps_board_state, &hadc);
+
 
           //top power module
 		  EPS_update_power_module_state(&power_module_top);
@@ -210,6 +236,7 @@ int main(void)
 
 
 	  //if obc communication flag (set by uart interupt?dma?whateva) service obc uart ting
+	//  import_pkt(OBC_APP_ID, &eps_data.obc_uart);
 
 
 	  //reset errror_status
@@ -284,7 +311,7 @@ void MX_ADC_Init(void)
   hadc.Init.Resolution = ADC_RESOLUTION_12B;
   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
   hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
   hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;
@@ -419,7 +446,7 @@ void MX_TIM3_Init(void)
   HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig);
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0x50;
+  sConfigOC.Pulse = 0x00;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
   HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1);
@@ -589,10 +616,60 @@ void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
     //printf("ADC conversion done.\n");
     //HAL_ADC_Stop_DMA(hadc);
 
-	HAL_ADC_Stop_DMA(hadc);
-	HAL_ADC_Stop(hadc);
+//	HAL_ADC_Stop_DMA(hadc);
+	//HAL_ADC_Stop(hadc);
     adc_reading_complete = 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

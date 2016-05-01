@@ -5,7 +5,10 @@
 
 #define TIMED_EVENT_PERIOD ((uint8_t)50)//in miliseconds
 #define MPPT_STEP_SIZE ((uint32_t)1)
-#define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 70)
+#define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 16)
+
+#define TC74_ADDRESS_A 0x9A // TC74	A5
+#define TC74_ADDRESS_A 0x9A // TC74	A5
 
 /*Set up power modules pwm timer channels*/
 #define PWM_TIM_CHANNEL_TOP TIM_CHANNEL_3
@@ -33,6 +36,7 @@
 extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
 extern volatile uint8_t EPS_soft_error_status;//initialize global software error status to false.
 extern volatile uint8_t EPS_event_period_status;//initialize global timed event flag to true.
+
 
 
 typedef struct {
@@ -79,11 +83,14 @@ typedef struct {
 	uint16_t voltage; /*average voltage at each mppt step*/
 	uint16_t current; /*average curret at each mppt step*/
 	uint32_t previous_power; /*average power at previous mppt step*/
+	uint32_t previous_voltage; /*average voltage input at previous mppt step*/
 	uint8_t incremennt_flag;/*flag for mppt algorithm must be initialized to 1*/
 	uint32_t pwm_duty_cycle; /*duty cycle of power module pwm output*/
 	TIM_HandleTypeDef *htim_pwm;/*assign wich timer is assigned for this pwm output*/
 	uint32_t timChannel;/*assign the proper timer channel assigned to module pwm output*/
 	ADC_HandleTypeDef *hadc_power_module;/*adc handle for voltage and current measurements for each power module*/
+	uint32_t ADC_channel_current;
+	uint32_t ADC_channel_voltage;
 
 }EPS_PowerModule;
 
@@ -95,6 +102,7 @@ void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX);
 
 void EPS_state_init(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
+void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 
 void ADC_EPS_POWER_MODULE_Init(ADC_HandleTypeDef *hadc_power_module, uint32_t ADC_channel_current, uint32_t ADC_channel_voltage);
 void ADC_EPS_STATE_Init(ADC_HandleTypeDef *hadc_eps);

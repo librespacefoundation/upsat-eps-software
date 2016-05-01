@@ -42,6 +42,7 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc;
 extern ADC_HandleTypeDef hadc;
+extern ADC_HandleTypeDef hadc_eps_state, hadc_module_top, hadc_module_bottom, hadc_module_left, hadc_module_right;
 extern TIM_HandleTypeDef htim6;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
@@ -156,6 +157,11 @@ void ADC1_IRQHandler(void)
   /* USER CODE END ADC1_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc);
   /* USER CODE BEGIN ADC1_IRQn 1 */
+  HAL_ADC_IRQHandler(&hadc_eps_state);
+  HAL_ADC_IRQHandler(&hadc_module_top);
+  HAL_ADC_IRQHandler(&hadc_module_bottom);
+  HAL_ADC_IRQHandler(&hadc_module_left);
+  HAL_ADC_IRQHandler(&hadc_module_right);
 
   /* USER CODE END ADC1_IRQn 1 */
 }
