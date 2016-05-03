@@ -235,3 +235,357 @@ arm-none-eabi-size "epsSubsystem.elf"
    text	   data	    bss	    dec	    hex	filename
   25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
  
+16:01:10 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+../Src/eps_state.c: In function 'EPS_get_rail_switch_status':
+../Src/eps_state.c:205:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+16:04:00 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+../Src/eps_state.c: In function 'EPS_get_rail_switch_status':
+../Src/eps_state.c:175:16: warning: variable 'gpio_read_value' set but not used [-Wunused-but-set-variable]
+  GPIO_PinState gpio_read_value = GPIO_PIN_RESET;
+                ^
+../Src/eps_state.c:207:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+16:07:12 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+../Src/eps_state.c: In function 'EPS_get_rail_switch_status':
+../Src/eps_state.c:209:19: error: expected expression before 'return'
+   return_status = return EPS_SWITCH_RAIL_OFF;
+                   ^
+make: *** [Src/eps_state.o] Error 1
+16:07:35 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+16:13:15 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+../Src/eps_state.c: At top level:
+../Src/eps_state.c:216:27: error: conflicting types for 'EPS_get_control_switch_status'
+ EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_switch) {
+                           ^
+In file included from ../Src/eps_state.c:8:0:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:27: note: previous declaration of 'EPS_get_control_switch_status' was here
+ EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control *eps_switch);
+                           ^
+make: *** [Src/eps_state.o] Error 1
+16:13:46 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+../Src/main.c: In function 'main':
+../Src/main.c:149:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(uart_output_buffer, "UART test ...\n");
+          ^
+In file included from /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:29:0,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h:50,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:47,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/stm32l1xx_hal_conf.h:153,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:48,
+                 from ../Src/main.c:34:
+/home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:225:5: note: expected 'char * restrict' but argument is of type 'uint8_t * {aka unsigned char *}'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+Finished building: ../Src/main.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+16:16:47 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+16:17:44 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
+ 
+17:14:10 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+../Src/eps_state.c: At top level:
+../Src/eps_state.c:222:6: error: conflicting types for 'EPS_set_control_switch'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status,EPS_State *state){
+      ^
+In file included from ../Src/eps_state.c:8:0:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: previous declaration of 'EPS_set_control_switch' was here
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+make: *** [Src/eps_state.o] Error 1
+17:14:58 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+../Src/main.c: In function 'main':
+../Src/main.c:149:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(uart_output_buffer, "UART test ...\n");
+          ^
+In file included from /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:29:0,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h:50,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:47,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/stm32l1xx_hal_conf.h:153,
+                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:48,
+                 from ../Src/main.c:34:
+/home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:225:5: note: expected 'char * restrict' but argument is of type 'uint8_t * {aka unsigned char *}'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+Finished building: ../Src/main.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25212	     16	   2456	  27684	   6c24	epsSubsystem.elf
+ 
+17:49:59 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:125:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:118:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25752	     16	   2456	  28224	   6e40	epsSubsystem.elf
+ 
+17:50:27 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:120:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:113:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  25752	     16	   2456	  28224	   6e40	epsSubsystem.elf
+ 

@@ -17,15 +17,26 @@ static int8_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sens
 
 void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c) {
 
+	/*get eps adc measurements*/
 	EPS_update_state_adc_measurements(state, hadc_eps);
 
-	//get switch states
-//
-//	/*i2c temp sensors*/
-	//check if temperature sensor rail switch is on
-	//
-//	//	  state->battery_temp;
+	/*get eps switch states*/
+	//rail
+	state->su_p_switch = EPS_get_rail_switch_status(SU);
+	state->obc_p_switch = EPS_get_rail_switch_status(OBC);
+ 	state->adcs_p_switch = EPS_get_rail_switch_status(ADCS);
+ 	state->comm_p_switch = EPS_get_rail_switch_status(COMM);
+ 	state->i2c_tc74_p_switch= EPS_get_rail_switch_status(TEMP_SENSOR);
 
+ 	state->deploy_left_switch = EPS_get_control_switch_status(DEPLOY_LEFT);
+ 	state->deploy_right_switch = EPS_get_control_switch_status(DEPLOY_RIGHT);
+ 	state->deploy_bottom_switch = EPS_get_control_switch_status(DEPLOY_BOTTOM);
+ 	state->deploy_ant1_switch = EPS_get_control_switch_status(DEPLOY_ANT1);
+    state->umbilical_switch  = EPS_get_control_switch_status(UMBILICAL);
+    state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
+
+
+ 	/*i2c temp sensors*/
 	get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
 
 
@@ -111,6 +122,7 @@ int8_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2
 	 //check sensor2 status if still in standby try 3 times to wake up if not generate temp2 fault
 	 device_power_mode = read_device_status(h_i2c, sensor_B_i2c_address);
 
+
 	 //get temperatue1
 	 int8_t temperature_measurementA = read_device_temperature(h_i2c, sensor_A_i2c_address);
 	 //get temperatue2
@@ -143,6 +155,15 @@ void EPS_state_init(volatile EPS_State *state){
 	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
 	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
 	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
+	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
+
+	state->v5_current_avg = 0x00;
+	state->v3_3_current_avg = 0x00;
+	state->battery_voltage = 0x00;
+	state->battery_current_plus = 0x00;
+	state->battery_current_minus = 0x00;
+	state->battery_temp = 0x00;
+
 	state->module_left_voltage_avg = 0x00;
 	state->module_left_current_avg = 0x00;
 	state->module_left_power_avg = 0x00;
@@ -155,51 +176,200 @@ void EPS_state_init(volatile EPS_State *state){
 	state->module_bottom_voltage_avg = 0x00;
 	state->module_bottom_current_avg = 0x00;
 	state->module_bottom_power_avg = 0x00;
-	state->v5_current_avg = 0x00;
-	state->v3_3_current_avg = 0x00;
-	state->battery_voltage = 0x00;
-	state->battery_current_plus = 0x00;
-	state->battery_current_minus = 0x00;
-	state->battery_temp = 0x00;
+
+
 
 }
 
-void EPS_set_rail_switch(EPS_switch_rail *eps_switch, EPS_State *state){
+void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state){
 
-	//switch case to enum set and pdate the proper eps state
+ 	GPIO_PinState gpio_write_value;
 
-}
+	if(switch_status == EPS_SWITCH_RAIL_ON){
+		gpio_write_value = GPIO_PIN_RESET;
+ 	}
+	else{
+		gpio_write_value = GPIO_PIN_SET;
+ 	}
 
-EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch){
 
+	switch (eps_switch) {
 
-	switch(eps_switch) {
+	case SU:
+		HAL_GPIO_WritePin(GPIO_SU_SWITCH_GPIO_Port, GPIO_SU_SWITCH_Pin, gpio_write_value);
+		state->su_p_switch = switch_status;
+		break;
 
-	   case SU  :
+	case OBC:
+		HAL_GPIO_WritePin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, gpio_write_value);
+		state->obc_p_switch = switch_status;
+		break;
 
-		   //HAL_GPIO_ReadPin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, GPIO_PIN_SET);
+	case ADCS:
+		HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, gpio_write_value);
+		state->adcs_p_switch = switch_status;
+		break;
 
-	      break;
+	case COMM:
+		HAL_GPIO_WritePin(GPIO_COMM_SWITCH_GPIO_Port, GPIO_COMM_SWITCH_Pin, gpio_write_value);
+		state->comm_p_switch = switch_status;
+		break;
 
-	   case OBC  :
-
-	      break;
-
-	   case ADCS  :
-
-	      break;
-
-	   case COMM  :
-
-	      break;
-
-	   case TEMP_SENSOR  :
-
-	      break;
+	case TEMP_SENSOR:
+		HAL_GPIO_WritePin(GPIO_TC74_POWER_GPIO_Port, GPIO_TC74_POWER_Pin, gpio_write_value);
+		state->i2c_tc74_p_switch = switch_status;
+		break;
 
 // 	   default :
 // 		   //YOU SHOULDNT BE HERE!
 // 		   //ERROR HANDLING
 	}
+
+
 }
 
+
+
+
+void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state){
+
+ 	GPIO_PinState gpio_write_value;
+
+	if(switch_status == EPS_SWITCH_CONTROL_ON){
+		gpio_write_value = GPIO_PIN_RESET;
+ 	}
+	else{
+		gpio_write_value = GPIO_PIN_SET;
+ 	}
+
+
+	switch (eps_switch) {
+
+
+	case DEPLOY_LEFT:
+		HAL_GPIO_WritePin(GPIO_DEPLOY_LEFT_GPIO_Port, GPIO_DEPLOY_LEFT_Pin, gpio_write_value);
+		state->deploy_left_switch = switch_status;
+		break;
+
+	case DEPLOY_RIGHT:
+		HAL_GPIO_WritePin(GPIO_DEPLOY_RIGHT_GPIO_Port, GPIO_DEPLOY_RIGHT_Pin, gpio_write_value);
+		state->deploy_right_switch = switch_status;
+		break;
+
+	case DEPLOY_BOTTOM:
+		HAL_GPIO_WritePin(GPIO_DEPLOY_BOTTOM_GPIO_Port, GPIO_DEPLOY_BOTTOM_Pin, gpio_write_value);
+		state->deploy_bottom_switch = switch_status;
+		break;
+
+	case DEPLOY_ANT1:
+		HAL_GPIO_WritePin(GPIO_DEPLOY_ANT1_GPIO_Port, GPIO_DEPLOY_ANT1_Pin, gpio_write_value);
+		state->deploy_ant1_switch = switch_status;
+		break;
+
+	case BATTERY_HEATERS:
+		HAL_GPIO_WritePin(GPIO_HEATERS_GPIO_Port, GPIO_HEATERS_Pin, gpio_write_value);
+		state->heaters_switch = switch_status;
+		break;
+	case UMBILICAL:
+		HAL_GPIO_WritePin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin, gpio_write_value);
+		state->umbilical_switch = switch_status;
+		break;
+
+// 	   default :
+// 		   //YOU SHOULDNT BE HERE!
+// 		   //ERROR HANDLING
+	}
+
+
+}
+
+
+
+EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch) {
+
+	EPS_switch_rail_status return_status;
+	GPIO_PinState gpio_read_value;
+
+	switch (eps_switch) {
+
+	case SU:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_SU_SWITCH_GPIO_Port, GPIO_SU_SWITCH_Pin);
+		break;
+
+	case OBC:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin);
+		break;
+
+	case ADCS:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin);
+		break;
+
+	case COMM:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_COMM_SWITCH_GPIO_Port, GPIO_COMM_SWITCH_Pin);
+		break;
+
+	case TEMP_SENSOR:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_TC74_POWER_GPIO_Port, GPIO_TC74_POWER_Pin);
+		break;
+
+// 	   default :
+// 		   //YOU SHOULDNT BE HERE!
+// 		   //ERROR HANDLING
+	}
+
+	if(gpio_read_value == GPIO_PIN_RESET){
+		return_status = EPS_SWITCH_RAIL_ON;
+	}
+	else{
+		return_status =  EPS_SWITCH_RAIL_OFF;
+	}
+
+	return return_status;
+
+}
+
+EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_switch) {
+
+	EPS_switch_control_status return_status;
+	GPIO_PinState gpio_read_value;
+
+	switch (eps_switch) {
+
+	case DEPLOY_LEFT:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_LEFT_GPIO_Port, GPIO_DEPLOY_LEFT_Pin);
+		break;
+
+	case DEPLOY_RIGHT:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_RIGHT_GPIO_Port, GPIO_DEPLOY_RIGHT_Pin);
+		break;
+
+	case DEPLOY_BOTTOM:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_BOTTOM_GPIO_Port, GPIO_DEPLOY_BOTTOM_Pin);
+		break;
+
+	case DEPLOY_ANT1:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_ANT1_GPIO_Port, GPIO_DEPLOY_ANT1_Pin);
+		break;
+
+	case BATTERY_HEATERS:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_HEATERS_GPIO_Port, GPIO_HEATERS_Pin);
+		break;
+	case UMBILICAL:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
+		break;
+
+// 	   default :
+// 		   //YOU SHOULDNT BE HERE!
+// 		   //ERROR HANDLING
+	}
+
+	if(gpio_read_value == GPIO_PIN_RESET){
+		return_status = EPS_SWITCH_CONTROL_OFF;
+	}
+	else{
+		return_status =  EPS_SWITCH_CONTROL_ON;
+	}
+
+	return return_status;
+
+}

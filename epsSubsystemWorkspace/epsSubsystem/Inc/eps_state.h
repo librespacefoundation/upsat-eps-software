@@ -87,11 +87,9 @@ void EPS_state_init(volatile EPS_State *state);
 void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c);
 
 EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch);
-void EPS_set_rail_switch(EPS_switch_rail *eps_switch, EPS_State *state);
-void EPS_reset_rail_switch(EPS_switch_rail *eps_switch, EPS_State *state);
+void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
 
-EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control *eps_switch);
-void EPS_set_control_switch(EPS_switch_control *eps_switch, EPS_State *state);
-void EPS_reset_control_switch(EPS_switch_control *eps_switch, EPS_State *state);
+EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_switch);
+void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
 
 #endif /* INC_EPS_STATE_H_ */
