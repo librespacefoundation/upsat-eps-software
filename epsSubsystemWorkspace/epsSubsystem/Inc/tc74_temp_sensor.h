@@ -11,8 +11,8 @@
 #define TEMPERATURE_REGISTER		0x00
 
 // configuration register commands
-#define STANDBY 	0x80
-#define NORMAL 		0x00
+#define STANDBY 	0b10000000
+#define NORMAL 		0b00000000
 
 // tc74 i2c address constants
 #define TC74_A0	0b10010000

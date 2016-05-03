@@ -37,7 +37,7 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
 
 
  	/*i2c temp sensors*/
-    state->battery_voltage = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
 
 
 
@@ -111,6 +111,7 @@ static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_Han
 
 int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address){
 
+	//TODO: handle status for reseting the i2c voltage bus.
 	 TC_74_STATUS statusA, statusB;
 	 //wake up sensor1
 	 statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
@@ -153,12 +154,18 @@ void EPS_state_init(volatile EPS_State *state){
 	state->obc_p_switch = EPS_SWITCH_RAIL_OFF;
 	state->i2c_tc74_p_switch = EPS_SWITCH_RAIL_OFF;
 
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+
+
 	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
 	state->deploy_right_switch = EPS_SWITCH_CONTROL_OFF;
 	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
 	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
 	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
-	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
 
 	state->v5_current_avg = 0x00;
 	state->v3_3_current_avg = 0x00;

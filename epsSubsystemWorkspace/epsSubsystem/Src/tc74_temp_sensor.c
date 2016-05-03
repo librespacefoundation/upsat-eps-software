@@ -30,8 +30,7 @@
 	 TC_74_STATUS device_status;
 	 /*wake up */
 	 uint8_t transmit_packet[2] = { CONFIGURATION_REGISTER, NORMAL };
-	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2,
-			 1000) != HAL_OK) {
+	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2,	1000) != HAL_OK) {
 		 //soft error handle
 		 device_status = DEVICE_ERROR;
 	 }
@@ -63,7 +62,7 @@
 
  TC_74_STATUS read_device_status(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address ) {
 
-	 TC_74_STATUS device_status;
+	 TC_74_STATUS device_status = DEVICE_NORMAL;
 	/*Read control regiter*/
 	/*master sends the slave's temperature register adrress to read back*/
 	uint8_t transmit_packet[2] = { CONFIGURATION_REGISTER, NORMAL };
@@ -79,10 +78,10 @@
 	}
 
  	if(device_status!=DEVICE_ERROR){
- 		if (receive_word == STANDBY){
+ 		if ((receive_word&0b10111111) == STANDBY){
  			device_status = DEVICE_STANDBY;
  		}
- 		else if(receive_word == NORMAL){
+ 		else if((receive_word&0b10111111) == NORMAL){
  			device_status = DEVICE_NORMAL;
  		}
  		else{
