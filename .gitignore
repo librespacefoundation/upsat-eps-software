@@ -12,5 +12,5 @@
 */Drivers/
 
 # Do not track metadata
-*/.medata/
+*/.metadata/
 

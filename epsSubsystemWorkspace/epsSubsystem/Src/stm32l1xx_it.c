@@ -36,13 +36,12 @@
 #include "stm32l1xx_it.h"
 
 /* USER CODE BEGIN 0 */
-#include "hal_eps.h"
+extern volatile uint8_t EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc;
 extern ADC_HandleTypeDef hadc;
-extern ADC_HandleTypeDef hadc_eps_state, hadc_module_top, hadc_module_bottom, hadc_module_left, hadc_module_right;
 extern TIM_HandleTypeDef htim6;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
@@ -157,11 +156,6 @@ void ADC1_IRQHandler(void)
   /* USER CODE END ADC1_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc);
   /* USER CODE BEGIN ADC1_IRQn 1 */
-  HAL_ADC_IRQHandler(&hadc_eps_state);
-  HAL_ADC_IRQHandler(&hadc_module_top);
-  HAL_ADC_IRQHandler(&hadc_module_bottom);
-  HAL_ADC_IRQHandler(&hadc_module_left);
-  HAL_ADC_IRQHandler(&hadc_module_right);
 
   /* USER CODE END ADC1_IRQn 1 */
 }
@@ -183,15 +177,14 @@ void USART1_IRQHandler(void)
 /**
 * @brief This function handles USART3 global interrupt.
 */
-void USART3_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART3_IRQn 0 */
+void USART3_IRQHandler(void) {
+	/* USER CODE BEGIN USART3_IRQn 0 */
 
-  /* USER CODE END USART3_IRQn 0 */
-  HAL_UART_IRQHandler(&huart3);
-  /* USER CODE BEGIN USART3_IRQn 1 */
+	/* USER CODE END USART3_IRQn 0 */
+	HAL_UART_IRQHandler(&huart3);
+	/* USER CODE BEGIN USART3_IRQn 1 */
 
-  /* USER CODE END USART3_IRQn 1 */
+	/* USER CODE END USART3_IRQn 1 */
 }
 
 /**
@@ -199,16 +192,16 @@ void USART3_IRQHandler(void)
 */
 void TIM6_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM6_IRQn 0 */
+	/* USER CODE BEGIN TIM6_IRQn 0 */
 	//timing debug session
 	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_SET);
-  /* USER CODE END TIM6_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim6);
-  /* USER CODE BEGIN TIM6_IRQn 1 */
-  EPS_event_period_status = 0xff;
-  //timing debug session
-  HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_RESET);
-  /* USER CODE END TIM6_IRQn 1 */
+	/* USER CODE END TIM6_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim6);
+	/* USER CODE BEGIN TIM6_IRQn 1 */
+	EPS_event_period_status = 0xff;
+	//timing debug session
+	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_RESET);
+	/* USER CODE END TIM6_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

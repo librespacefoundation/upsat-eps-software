@@ -1,153 +1,53 @@
-21:41:20 **** Incremental Build of configuration Debug for project epsSubsystem ****
+14:28:16 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
-make: Nothing to be done for `all'.
-21:41:28 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-21:50:10 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/hal_eps.c
+Building file: ../Src/eps_state.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/hal_eps.d" -MT"Src/hal_eps.o" -o "Src/hal_eps.o" "../Src/hal_eps.c"
-Finished building: ../Src/hal_eps.c
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+In file included from ../Src/eps_state.c:8:0:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:27: error: conflicting types for 'EPS_get_rail_switch_status'
+ EPS_switch_control_status EPS_get_rail_switch_status(EPS_switch_control *eps_switch);
+                           ^
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:89:24: note: previous declaration of 'EPS_get_rail_switch_status' was here
+ EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail *eps_switch);
+                        ^
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+make: *** [Src/eps_state.o] Error 1
+14:28:55 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: ../Src/eps_state.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
+../Src/eps_state.c: In function 'get_batterypack_temperature':
+../Src/eps_state.c:109:11: warning: variable 'device_power_mode' set but not used [-Wunused-but-set-variable]
+   uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+           ^
+../Src/eps_state.c:102:16: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   TC_74_STATUS status = DEVICE_ERROR;
+                ^
+Finished building: ../Src/eps_state.c
  
 Building file: ../Src/main.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
 ../Src/main.c: In function 'main':
-../Src/main.c:146:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-   sprintf(uart_output_buffer, "UART test ...\n");
-           ^
+../Src/main.c:149:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(uart_output_buffer, "UART test ...\n");
+          ^
 In file included from /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:29:0,
                  from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h:50,
                  from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:47,
                  from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/stm32l1xx_hal_conf.h:153,
                  from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:48,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/hal_eps.h:4,
-                 from ../Src/main.c:35:
-/home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:225:5: note: expected 'char * restrict' but argument is of type 'uint8_t * {aka unsigned char *}'
- int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
-     ^
-Finished building: ../Src/main.c
- 
-Building file: ../Src/stm32l1xx_it.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/stm32l1xx_it.d" -MT"Src/stm32l1xx_it.o" -o "Src/stm32l1xx_it.o" "../Src/stm32l1xx_it.c"
-Finished building: ../Src/stm32l1xx_it.c
- 
-Building target: epsSubsystem.elf
-Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
-Finished building target: epsSubsystem.elf
- 
-make --no-print-directory post-build
-Generating binary and Printing size information:
-arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
-arm-none-eabi-size "epsSubsystem.elf"
-   text	   data	    bss	    dec	    hex	filename
-  21728	     16	   2880	  24624	   6030	epsSubsystem.elf
- 
-21:50:20 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-21:50:41 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-21:54:44 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-21:59:40 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/hal_eps.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/hal_eps.d" -MT"Src/hal_eps.o" -o "Src/hal_eps.o" "../Src/hal_eps.c"
-Finished building: ../Src/hal_eps.c
- 
-Building target: epsSubsystem.elf
-Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
-Finished building target: epsSubsystem.elf
- 
-make --no-print-directory post-build
-Generating binary and Printing size information:
-arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
-arm-none-eabi-size "epsSubsystem.elf"
-   text	   data	    bss	    dec	    hex	filename
-  21748	     16	   2880	  24644	   6044	epsSubsystem.elf
- 
-21:59:52 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-22:07:55 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/hal_eps.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/hal_eps.d" -MT"Src/hal_eps.o" -o "Src/hal_eps.o" "../Src/hal_eps.c"
-Finished building: ../Src/hal_eps.c
- 
-Building file: ../Src/main.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-../Src/main.c: In function 'main':
-../Src/main.c:146:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-   sprintf(uart_output_buffer, "UART test ...\n");
-           ^
-In file included from /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:29:0,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h:50,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:47,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/stm32l1xx_hal_conf.h:153,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:48,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/hal_eps.h:4,
-                 from ../Src/main.c:35:
-/home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:225:5: note: expected 'char * restrict' but argument is of type 'uint8_t * {aka unsigned char *}'
- int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
-     ^
-Finished building: ../Src/main.c
- 
-Building file: ../Src/stm32l1xx_it.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/stm32l1xx_it.d" -MT"Src/stm32l1xx_it.o" -o "Src/stm32l1xx_it.o" "../Src/stm32l1xx_it.c"
-Finished building: ../Src/stm32l1xx_it.c
- 
-Building target: epsSubsystem.elf
-Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
-Finished building target: epsSubsystem.elf
- 
-make --no-print-directory post-build
-Generating binary and Printing size information:
-arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
-arm-none-eabi-size "epsSubsystem.elf"
-   text	   data	    bss	    dec	    hex	filename
-  21748	     16	   2880	  24644	   6044	epsSubsystem.elf
- 
-22:08:05 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-22:08:49 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/main.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-../Src/main.c: In function 'main':
-../Src/main.c:146:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-   sprintf(uart_output_buffer, "UART test ...\n");
-           ^
-In file included from /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:29:0,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h:50,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:47,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/stm32l1xx_hal_conf.h:153,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:48,
-                 from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/hal_eps.h:4,
-                 from ../Src/main.c:35:
+                 from ../Src/main.c:34:
 /home/ariolis/Ac6/SystemWorkbench/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.7.0.201602291252/tools/compiler/arm-none-eabi/include/stdio.h:225:5: note: expected 'char * restrict' but argument is of type 'uint8_t * {aka unsigned char *}'
  int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
      ^
@@ -163,8 +63,5 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
 arm-none-eabi-size "epsSubsystem.elf"
    text	   data	    bss	    dec	    hex	filename
-  21748	     16	   2880	  24644	   6044	epsSubsystem.elf
+  25204	     16	   2456	  27676	   6c1c	epsSubsystem.elf
  
-22:08:55 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.

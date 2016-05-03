@@ -1,3 +1,5 @@
+build.all.configs.enabled=false
+build.proj.ref.configs.enabled=false
 eclipse.preferences.version=1
 indexer/indexAllFiles=true
 indexer/indexAllHeaderVersions=false
@@ -14,3 +16,4 @@ indexer/skipTypeReferences=false
 indexer/updatePolicy=0
 indexer/useHeuristicIncludeResolution=true
 macros/workspace=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<macros/>\n
+org.eclipse.cdt.core.showSourceRootsAtTopLevelOfProject=true
