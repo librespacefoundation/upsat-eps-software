@@ -7,12 +7,12 @@
 	 /*Read temperature*/
 	 /*master sends the slave's temperature register adrress to read back*/
 	 uint8_t transmit_packet = TEMPERATURE_REGISTER;
-	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, &transmit_packet, 1, 1000) != HAL_OK) {
+	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, &transmit_packet, 1, 100) != HAL_OK) {
 		 //soft error handle
 		 device_status = DEVICE_ERROR;
 	 }
 
- 	 if (HAL_I2C_Master_Receive(h_i2c, device_i2c_address, receive_word, 1, 1000) != HAL_OK) {
+ 	 if (HAL_I2C_Master_Receive(h_i2c, device_i2c_address, receive_word, 1, 100) != HAL_OK) {
 		 //soft error handle
  		device_status = DEVICE_ERROR;
 	 }
@@ -30,7 +30,7 @@
 	 TC_74_STATUS device_status;
 	 /*wake up */
 	 uint8_t transmit_packet[2] = { CONFIGURATION_REGISTER, NORMAL };
-	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2,	1000) != HAL_OK) {
+	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2,	100) != HAL_OK) {
 		 //soft error handle
 		 device_status = DEVICE_ERROR;
 	 }
@@ -48,7 +48,7 @@
 	 TC_74_STATUS device_status;
 	 /*put device to sleep*/
 	 uint8_t transmit_packet[2] = { CONFIGURATION_REGISTER, STANDBY };
-	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2, 1000) != HAL_OK) {
+	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 2, 100) != HAL_OK) {
 		 //soft error handle
 		 device_status = DEVICE_ERROR;
 	 }
@@ -66,13 +66,13 @@
 	/*Read control regiter*/
 	/*master sends the slave's temperature register adrress to read back*/
 	uint8_t transmit_packet[2] = { CONFIGURATION_REGISTER, NORMAL };
-	if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 1, 1000) != HAL_OK) {
+	if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, transmit_packet, 1, 100) != HAL_OK) {
 		//soft error handle
 		device_status = DEVICE_ERROR;
 	}
 
 	uint8_t receive_word;
- 	if (HAL_I2C_Master_Receive(h_i2c, device_i2c_address, &receive_word, 1, 1000) != HAL_OK) {
+ 	if (HAL_I2C_Master_Receive(h_i2c, device_i2c_address, &receive_word, 1, 100) != HAL_OK) {
 		//soft error handle
  		device_status = DEVICE_ERROR;
 	}

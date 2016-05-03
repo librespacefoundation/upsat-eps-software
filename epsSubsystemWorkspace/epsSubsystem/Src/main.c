@@ -80,7 +80,7 @@ volatile uint8_t EPS_event_period_status = 0xFF;//initialize global timed event 
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
-static void MX_ADC_Init(void);
+//static void MX_ADC_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_USART1_UART_Init(void);
@@ -183,8 +183,7 @@ int main(void)
 
 		/* USER CODE BEGIN 3 */
 
-		//timing debug session
-		HAL_GPIO_WritePin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, GPIO_PIN_SET);
+
 
 
 		//set error status
@@ -193,7 +192,8 @@ int main(void)
 		//check timed thread ( eps_state update + mppt_pwm_update for each power module)
 		// EPS_event_period_status = 0xff;//for now set it here for debug - it will be normally set by timer interrupt every TIMED_EVENT_PERIOD msec
 		if(EPS_event_period_status){
-
+			//timing debug session
+		    HAL_GPIO_WritePin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, GPIO_PIN_RESET);
 
 			/*mppt update for all power modules*/
 
@@ -223,6 +223,9 @@ int main(void)
 			//reset event period status so as to be set into the timer interrupt after TIMED_EVENT_PERIOD msec.
 			EPS_event_period_status = 0x00;
 
+			//timing debug session
+			HAL_GPIO_WritePin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, GPIO_PIN_SET);
+
 		}
 
 
@@ -232,8 +235,7 @@ int main(void)
 		//reset errror_status: since the end of services has been reached clear the soft error status.
 		EPS_soft_error_status = 0x00;
 
-		//timing debug session
-		HAL_GPIO_WritePin(GPIO_OBC_SWITCH_GPIO_Port, GPIO_OBC_SWITCH_Pin, GPIO_PIN_RESET);
+
 
 		//kill systick and sleep with WaitForInterupt with timer + UART peripherals on
 		HAL_SuspendTick();
@@ -301,7 +303,7 @@ void MX_ADC_Init(void)
 	hadc.Init.Resolution = ADC_RESOLUTION_12B;
 	hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
 	hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
-	hadc.Init.EOCSelection = ADC_EOC_SEQ_CONV;
+	hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
 	hadc.Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
 	hadc.Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
 	hadc.Init.ChannelsBank = ADC_CHANNELS_BANK_A;

@@ -11,7 +11,8 @@
 #ifndef INC_EPS_CONFIGURATION_H_
 #define INC_EPS_CONFIGURATION_H_
 
-#define TIMED_EVENT_PERIOD ((uint8_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
+//#define TIMED_EVENT_PERIOD ((uint32_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
+#define TIMED_EVENT_PERIOD ((uint32_t)50000)
 
 #define MPPT_STEP_SIZE ((uint32_t)1)
 #define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 16)//1 - 160 for 0 -100%duty cycle - must not start from 0

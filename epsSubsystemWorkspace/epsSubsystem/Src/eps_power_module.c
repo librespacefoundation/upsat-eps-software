@@ -41,12 +41,36 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
     //setup adc handle sequence and initialize adc peripheral
 
 	/*initialize adc handle*/
-	power_module->hadc_power_module->NbrOfConversionRank = 2;
+
+	///////////////////////////////
+//	power_module->hadc_power_module->Instance = ADC1;
+//	power_module->hadc_power_module->Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+//	power_module->hadc_power_module->Init.Resolution = ADC_RESOLUTION_12B;
+//	power_module->hadc_power_module->Init.DataAlign = ADC_DATAALIGN_RIGHT;
+//	power_module->hadc_power_module->Init.ScanConvMode = ADC_SCAN_ENABLE;
+//	//power_module->hadc_power_module->Init.EOCSelection = ADC_EOC_SEQ_CONV;
+//	power_module->hadc_power_module->Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+//	power_module->hadc_power_module->Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
+//	power_module->hadc_power_module->Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
+//	power_module->hadc_power_module->Init.ChannelsBank = ADC_CHANNELS_BANK_A;
+//	power_module->hadc_power_module->Init.ContinuousConvMode = ENABLE;
+////	power_module->hadc_power_module->Init.NbrOfConversion = 2;
+//	power_module->hadc_power_module->Init.DiscontinuousConvMode = DISABLE;
+//	power_module->hadc_power_module->Init.ExternalTrigConv = ADC_SOFTWARE_START;
+//	power_module->hadc_power_module->Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+//	power_module->hadc_power_module->Init.DMAContinuousRequests = ENABLE;
+
+
+	//////////////////////////////
+
+
+	power_module->hadc_power_module->Init.NbrOfConversion = 2;
+	//power_module->hadc_power_module->NbrOfConversionRank = 2;
 	HAL_ADC_Init(power_module->hadc_power_module);
 
 	/*setup conversion sequence for */
 	ADC_ChannelConfTypeDef sConfig;
-	sConfig.SamplingTime = ADC_SAMPLETIME_48CYCLES;
+	sConfig.SamplingTime = ADC_SAMPLETIME_192CYCLES;
 
 	/*power module current*/
 	sConfig.Channel = power_module->ADC_channel_current ;
@@ -63,6 +87,14 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	//start dma transfer from adc to memory.
 
 	uint32_t adc_measurement_dma_power_modules[67]= { 0 };//2*64 +1
+//////////////////////////////////////////////////////////////////////////
+//	for (int zero_index = 0; zero_index < 67; zero_index+=1) {
+//
+//		adc_measurement_dma_power_modules[zero_index] =0;
+//
+//	}
+//////////////////////////////////////////////////////////////////////////
+
 
 	adc_reading_complete = 0;//external global flag defined in main and shared with the adc complete transfer interrupt handler.
 	HAL_ADC_Start_DMA(power_module->hadc_power_module, adc_measurement_dma_power_modules, 66);
@@ -80,6 +112,10 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	HAL_ADC_Stop_DMA(power_module->hadc_power_module);
 	//HAL_ADC_Stop(power_module->hadc_power_module);
 
+	////////////////////////////////////////////////////////////////
+	HAL_ADC_DeInit(power_module->hadc_power_module);
+	////////////////////////////////////////////////////////////////
+
 
 	//de-interleave and sum voltage and current measurements. TODO:overflow strategy??? : 2^12(max adc value) * 32 = 2^17 < 2^32 so you do not need one!
 	for (int sum_index = 2; sum_index < 66; sum_index+=2) {
@@ -90,8 +126,8 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
 	/*filter ting*/
 	//average of 16 concecutive adc measurements.skip the first to avoid adc power up distortion.
-	power_module->voltage = current_avg>>5;
-	power_module->current = voltage_avg>>5;
+	power_module->voltage = voltage_avg>>5;
+	power_module->current = current_avg>>5;
 
 
 }
@@ -120,7 +156,8 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 		  if (moduleX->incremennt_flag>0){
 
-			  if(moduleX->voltage  <(moduleX->previous_voltage )){
+
+			  if(moduleX->voltage  <(moduleX->previous_voltage -5)){
 				  moduleX->incremennt_flag = 0;
 			  }
 
@@ -140,8 +177,12 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 		  duty_cycle = duty_cycle-step_size;
 	  }
  	  //Check for Overflow and Underflow
-	  if (duty_cycle>350){duty_cycle=0;}
-	  if (duty_cycle>320){duty_cycle=310;}
+	  if (duty_cycle>(160+MPPT_STEP_SIZE)){//first check for underflow
+		  duty_cycle= MPPT_STARTUP_PWM_DUTYCYCLE;//
+	  }
+	  if (duty_cycle==(160+MPPT_STEP_SIZE)){//then check for overflow
+		  duty_cycle=160;
+	  }
     // Set new PWM compare register
 	  //duty_cycle =0;
 

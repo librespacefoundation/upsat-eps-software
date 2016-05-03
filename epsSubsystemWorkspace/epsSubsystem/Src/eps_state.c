@@ -37,7 +37,7 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
 
 
  	/*i2c temp sensors*/
-    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+    //state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
 
 
 
@@ -49,7 +49,7 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
 static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
 
 	/*initialize adc handle*/
-	hadc_eps->NbrOfConversionRank = 6;
+	hadc_eps->Init.NbrOfConversion = 6;
 	HAL_ADC_Init(hadc_eps);
 
 	/*setup conversion sequence for */
@@ -97,6 +97,8 @@ static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_Han
  	}
 	HAL_ADC_Stop_DMA(hadc_eps);
 
+	HAL_ADC_DeInit(hadc_eps);
+
 
 	state->battery_voltage = adc_measurement_dma_eps_state[6];
 	state->battery_current_plus = adc_measurement_dma_eps_state[7];
@@ -115,6 +117,8 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 	 TC_74_STATUS statusA, statusB;
 	 //wake up sensor1
 	 statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
+
+
 	 //wake up sensor2
 	 statusB = device_wake_up( h_i2c, sensor_B_i2c_address);
 
@@ -134,6 +138,7 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 	 //get temperatue1
 	 //get temperatue2
 	 //sleep sensor1
+
 	 statusA = device_sleep( h_i2c, sensor_A_i2c_address);
 	 //sleep sensor2
 	 statusB= device_sleep( h_i2c, sensor_B_i2c_address);
