@@ -76,7 +76,7 @@ typedef struct {
 	/**/
 	uint16_t v5_current_avg;
 	uint16_t v3_3_current_avg;
-	uint16_t battery_voltage;
+	int16_t battery_voltage;
 	uint16_t battery_current_plus;
 	uint16_t battery_current_minus;
 	int8_t 	 battery_temp;

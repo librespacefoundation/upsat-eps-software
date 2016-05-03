@@ -25,10 +25,10 @@
 #define TC74_A7	0b10011110
 
 
-typedef enum TC_74_STATUS{ DEVICE_ERROR, DEVICE_OK } TC_74_STATUS;
+typedef enum TC_74_STATUS{ DEVICE_ERROR, DEVICE_STANDBY, DEVICE_NORMAL } TC_74_STATUS;
 
 /*get temperature reading from the tc74 sensor with the specified device address - returns status*/
-TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address);
+TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word );
 /*wake up sensor*/
 TC_74_STATUS device_wake_up(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address);
 /*put sensor to sleep*/

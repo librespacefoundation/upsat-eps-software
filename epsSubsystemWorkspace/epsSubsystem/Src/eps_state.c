@@ -11,7 +11,7 @@ extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer i
 /*update eps state analog measurements*/
 static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 /*get battery pack temperature*/
-static int8_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address);
+static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address);
 
 
 
@@ -37,7 +37,8 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
 
 
  	/*i2c temp sensors*/
-	get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+    state->battery_voltage = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+
 
 
 
@@ -108,31 +109,33 @@ static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_Han
 
 
 
-int8_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address){
+int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address){
 
-	 TC_74_STATUS status = DEVICE_ERROR;
+	 TC_74_STATUS statusA, statusB;
 	 //wake up sensor1
-	 status = device_wake_up( h_i2c, sensor_A_i2c_address);
+	 statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
 	 //wake up sensor2
-	 status = device_wake_up( h_i2c, sensor_B_i2c_address);
+	 statusB = device_wake_up( h_i2c, sensor_B_i2c_address);
 
 	 //check sensor1 status if still in standby try 3 times to wake up if not generate temp1 fault
-	 uint8_t device_power_mode = read_device_status(h_i2c, sensor_A_i2c_address);
+	 statusA = read_device_status(h_i2c, sensor_A_i2c_address);
 
 	 //check sensor2 status if still in standby try 3 times to wake up if not generate temp2 fault
-	 device_power_mode = read_device_status(h_i2c, sensor_B_i2c_address);
+	 statusB = read_device_status(h_i2c, sensor_B_i2c_address);
 
 
 	 //get temperatue1
-	 int8_t temperature_measurementA = read_device_temperature(h_i2c, sensor_A_i2c_address);
+	 int8_t temperature_measurementA;
+	 statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
 	 //get temperatue2
-	 int8_t temperature_measurementB = read_device_temperature(h_i2c, sensor_B_i2c_address);
+	 int8_t temperature_measurementB;
+	 statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
 	 //get temperatue1
 	 //get temperatue2
 	 //sleep sensor1
-	 status = device_wake_up( h_i2c, sensor_A_i2c_address);
+	 statusA = device_sleep( h_i2c, sensor_A_i2c_address);
 	 //sleep sensor2
-	 status = device_wake_up( h_i2c, sensor_B_i2c_address);
+	 statusB= device_sleep( h_i2c, sensor_B_i2c_address);
 	 //calculate average of all measurements
 	 return (temperature_measurementA + temperature_measurementB)>>1;
 
