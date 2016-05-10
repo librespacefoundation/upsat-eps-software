@@ -5,11 +5,10 @@
  *      Author: Aris Stathakis
  */
 
-#include "stm32l1xx_hal.h"
-
-
 #ifndef INC_EPS_CONFIGURATION_H_
 #define INC_EPS_CONFIGURATION_H_
+
+#include "stm32l1xx_hal.h"
 
 //#define TIMED_EVENT_PERIOD ((uint32_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
 #define TIMED_EVENT_PERIOD ((uint32_t)50000)
@@ -43,6 +42,11 @@
 #define ADC_I3V3 ADC_CHANNEL_4;
 #define ADC_I5V ADC_CHANNEL_12;
 
+
+typedef enum {
+	TIMED_EVENT_SERVICED =0,
+	TIMED_EVENT_NOT_SERVICED
+}EPS_timed_event_status;
 
 
 

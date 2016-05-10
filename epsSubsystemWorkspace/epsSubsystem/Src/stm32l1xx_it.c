@@ -36,7 +36,9 @@
 #include "stm32l1xx_it.h"
 
 /* USER CODE BEGIN 0 */
-extern volatile uint8_t EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
+#include "eps_configuration.h"
+
+extern volatile EPS_timed_event_status EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -198,7 +200,7 @@ void TIM6_IRQHandler(void)
 	/* USER CODE END TIM6_IRQn 0 */
 	HAL_TIM_IRQHandler(&htim6);
 	/* USER CODE BEGIN TIM6_IRQn 1 */
-	EPS_event_period_status = 0xff;
+	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
 	//timing debug session
 	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_RESET);
 	/* USER CODE END TIM6_IRQn 1 */

@@ -8,7 +8,7 @@
 
 // tc74 register addresses
 #define CONFIGURATION_REGISTER	0x01
-#define TEMPERATURE_REGISTER		0x00
+#define TEMPERATURE_REGISTER	0x00
 
 // configuration register commands
 #define STANDBY 	0b10000000

@@ -15,6 +15,49 @@ static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sen
 
 
 
+void EPS_state_init(volatile EPS_State *state){
+
+	/*Power up all voltage rails*/
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+
+
+
+	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
+	state->deploy_right_switch = EPS_SWITCH_CONTROL_OFF;
+	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
+	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
+	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
+
+	state->v5_current_avg = 0x00;
+	state->v3_3_current_avg = 0x00;
+	state->battery_voltage = 0x00;
+	state->battery_current_plus = 0x00;
+	state->battery_current_minus = 0x00;
+	state->battery_temp = 0x00;
+
+	state->module_left_voltage_avg = 0x00;
+	state->module_left_current_avg = 0x00;
+	state->module_left_power_avg = 0x00;
+	state->module_right_voltage_avg = 0x00;
+	state->module_right_current_avg = 0x00;
+	state->module_right_power_avg = 0x00;
+	state->module_top_voltage_avg = 0x00;
+	state->module_top_current_avg = 0x00;
+	state->module_top_power_avg = 0x00;
+	state->module_bottom_voltage_avg = 0x00;
+	state->module_bottom_current_avg = 0x00;
+	state->module_bottom_power_avg = 0x00;
+
+
+
+}
+
 void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c) {
 
 	/*get eps adc measurements*/
@@ -36,8 +79,8 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
     state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
 
 
- 	/*i2c temp sensors*/
-    //state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+ 	/*i2c temp sensors battery pack temperature.*/
+    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
 
 
 
@@ -149,52 +192,6 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 
 
 
-void EPS_state_init(volatile EPS_State *state){
-
-
-
-	state->su_p_switch = EPS_SWITCH_RAIL_OFF;
-	state->adcs_p_switch = EPS_SWITCH_RAIL_OFF;
-	state->comm_p_switch = EPS_SWITCH_RAIL_OFF;
-	state->obc_p_switch = EPS_SWITCH_RAIL_OFF;
-	state->i2c_tc74_p_switch = EPS_SWITCH_RAIL_OFF;
-
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-
-
-	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_right_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
-	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
-//	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
-
-	state->v5_current_avg = 0x00;
-	state->v3_3_current_avg = 0x00;
-	state->battery_voltage = 0x00;
-	state->battery_current_plus = 0x00;
-	state->battery_current_minus = 0x00;
-	state->battery_temp = 0x00;
-
-	state->module_left_voltage_avg = 0x00;
-	state->module_left_current_avg = 0x00;
-	state->module_left_power_avg = 0x00;
-	state->module_right_voltage_avg = 0x00;
-	state->module_right_current_avg = 0x00;
-	state->module_right_power_avg = 0x00;
-	state->module_top_voltage_avg = 0x00;
-	state->module_top_current_avg = 0x00;
-	state->module_top_power_avg = 0x00;
-	state->module_bottom_voltage_avg = 0x00;
-	state->module_bottom_current_avg = 0x00;
-	state->module_bottom_power_avg = 0x00;
-
-
-
-}
 
 void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state){
 
