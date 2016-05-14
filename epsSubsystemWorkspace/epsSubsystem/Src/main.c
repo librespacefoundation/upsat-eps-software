@@ -151,19 +151,22 @@ int main(void)
 	MX_TIM6_Init();
 
 	/* USER CODE BEGIN 2 */
+	/*TODO: giati to reset source???*/
+
+	/*obc communication setup*/
 
 	  HAL_reset_source(&sys_data.rsrc);
-	  update_boot_counter();
-
-	  HAL_eps_OBC_ON();
-
-	  HAL_sys_delay(5000);
-
-	  HAL_eps_ADCS_ON();
-
-	  HAL_sys_delay(5000);
-
-	  HAL_eps_COMMS_ON();
+//	  update_boot_counter();
+//
+//	  HAL_eps_OBC_ON();
+//
+//	  HAL_sys_delay(5000);
+//
+//	  HAL_eps_ADCS_ON();
+//
+//	  HAL_sys_delay(5000);
+//
+//	  HAL_eps_COMMS_ON();
 
 	  uint8_t uart_temp[200];
 
@@ -172,7 +175,7 @@ int main(void)
 	  sprintf((char*)uart_temp, "Hello\n");
 	  HAL_UART_Transmit(&huart3, uart_temp, 6 , 10000);
 
-	  HAL_sys_delay(5000);
+	  //HAL_sys_delay(5000);
 
 	  uint16_t size = 0;
 
@@ -202,13 +205,28 @@ int main(void)
 
 
 	//perfrom deployment check and if needed enter deployment mode.
-	if(EPS_check_deployment_status() == DEPLOYMENT_NOT){
-		//engage deploy sequence
-	}
+//	if(EPS_check_deployment_status() == DEPLOYMENT_NOT){
+//		//engage deploy sequence
+//
+//		//EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+//
+//		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+//		HAL_sys_delay(5000);
+//
+//		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+//		HAL_sys_delay(5000);
+//
+//		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+//		HAL_sys_delay(5000);
+//
+//		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+//		HAL_sys_delay(5000);
+//
+//	}
 
 
 	//increment boot counter.
-	EPS_startup_increment_bootcounter();
+	//EPS_startup_increment_bootcounter();
 
 	//load eps limits from memory
 	EPS_safety_limits eps_limits;
@@ -219,6 +237,7 @@ int main(void)
 
 
 
+	eps_board_state.umbilical_switch =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
 
 
 
@@ -235,7 +254,6 @@ int main(void)
 	EPS_PowerModule_init(&power_module_right, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_RIGHT, &hadc, ADC_CURRENT_CHANNEL_RIGHT, ADC_VOLTAGE_CHANNEL_RIGHT);
 
 
-	/*obc communication setup*/
 
 
 	/*kick timer interrupt for timed threads.*/
@@ -249,7 +267,7 @@ int main(void)
 		/* USER CODE BEGIN 3 */
 
 
-		import_pkt(OBC_APP_ID, &eps_data.obc_uart);
+
 
 		//set error status
 		error_status = EPS_SOFT_ERROR_OK;
@@ -282,6 +300,19 @@ int main(void)
 			EPS_update_state( &eps_board_state, &hadc, &hi2c2);
 
 
+
+			//lets test
+			EPS_switch_rail test_rail_switch = OBC;
+			EPS_set_rail_switch(test_rail_switch, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+			EPS_set_rail_switch(test_rail_switch, EPS_SWITCH_RAIL_ON, &eps_board_state);
+			EPS_set_rail_switch(test_rail_switch, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+
+			EPS_switch_control test_control_switch = DEPLOY_LEFT;
+			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+
+
 			//reset event period status so as to be set into the timer interrupt after TIMED_EVENT_PERIOD msec.
 			EPS_event_period_status = TIMED_EVENT_SERVICED;
 
@@ -289,13 +320,11 @@ int main(void)
 
 
 		//poll for obc communication flag (set by uart interupt?dma?whateva) and service obc uart ting
-
+		import_pkt(OBC_APP_ID, &eps_data.obc_uart);
 
 		/*check for limit safety issues */
 		error_status = EPS_perform_safety_checks(&eps_board_state, &eps_limits);
 
-		/*check for software error nd properly handle them. */
-		EPS_soft_error_handling(error_status);
 
 #ifdef EPS_DEBUG_MODE
 		flush_debug_data_to_uart();
@@ -613,8 +642,8 @@ void MX_GPIO_Init(void)
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
-	HAL_GPIO_WritePin(GPIOC, GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin|GPIO_UMBILICAL_Pin
-			|GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOC, GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin
+			|GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin|GPIO_DEPLOY_TOP_Pin, GPIO_PIN_RESET);
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOH, GPIO_COMM_SWITCH_Pin|GPIO_DEPLOY_LEFT_Pin, GPIO_PIN_RESET);
@@ -625,10 +654,11 @@ void MX_GPIO_Init(void)
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOA, GPIO_HEATERS_Pin|GPIO_DEPLOY_BOTTOM_Pin, GPIO_PIN_RESET);
 
-	/*Configure GPIO pins : GPIO_SU_SWITCH_Pin GPIO_OBC_SWITCH_Pin GPIO_ADCS_SWITCH_Pin GPIO_UMBILICAL_Pin
+	/*Configure GPIO pins : GPIO_SU_SWITCH_Pin GPIO_OBC_SWITCH_Pin GPIO_ADCS_SWITCH_Pin
                            GPIO_DEPLOY_ANT1_Pin GPIO_DEPLOY_RIGHT_Pin */
-	GPIO_InitStruct.Pin = GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin|GPIO_UMBILICAL_Pin
-			|GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin;
+	GPIO_InitStruct.Pin = GPIO_SU_SWITCH_Pin|GPIO_OBC_SWITCH_Pin|GPIO_ADCS_SWITCH_Pin
+			|GPIO_DEPLOY_ANT1_Pin|GPIO_DEPLOY_RIGHT_Pin|GPIO_DEPLOY_TOP_Pin;
+
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -654,6 +684,16 @@ void MX_GPIO_Init(void)
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+	/*Configure GPIO pins : GPIO_UMBILICAL_Pin  */
+	GPIO_InitStruct.Pin = GPIO_UMBILICAL_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIO_UMBILICAL_GPIO_Port, &GPIO_InitStruct);
+
+
+
 
 }
 

@@ -27,11 +27,11 @@ void EPS_state_init(volatile EPS_State *state){
 
 
 
-	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_right_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
-	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
-	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->deploy_right_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->deploy_bottom_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->deploy_ant1_switch = EPS_SWITCH_CONTROL_OFF;
+//	state->umbilical_switch = EPS_SWITCH_CONTROL_OFF;
 //	state->heaters_switch = EPS_SWITCH_CONTROL_OFF;
 
 	state->v5_current_avg = 0x00;
@@ -75,14 +75,15 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
  	state->deploy_right_switch = EPS_get_control_switch_status(DEPLOY_RIGHT);
  	state->deploy_bottom_switch = EPS_get_control_switch_status(DEPLOY_BOTTOM);
  	state->deploy_ant1_switch = EPS_get_control_switch_status(DEPLOY_ANT1);
-    state->umbilical_switch  = EPS_get_control_switch_status(UMBILICAL);
+    state->deploy_top_switch  = EPS_get_control_switch_status(DEPLOY_TOP);
     state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
 
 
  	/*i2c temp sensors battery pack temperature.*/
+	if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
+		EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+	}
     state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
-
-
 
 
 
@@ -248,10 +249,10 @@ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_st
  	GPIO_PinState gpio_write_value;
 
 	if(switch_status == EPS_SWITCH_CONTROL_ON){
-		gpio_write_value = GPIO_PIN_RESET;
+		gpio_write_value = GPIO_PIN_SET;
  	}
 	else{
-		gpio_write_value = GPIO_PIN_SET;
+		gpio_write_value = GPIO_PIN_RESET;
  	}
 
 
@@ -282,9 +283,9 @@ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_st
 		HAL_GPIO_WritePin(GPIO_HEATERS_GPIO_Port, GPIO_HEATERS_Pin, gpio_write_value);
 		state->heaters_switch = switch_status;
 		break;
-	case UMBILICAL:
-		HAL_GPIO_WritePin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin, gpio_write_value);
-		state->umbilical_switch = switch_status;
+	case DEPLOY_TOP:
+		HAL_GPIO_WritePin(GPIO_DEPLOY_TOP_GPIO_Port, GPIO_DEPLOY_TOP_Pin, gpio_write_value);
+		state->deploy_top_switch = switch_status;
 		break;
 
 // 	   default :
@@ -366,8 +367,8 @@ EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_s
 	case BATTERY_HEATERS:
 		gpio_read_value =HAL_GPIO_ReadPin(GPIO_HEATERS_GPIO_Port, GPIO_HEATERS_Pin);
 		break;
-	case UMBILICAL:
-		gpio_read_value =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
+	case DEPLOY_TOP:
+		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_TOP_GPIO_Port, GPIO_DEPLOY_TOP_Pin);
 		break;
 
 // 	   default :

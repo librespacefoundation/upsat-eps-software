@@ -32,7 +32,7 @@ typedef enum {
 	DEPLOY_BOTTOM,
 	DEPLOY_ANT1,
 	BATTERY_HEATERS,
-	UMBILICAL
+	DEPLOY_TOP
 }EPS_switch_control;
 
 typedef enum {
@@ -53,10 +53,11 @@ typedef struct {
 	EPS_switch_control_status deploy_left_switch;
 	EPS_switch_control_status deploy_right_switch;
 	EPS_switch_control_status deploy_bottom_switch;
+	EPS_switch_control_status deploy_top_switch;
 	EPS_switch_control_status deploy_ant1_switch;
 	EPS_switch_control_status heaters_switch;
 	/**/
-	EPS_switch_control_status umbilical_switch;//
+	uint8_t umbilical_switch;//
 	/**/
 	uint16_t module_left_voltage_avg;
 	uint16_t module_left_current_avg;

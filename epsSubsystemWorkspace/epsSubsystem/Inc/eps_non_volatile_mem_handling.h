@@ -34,6 +34,7 @@
 #define LIMIT_BATTERY_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+20)
 #define LIMIT_BATTERY_CRITICAL_ADDRESS (DATA_EEPROM_BASE_ADDRESS+24)
 #define LIMIT_BATTERY_TEMPERATURE_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+28)
+#define LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+32)
 
 typedef enum {
 	DEPLOYMENT_NOT =0,
@@ -47,14 +48,12 @@ EPS_deployment_status EPS_check_deployment_status(void);
 void EPS_startup_increment_bootcounter(void);
 
 
-
-
 //set persistent limit values: changes safety limits and reset. Intention of this function is to allow for remote manipulation of critical safety limits.
 void EPS_set_persistent_safety_limits(EPS_safety_limits *limits);
 
 //get word from a specific memory address: remote debug session.
-void EPS_get_memory_word(uint32_t memory_address);
+void EPS_get_memory_word(uint32_t memory_address, uint32_t *memory_data );
 //set word from a specific memory address: remote debug session.
-void EPS_set_memory_word(uint32_t memory_address);
+void EPS_set_memory_word(uint32_t memory_address, uint32_t *memory_data);
 
 #endif /* INC_EPS_NON_VOLATILE_MEM_HANDLING_H_ */

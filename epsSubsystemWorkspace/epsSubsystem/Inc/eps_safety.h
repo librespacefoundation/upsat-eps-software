@@ -23,6 +23,7 @@ typedef struct {
 	uint32_t limit_battery_high;
 	uint32_t limit_battery_critical;
 	uint32_t limit_battery_temperature_low;
+	uint32_t limit_battery_temperature_high;
 
 }EPS_safety_limits;
 

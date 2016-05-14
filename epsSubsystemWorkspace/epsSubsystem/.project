@@ -24,4 +24,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>fr.ac6.mcu.ide.core.MCUProjectNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>eps</name>
+			<type>2</type>
+			<location>/home/ariolis/upsat-eps-software/ecss_services/platform/eps</location>
+		</link>
+		<link>
+			<name>services</name>
+			<type>2</type>
+			<location>/home/ariolis/upsat-eps-software/ecss_services/services</location>
+		</link>
+	</linkedResources>
 </projectDescription>

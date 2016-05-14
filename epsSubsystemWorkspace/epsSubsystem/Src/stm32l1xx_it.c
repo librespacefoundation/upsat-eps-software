@@ -37,8 +37,10 @@
 
 /* USER CODE BEGIN 0 */
 #include "eps_configuration.h"
+#include "eps_safety.h"
 
 extern volatile EPS_timed_event_status EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
+extern volatile EPS_soft_error_status error_status;// global software error status - in the interrupt is called  the soft error handling.
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -203,6 +205,11 @@ void TIM6_IRQHandler(void)
 	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
 	//timing debug session
 	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_RESET);
+
+	/*check for software error and properly handle them. */
+	EPS_soft_error_handling(error_status);
+
+
 	/* USER CODE END TIM6_IRQn 1 */
 }
 
