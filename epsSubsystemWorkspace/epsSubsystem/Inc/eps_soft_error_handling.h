@@ -13,8 +13,10 @@
 
 typedef enum {
 	EPS_SOFT_ERROR_OK,
-	EPS_SOFT_ERROR_UNRESOLVED
+	EPS_SOFT_ERROR_UNRESOLVED,
 	/*add more cases here that will be returned and handled*/
+	EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED,
+	EPS_SOFT_ERROR_LAST_VALUE
 }EPS_soft_error_status;
 
 //checks the status, if it is a known issue from the enumeration, tries to solve it in software

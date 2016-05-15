@@ -6,25 +6,29 @@
  */
 
 #include "eps_state.h"
+#include "tc74_temp_sensor.h"
+
 
 extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
 /*update eps state analog measurements*/
 static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 /*get battery pack temperature*/
-static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address);
+static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state);
 
 
 
 void EPS_state_init(volatile EPS_State *state){
 
-	/*Power up all voltage rails*/
+	/*Power up all voltage rails except SU */
 	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_ON, state);
+	HAL_sys_delay(500);
 	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
+	HAL_sys_delay(500);
 	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
+	HAL_sys_delay(500);
 	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-
+	HAL_sys_delay(500);
+ 	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
 
 
 //	state->deploy_left_switch = EPS_SWITCH_CONTROL_OFF;
@@ -78,12 +82,12 @@ void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2
     state->deploy_top_switch  = EPS_get_control_switch_status(DEPLOY_TOP);
     state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
 
-
+    //TODO: must add error handling if we lose all temperature sensors-->cpu temperature?
  	/*i2c temp sensors battery pack temperature.*/
 	if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
 		EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
 	}
-    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B);
+    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B, state);
 
 
 
@@ -149,15 +153,23 @@ static void EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_Han
 	state->battery_current_minus = adc_measurement_dma_eps_state[8];
 	state->v3_3_current_avg = adc_measurement_dma_eps_state[9];
 	state->v5_current_avg = adc_measurement_dma_eps_state[10];
-	state->cpu_temperature = adc_measurement_dma_eps_state[11];
+	//state->cpu_temperature = COMPUTATION_TEMPERATURE_TEMP30_TEMP110(adc_measurement_dma_eps_state[11]);
 
 }
 
 
 
-int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address){
+int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state){
 
-	//TODO: handle status for reseting the i2c voltage bus.
+    //TODO: must add error handling if we lose all temperature sensors-->cpu temperature? or if we lose one temp sensor
+	//
+ 	/*i2c temp sensors battery pack temperature.*/
+	if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
+		EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+	}
+
+
+
 	 TC_74_STATUS statusA, statusB;
 	 //wake up sensor1
 	 statusA = device_wake_up( h_i2c, sensor_A_i2c_address);

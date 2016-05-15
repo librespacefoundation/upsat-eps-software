@@ -13,6 +13,8 @@
 //comment out to ignore. In this mode the debug uart perihera is initialized and is provided with
 //debug data every timed event period microseconds. The error handling also reports to console the occured
 //error status and the line that it has been collected.
+
+
 #define EPS_DEBUG_MODE
 
 void flush_debug_data_to_uart(void);

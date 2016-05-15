@@ -153,37 +153,126 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 	/*TODO: giati to reset source???*/
 
+
+	/* power of all rails */
+	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+
+
+	/* umbilical check */
+	eps_board_state.umbilical_switch = true;
+
+	for (uint8_t var = 0; var < 10; ++var) {
+
+		GPIO_PinState umbilical_pin =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
+		HAL_sys_delay(10);
+		if(umbilical_pin == GPIO_PIN_SET){
+			eps_board_state.umbilical_switch = false;
+		}
+	}
+
+
+	if (eps_board_state.umbilical_switch==false){
+		//umbilical is not connected = high
+
+		//nominal mode.
+	}
+	else if(eps_board_state.umbilical_switch==true){
+		//umbilical is connected = low
+
+		//debug mode.
+	}
+	else{
+		//error handling for undefined umbilical behavior.
+		error_status = EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED;
+	}
+
+
+
+
+
+	/*deployment check*/
+
+	//perfrom deployment check and if needed enter deployment mode.
+	if(EPS_check_deployment_status() == DEPLOYMENT_NOT){
+		//engage deploy sequence
+
+
+		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+
+		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+
+
+		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+
+
+		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, &eps_board_state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
+
+
+		/* set deployment flag that deployment is completed */
+		uint32_t memory_write_value;
+		memory_write_value = DEPLOYMENT_KEY_A;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_B;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_C;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_D;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_E;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_F;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_write_value );
+		HAL_sys_delay(1);
+		memory_write_value = DEPLOYMENT_KEY_G;
+		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
+		HAL_sys_delay(1);
+	}
+
+
+
+
+	//increment boot counter.
+	//EPS_startup_increment_bootcounter();
+
+
+
+
 	/*obc communication setup*/
 
-	  HAL_reset_source(&sys_data.rsrc);
-//	  update_boot_counter();
-//
-//	  HAL_eps_OBC_ON();
-//
-//	  HAL_sys_delay(5000);
-//
-//	  HAL_eps_ADCS_ON();
-//
-//	  HAL_sys_delay(5000);
-//
-//	  HAL_eps_COMMS_ON();
+	HAL_reset_source(&sys_data.rsrc);
+	uint8_t uart_temp[200];
 
-	  uint8_t uart_temp[200];
+	pkt_pool_INIT();
 
-	  pkt_pool_INIT();
+	sprintf((char*)uart_temp, "Hello\n");
+	HAL_UART_Transmit(&huart3, uart_temp, 6 , 10000);
 
-	  sprintf((char*)uart_temp, "Hello\n");
-	  HAL_UART_Transmit(&huart3, uart_temp, 6 , 10000);
+	//HAL_sys_delay(5000);
 
-	  //HAL_sys_delay(5000);
+	uint16_t size = 0;
 
-	  uint16_t size = 0;
+	event_crt_pkt_api(uart_temp, "EPS STARTED", 666, 666, "", &size, SATR_OK);
+	HAL_uart_tx(DBG_APP_ID, (uint8_t *)uart_temp, size);
 
-	  event_crt_pkt_api(uart_temp, "EPS STARTED", 666, 666, "", &size, SATR_OK);
-	  HAL_uart_tx(DBG_APP_ID, (uint8_t *)uart_temp, size);
-
-	  /*Uart inits*/
-	  HAL_UART_Receive_IT(&huart3, eps_data.obc_uart.uart_buf, UART_BUF_SIZE);
+	/*Uart inits*/
+	HAL_UART_Receive_IT(&huart3, eps_data.obc_uart.uart_buf, UART_BUF_SIZE);
 
 
 #ifdef EPS_DEBUG_MODE
@@ -225,8 +314,7 @@ int main(void)
 //	}
 
 
-	//increment boot counter.
-	//EPS_startup_increment_bootcounter();
+
 
 	//load eps limits from memory
 	EPS_safety_limits eps_limits;
@@ -237,17 +325,14 @@ int main(void)
 
 
 
-	eps_board_state.umbilical_switch =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
 
-
-
-	//initialize eps module.
+	/* initialize eps module. */
 	EPS_state_init(&eps_board_state);
 
-	//start timer3 pwm base generation (initialized pwm duty cycle from mx must be 0)
+	/*start timer3 pwm base generation (initialized pwm duty cycle from mx must be 0) */
 	HAL_TIM_Base_Start(&htim3);
 
-	//initialize all power modules and dem mppt cotrol blocks.
+	/* initialize all power modules and dem mppt cotrol blocks.*/
 	EPS_PowerModule_init(&power_module_top, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_TOP, &hadc, ADC_CURRENT_CHANNEL_TOP, ADC_VOLTAGE_CHANNEL_TOP);
 	EPS_PowerModule_init(&power_module_bottom, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_BOTTOM, &hadc, ADC_CURRENT_CHANNEL_BOTTOM, ADC_VOLTAGE_CHANNEL_BOTTOM);
 	EPS_PowerModule_init(&power_module_left, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_LEFT, &hadc, ADC_CURRENT_CHANNEL_LEFT, ADC_VOLTAGE_CHANNEL_LEFT);
@@ -307,7 +392,7 @@ int main(void)
 			EPS_set_rail_switch(test_rail_switch, EPS_SWITCH_RAIL_ON, &eps_board_state);
 			EPS_set_rail_switch(test_rail_switch, EPS_SWITCH_RAIL_OFF, &eps_board_state);
 
-			EPS_switch_control test_control_switch = DEPLOY_LEFT;
+			EPS_switch_control test_control_switch = BATTERY_HEATERS;
 			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
 			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_ON, &eps_board_state);
 			EPS_set_control_switch(test_control_switch, EPS_SWITCH_CONTROL_OFF, &eps_board_state);

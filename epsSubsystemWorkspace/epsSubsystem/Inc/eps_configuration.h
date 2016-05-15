@@ -13,6 +13,8 @@
 //#define TIMED_EVENT_PERIOD ((uint32_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
 #define TIMED_EVENT_PERIOD ((uint32_t)50000)
 
+#define DEPLOY_BURNOUT_DELAY ((uint32_t)5000)//TIME IN MILLISECONDS TO BURN THE RESISTOR IN DEPLOYMENT SYSTEM.
+
 #define MPPT_STEP_SIZE ((uint32_t)1)
 #define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 16)//1 - 160 for 0 -100%duty cycle - must not start from 0
 
@@ -44,8 +46,9 @@
 
 
 typedef enum {
-	TIMED_EVENT_SERVICED =0,
-	TIMED_EVENT_NOT_SERVICED
+	TIMED_EVENT_SERVICED =1,
+	TIMED_EVENT_NOT_SERVICED,
+	TIMED_EVENT_LAST_VALUE
 }EPS_timed_event_status;
 
 
