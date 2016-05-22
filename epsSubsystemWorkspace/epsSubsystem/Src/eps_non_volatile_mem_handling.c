@@ -8,7 +8,7 @@
 #include "eps_non_volatile_mem_handling.h"
 
 
-//check if deployment ha happened already.
+//check if deployment has already happened.
 EPS_deployment_status EPS_check_deployment_status(void){
 
 	EPS_deployment_status return_status;

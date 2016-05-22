@@ -32,7 +32,7 @@ typedef struct {
 //limits are loaded from flash so in case of eroneous operation
 //a reset will not demand to communicate again with the eps and
 //cocmmand a new limit - its safety and got to be safe.
-void EPS_load_safety_limits_from_memory(EPS_safety_limits *limits);
+EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limits);
 
 //check for limits and take action.
 EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_limits *limits);

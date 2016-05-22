@@ -11,9 +11,11 @@
 extern TIM_HandleTypeDef htim6;
 
 /* TIM6 init function */
-void kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds) {
+EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds) {
 
 	/*configure tim6 peripheral to trigger interrupt every microseconds*/
+
+	EPS_soft_error_status kick_timer_status = EPS_SOFT_ERROR_KICK_TIMER;
 
 	TIM_MasterConfigTypeDef sMasterConfig;
 
@@ -30,5 +32,7 @@ void kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds) {
 	/*kick timer interupt for timed threads.*/
 	HAL_TIM_Base_Start_IT(&htim6);
 
+	kick_timer_status = EPS_SOFT_ERROR_KICK_TIMER;
+	return kick_timer_status;
 }
 

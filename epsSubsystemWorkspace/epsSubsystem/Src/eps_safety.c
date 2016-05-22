@@ -10,6 +10,7 @@
 EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_limits *limits){
 
 
+	EPS_soft_error_status safety_check_status = EPS_SOFT_ERROR_SAFETY_CHECK;
 	//check if battery voltage is lower than bat low limit
 	if(state->battery_voltage<limits->limit_battery_low){
 		//shutdown everything
@@ -36,11 +37,14 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 		//turn heaters off
 	}
 
-	return EPS_SOFT_ERROR_OK;
+	safety_check_status = EPS_SOFT_ERROR_OK;
+	return safety_check_status;
 }
 
 //load limits from memory at startup. this is done so if needed to change them for safety issues, then the values wont be again problematic on reset and startup.
-void EPS_load_safety_limits_from_memory(EPS_safety_limits *limits){
+EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limits){
+
+	EPS_soft_error_status limits_status = EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS;
 
 	uint32_t memory_read_value;
 
@@ -54,5 +58,8 @@ void EPS_load_safety_limits_from_memory(EPS_safety_limits *limits){
 	limits->limit_battery_temperature_low = memory_read_value;
 	EPS_get_memory_word( LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS, &memory_read_value );
 	limits->limit_battery_temperature_high = memory_read_value;
+
+	limits_status = EPS_SOFT_ERROR_OK;
+	return limits_status;
 
 }

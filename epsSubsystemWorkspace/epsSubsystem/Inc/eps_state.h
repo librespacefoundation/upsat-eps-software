@@ -10,20 +10,23 @@
 
 #include "stm32l1xx_hal.h"
 #include "eps_configuration.h"
-#include "tc74_temp_sensor.h"
+//#include "tc74_temp_sensor.h"
+#include "eps_soft_error_handling.h"
 
 typedef enum {
 	SU =0,
 	OBC,
 	ADCS,
 	COMM,
-	TEMP_SENSOR
+	TEMP_SENSOR,
+	RAIL_LAST_VALUE
 }EPS_switch_rail;
 
 
 typedef enum {
-	EPS_SWITCH_RAIL_ON =0,
-	EPS_SWITCH_RAIL_OFF
+	EPS_SWITCH_RAIL_ON,
+	EPS_SWITCH_RAIL_OFF,
+	EPS_SWITCH_RAIL_LAST_VALUE
 }EPS_switch_rail_status;
 
 typedef enum {
@@ -32,14 +35,24 @@ typedef enum {
 	DEPLOY_BOTTOM,
 	DEPLOY_ANT1,
 	BATTERY_HEATERS,
-	DEPLOY_TOP
+	DEPLOY_TOP,
+	CONTROL_LAST_VALUE
 }EPS_switch_control;
 
 typedef enum {
-	EPS_SWITCH_CONTROL_OFF =0,
-	EPS_SWITCH_CONTROL_ON
+	EPS_SWITCH_CONTROL_OFF,
+	EPS_SWITCH_CONTROL_ON,
+	EPS_SWITCH_CONTROL_LAST_VALUE
 }EPS_switch_control_status;
 
+
+typedef enum {
+	EPS_BATTERY_SENSOR_SYSTEM_OK,
+	EPS_BATTERY_SENSOR_A_DEAD,
+	EPS_BATTERY_SENSOR_B_DEAD,
+	EPS_BATTERY_SENSOR_CPU_TEMP_ONLY,
+	EPS_BATTERY_SENSOR_LAST_VALUE
+}EPS_battery_tempsense_health;
 
 
 typedef struct {
@@ -57,35 +70,21 @@ typedef struct {
 	EPS_switch_control_status deploy_ant1_switch;
 	EPS_switch_control_status heaters_switch;
 	/**/
-	uint8_t umbilical_switch;//
-	/**/
-	uint16_t module_left_voltage_avg;
-	uint16_t module_left_current_avg;
-	uint32_t module_left_power_avg;
-    /**/
-	uint16_t module_right_voltage_avg;
-	uint16_t module_right_current_avg;
-	uint32_t module_right_power_avg;
-	    /**/
-	uint16_t module_top_voltage_avg;
-	uint16_t module_top_current_avg;
-	uint32_t module_top_power_avg;
-	    /**/
-	uint16_t module_bottom_voltage_avg;
-	uint16_t module_bottom_current_avg;
-	uint32_t module_bottom_power_avg;
+	uint8_t umbilical_switch;//gpio input with inverse logic.
 	/**/
 	uint16_t v5_current_avg;
 	uint16_t v3_3_current_avg;
 	int16_t battery_voltage;
 	uint16_t battery_current_plus;
 	uint16_t battery_current_minus;
-	int8_t 	 battery_temp;
-	uint32_t cpu_temperature;
+	int16_t  battery_temp;
+	int32_t cpu_temperature;
+	/**/
+	EPS_battery_tempsense_health batterypack_health_status;
 }EPS_State;
 
-void EPS_state_init(volatile EPS_State *state);
-void EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c);
+EPS_soft_error_status EPS_state_init(volatile EPS_State *state);
+EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c);
 
 EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch);
 void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);

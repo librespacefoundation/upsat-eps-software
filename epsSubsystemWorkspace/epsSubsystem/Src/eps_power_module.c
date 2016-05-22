@@ -9,6 +9,8 @@
 
 
 extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
+extern ADC_HandleTypeDef hadc;
+extern TIM_HandleTypeDef htim3;
 
 
 void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutycycle, TIM_HandleTypeDef *htim, uint32_t timer_channel, ADC_HandleTypeDef *hadc_power_module, uint32_t ADC_channel_current, uint32_t ADC_channel_voltage){
@@ -32,6 +34,26 @@ void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutyc
 }
 
 
+EPS_soft_error_status EPS_PowerModule_init_ALL(EPS_PowerModule *module_top, EPS_PowerModule *module_bottom, EPS_PowerModule *module_left, EPS_PowerModule *module_right){
+
+	EPS_soft_error_status power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_ALL;
+
+	/*start timer3 pwm base generation (initialized pwm duty cycle from mx must be 0) */
+	HAL_TIM_Base_Start(&htim3);
+
+	/* initialize all power modules and dem mppt cotrol blocks.*/
+	power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_TOP;
+	EPS_PowerModule_init(module_top, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_TOP, &hadc, ADC_CURRENT_CHANNEL_TOP, ADC_VOLTAGE_CHANNEL_TOP);
+	power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_BOTTOM;
+	EPS_PowerModule_init(module_bottom, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_BOTTOM, &hadc, ADC_CURRENT_CHANNEL_BOTTOM, ADC_VOLTAGE_CHANNEL_BOTTOM);
+	power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_LEFT;
+	EPS_PowerModule_init(module_left, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_LEFT, &hadc, ADC_CURRENT_CHANNEL_LEFT, ADC_VOLTAGE_CHANNEL_LEFT);
+	power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_RIGHT;
+	EPS_PowerModule_init(module_right, MPPT_STARTUP_PWM_DUTYCYCLE, &htim3, PWM_TIM_CHANNEL_RIGHT, &hadc, ADC_CURRENT_CHANNEL_RIGHT, ADC_VOLTAGE_CHANNEL_RIGHT);
+
+	power_module_init_status = EPS_SOFT_ERROR_OK;
+	return power_module_init_status;
+}
 
 
 void EPS_update_power_module_state(EPS_PowerModule *power_module){

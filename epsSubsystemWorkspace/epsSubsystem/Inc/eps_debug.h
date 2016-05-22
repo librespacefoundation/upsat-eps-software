@@ -8,6 +8,8 @@
 #ifndef SRC_EPS_DEBUG_H_
 #define SRC_EPS_DEBUG_H_
 
+#include "eps_soft_error_handling.h"
+
 
 //if this definition is not comended then debug mode of eps board will be on.
 //comment out to ignore. In this mode the debug uart perihera is initialized and is provided with
@@ -17,8 +19,9 @@
 
 #define EPS_DEBUG_MODE
 
-void flush_debug_data_to_uart(void);
+EPS_soft_error_status EPS_flush_debug_data_to_uart(void);
 
+EPS_soft_error_status EPS_debug_uart_init(void);
 
 
 #endif /* SRC_EPS_DEBUG_H_ */

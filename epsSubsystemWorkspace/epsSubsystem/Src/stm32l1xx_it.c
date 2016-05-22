@@ -197,14 +197,11 @@ void USART3_IRQHandler(void) {
 void TIM6_IRQHandler(void)
 {
 	/* USER CODE BEGIN TIM6_IRQn 0 */
-	//timing debug session
-	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_SET);
+
 	/* USER CODE END TIM6_IRQn 0 */
 	HAL_TIM_IRQHandler(&htim6);
 	/* USER CODE BEGIN TIM6_IRQn 1 */
 	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
-	//timing debug session
-	HAL_GPIO_WritePin(GPIO_ADCS_SWITCH_GPIO_Port, GPIO_ADCS_SWITCH_Pin, GPIO_PIN_RESET);
 
 	/*check for software error and properly handle them. */
 	EPS_soft_error_handling(error_status);

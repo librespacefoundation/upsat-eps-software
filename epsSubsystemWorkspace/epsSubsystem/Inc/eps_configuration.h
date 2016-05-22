@@ -9,6 +9,8 @@
 #define INC_EPS_CONFIGURATION_H_
 
 #include "stm32l1xx_hal.h"
+#include "eps_soft_error_handling.h"
+
 
 //#define TIMED_EVENT_PERIOD ((uint32_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
 #define TIMED_EVENT_PERIOD ((uint32_t)50000)
@@ -20,6 +22,8 @@
 
 #define TC74_ADDRESS_A TC74_A2 // TC74	A2
 #define TC74_ADDRESS_B TC74_A5 // TC74	A5
+
+#define CPU_TO_BATTERY_TEMPERATURE_OFFSET ((int32_t) 2)//value to subtract from cpu temp to "match" the battery pack temperature.
 
 /*Set up power modules pwm timer channels*/
 #define PWM_TIM_CHANNEL_TOP TIM_CHANNEL_3
@@ -53,7 +57,7 @@ typedef enum {
 
 
 
-void kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds);
+EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds);
 
 
 #endif /* INC_EPS_CONFIGURATION_H_ */

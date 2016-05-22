@@ -10,6 +10,7 @@
 
 #include "stm32l1xx_hal.h"
 #include "eps_configuration.h"
+#include "eps_soft_error_handling.h"
 
 
 
@@ -33,6 +34,7 @@ void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutyc
 void EPS_update_power_module_state(EPS_PowerModule *power_module);
 void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX);
 void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX);
+EPS_soft_error_status EPS_PowerModule_init_ALL(EPS_PowerModule *module_top, EPS_PowerModule *module_bottom, EPS_PowerModule *module_left, EPS_PowerModule *module_right);
 
 
 
