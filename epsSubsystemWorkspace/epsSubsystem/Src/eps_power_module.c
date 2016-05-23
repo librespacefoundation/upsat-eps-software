@@ -135,7 +135,7 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	//HAL_ADC_Stop(power_module->hadc_power_module);
 
 	////////////////////////////////////////////////////////////////
-	HAL_ADC_DeInit(power_module->hadc_power_module);
+	//HAL_ADC_DeInit(power_module->hadc_power_module);
 	////////////////////////////////////////////////////////////////
 
 

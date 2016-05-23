@@ -132,7 +132,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 
 	/*setup conversion sequence for */
 	ADC_ChannelConfTypeDef sConfig;
-	sConfig.SamplingTime = ADC_SAMPLETIME_48CYCLES;
+	sConfig.SamplingTime = ADC_SAMPLETIME_384CYCLES;
 
 	/*Vbat*/
 	sConfig.Channel = ADC_VBAT;
@@ -185,7 +185,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
  	}
 	HAL_ADC_Stop_DMA(hadc_eps);
 
-	HAL_ADC_DeInit(hadc_eps);
+	//HAL_ADC_DeInit(hadc_eps);
 
 
 	adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC_FILTER;
@@ -211,7 +211,39 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 
 	adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC_CPU_TEMP;
 
-	state->cpu_temperature = COMPUTATION_TEMPERATURE_STD_PARAMS_AVGSLOPE_V110((cpu_temp_avg>>3));
+
+	/*test adc internal temp sensor */
+//	state->cpu_temperature =  ( (cpu_temp_avg>>8) -40 );
+
+//	const uint16_t * ptr = (uint16_t *)((uint32_t)0x1FF8001F);
+//
+//	volatile uint16_t a = *ptr;
+
+//	int32_t adc_val = (cpu_temp_avg>>3);
+//
+//	int32_t temp1 = 80*(adc_val -TS_CAL1 );
+//
+//	int32_t temp2 = temp1/(TS_CAL2-TS_CAL1);
+//
+//	int32_t temp3 = temp2+30;
+
+	state->cpu_temperature = COMPUTATION_TEMPERATURE_TEMP30_TEMP110((cpu_temp_avg>>3));
+
+//	uint16_t *mem_addr = (uint16_t*)(uint32_t)0x1FF800FA;
+//	uint16_t ts_cal1  = *mem_addr;
+//
+//	//volatile uint16_t ts_cal1 = *(TEMP30_CAL_ADDR);
+// 	volatile uint16_t ts_cal2 = *TEMP110_CAL_ADDR;
+//	uint32_t alpha = ts_cal2 - ts_cal1;
+//	uint32_t temp = (80/alpha*((cpu_temp_avg>>3) -ts_cal1 ) +30);
+//
+//
+//
+
+
+
+
+
 
 	adc_update_state = EPS_SOFT_ERROR_OK;
 	return adc_update_state;

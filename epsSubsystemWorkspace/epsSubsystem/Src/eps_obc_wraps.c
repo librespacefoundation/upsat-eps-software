@@ -17,15 +17,14 @@ EPS_soft_error_status EPS_obc_communication_init(void){
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_OBC_COMM_INIT;
 
 
-	/* TODO: giati to reset source??? */
-	HAL_reset_source(&sys_data.rsrc);
+ 	HAL_reset_source(&sys_data.rsrc);
 
 	pkt_pool_INIT();
 	sprintf((char*)uart_temp, "Hello\n");
 	HAL_UART_Transmit(&huart3, uart_temp, 6 , 10000);
-
+#ifdef EPS_DEBUG_MODE
 	HAL_sys_delay(5000);//xreiazetai afto to delay re man?
-
+#endif
 	uint16_t size = 0;
 
 	event_crt_pkt_api(uart_temp, "EPS STARTED", 666, 666, "", &size, SATR_OK);

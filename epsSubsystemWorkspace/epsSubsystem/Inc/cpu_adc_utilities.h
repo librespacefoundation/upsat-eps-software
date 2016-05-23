@@ -21,8 +21,8 @@
 /* for application temperature range.                                         */
 #define INTERNAL_TEMPSENSOR_V110       ((int32_t)  627)         /* Internal temperature sensor, parameter V110 (unit: mV). Refer to device datasheet for min/typ/max values. */
 #define INTERNAL_TEMPSENSOR_AVGSLOPE   ((int32_t) 1610)         /* Internal temperature sensor, parameter Avg_Slope (unit: uV/DegCelsius). Refer to device datasheet for min/typ/max values. */
-#define TEMP30_CAL_ADDR   ((uint16_t*) ((uint32_t) 0x1FF800FA)) /* Internal temperature sensor, parameter TS_CAL1: TS ADC raw data acquired at a temperature of 110 DegC (+-5 DegC), VDDA = 3.3 V (+-10 mV). */
-#define TEMP110_CAL_ADDR  ((uint16_t*) ((uint32_t) 0x1FF800FE)) /* Internal temperature sensor, parameter TS_CAL2: TS ADC raw data acquired at a temperature of  30 DegC (+-5 DegC), VDDA = 3.3 V (+-10 mV). */
+#define TEMP30_CAL_ADDR   ((uint16_t*) ((uint32_t) 0x1FF8007A)) /* Internal temperature sensor, parameter TS_CAL1: TS ADC raw data acquired at a temperature of 110 DegC (+-5 DegC), VDDA = 3.3 V (+-10 mV). */
+#define TEMP110_CAL_ADDR  ((uint16_t*) ((uint32_t) 0x1FF8007E)) /* Internal temperature sensor, parameter TS_CAL2: TS ADC raw data acquired at a temperature of  30 DegC (+-5 DegC), VDDA = 3.3 V (+-10 mV). */
 #define VDDA_TEMP_CAL                  ((uint32_t) 3000)        /* Vdda value with which temperature sensor has been calibrated in production (+-10 mV). */
 
 /* Internal voltage reference */
@@ -59,6 +59,24 @@
    ) + 30                                                                      \
   )
 
+
+
+
+#define TS_CAL1 ((uint32_t) 0x029f)
+#define TS_CAL2 ((uint32_t) 0x0355)
+
+
+
+
+#define COMPUTATION_TEMP(TS_ADC_DATA)                    \
+  (((( ((int32_t)(TS_ADC_DATA * VDDA_APPLI) / VDDA_TEMP_CAL)                  \
+        - (int32_t) TS_CAL1)                                          \
+     ) * (int32_t)(80)                                                   \
+    ) / (int32_t)(TS_CAL2 - TS_CAL1)                        \
+   ) + 30                                                                      \
+  )
+
+
 /**
   * @brief  Computation of temperature (unit: degree Celsius) from the internal
   *         temperature sensor measurement by ADC.
@@ -81,9 +99,9 @@
 #define COMPUTATION_TEMPERATURE_STD_PARAMS_AVGSLOPE_V110(TS_ADC_DATA)          \
   ((( ((int32_t)(((TS_ADC_DATA) * VDDA_APPLI) / RANGE_12BITS)                  \
        - (int32_t)((INTERNAL_TEMPSENSOR_V110 * VDDA_TEMP_CAL) / VDDA_APPLI)    \
-      ) * 100                                                                 \
+      ) * 1000                                                                 \
     ) / INTERNAL_TEMPSENSOR_AVGSLOPE                                           \
-   ) + 11                                                                     \
+   ) + 110                                                                     \
   )
 
 /**

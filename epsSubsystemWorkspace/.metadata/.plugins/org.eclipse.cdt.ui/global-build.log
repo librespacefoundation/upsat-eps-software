@@ -1,65 +1,10 @@
-22:11:29 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/eps_state.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_state.d" -MT"Src/eps_state.o" -o "Src/eps_state.o" "../Src/eps_state.c"
-../Src/eps_state.c: In function 'EPS_update_state':
-../Src/eps_state.c:60:95: warning: passing argument 4 of 'get_batterypack_temperature' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B, state);
-                                                                                               ^
-../Src/eps_state.c:16:16: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state);
-                ^
-../Src/eps_state.c: In function 'get_batterypack_temperature':
-../Src/eps_state.c:250:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
-    statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
-                                                                  ^
-In file included from ../Src/eps_state.c:9:0:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/tc74_temp_sensor.h:29:14: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int8_t * {aka signed char *}'
- TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word );
-              ^
-../Src/eps_state.c:255:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
-    statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
-                                                                  ^
-In file included from ../Src/eps_state.c:9:0:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/tc74_temp_sensor.h:29:14: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int8_t * {aka signed char *}'
- TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word );
-              ^
-../Src/eps_state.c: In function 'EPS_set_rail_switch':
-../Src/eps_state.c:316:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
-  switch (eps_switch) {
-  ^
-../Src/eps_state.c: In function 'EPS_set_control_switch':
-../Src/eps_state.c:366:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
-  switch (eps_switch) {
-  ^
-../Src/eps_state.c: In function 'EPS_get_rail_switch_status':
-../Src/eps_state.c:413:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
-  switch (eps_switch) {
-  ^
-../Src/eps_state.c: In function 'EPS_get_control_switch_status':
-../Src/eps_state.c:456:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
-  switch (eps_switch) {
-  ^
-Finished building: ../Src/eps_state.c
- 
-Building target: epsSubsystem.elf
-Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
-Finished building target: epsSubsystem.elf
- 
-make --no-print-directory post-build
-Generating binary and Printing size information:
-arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
-arm-none-eabi-size "epsSubsystem.elf"
-   text	   data	    bss	    dec	    hex	filename
-  44796	    120	  14648	  59564	   e8ac	epsSubsystem.elf
- 
-22:11:44 **** Incremental Build of configuration Debug for project epsSubsystem ****
+00:33:53 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
 make: Nothing to be done for `all'.
-22:15:48 **** Incremental Build of configuration Debug for project epsSubsystem ****
+00:34:04 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+make: Nothing to be done for `all'.
+00:36:28 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
 Building file: ../Src/eps_state.c
 Invoking: MCU GCC Compiler
@@ -73,14 +18,14 @@ arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute
  static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state);
                 ^
 ../Src/eps_state.c: In function 'get_batterypack_temperature':
-../Src/eps_state.c:250:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
+../Src/eps_state.c:282:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
     statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
                                                                   ^
 In file included from ../Src/eps_state.c:9:0:
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/tc74_temp_sensor.h:29:14: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'int8_t * {aka signed char *}'
  TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word );
               ^
-../Src/eps_state.c:255:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
+../Src/eps_state.c:287:66: warning: pointer targets in passing argument 3 of 'read_device_temperature' differ in signedness [-Wpointer-sign]
     statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
                                                                   ^
 In file included from ../Src/eps_state.c:9:0:
@@ -88,19 +33,19 @@ In file included from ../Src/eps_state.c:9:0:
  TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word );
               ^
 ../Src/eps_state.c: In function 'EPS_set_rail_switch':
-../Src/eps_state.c:316:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
+../Src/eps_state.c:348:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
   switch (eps_switch) {
   ^
 ../Src/eps_state.c: In function 'EPS_set_control_switch':
-../Src/eps_state.c:366:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
+../Src/eps_state.c:398:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
   switch (eps_switch) {
   ^
 ../Src/eps_state.c: In function 'EPS_get_rail_switch_status':
-../Src/eps_state.c:413:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
+../Src/eps_state.c:445:2: warning: enumeration value 'RAIL_LAST_VALUE' not handled in switch [-Wswitch]
   switch (eps_switch) {
   ^
 ../Src/eps_state.c: In function 'EPS_get_control_switch_status':
-../Src/eps_state.c:456:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
+../Src/eps_state.c:488:2: warning: enumeration value 'CONTROL_LAST_VALUE' not handled in switch [-Wswitch]
   switch (eps_switch) {
   ^
 Finished building: ../Src/eps_state.c
@@ -115,8 +60,11 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
 arm-none-eabi-size "epsSubsystem.elf"
    text	   data	    bss	    dec	    hex	filename
-  44796	    120	  14648	  59564	   e8ac	epsSubsystem.elf
+  44592	    124	   6292	  51008	   c740	epsSubsystem.elf
  
-22:15:58 **** Incremental Build of configuration Debug for project epsSubsystem ****
+00:36:45 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+make: Nothing to be done for `all'.
+00:44:29 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
 make: Nothing to be done for `all'.

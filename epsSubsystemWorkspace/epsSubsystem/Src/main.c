@@ -94,8 +94,7 @@ EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_
 volatile uint8_t adc_reading_complete = 0;//flag to check when dma transfer is complete.
 volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;//initialize global software error status to OK.
 volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;//initialize global timed event flag to true.
-
-uint8_t uart_temp[200];
+uint8_t uart_temp[200];//uart buffer for obc communication.
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -157,7 +156,7 @@ int main(void)
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
 
 	/*deployment stage*/
-	//error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
 
 	//increment boot counter.
 	//EPS_startup_increment_bootcounter();
@@ -193,11 +192,11 @@ int main(void)
 	/* initialize all power modules */
 	error_status = EPS_PowerModule_init_ALL(&power_module_top, &power_module_bottom, &power_module_left, &power_module_right);
 
-	/*kick timer interrupt for timed threads.*/
-	error_status = kick_TIM6_timed_interrupt(TIMED_EVENT_PERIOD);
-
 	/*init watchdog*/
 
+
+	/*kick timer interrupt for timed threads.*/
+	error_status = kick_TIM6_timed_interrupt(TIMED_EVENT_PERIOD);
 
 	while (1)
 	{
@@ -252,7 +251,7 @@ int main(void)
 		error_status = EPS_obc_communication_service();
 
 
-		//kill systick and sleep with WaitForInterupt with timer + UART peripherals on
+		/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
 		HAL_SuspendTick();
 		/* Enter Sleep Mode , wake up is done once Key push button is pressed */
 		HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);

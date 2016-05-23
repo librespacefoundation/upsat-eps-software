@@ -25,6 +25,8 @@
 
 #define CPU_TO_BATTERY_TEMPERATURE_OFFSET ((int32_t) 2)//value to subtract from cpu temp to "match" the battery pack temperature.
 
+#define ADC_VALUE_3V_BAT_VOLTAGE ((int16_t) 1000)//3 volt value measured at adc...for obc service.
+
 /*Set up power modules pwm timer channels*/
 #define PWM_TIM_CHANNEL_TOP TIM_CHANNEL_3
 #define PWM_TIM_CHANNEL_BOTTOM TIM_CHANNEL_1
