@@ -99,25 +99,25 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		/* power of all rails */
 		bootsequence_status = EPS_bootseq_poweroff_all_rails(state);
 
-//		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
-//		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
-//		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
-//		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
-//
-//		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_RIGHT;
-//		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
-//		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
-//		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
-//
-//		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_BOTTOM;
-//		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
-//		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
-//		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
-//
-//		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_TOP;
-//		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
-//		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
-//		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
+		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
+		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
+
+		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_RIGHT;
+		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
+
+		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_BOTTOM;
+		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
+
+		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_TOP;
+		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
 
 
 		/* set deployment flag that deployment is completed */

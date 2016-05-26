@@ -55,12 +55,12 @@
  * - implemet missing prototypes
  * - proper commenting
  * - uart debug would be awsome
- * - *** deployment strateegy SOLID
- * - *** error handling and error rporting in debug mode
+ * - *** deployment strategy SOLID
+ * - *** error handling and error reporting in debug mode
  * -proper memory initialization routine - preferably automated...
  *
  *
- *  - should error status be declared as a voltatile ?(to guarantee that it is checke in the appropriate places.)
+ *  - should error status be declared as a volatile ?(to guarantee that it is checkd in the appropriate places.)
  *
  */
 
@@ -156,7 +156,12 @@ int main(void)
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
 
 	/*deployment stage*/
-	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+	//error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+
+	/*!!! this is temporary here -because deployment check is skiped - EVERY time the eps is reset
+	 *all subsystems will be powered down !!!!*/
+	error_status = EPS_bootseq_poweroff_all_rails(&eps_board_state);
+
 
 	//increment boot counter.
 	//EPS_startup_increment_bootcounter();
@@ -185,6 +190,9 @@ int main(void)
 
 	/* start normal operation mode */
 
+	/*temporarily here for keeping the heater element off!*/
+	/*explicitly turn off the battery heater element*/
+	EPS_set_control_switch(BATTERY_HEATERS, EPS_SWITCH_CONTROL_OFF, &eps_board_state);
 
 	/* initialize eps module state. */
 	error_status = EPS_state_init(&eps_board_state);
