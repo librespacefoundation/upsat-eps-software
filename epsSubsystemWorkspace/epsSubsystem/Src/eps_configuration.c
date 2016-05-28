@@ -8,7 +8,7 @@
 
 #include "eps_configuration.h"
 
-extern TIM_HandleTypeDef htim6;
+extern TIM_HandleTypeDef htim6;/* timer 6 peripheral, the timer used for the timed schedule.*/
 
 /* TIM6 init function */
 EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds) {

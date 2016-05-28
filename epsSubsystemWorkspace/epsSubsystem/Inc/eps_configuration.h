@@ -15,7 +15,7 @@
 //#define TIMED_EVENT_PERIOD ((uint32_t)50000)//time period in uicroseconds.cpu wakes from interrupt: 1.update mppt algorithm 2.update eps state 3.poll for obc communication request 4.increment soft counter for battery temperatur control
 #define TIMED_EVENT_PERIOD ((uint32_t)50000)
 
-#define DEPLOY_BURNOUT_DELAY ((uint32_t)5000)//TIME IN MILLISECONDS TO BURN THE RESISTOR IN DEPLOYMENT SYSTEM.
+#define DEPLOY_BURNOUT_DELAY ((uint32_t)6000)//TIME IN MILLISECONDS TO BURN THE RESISTOR IN DEPLOYMENT SYSTEM.
 
 #define MPPT_STEP_SIZE ((uint32_t)1)
 #define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 16)//1 - 160 for 0 -100%duty cycle - must not start from 0
@@ -58,6 +58,12 @@ typedef enum {
 }EPS_timed_event_status;
 
 
+typedef enum {
+	UMBILICAL_NOT_CONNECTED,
+	UMBILICAL_CONNECTED,
+	UMBILICAL_CONNECTOR_UNDEFINED_STATE,
+	UMBILICAL_LAST_VALUE
+}EPS_umbilical_status;
 
 EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds);
 

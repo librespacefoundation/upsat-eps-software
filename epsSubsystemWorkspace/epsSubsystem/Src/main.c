@@ -4,29 +4,12 @@
  * Description        : Main program body
  ******************************************************************************
  *
- * COPYRIGHT(c) 2016 STMicroelectronics
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *   1. Redistributions of source code must retain the above copyright notice,
- *      this list of conditions and the following disclaimer.
- *   2. Redistributions in binary form must reproduce the above copyright notice,
- *      this list of conditions and the following disclaimer in the documentation
- *      and/or other materials provided with the distribution.
- *   3. Neither the name of STMicroelectronics nor the names of its contributors
- *      may be used to endorse or promote products derived from this software
- *      without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * @file    main.c
+ * @author  Aris Stathakis
+ * @version V1.0
+ * @date    27-May-2016
+ * @brief   Main body of EPS subsystem module. The MCU system is initialized
+ *          from CUBE MX software thus the generated structure is kept as is.
  *
  ******************************************************************************
  */
@@ -62,6 +45,10 @@
  *
  *  - should error status be declared as a volatile ?(to guarantee that it is checkd in the appropriate places.)
  *
+ * TODO: maybe peripherals inits should be placed in deployment stage only. Specifically for the gpio init, if
+ *       not properly considered at every reset all the subsystemswill be shut down and powered up... maybe the right
+ *       way is to keep the last state ...
+ *
  */
 
 
@@ -94,6 +81,11 @@ EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_
 volatile uint8_t adc_reading_complete = 0;//flag to check when dma transfer is complete.
 volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;//initialize global software error status to OK.
 volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;//initialize global timed event flag to true.
+volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;//initialize global umbilical flage to connected.
+volatile EPS_safety_battery_status EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
+volatile EPS_safety_temperature_status EPS_safety_temperature_mode = EPS_SAFETY_MODE_TEMPERATURE_NOT_SET;
+
+
 uint8_t uart_temp[200];//uart buffer for obc communication.
 /* USER CODE END PV */
 
@@ -156,11 +148,11 @@ int main(void)
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
 
 	/*deployment stage*/
-	//error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
 
 	/*!!! this is temporary here -because deployment check is skiped - EVERY time the eps is reset
 	 *all subsystems will be powered down !!!!*/
-	error_status = EPS_bootseq_poweroff_all_rails(&eps_board_state);
+	//error_status = EPS_bootseq_poweroff_all_rails(&eps_board_state);
 
 
 	//increment boot counter.

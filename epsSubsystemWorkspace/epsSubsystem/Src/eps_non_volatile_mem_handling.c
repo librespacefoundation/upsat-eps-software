@@ -8,10 +8,28 @@
 #include "eps_non_volatile_mem_handling.h"
 
 
+
+//TODO: delete this or yo're in deep shift.
+void EPS_erase_deployment_flags(void){
+
+	/* zero out all deploy flags from flash */
+	uint32_t memory_write_value = DEPLOYMENT_NOT_KEY_A;
+	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+
+ }
+
+
+
+
+
+
+
+
+
 //check if deployment has already happened.
 EPS_deployment_status EPS_check_deployment_status(void){
 
-	EPS_deployment_status return_status;
+	EPS_deployment_status return_status = DEPLOYMENT_UNDEFINED;
 
 	/* read all deploy flags from flash */
 	uint32_t memory_read_valueA;

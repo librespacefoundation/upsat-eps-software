@@ -1,17 +1,34 @@
 /*
- * eps_bootsequence.c
  *
- *  Created on: May 21, 2016
- *      Author: ariolis
+  ******************************************************************************
+  * @file    eps_bootsequence.c
+  * @author  Aris Stathakis
+  * @version V1.0
+  * @date    May 21, 2016
+  * @brief   Source file for bootsequence module.
+  *          In this module all functions utilized during boot sequence are
+  *          defined and implemented.
+  ******************************************************************************
+ *
  */
 #include "eps_bootsequence.h"
 #include "stm32l1xx_hal.h"
 #include "eps_non_volatile_mem_handling.h"
+#include "eps_configuration.h"
 
-extern volatile EPS_soft_error_status error_status;// global software error status - in the interrupt is called  the soft error handling.
+extern volatile EPS_soft_error_status error_status;/* global software error status - in the interrupt is called  the soft error handling.*/
+extern volatile EPS_umbilical_status EPS_umbilical_mode;
 
+/** @addtogroup bootsequence_Functions
+  * @{
+  */
 
-/*turn off all subsystem power rails. pmos mosfets so on startup the devices are powered up. this is something that all the subsystems must handle(soft delay on startup).*/
+/**
+  * @brief Turn off all subsystem power rails. pmos mosfets are used  so on startup the connected subsystems are powered up.
+  *        This is something that all the subsystems must handle(soft delay on startup)
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_bootseq_poweroff_all_rails(volatile EPS_State *state){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_POWEROFF_ALL_RAILS;
@@ -27,7 +44,11 @@ EPS_soft_error_status EPS_bootseq_poweroff_all_rails(volatile EPS_State *state){
 	return bootsequence_status;
 }
 
-
+/**
+  * @brief Turn on all subsystems, except SU subsystem, with 500ms delay to avoid current spikes.
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_POWERON_ALL_RAILS;
@@ -49,7 +70,11 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 }
 
 
-/*check 10 times  the umbilical pin and enter the appropriate mode*/
+/**
+  * @brief Check 10 times  the umbilical pin and enter the appropriate mode
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_UMBILICAL_CHECK;
@@ -70,15 +95,18 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 		//umbilical is not connected = high
 
 		//nominal mode.
+		EPS_umbilical_mode = UMBILICAL_NOT_CONNECTED;
 	}
 	else if(state->umbilical_switch==0xff){//true
 		//umbilical is connected = low
 
 		//debug mode.
+		EPS_umbilical_mode = UMBILICAL_CONNECTED;
 	}
 	else{
 		//error handling for undefined umbilical behavior.
 		error_status = EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED;
+		EPS_umbilical_mode = UMBILICAL_CONNECTOR_UNDEFINED_STATE;
 	}
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;
@@ -87,17 +115,35 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 }
 
 
-/*Check deployment status and if needed enter the appropriate */
+/**
+  * @brief Check deployment status and if needed enter the appropriate state. A set of 7 keys are read from flash memory to verify
+  *        if deployment has occurred. If any of them is already set, deployment has already happened and is skipped. If This is the
+  *        first time or it has not complete deployment stage already once, The system waits for 30 minutes, deploys all deployable devices
+  *        and writes the appropriate keys to flash memory.
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *state){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_STAGE;
 
 	//perfrom deployment check and if needed enter deployment mode.
 	if(EPS_check_deployment_status() == DEPLOYMENT_NOT){
-		//engage deploy sequence
+
 
 		/* power of all rails */
 		bootsequence_status = EPS_bootseq_poweroff_all_rails(state);
+
+
+		/*Wait for 30 minutes...(make it less for debug) */
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+
+
+
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
@@ -161,4 +207,8 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 	return bootsequence_status;
 
 }
+
+/**
+  * @}
+  */
 

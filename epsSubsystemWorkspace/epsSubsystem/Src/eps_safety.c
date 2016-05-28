@@ -7,6 +7,10 @@
 #include "eps_safety.h"
 #include "eps_non_volatile_mem_handling.h"
 
+volatile EPS_safety_battery_status EPS_safety_battery_mode;
+volatile EPS_safety_temperature_status EPS_safety_temperature_mode;
+
+
 EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_limits *limits){
 
 

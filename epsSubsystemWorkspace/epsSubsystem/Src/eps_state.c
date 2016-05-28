@@ -133,7 +133,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 
 	/*setup conversion sequence for */
 	ADC_ChannelConfTypeDef sConfig;
-	sConfig.SamplingTime = ADC_SAMPLETIME_192CYCLES;
+	sConfig.SamplingTime = ADC_SAMPLETIME_384CYCLES;
 
 	/*Vbat*/
 	sConfig.Channel = ADC_VBAT;

@@ -27,6 +27,21 @@ typedef struct {
 
 }EPS_safety_limits;
 
+typedef enum {
+	EPS_SAFETY_MODE_BATTERY_NORMAL,
+	EPS_SAFETY_MODE_BATTERY_CRITICAL,
+	EPS_SAFETY_MODE_BATTERY_DEAD,
+	EPS_SAFETY_MODE_BATTERY_NOT_SET,
+	EPS_SAFETY_MODE_BATTERY_LAST_VALUE
+}EPS_safety_battery_status;
+
+typedef enum {
+	EPS_SAFETY_MODE_TEMPERATURE_NORMAL,
+	EPS_SAFETY_MODE_TEMPERATURE_HIGH,
+	EPS_SAFETY_MODE_TEMPERATURE_LOW,
+	EPS_SAFETY_MODE_TEMPERATURE_NOT_SET,
+	EPS_SAFETY_MODE_TEMPERATURE_LAST_VALUE
+}EPS_safety_temperature_status;
 
 //load limits from memory - must be properly iitialized!
 //limits are loaded from flash so in case of eroneous operation

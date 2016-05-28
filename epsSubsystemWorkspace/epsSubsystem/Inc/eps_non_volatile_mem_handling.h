@@ -64,8 +64,12 @@
 typedef enum {
 	DEPLOYMENT_NOT,
 	DEPLOYMENT_OK,
+	DEPLOYMENT_UNDEFINED,
 	DEPLOYMENT_LAST_VALUE
 }EPS_deployment_status;
+
+/*please delete this please...*/
+void EPS_erase_deployment_flags(void);
 
 //check if deployment has already occurred. if not signal deployment and change the deployment status at the end of deployment process. also sets boot counter to zero to be incremented to 1 in the first boot.
 EPS_deployment_status EPS_check_deployment_status(void);

@@ -1,8 +1,13 @@
 /*
- * eps_bootsequence.h
  *
- *  Created on: May 21, 2016
- *      Author: ariolis
+  ******************************************************************************
+  * @file    eps_bootsequence.h
+  * @author   Aris Stathakis
+  * @version V1.0
+  * @date    May 21, 2016
+  * @brief   Header file for bootsequence module.
+  ******************************************************************************
+ *
  */
 
 #ifndef INC_EPS_BOOTSEQUENCE_H_

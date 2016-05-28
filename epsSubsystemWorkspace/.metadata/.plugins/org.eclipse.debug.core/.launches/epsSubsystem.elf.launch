@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="fr.ac6.mcu.debug.config.launchConfigurationType">
-<stringAttribute key="DEBBUGER_BOARD_NAME" value="epsSubsys"/>
+<stringAttribute key="DEBBUGER_BOARD_NAME" value="EpsBoardTest"/>
 <stringAttribute key="DEBBUGER_MCU_NAME" value="STM32L152RBTx"/>
 <stringAttribute key="fr.ac6.mcu.ide.DBG_INTERFACE" value=""/>
 <stringAttribute key="fr.ac6.mcu.ide.OPENOCD_NAME" value="&quot;${openstm32_openocd_path}/openocd&quot;"/>
@@ -44,6 +44,12 @@
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="epsSubsystem"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/epsSubsystem"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
 <stringAttribute key="org.eclipse.dsf.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;memoryBlockExpressionList context=&quot;reserved-for-future-use&quot;&gt;&#10;&lt;gdbmemoryBlockExpression address=&quot;536346874&quot; label=&quot;0x1FF800FA&quot;/&gt;&#10;&lt;gdbmemoryBlockExpression address=&quot;267911418&quot; label=&quot;0x0FF800FA&quot;/&gt;&#10;&lt;/memoryBlockExpressionList&gt;&#10;"/>
 <stringAttribute key="process_factory_id" value="fr.ac6.mcu.debug.launching.MCUGdbProcessFactory"/>
 <stringAttribute key="saved_expressions&lt;seperator&gt;Unknown" value="0x1FF800FA,0x08080000"/>
