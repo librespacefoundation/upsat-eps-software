@@ -1,9 +1,186 @@
-17:42:01 **** Incremental Build of configuration Debug for project epsSubsystem ****
+21:04:22 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
-make: Nothing to be done for `all'.
-17:42:08 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-17:43:05 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
+Building file: ../Src/eps_bootsequence.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_bootsequence.d" -MT"Src/eps_bootsequence.o" -o "Src/eps_bootsequence.o" "../Src/eps_bootsequence.c"
+../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweroff_all_rails':
+../Src/eps_bootsequence.c:36:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_OFF, state);
+                                                 ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:37:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, state);
+                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:38:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, state);
+                                                 ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:39:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
+                                               ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:40:56: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
+                                                        ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweron_all_rails':
+../Src/eps_bootsequence.c:57:55: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+                                                       ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:58:2: warning: implicit declaration of function 'HAL_sys_delay' [-Wimplicit-function-declaration]
+  HAL_sys_delay(500);
+  ^
+../Src/eps_bootsequence.c:59:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
+                                               ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:61:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
+                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:63:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
+                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:65:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
+                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:90:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c: In function 'EPS_bootseq_enter_deployment_stage':
+../Src/eps_bootsequence.c:182:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
+                                                              ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:184:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
+                                                               ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:187:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
+                                                               ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:189:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
+                                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:192:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
+                                                                ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:194:65: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
+                                                                 ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:197:61: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
+                                                             ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:199:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
+                                                              ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:202:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
+                                                              ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+../Src/eps_bootsequence.c:204:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
+                                                               ^
+In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
+                 from ../Src/eps_bootsequence.c:14:
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:93:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
+ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+      ^
+Finished building: ../Src/eps_bootsequence.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+Finished building target: epsSubsystem.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
+arm-none-eabi-size "epsSubsystem.elf"
+   text	   data	    bss	    dec	    hex	filename
+  45252	    128	   6296	  51676	   c9dc	epsSubsystem.elf
+ 

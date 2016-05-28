@@ -142,7 +142,40 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		HAL_Delay(60000);
 		HAL_Delay(60000);
 
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
 
+
+
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+
+
+
+
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
+		HAL_Delay(60000);
 
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
@@ -164,6 +197,11 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
 		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
+
+		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_ANT1;
+		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
+		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
 
 
 		/* set deployment flag that deployment is completed */
