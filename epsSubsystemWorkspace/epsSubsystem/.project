@@ -26,6 +26,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>core</name>
+			<type>2</type>
+			<location>/home/ariolis/upsat-eps-software/ecss_services/core</location>
+		</link>
+		<link>
 			<name>eps</name>
 			<type>2</type>
 			<location>/home/ariolis/upsat-eps-software/ecss_services/platform/eps</location>

@@ -1,7 +1,7 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 
-#define SYSTEM_APP_ID EPS_APP_ID
+#define SYSTEM_APP_ID _EPS_APP_ID_
 
 #define POOL_PKT_SIZE   5
 

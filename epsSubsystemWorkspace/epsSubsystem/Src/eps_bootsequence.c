@@ -141,41 +141,41 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		HAL_Delay(60000);
 		HAL_Delay(60000);
 		HAL_Delay(60000);
-
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-
-
-
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-
-
-
-
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
+//
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//
+//
+//
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//
+//
+//
+//
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
+//		HAL_Delay(60000);
 
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;

@@ -3241,3 +3241,6 @@ localhost:3333: Connection timed out.
 java.lang.Exception: localhost:3333: Connection timed out.
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:926)
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:755)
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-05-28 21:19:03.010
+!MESSAGE Indexed 'epsSubsystem' (45 sources, 93 headers) in 6.76 sec: 5,801 declarations; 40,812 references; 0 unresolved inclusions; 55 syntax errors; 2 unresolved names (0.0043%)

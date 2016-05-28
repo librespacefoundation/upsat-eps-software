@@ -32,6 +32,7 @@
 								<option id="gnu.c.compiler.option.debugging.level.739652980" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1246738967" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Inc"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/eps}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/services}&quot;"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32L1xx_HAL_Driver/Inc"/>
@@ -77,11 +78,12 @@
 					</folderInfo>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.984627091" name="large_data_service.h" rcbsApplicability="disable" resourcePath="services/large_data_service.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.241977177" name="mass_storage_service.h" rcbsApplicability="disable" resourcePath="services/mass_storage_service.h" toolsToInvoke=""/>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.107916714" name="time_management.h" rcbsApplicability="disable" resourcePath="services/time_management.h" toolsToInvoke=""/>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.335136896" name="su_mnlp.h" rcbsApplicability="disable" resourcePath="services/su_mnlp.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.42222157" name="scheduling_service.h" rcbsApplicability="disable" resourcePath="services/scheduling_service.h" toolsToInvoke=""/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.1214755465" name="time_management.h" rcbsApplicability="disable" resourcePath="core/time_management.h" toolsToInvoke=""/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.211363264" name="gps.h" rcbsApplicability="disable" resourcePath="core/gps.h" toolsToInvoke=""/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.582772747" name="su_mnlp.h" rcbsApplicability="disable" resourcePath="core/su_mnlp.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="services/su_mnlp.h|services/su_mnlp.c|services/scheduling_service.h|services/scheduling_service.c|services/time_management.h|services/time_management.c|services/large_data_service.h|services/large_data_service.c|services/mass_storage_service.c|services/mass_storage_service.h|ecss_services" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="core/time_management.h|core/time_management.c|core/su_mnlp.h|core/su_mnlp.c|core/gps.h|core/gps.c|services/su_mnlp.h|services/su_mnlp.c|services/scheduling_service.h|services/scheduling_service.c|services/time_management.h|services/time_management.c|services/large_data_service.h|services/large_data_service.c|services/mass_storage_service.c|services/mass_storage_service.h|ecss_services" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
