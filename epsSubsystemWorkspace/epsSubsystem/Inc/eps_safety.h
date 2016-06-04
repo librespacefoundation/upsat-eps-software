@@ -12,10 +12,11 @@
 #include "eps_soft_error_handling.h"
 
 
-#define LIMIT_BATTERY_LOW_DEFAULT ((uint32_t) 0x12345678)
-#define LIMIT_BATTERY_HIGH_DEFAULT ((uint32_t) 0x12345678)
-#define LIMIT_BATTERY_CRITICAL_DEFAULT ((uint32_t) 0x12345678)
-#define LIMIT_BATTERY_TEMPERATURE_LOW_DEFAULT ((uint32_t) 0x12345678)
+#define LIMIT_BATTERY_VOLTAGE_LOW_DEFAULT ((uint32_t) 1694)/*7.6Volt  X 222,93651*/
+#define LIMIT_BATTERY_VOLTAGE_HIGH_DEFAULT ((uint32_t) 2898)/*13Volt*/
+#define LIMIT_BATTERY_VOLTAGE_CRITICAL_DEFAULT ((uint32_t) 1894)/*8.5Volt*/
+#define LIMIT_BATTERY_TEMPERATURE_LOW_DEFAULT ((uint32_t) 5)/* 5 Celcius degree */
+#define LIMIT_BATTERY_TEMPERATURE_HIGH_DEFAULT ((uint32_t) 65)/* 65 Celcius degree */
 
 typedef struct {
 	/**/
@@ -27,26 +28,12 @@ typedef struct {
 
 }EPS_safety_limits;
 
-typedef enum {
-	EPS_SAFETY_MODE_BATTERY_NORMAL,
-	EPS_SAFETY_MODE_BATTERY_CRITICAL,
-	EPS_SAFETY_MODE_BATTERY_DEAD,
-	EPS_SAFETY_MODE_BATTERY_NOT_SET,
-	EPS_SAFETY_MODE_BATTERY_LAST_VALUE
-}EPS_safety_battery_status;
 
-typedef enum {
-	EPS_SAFETY_MODE_TEMPERATURE_NORMAL,
-	EPS_SAFETY_MODE_TEMPERATURE_HIGH,
-	EPS_SAFETY_MODE_TEMPERATURE_LOW,
-	EPS_SAFETY_MODE_TEMPERATURE_NOT_SET,
-	EPS_SAFETY_MODE_TEMPERATURE_LAST_VALUE
-}EPS_safety_temperature_status;
 
-//load limits from memory - must be properly iitialized!
-//limits are loaded from flash so in case of eroneous operation
+//load limits from memory - must be properly initialized!
+//limits are loaded from flash so in case of erroneous operation
 //a reset will not demand to communicate again with the eps and
-//cocmmand a new limit - its safety and got to be safe.
+//Command a new limit - its safety and got to be safe.
 EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limits);
 
 //check for limits and take action.

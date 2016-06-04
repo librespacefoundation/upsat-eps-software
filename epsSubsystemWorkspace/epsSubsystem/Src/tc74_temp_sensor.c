@@ -1,13 +1,13 @@
 #include "tc74_temp_sensor.h"
 
 
- TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, uint8_t *receive_word ) {
+ TC_74_STATUS read_device_temperature(I2C_HandleTypeDef *h_i2c, uint8_t device_i2c_address, int8_t *receive_word ) {
 
 	 TC_74_STATUS device_status;
 	 /*Read temperature*/
 	 /*master sends the slave's temperature register adrress to read back*/
 	 uint8_t transmit_packet = TEMPERATURE_REGISTER;
-	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, &transmit_packet, 1, 100) != HAL_OK) {
+	 if (HAL_I2C_Master_Transmit(h_i2c, device_i2c_address, (uint8_t*)&transmit_packet, 1, 100) != HAL_OK) {
 		 //soft error handle
 		 device_status = DEVICE_ERROR;
 	 }

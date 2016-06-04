@@ -70,6 +70,7 @@ typedef enum {
 
 /*please delete this please...*/
 void EPS_erase_deployment_flags(void);
+void EPS_set_flash_memory_initial_values(void);
 
 //check if deployment has already occurred. if not signal deployment and change the deployment status at the end of deployment process. also sets boot counter to zero to be incremented to 1 in the first boot.
 EPS_deployment_status EPS_check_deployment_status(void);

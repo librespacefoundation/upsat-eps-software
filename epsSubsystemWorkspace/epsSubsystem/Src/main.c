@@ -78,15 +78,12 @@ EPS_State eps_board_state;
 EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
 
 /*global variables shared with interrupts*/
-volatile uint8_t adc_reading_complete = 0;//flag to check when dma transfer is complete.
-volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;//initialize global software error status to OK.
-volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;//initialize global timed event flag to true.
-volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;//initialize global umbilical flage to connected.
-volatile EPS_safety_battery_status EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
-volatile EPS_safety_temperature_status EPS_safety_temperature_mode = EPS_SAFETY_MODE_TEMPERATURE_NOT_SET;
+volatile uint8_t adc_reading_complete = 0;/* flag to check when dma transfer is complete.*/
+volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;/* initialize global software error status to OK.*/
+volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;/* initialize global timed event flag to true.*/
+volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;/* initialize global umbilical flage to connected.*/
 
-
-uint8_t uart_temp[200];//uart buffer for obc communication.
+uint8_t uart_temp[200];/* uart buffer for obc communication.*/
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -144,28 +141,21 @@ int main(void)
 
 	/* USER CODE BEGIN 2 */
 
-	/* umbilical check */
+	/*umbilical check */
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
 
-	/*deployment stage*/
+	/* deployment stage*/
 	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
 
-	/*!!! this is temporary here -because deployment check is skiped - EVERY time the eps is reset
-	 *all subsystems will be powered down !!!!*/
-	//error_status = EPS_bootseq_poweroff_all_rails(&eps_board_state);
-
-
-	//increment boot counter.
-	//EPS_startup_increment_bootcounter();
-
-	/* power of all rails */
+	/*power up all rails */
 	error_status = EPS_bootseq_poweron_all_rails(&eps_board_state);
 
 	/*obc communication initialization*/
 	error_status = EPS_obc_communication_init();
 
-	/*if in debug mode initialize uart debug session*/
+
 #ifdef EPS_DEBUG_MODE
+	/*if in debug mode initialize uart debug session */
 	error_status = EPS_debug_uart_init();
 #endif
 
@@ -174,11 +164,9 @@ int main(void)
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 
-
 	//load eps limits from memory
 	EPS_safety_limits eps_limits;
 	error_status = EPS_load_safety_limits_from_memory(&eps_limits);
-
 
 	/* start normal operation mode */
 

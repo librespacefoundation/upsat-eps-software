@@ -21,6 +21,13 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
 	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_INIT;
 
+	EPS_mode_status eps_functional_mode;
+	EPS_safety_battery_status EPS_safety_battery_mode;
+	EPS_safety_temperature_status EPS_safety_temperature_mode;
+
+	state->eps_functional_mode = EPS_NOMINAL_MODE;
+	state->EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
+	state->EPS_safety_temperature_mode = EPS_SAFETY_MODE_TEMPERATURE_NOT_SET;
 	state->v5_current_avg = 0x00;
 	state->v3_3_current_avg = 0x00;
 	state->battery_voltage = 0x00;
@@ -69,64 +76,7 @@ EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleType
 static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
 
 	EPS_soft_error_status adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC;
-//	/*initialize adc handle*/
-//	hadc_eps->Init.NbrOfConversion = 6;
-//	HAL_ADC_Init(hadc_eps);
-//
-//	/*setup conversion sequence for */
-//	ADC_ChannelConfTypeDef sConfig;
-//	sConfig.SamplingTime = ADC_SAMPLETIME_48CYCLES;
-//
-//	/*Vbat*/
-//	sConfig.Channel = ADC_VBAT;
-//	sConfig.Rank = 1;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//	/*Ibat+*/
-//	sConfig.Channel = ADC_IBAT_PLUS;
-//	sConfig.Rank = 2;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//	/*Ibat-*/
-//	sConfig.Channel = ADC_IBAT_MINUS;
-//	sConfig.Rank = 3;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//	/*I3v3*/
-//	sConfig.Channel = ADC_I3V3;
-//	sConfig.Rank = 4;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//	/*I5v*/
-//	sConfig.Channel = ADC_I5V;
-//	sConfig.Rank = 5;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//	/*cpu internal temp sensor*/
-//	sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-//	sConfig.Rank = 6;
-//	HAL_ADC_ConfigChannel(hadc_eps, &sConfig);
-//
-//
-//	/*Start conversion and dma transfer*/
-//	uint32_t adc_measurement_dma_eps_state[13]= { 0 };//2*6 +1
-//
-//	adc_reading_complete = 0;
-//	HAL_ADC_Start_DMA(hadc_eps, adc_measurement_dma_eps_state, 12);
-//	/*Wait till DMA ADC sequence transfer is ready*/
-//	while(adc_reading_complete==0){
-// 	}
-//	HAL_ADC_Stop_DMA(hadc_eps);
-//
-//	HAL_ADC_DeInit(hadc_eps);
-//
-//
-//	state->battery_voltage = adc_measurement_dma_eps_state[6];
-//	state->battery_current_plus = adc_measurement_dma_eps_state[7];
-//	state->battery_current_minus = adc_measurement_dma_eps_state[8];
-//	state->v3_3_current_avg = adc_measurement_dma_eps_state[9];
-//	state->v5_current_avg = adc_measurement_dma_eps_state[10];
-//	//state->cpu_temperature = COMPUTATION_TEMPERATURE_STD_PARAMS_AVGSLOPE_V110(adc_measurement_dma_eps_state[11]);
+
 	/*initialize adc handle*/
 	hadc_eps->Init.NbrOfConversion = 6;
 	HAL_ADC_Init(hadc_eps);
@@ -185,8 +135,6 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	while(adc_reading_complete==0){
  	}
 	HAL_ADC_Stop_DMA(hadc_eps);
-
-	//HAL_ADC_DeInit(hadc_eps);
 
 
 	adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC_FILTER;

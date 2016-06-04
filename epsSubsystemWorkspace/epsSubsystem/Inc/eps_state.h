@@ -12,6 +12,7 @@
 #include "eps_configuration.h"
 //#include "tc74_temp_sensor.h"
 #include "eps_soft_error_handling.h"
+//#include "eps_safety.h"
 
 typedef enum {
 	SU =0,
@@ -21,7 +22,6 @@ typedef enum {
 	TEMP_SENSOR,
 	RAIL_LAST_VALUE
 }EPS_switch_rail;
-
 
 typedef enum {
 	EPS_SWITCH_RAIL_ON,
@@ -55,7 +55,39 @@ typedef enum {
 }EPS_battery_tempsense_health;
 
 
+typedef enum {
+	EPS_NOMINAL_MODE,
+	EPS_CRITICAL_MODE,
+	EPS_ALMOST_DEAD_MODE,
+	EPS_DEAD_MODE,
+	EPS_MODE_LAST_VALUE
+}EPS_mode_status;
+
+
+typedef enum {
+	EPS_SAFETY_MODE_BATTERY_NORMAL,
+	EPS_SAFETY_MODE_BATTERY_CRITICAL,
+	EPS_SAFETY_MODE_BATTERY_DEAD,
+	EPS_SAFETY_MODE_BATTERY_OVERVOLTAGE,
+	EPS_SAFETY_MODE_BATTERY_NOT_SET,
+	EPS_SAFETY_MODE_BATTERY_LAST_VALUE
+}EPS_safety_battery_status;
+
+typedef enum {
+	EPS_SAFETY_MODE_TEMPERATURE_NORMAL,
+	EPS_SAFETY_MODE_TEMPERATURE_HIGH,
+	EPS_SAFETY_MODE_TEMPERATURE_LOW,
+	EPS_SAFETY_MODE_TEMPERATURE_NOT_SET,
+	EPS_SAFETY_MODE_TEMPERATURE_LAST_VALUE
+}EPS_safety_temperature_status;
+
+
+
+
 typedef struct {
+	EPS_mode_status eps_functional_mode;
+	EPS_safety_battery_status EPS_safety_battery_mode;
+	EPS_safety_temperature_status EPS_safety_temperature_mode;
 	/**/
 	EPS_switch_rail_status su_p_switch;/*Science unit control switch - set to turn off - reset to turn on (!inverted logic!)*/
 	EPS_switch_rail_status obc_p_switch;
