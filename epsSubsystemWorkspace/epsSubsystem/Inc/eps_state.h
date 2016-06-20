@@ -107,8 +107,8 @@ typedef struct {
 	uint16_t v5_current_avg;
 	uint16_t v3_3_current_avg;
 	uint16_t battery_voltage;
-	uint16_t battery_current_plus;
-	uint16_t battery_current_minus;
+	uint16_t battery_current_plus; /* current charging the battery */
+	uint16_t battery_current_minus;/* current from battery to the load */
 	int16_t  battery_temp;
 	int32_t cpu_temperature;
 	/**/

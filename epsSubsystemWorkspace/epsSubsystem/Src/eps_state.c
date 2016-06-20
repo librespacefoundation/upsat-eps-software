@@ -10,6 +10,8 @@
 #include "cpu_adc_utilities.h"
 
 extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
+extern volatile uint8_t bat_temp_time;
+
 /*update eps state analog measurements*/
 static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 /*get battery pack temperature*/
@@ -65,7 +67,9 @@ EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleType
     state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
 
     eps_status = EPS_SOFT_ERROR_STATE_UPDATE_BATTERYPACK_TEMP;
-    state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B, state);
+    if(bat_temp_time==1){
+    	state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B, state);
+    }
 
 	eps_status = EPS_SOFT_ERROR_OK;
 	return eps_status;
@@ -204,14 +208,9 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 		 statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
 	 }
 
-	 /*sleep sensor1*/
-	 if(statusA == DEVICE_NORMAL){
-		 statusA = device_sleep( h_i2c, sensor_A_i2c_address);
-	 }
-	 /*sleep sensor2*/
-	 if(statusB == DEVICE_NORMAL){
-		 statusB= device_sleep( h_i2c, sensor_B_i2c_address);
-	 }
+	 /*if you put temp sesors to sleep you will never have a new conversion */
+	 /* beloved tc74 has 4 samples per second rate - thank you ti*/
+
 
 
 	 /*calculate battery temperature depending on sensor status*/
@@ -235,6 +234,9 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 		 //both temp sensors are dead... so we extraploate the only temp sensor availiable, the cpu temp sensor.
 		 battery_temp_avg = state->cpu_temperature - CPU_TO_BATTERY_TEMPERATURE_OFFSET;
 		 state->batterypack_health_status = EPS_BATTERY_SENSOR_CPU_TEMP_ONLY;
+		 /* turn of power temperature power supply so as to reset to next temp requet */
+		 EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
+
 	 	//TODO: find the relation of cpu temperature to battery pack temperature.
 	 	 }
 	 else{

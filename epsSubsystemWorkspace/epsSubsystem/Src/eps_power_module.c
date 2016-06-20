@@ -16,6 +16,7 @@ extern TIM_HandleTypeDef htim3;
 void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutycycle, TIM_HandleTypeDef *htim, uint32_t timer_channel, ADC_HandleTypeDef *hadc_power_module, uint32_t ADC_channel_current, uint32_t ADC_channel_voltage){
 
 	//initialize properly all power module entries.
+	module_X->module_state = POWER_MODULE_ON;
 	module_X->current =0;
 	module_X->voltage =0;
 	module_X->previous_power =0;
@@ -159,55 +160,61 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 
 
-	  /*power calculation*/
+	/*power calculation*/
 
-	  volatile uint32_t power_now_avg = moduleX->voltage * moduleX->current;
-	  uint32_t duty_cycle = moduleX->pwm_duty_cycle;
-
-	  uint32_t step_size = MPPT_STEP_SIZE;
-
-//	  if (moduleX->current<1000){
-//		  step_size = MPPT_STEP_SIZE + 5;
-//		  //moduleX->incremennt_flag = 1;
-//	  }
+	volatile uint32_t power_now_avg = moduleX->voltage * moduleX->current;
+	uint32_t duty_cycle = moduleX->pwm_duty_cycle;
 
 
+	/*if solar cell voltage is below threshold, reset mppt point search starting from startup dutycycle*/
+	if(moduleX->voltage<MPPT_VOLTAGE_THRESHOLD){
 
-	// decide duty cycle orientation - set increment flag.
-	  if (power_now_avg  <(moduleX->previous_power)){
+		duty_cycle = MPPT_STARTUP_PWM_DUTYCYCLE;
 
-		  if (moduleX->incremennt_flag>0){
+	}
+	else{
 
+		uint32_t step_size = MPPT_STEP_SIZE;
 
-			  if(moduleX->voltage  <(moduleX->previous_voltage -5)){
-				  moduleX->incremennt_flag = 0;
-			  }
-
-
-		  }
-		  else{
-			  moduleX->incremennt_flag = 1;
-		  }
-	  }
-    //add appropriate offset - create new duty cycle.
+		//	  if (moduleX->current<1000){
+		//		  step_size = MPPT_STEP_SIZE + 5;
+		//		  //moduleX->incremennt_flag = 1;
+		//	  }
 
 
-	  if(moduleX->incremennt_flag){
-		  duty_cycle = duty_cycle+step_size;
-	  }
-	  else{
-		  duty_cycle = duty_cycle-step_size;
-	  }
- 	  //Check for Overflow and Underflow
-	  if (duty_cycle>(160+MPPT_STEP_SIZE)){//first check for underflow
-		  duty_cycle= MPPT_STARTUP_PWM_DUTYCYCLE;//
-	  }
-	  if (duty_cycle==(160+MPPT_STEP_SIZE)){//then check for overflow
-		  duty_cycle=160;
-	  }
-    // Set new PWM compare register
-	  //duty_cycle =0;
+		// decide duty cycle orientation - set increment flag.
+		if (power_now_avg  <(moduleX->previous_power)){
 
+			if (moduleX->incremennt_flag>0){
+
+				if(moduleX->voltage  <(moduleX->previous_voltage -5)){
+					moduleX->incremennt_flag = 0;
+				}
+
+			}
+			else{
+				moduleX->incremennt_flag = 1;
+			}
+		}
+		//add appropriate offset - create new duty cycle.
+
+		if(moduleX->incremennt_flag){
+			duty_cycle = duty_cycle+step_size;
+		}
+		else{
+			duty_cycle = duty_cycle-step_size;
+		}
+		//Check for Overflow and Underflow
+		if (duty_cycle>(160+MPPT_STEP_SIZE)){//first check for underflow
+			duty_cycle= MPPT_STARTUP_PWM_DUTYCYCLE;//
+		}
+		if (duty_cycle==(160+MPPT_STEP_SIZE)){//then check for overflow
+			duty_cycle=160;
+		}
+		// Set new PWM compare register
+		//duty_cycle =0;
+
+	}
 
 	  moduleX->previous_power = power_now_avg;
 	  moduleX->previous_voltage = moduleX->voltage;
@@ -218,18 +225,29 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX){
 
+	uint32_t pwm_output;
+	if (moduleX->module_state ==POWER_MODULE_OFF){
+		pwm_output = 0;
+	}
+	else if(moduleX->module_state ==POWER_MODULE_ON){
+		pwm_output = moduleX->pwm_duty_cycle;
+	}
+	else{
+		pwm_output = 0;
+	}
+
 	switch ( moduleX->timChannel ) {
 	case TIM_CHANNEL_1:         /*  top module */
-		moduleX->htim_pwm->Instance->CCR1 = moduleX->pwm_duty_cycle;
+		moduleX->htim_pwm->Instance->CCR1 = pwm_output;
 		break;
 	case TIM_CHANNEL_2:         /*  bottom module */
-		moduleX->htim_pwm->Instance->CCR2 = moduleX->pwm_duty_cycle;
+		moduleX->htim_pwm->Instance->CCR2 = pwm_output;
 		break;
 	case TIM_CHANNEL_3:         /*  left module */
-		moduleX->htim_pwm->Instance->CCR3 = moduleX->pwm_duty_cycle;
+		moduleX->htim_pwm->Instance->CCR3 = pwm_output;
 		break;
 	case TIM_CHANNEL_4:         /*  right module */
-		moduleX->htim_pwm->Instance->CCR4 = moduleX->pwm_duty_cycle;
+		moduleX->htim_pwm->Instance->CCR4 = pwm_output;
 		break;
 	default:
 		//error handling?

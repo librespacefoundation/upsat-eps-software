@@ -12,4 +12,4 @@ indexer/skipIncludedFilesLargerThanMB=16
 indexer/skipMacroReferences=false
 indexer/skipReferences=false
 indexer/skipTypeReferences=false
-indexer/useHeuristicIncludeResolution=true
+indexer/useHeuristicIncludeResolution=false

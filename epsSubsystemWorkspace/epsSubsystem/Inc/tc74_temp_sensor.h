@@ -3,8 +3,10 @@
 
 #include "stm32l1xx_hal.h"
 
+//TODO: everything in here should be prefixed to TC74_
 
-// tc74 register addresses
+
+/* tc74 register addresses */
 #define CONFIGURATION_REGISTER	0x01
 #define TEMPERATURE_REGISTER	0x00
 

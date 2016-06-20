@@ -19,14 +19,15 @@
 
 #define MPPT_STEP_SIZE ((uint32_t)1)
 #define MPPT_STARTUP_PWM_DUTYCYCLE ((uint32_t) 16)//1 - 160 for 0 -100%duty cycle - must not start from 0
+#define MPPT_VOLTAGE_THRESHOLD ((uint32_t) 1240)/*solar cell voltage under which we reset mppt search: 0.5Volt/Volt: 62012bitadc/Volt so 2volt = 1240*/
 
 #define TC74_ADDRESS_A TC74_A2 // TC74	A2
 #define TC74_ADDRESS_B TC74_A5 // TC74	A5
 
 #define CPU_TO_BATTERY_TEMPERATURE_OFFSET ((int32_t) 2)//value to subtract from cpu temp to "match" the battery pack temperature.
 
-#define ADC_VALUE_3V_BAT_VOLTAGE ((int16_t) 1000)//3 volt value measured at adc...for obc service.
-
+#define ADC_VALUE_3V_BAT_VOLTAGE ((uint16_t) 670)//3 volt value measured at adc...for obc service. 0.54Volt in the adc given the 0.18v/v voltage divider - x/4095 *3.3 = 0.54 =>x=670 the adc measurement for 3Volt
+#define ADC_VALUE_1A_BAT_CURRENT ((uint16_t) 3475)//1 ampere value measured at adc...for obc service. 2.8Volt in the adc given the 2.8v/A voltage divider - x/4095 *3.3 = 2.8 =>x=3475 the adc measurement for 1ampere
 /*Set up power modules pwm timer channels*/
 #define PWM_TIM_CHANNEL_TOP TIM_CHANNEL_3
 #define PWM_TIM_CHANNEL_BOTTOM TIM_CHANNEL_1

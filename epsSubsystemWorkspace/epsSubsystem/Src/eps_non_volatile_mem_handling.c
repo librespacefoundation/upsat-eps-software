@@ -24,28 +24,28 @@ EPS_set_flash_memory_initial_values(void){
 
 	/*set deployment keys to not deployed*/
 	uint32_t memory_write_value = DEPLOYMENT_NOT_KEY_A;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_B;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_C;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_C;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_D;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_E;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_F;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_G;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_B;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_C;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_C;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_D;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_E;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_F;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_write_value );
+//
+//	memory_write_value = DEPLOYMENT_NOT_KEY_G;
+//	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
 
 	/*set safety limits*/
 	memory_write_value = LIMIT_BATTERY_VOLTAGE_LOW_DEFAULT;

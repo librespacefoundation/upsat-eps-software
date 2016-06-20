@@ -82,6 +82,7 @@ volatile uint8_t adc_reading_complete = 0;/* flag to check when dma transfer is 
 volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;/* initialize global software error status to OK.*/
 volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;/* initialize global timed event flag to true.*/
 volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;/* initialize global umbilical flage to connected.*/
+volatile uint8_t bat_temp_time = 1;
 
 uint8_t uart_temp[200];/* uart buffer for obc communication.*/
 /* USER CODE END PV */
@@ -141,11 +142,16 @@ int main(void)
 
 	/* USER CODE BEGIN 2 */
 
+	//EPS_set_flash_memory_initial_values();
+
+
 	/*umbilical check */
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
 
 	/* deployment stage*/
-	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+//	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+
+	EPS_bootseq_poweroff_all_rails(&eps_board_state);
 
 	/*power up all rails */
 	error_status = EPS_bootseq_poweron_all_rails(&eps_board_state);
@@ -224,6 +230,8 @@ int main(void)
 			error_status = EPS_update_state( &eps_board_state, &hadc, &hi2c2);
 
 			/*check for limit safety issues */
+			//TODO: maybe safety limits should be out of interrupt control.
+			//TODO: add hysterisis control for heater on off
 			error_status = EPS_perform_safety_checks(&eps_board_state, &eps_limits);
 
 #ifdef EPS_DEBUG_MODE
@@ -583,12 +591,24 @@ void MX_GPIO_Init(void)
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIO_TC74_POWER_GPIO_Port, &GPIO_InitStruct);
 
-	/*Configure GPIO pins : GPIO_HEATERS_Pin GPIO_DEPLOY_BOTTOM_Pin */
-	GPIO_InitStruct.Pin = GPIO_HEATERS_Pin|GPIO_DEPLOY_BOTTOM_Pin;
+	/*Configure GPIO pins :  GPIO_DEPLOY_BOTTOM_Pin */
+	GPIO_InitStruct.Pin = GPIO_DEPLOY_BOTTOM_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+
+	/*Configure GPIO pins : GPIO_HEATERS_Pin  */
+	GPIO_InitStruct.Pin = GPIO_HEATERS_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+
 
 	/*Configure GPIO pins : GPIO_UMBILICAL_Pin  */
 	GPIO_InitStruct.Pin = GPIO_UMBILICAL_Pin;
@@ -614,6 +634,8 @@ void MX_GPIO_Init(void)
 
 // ADC DMA interrupt handler
 void HAL_ADC_ConvCpltCallback( ADC_HandleTypeDef * hadc){
+
+
 	//printf("ADC conversion done.\n");
 	//HAL_ADC_Stop_DMA(hadc);
 

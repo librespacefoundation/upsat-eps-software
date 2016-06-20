@@ -12,9 +12,15 @@
 #include "eps_configuration.h"
 #include "eps_soft_error_handling.h"
 
+typedef enum {
+	POWER_MODULE_OFF,
+	POWER_MODULE_ON,
+	POWER_MODULE_LAST_VALUE
+}EPS_mppt_power_module_state;
 
 
 typedef struct {
+	EPS_mppt_power_module_state module_state; /*control if power module of a solar panel is on or off*/
 	uint16_t voltage; /*average voltage at each mppt step*/
 	uint16_t current; /*average curret at each mppt step*/
 	uint32_t previous_power; /*average power at previous mppt step*/
