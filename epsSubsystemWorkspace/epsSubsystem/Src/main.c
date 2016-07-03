@@ -142,16 +142,13 @@ int main(void)
 
 	/* USER CODE BEGIN 2 */
 
+	//this is used only once to arm the stelite - this should by no means stay in the code.
 	//EPS_set_flash_memory_initial_values();
 
+	EPS_bootseq_poweroff_all_rails(&eps_board_state);
 
 	/*umbilical check */
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
-
-	/* deployment stage*/
-//	error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
-
-	EPS_bootseq_poweroff_all_rails(&eps_board_state);
 
 	/*power up all rails */
 	error_status = EPS_bootseq_poweron_all_rails(&eps_board_state);

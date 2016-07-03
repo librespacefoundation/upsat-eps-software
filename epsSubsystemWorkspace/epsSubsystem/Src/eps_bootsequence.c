@@ -18,6 +18,8 @@
 
 extern volatile EPS_soft_error_status error_status;/* global software error status - in the interrupt is called  the soft error handling.*/
 extern volatile EPS_umbilical_status EPS_umbilical_mode;
+extern EPS_State eps_board_state;
+
 
 /** @addtogroup bootsequence_Functions
   * @{
@@ -92,15 +94,19 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 
 
 	if (state->umbilical_switch==0x00){//false
-		//umbilical is not connected = high
+		/* umbilical is not connected = high */
 
-		//nominal mode.
+		/* nominal mode. */
 		EPS_umbilical_mode = UMBILICAL_NOT_CONNECTED;
+
+		/* deployment stage*/
+		error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
+
 	}
 	else if(state->umbilical_switch==0xff){//true
-		//umbilical is connected = low
+		/* umbilical is connected = low */
 
-		//debug mode.
+		/* debug mode. */
 		EPS_umbilical_mode = UMBILICAL_CONNECTED;
 	}
 	else{
@@ -136,46 +142,10 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 
 
 		/*Wait for 30 minutes...(make it less for debug) */
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-		HAL_Delay(60000);
-//
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//
-//
-//
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//
-//
-//
-//
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
-//		HAL_Delay(60000);
+		for (int var = 0; var < 30; ++var) {
+			HAL_Delay(60000);/*wait for 1min*/
+		}
+
 
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;

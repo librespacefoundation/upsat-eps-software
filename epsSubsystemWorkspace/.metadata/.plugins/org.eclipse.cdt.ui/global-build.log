@@ -1,238 +1,74 @@
-17:58:46 **** Incremental Build of configuration Debug for project epsSubsystem ****
+21:05:49 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
-make: Nothing to be done for `all'.
-17:58:53 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-18:04:47 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c
+Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/housekeeping.d" -MT"eps/housekeeping.o" -o "eps/housekeeping.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c"
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c: In function 'hk_report_parameters':
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:101:9: warning: implicit declaration of function 'cnv32_8' [-Wimplicit-function-declaration]
-         cnv32_8( HAL_sys_GetTick(), &pkt->data[1]);
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/eps.d" -MT"eps/eps.o" -o "eps/eps.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c"
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'route_pkt':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:50: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
          ^
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:101:18: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
-         cnv32_8( HAL_sys_GetTick(), &pkt->data[1]);
-                  ^
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:112:6: warning: implicit declaration of function 'cnv16_8' [-Wimplicit-function-declaration]
-      cnv16_8( power_module_top.voltage, &pkt->data[7]);
-      ^
-Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c
- 
-Building file: ../Src/eps_bootsequence.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_bootsequence.d" -MT"Src/eps_bootsequence.o" -o "Src/eps_bootsequence.o" "../Src/eps_bootsequence.c"
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweroff_all_rails':
-../Src/eps_bootsequence.c:36:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_OFF, state);
-                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:37:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:38:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, state);
-                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:39:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
-                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:40:56: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
-                                                        ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweron_all_rails':
-../Src/eps_bootsequence.c:57:55: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-                                                       ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:58:2: warning: implicit declaration of function 'HAL_sys_delay' [-Wimplicit-function-declaration]
-  HAL_sys_delay(500);
-  ^
-../Src/eps_bootsequence.c:59:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:61:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:63:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:65:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_enter_deployment_stage':
-../Src/eps_bootsequence.c:182:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:184:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:187:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:189:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
-                                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:192:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
-                                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:194:65: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
-                                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:197:61: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
-                                                             ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:199:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:202:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:204:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-Finished building: ../Src/eps_bootsequence.c
- 
-Building file: ../Src/eps_non_volatile_mem_handling.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_non_volatile_mem_handling.d" -MT"Src/eps_non_volatile_mem_handling.o" -o "Src/eps_non_volatile_mem_handling.o" "../Src/eps_non_volatile_mem_handling.c"
-../Src/eps_non_volatile_mem_handling.c:23:1: warning: return type defaults to 'int' [-Wimplicit-int]
- EPS_set_flash_memory_initial_values(void){
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:52: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:52: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:54: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                      ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:73: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                         ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:75: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                           ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:69:50: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
+     if(id == COMMS_APP_ID)      { comms_update = HAL_sys_GetTick(); }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:59:21: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+     SAT_returnState res;
+                     ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:102:31: warning: unused variable 'comms_reset_flag' [-Wunused-variable]
+  static subsystem_reset_state comms_reset_flag = SUBSYSTEM_RESET_CLEAR;
+                               ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:101:31: warning: unused variable 'adcs_reset_flag' [-Wunused-variable]
+  static subsystem_reset_state adcs_reset_flag = SUBSYSTEM_RESET_CLEAR;
+                               ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: At top level:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:51:25: warning: 'sys_data' defined but not used [-Wunused-variable]
+ static struct _sys_data sys_data;
+                         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:127:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
  ^
-../Src/eps_non_volatile_mem_handling.c:23:1: warning: conflicting types for 'EPS_set_flash_memory_initial_values'
-In file included from ../Src/eps_non_volatile_mem_handling.c:8:0:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_non_volatile_mem_handling.h:73:6: note: previous declaration of 'EPS_set_flash_memory_initial_values' was here
- void EPS_set_flash_memory_initial_values(void);
-      ^
-Finished building: ../Src/eps_non_volatile_mem_handling.c
- 
-Building file: ../Src/eps_safety.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_safety.d" -MT"Src/eps_safety.o" -o "Src/eps_safety.o" "../Src/eps_safety.c"
-Finished building: ../Src/eps_safety.c
- 
-Building file: ../Src/main.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-Finished building: ../Src/main.c
- 
-Building file: ../Src/stm32l1xx_it.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/stm32l1xx_it.d" -MT"Src/stm32l1xx_it.o" -o "Src/stm32l1xx_it.o" "../Src/stm32l1xx_it.c"
-../Src/stm32l1xx_it.c: In function 'USART3_IRQHandler':
-../Src/stm32l1xx_it.c:188:2: warning: implicit declaration of function 'HAL_EPS_UART_IRQHandler' [-Wimplicit-function-declaration]
-  HAL_EPS_UART_IRQHandler(&huart3);
-  ^
-../Src/stm32l1xx_it.c: In function 'TIM6_IRQHandler':
-../Src/stm32l1xx_it.c:202:9: warning: type defaults to 'int' in declaration of 'timer_temperture_measurement' [-Wimplicit-int]
-  static timer_temperture_measurement =0;
-         ^
-Finished building: ../Src/stm32l1xx_it.c
+Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
  
 Building target: epsSubsystem.elf
 Invoking: MCU GCC Linker
@@ -244,275 +80,307 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
 arm-none-eabi-size "epsSubsystem.elf"
    text	   data	    bss	    dec	    hex	filename
-  45228	    120	   6832	  52180	   cbd4	epsSubsystem.elf
+  43008	     20	   6836	  49864	   c2c8	epsSubsystem.elf
  
-18:04:55 **** Incremental Build of configuration Debug for project epsSubsystem ****
+21:24:10 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
-make: Nothing to be done for `all'.
-18:43:03 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c
+Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/housekeeping.d" -MT"eps/housekeeping.o" -o "eps/housekeeping.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c"
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c: In function 'hk_report_parameters':
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:101:9: warning: implicit declaration of function 'cnv32_8' [-Wimplicit-function-declaration]
-         cnv32_8( HAL_sys_GetTick(), &pkt->data[1]);
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/eps.d" -MT"eps/eps.o" -o "eps/eps.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c"
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'route_pkt':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:50: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
          ^
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:101:18: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
-         cnv32_8( HAL_sys_GetTick(), &pkt->data[1]);
-                  ^
-/home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c:112:6: warning: implicit declaration of function 'cnv16_8' [-Wimplicit-function-declaration]
-      cnv16_8( power_module_top.voltage, &pkt->data[7]);
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:52: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:52: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:54: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                      ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:73: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                         ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:75: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                           ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:69:50: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
+     if(id == COMMS_APP_ID)      { comms_update = HAL_sys_GetTick(); }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:59:21: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+     SAT_returnState res;
+                     ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:154:6: warning: implicit declaration of function 'EPS_get_rail_switch' [-Wimplicit-function-declaration]
+   if(EPS_get_rail_switch(OBC)==EPS_SWITCH_RAIL_ON){
       ^
-Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/housekeeping.c
- 
-Building file: ../Src/eps_bootsequence.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_bootsequence.d" -MT"Src/eps_bootsequence.o" -o "Src/eps_bootsequence.o" "../Src/eps_bootsequence.c"
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweroff_all_rails':
-../Src/eps_bootsequence.c:36:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_OFF, state);
-                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:37:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:38:49: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, state);
-                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:39:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
-                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:40:56: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
-                                                        ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_poweron_all_rails':
-../Src/eps_bootsequence.c:57:55: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-                                                       ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:58:2: warning: implicit declaration of function 'HAL_sys_delay' [-Wimplicit-function-declaration]
-  HAL_sys_delay(500);
-  ^
-../Src/eps_bootsequence.c:59:47: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:61:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:63:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:65:48: warning: passing argument 3 of 'EPS_set_rail_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
-                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:122:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c: In function 'EPS_bootseq_enter_deployment_stage':
-../Src/eps_bootsequence.c:182:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:184:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:187:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:189:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
-                                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:192:64: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
-                                                                ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:194:65: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
-                                                                 ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:197:61: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
-                                                             ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:199:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:202:62: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
-                                                              ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-../Src/eps_bootsequence.c:204:63: warning: passing argument 3 of 'EPS_set_control_switch' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
-                                                               ^
-In file included from /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_bootsequence.h:17:0,
-                 from ../Src/eps_bootsequence.c:14:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_state.h:125:6: note: expected 'EPS_State * {aka struct <anonymous> *}' but argument is of type 'volatile EPS_State * {aka volatile struct <anonymous> *}'
- void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
-      ^
-Finished building: ../Src/eps_bootsequence.c
- 
-Building file: ../Src/eps_non_volatile_mem_handling.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_non_volatile_mem_handling.d" -MT"Src/eps_non_volatile_mem_handling.o" -o "Src/eps_non_volatile_mem_handling.o" "../Src/eps_non_volatile_mem_handling.c"
-../Src/eps_non_volatile_mem_handling.c:23:1: warning: return type defaults to 'int' [-Wimplicit-int]
- EPS_set_flash_memory_initial_values(void){
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: At top level:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:51:25: warning: 'sys_data' defined but not used [-Wunused-variable]
+ static struct _sys_data sys_data;
+                         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:185:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
  ^
-../Src/eps_non_volatile_mem_handling.c:23:1: warning: conflicting types for 'EPS_set_flash_memory_initial_values'
-In file included from ../Src/eps_non_volatile_mem_handling.c:8:0:
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc/eps_non_volatile_mem_handling.h:73:6: note: previous declaration of 'EPS_set_flash_memory_initial_values' was here
- void EPS_set_flash_memory_initial_values(void);
-      ^
-Finished building: ../Src/eps_non_volatile_mem_handling.c
+Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
  
-Building file: ../Src/eps_safety.c
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+eps/eps.o: In function `check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:154: undefined reference to `EPS_get_rail_switch'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:166: undefined reference to `EPS_get_rail_switch'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:178: undefined reference to `EPS_get_rail_switch'
+collect2: error: ld returned 1 exit status
+make: *** [epsSubsystem.elf] Error 1
+21:26:11 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/eps_safety.d" -MT"Src/eps_safety.o" -o "Src/eps_safety.o" "../Src/eps_safety.c"
-Finished building: ../Src/eps_safety.c
- 
-Building file: ../Src/main.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-Finished building: ../Src/main.c
- 
-Building file: ../Src/stm32l1xx_it.c
-Invoking: MCU GCC Compiler
-/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/stm32l1xx_it.d" -MT"Src/stm32l1xx_it.o" -o "Src/stm32l1xx_it.o" "../Src/stm32l1xx_it.c"
-../Src/stm32l1xx_it.c: In function 'USART3_IRQHandler':
-../Src/stm32l1xx_it.c:188:2: warning: implicit declaration of function 'HAL_EPS_UART_IRQHandler' [-Wimplicit-function-declaration]
-  HAL_EPS_UART_IRQHandler(&huart3);
-  ^
-../Src/stm32l1xx_it.c: In function 'TIM6_IRQHandler':
-../Src/stm32l1xx_it.c:202:9: warning: type defaults to 'int' in declaration of 'timer_temperture_measurement' [-Wimplicit-int]
-  static timer_temperture_measurement =0;
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/eps.d" -MT"eps/eps.o" -o "eps/eps.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c"
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'route_pkt':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:50: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
          ^
-Finished building: ../Src/stm32l1xx_it.c
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:52: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:52: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:54: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                      ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:73: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                         ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:75: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                           ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:69:50: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
+     if(id == COMMS_APP_ID)      { comms_update = HAL_sys_GetTick(); }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:59:21: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+     SAT_returnState res;
+                     ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:116:3: warning: implicit declaration of function 'EPS_set_rail_switch_status' [-Wimplicit-function-declaration]
+   EPS_set_rail_switch_status(OBC, EPS_SWITCH_RAIL_ON, &eps_board_state);
+   ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: At top level:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:51:25: warning: 'sys_data' defined but not used [-Wunused-variable]
+ static struct _sys_data sys_data;
+                         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:185:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
  
 Building target: epsSubsystem.elf
 Invoking: MCU GCC Linker
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
-Finished building target: epsSubsystem.elf
- 
-make --no-print-directory post-build
-Generating binary and Printing size information:
-arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
-arm-none-eabi-size "epsSubsystem.elf"
-   text	   data	    bss	    dec	    hex	filename
-  45228	    120	   6832	  52180	   cbd4	epsSubsystem.elf
- 
-18:43:46 **** Incremental Build of configuration Debug for project epsSubsystem ****
+eps/eps.o: In function `check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:116: undefined reference to `EPS_set_rail_switch_status'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:127: undefined reference to `EPS_set_rail_switch_status'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:138: undefined reference to `EPS_set_rail_switch_status'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:157: undefined reference to `EPS_set_rail_switch_status'
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:169: undefined reference to `EPS_set_rail_switch_status'
+eps/eps.o:/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:181: more undefined references to `EPS_set_rail_switch_status' follow
+collect2: error: ld returned 1 exit status
+make: *** [epsSubsystem.elf] Error 1
+21:27:01 **** Incremental Build of configuration Debug for project epsSubsystem ****
 make all 
-make: Nothing to be done for `all'.
-18:44:42 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-18:45:56 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-18:47:17 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-18:47:48 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
-18:48:47 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-Building file: ../Src/main.c
+Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
 Invoking: MCU GCC Compiler
 /home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-Finished building: ../Src/main.c
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/eps.d" -MT"eps/eps.o" -o "eps/eps.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c"
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'route_pkt':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:50: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:52: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:52: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:54: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                      ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:73: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                         ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:75: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                           ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:69:50: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
+     if(id == COMMS_APP_ID)      { comms_update = HAL_sys_GetTick(); }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:59:21: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+     SAT_returnState res;
+                     ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:181:4: warning: implicit declaration of function 'EPS_set_rail_switch_status' [-Wimplicit-function-declaration]
+    EPS_set_rail_switch_status(COMM, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+    ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: At top level:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:51:25: warning: 'sys_data' defined but not used [-Wunused-variable]
+ static struct _sys_data sys_data;
+                         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:185:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
+ 
+Building target: epsSubsystem.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -specs=nosys.specs -specs=nano.specs -T"../STM32L152RBTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "epsSubsystem.elf" @"objects.list"  
+eps/eps.o: In function `check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:181: undefined reference to `EPS_set_rail_switch_status'
+collect2: error: ld returned 1 exit status
+make: *** [epsSubsystem.elf] Error 1
+21:27:16 **** Incremental Build of configuration Debug for project epsSubsystem ****
+make all 
+Building file: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
+Invoking: MCU GCC Compiler
+/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Debug
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32L152xB -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Inc" -I"/home/ariolis/upsat-eps-software/ecss_services/core" -I"/home/ariolis/upsat-eps-software/ecss_services/platform/eps" -I"/home/ariolis/upsat-eps-software/ecss_services/services" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/STM32L1xx_HAL_Driver/Inc/Legacy" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Include" -I"/home/ariolis/upsat-eps-software/epsSubsystemWorkspace/epsSubsystem/Drivers/CMSIS/Device/ST/STM32L1xx/Include"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"eps/eps.d" -MT"eps/eps.o" -o "eps/eps.o" "/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c"
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'route_pkt':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:50: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:62:52: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt != NULL && pkt->data != NULL) == true)                         { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:52: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:63:54: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->type == TC || pkt->type == TM) == true)                       { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                      ^
+In file included from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.h:5:0,
+                 from /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:1:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:73: warning: pointer targets in passing argument 4 of 'tst_debugging' differ in signedness [-Wpointer-sign]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                         ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:343:100: note: in definition of macro 'C_ASSERT'
+ #define C_ASSERT(e)    ((e) ? (true) : (tst_debugging((uint8_t *)__FILE__, __FILE_ID__, __LINE__, #e))) 
+                                                                                                    ^
+/home/ariolis/upsat-eps-software/ecss_services/services/services.h:420:9: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ uint8_t tst_debugging(uint8_t *f, uint16_t fi, uint32_t l, uint8_t *e);
+         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:64:75: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+     if(!C_ASSERT(pkt->app_id < LAST_APP_ID && pkt->dest_id < LAST_APP_ID) == true)  { verification_app(pkt); free_pkt(pkt); return SATR_ERROR; }
+                                                                           ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:69:50: warning: implicit declaration of function 'HAL_sys_GetTick' [-Wimplicit-function-declaration]
+     if(id == COMMS_APP_ID)      { comms_update = HAL_sys_GetTick(); }
+                                                  ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:59:21: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+     SAT_returnState res;
+                     ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: At top level:
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:51:25: warning: 'sys_data' defined but not used [-Wunused-variable]
+ static struct _sys_data sys_data;
+                         ^
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c: In function 'check_timeouts':
+/home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c:185:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+Finished building: /home/ariolis/upsat-eps-software/ecss_services/platform/eps/eps.c
  
 Building target: epsSubsystem.elf
 Invoking: MCU GCC Linker
@@ -524,8 +392,5 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "epsSubsystem.elf" "epsSubsystem.bin"
 arm-none-eabi-size "epsSubsystem.elf"
    text	   data	    bss	    dec	    hex	filename
-  44584	    120	   6808	  51512	   c938	epsSubsystem.elf
+  43180	     20	   6836	  50036	   c374	epsSubsystem.elf
  
-18:49:03 **** Incremental Build of configuration Debug for project epsSubsystem ****
-make all 
-make: Nothing to be done for `all'.
