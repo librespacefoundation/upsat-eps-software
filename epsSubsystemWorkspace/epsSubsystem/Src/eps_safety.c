@@ -59,7 +59,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 
 		//TODO: man apo bat dead se normal de gietai a mpeis mh grafeis malakeies...
 		/* when recovering from low bat mode you must reopen the proper loads. */
-		if(state->EPS_safety_battery_mode == EPS_SAFETY_MODE_BATTERY_DEAD){
+		if(state->EPS_safety_battery_mode == EPS_SAFETY_MODE_BATTERY_CRITICAL){
 			EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
 			EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
 			EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
