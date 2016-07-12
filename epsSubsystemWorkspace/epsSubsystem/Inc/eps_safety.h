@@ -16,7 +16,7 @@
 #define LIMIT_BATTERY_VOLTAGE_HIGH_DEFAULT ((uint32_t) 2855)/*12.8Volt*/
 #define LIMIT_BATTERY_VOLTAGE_CRITICAL_DEFAULT ((uint32_t) 1894)/*8.5Volt*/
 #define LIMIT_BATTERY_TEMPERATURE_LOW_DEFAULT ((uint32_t) 5)/* 5 Celcius degree */
-#define LIMIT_BATTERY_TEMPERATURE_HIGH_DEFAULT ((uint32_t) 55)/* 65 Celcius degree */
+#define LIMIT_BATTERY_TEMPERATURE_HIGH_DEFAULT ((uint32_t) 55)/* 55 Celcius degree */
 
 typedef struct {
 	/**/

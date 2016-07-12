@@ -17,8 +17,8 @@
 #include "eps_configuration.h"
 
 extern volatile EPS_soft_error_status error_status;/* global software error status - in the interrupt is called  the soft error handling.*/
-extern volatile EPS_umbilical_status EPS_umbilical_mode;
-extern EPS_State eps_board_state;
+extern volatile EPS_umbilical_status EPS_umbilical_mode;/* global status flag for umbilical connector status - if connected no deployment occurs.*/
+extern EPS_State eps_board_state;/*global eps subsystem state.*/
 
 
 /** @addtogroup bootsequence_Functions
@@ -47,9 +47,11 @@ EPS_soft_error_status EPS_bootseq_poweroff_all_rails(volatile EPS_State *state){
 }
 
 /**
-  * @brief Turn on all subsystems, except SU subsystem, with 500ms delay to avoid current spikes.
+  * @brief Turn on all subsystems, except SU subsystem, with 50ms delay to avoid current spikes.
   * @param  state: the eps state structure containing central info of the EPS subsystem.
   * @retval Error status for handling and debugging.
+  *
+  * TODO: when recovering from startup should I turn on coms or turn only obc and wait for oobc to tell me to turn adcs and comms on?
   */
 EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 
@@ -57,14 +59,14 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 
 	/*Power up all voltage rails except SU */
 	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(500);
+	HAL_sys_delay(50);
 	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(500);
-	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(500);
-	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(500);
- 	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
+	HAL_sys_delay(50);
+//	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
+//	HAL_sys_delay(50);
+//	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
+//	HAL_sys_delay(50);
+// 	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;
 

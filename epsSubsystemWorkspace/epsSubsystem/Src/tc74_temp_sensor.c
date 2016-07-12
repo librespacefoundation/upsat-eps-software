@@ -85,7 +85,7 @@
  		}
  		else if((receive_word&0b10111111) == NORMAL){
  			device_status = DEVICE_NORMAL;
- 			//TODO: implement device normal data not read state!
+ 			//TODO: implement device normal data not ready state!
  		}
  		else{
  			device_status = DEVICE_ERROR;

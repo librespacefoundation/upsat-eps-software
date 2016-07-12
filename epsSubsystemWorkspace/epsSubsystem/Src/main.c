@@ -37,7 +37,7 @@
  *
  * - implemet missing prototypes
  * - proper commenting
- * - uart debug would be awsome
+ * - uart debug would be awsome - also awesome would be to write from the debug uart to the state update stage KABOOM! eps in the loop mothafuckaz_
  * - *** deployment strategy SOLID
  * - *** error handling and error reporting in debug mode
  * -proper memory initialization routine - preferably automated...
@@ -74,17 +74,16 @@ DMA_HandleTypeDef hdma_usart3_tx;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
-EPS_State eps_board_state;
-EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
+EPS_State eps_board_state;/*global variable that stores the state info of the eps subsystem at any given point in time.*/
+EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;/*global variables containing the state of four mppt solar power modules.*/
 
 /*global variables shared with interrupts*/
-volatile uint8_t adc_reading_complete = 0;/* flag to check when dma transfer is complete.*/
-volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_OK;/* initialize global software error status to OK.*/
+volatile uint8_t adc_reading_complete = 0;/* flag to check when adc  dma transfer is complete.*/
+volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_UNRESOLVED;/* initialize global software error status to OK.*/
 volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;/* initialize global timed event flag to true.*/
-volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;/* initialize global umbilical flage to connected.*/
-volatile uint8_t bat_temp_time = 1;
+volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;/* initialize global umbilical flag to connected - When umbillical is connected no deployment stage occurs.*/
 
-uint8_t uart_temp[200];/* uart buffer for obc communication.*/
+uint8_t uart_temp[200];/* uart buffer for obc communication. TODO:*/
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -142,7 +141,7 @@ int main(void)
 
 	/* USER CODE BEGIN 2 */
 
-	//this is used only once to arm the stelite - this should by no means stay in the code.
+	//this is used only once to arm the satellite - this should by no means stay in the code.
 	//EPS_set_flash_memory_initial_values();
 
 	EPS_bootseq_poweroff_all_rails(&eps_board_state);

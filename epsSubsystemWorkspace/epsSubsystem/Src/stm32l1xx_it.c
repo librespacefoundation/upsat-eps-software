@@ -41,7 +41,6 @@
 
 extern volatile EPS_timed_event_status EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
 extern volatile EPS_soft_error_status error_status;// global software error status - in the interrupt is called  the soft error handling.
-extern volatile uint8_t bat_temp_time;
 
 /* USER CODE END 0 */
 
@@ -199,15 +198,7 @@ void USART3_IRQHandler(void) {
 void TIM6_IRQHandler(void)
 {
 	/* USER CODE BEGIN TIM6_IRQn 0 */
-	static timer_temperture_measurement =0;
-	if (timer_temperture_measurement<20){
-		timer_temperture_measurement++;
-		bat_temp_time = 0;
-	}
-	else{
-		timer_temperture_measurement=0;
-		bat_temp_time = 1;
-	}
+
 
 	/* USER CODE END TIM6_IRQn 0 */
 	HAL_TIM_IRQHandler(&htim6);
