@@ -20,7 +20,7 @@ void EPS_erase_deployment_flags(void){
 
 
 
-EPS_set_flash_memory_initial_values(void){
+void EPS_set_flash_memory_initial_values(void){
 
 	/*set deployment keys to not deployed: ARMS THE SATELITE FOR DEPLOYMENT*/
 	uint32_t memory_write_value = DEPLOYMENT_NOT_KEY_A;

@@ -303,6 +303,9 @@ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status swit
 		HAL_GPIO_WritePin(GPIO_TC74_POWER_GPIO_Port, GPIO_TC74_POWER_Pin, gpio_write_value);
 		state->i2c_tc74_p_switch = switch_status;
 		break;
+	case RAIL_LAST_VALUE:
+		//TODO:error handling
+		break;
 
 // 	   default :
 // 		   //YOU SHOULDNT BE HERE!
@@ -358,6 +361,9 @@ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_st
 		HAL_GPIO_WritePin(GPIO_DEPLOY_TOP_GPIO_Port, GPIO_DEPLOY_TOP_Pin, gpio_write_value);
 		state->deploy_top_switch = switch_status;
 		break;
+	case CONTROL_LAST_VALUE:
+		//TODO:error handling
+		break;
 
 // 	   default :
 // 		   //YOU SHOULDNT BE HERE!
@@ -394,6 +400,9 @@ EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch) {
 
 	case TEMP_SENSOR:
 		gpio_read_value =HAL_GPIO_ReadPin(GPIO_TC74_POWER_GPIO_Port, GPIO_TC74_POWER_Pin);
+		break;
+	case RAIL_LAST_VALUE:
+		//TODO:error handling
 		break;
 
 // 	   default :
@@ -440,6 +449,9 @@ EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_s
 		break;
 	case DEPLOY_TOP:
 		gpio_read_value =HAL_GPIO_ReadPin(GPIO_DEPLOY_TOP_GPIO_Port, GPIO_DEPLOY_TOP_Pin);
+		break;
+	case CONTROL_LAST_VALUE:
+		//TODO:error handling
 		break;
 
 // 	   default :
