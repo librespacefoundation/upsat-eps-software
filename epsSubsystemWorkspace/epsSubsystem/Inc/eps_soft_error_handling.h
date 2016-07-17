@@ -60,9 +60,12 @@ typedef enum {
 	EPS_SOFT_ERROR_LAST_VALUE
 }EPS_soft_error_status;
 
-//checks the status, if it is a known issue from the enumeration, tries to solve it in software
-//else a soft reset is trigerred.
-//if the error status is ok, the watchdog  is updated.
+extern volatile EPS_soft_error_status error_status;/* initialize global software error status to OK.*/
+
+
+/*checks the status, if it is a known issue from the enumeration, tries to solve it in software
+ else a soft reset is triggered.
+ if the error status is ok, the watchdog  is updated.*/
 void EPS_soft_error_handling(EPS_soft_error_status eps_error_status);
 
 #endif /* INC_EPS_SOFT_ERROR_HANDLING_H_ */

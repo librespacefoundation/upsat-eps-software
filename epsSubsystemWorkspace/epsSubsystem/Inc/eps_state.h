@@ -115,13 +115,22 @@ typedef struct {
 	EPS_battery_tempsense_health batterypack_health_status;
 }EPS_State;
 
+
+typedef enum {
+	ADC_TRANSFER_NOT_COMPLETED=0,
+	ADC_TRANSFER_COMPLETED,
+	ADC_TRANSFER_LAST_VALUE
+}EPS_adc_dma_transfer_status;
+
+extern EPS_adc_dma_transfer_status adc_reading_complete;
+
 EPS_soft_error_status EPS_state_init(volatile EPS_State *state);
 EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c);
 
 EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch);
-void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state);
+void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status,volatile EPS_State *state);
 
 EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_switch);
-void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state);
+void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status,volatile EPS_State *state);
 
 #endif /* INC_EPS_STATE_H_ */

@@ -6,9 +6,9 @@
  */
 
 #include "eps_power_module.h"
+#include "eps_state.h"
 
 
-extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
 extern ADC_HandleTypeDef hadc;
 extern TIM_HandleTypeDef htim3;
 
@@ -119,7 +119,7 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 //////////////////////////////////////////////////////////////////////////
 
 
-	adc_reading_complete = 0;//external global flag defined in main and shared with the adc complete transfer interrupt handler.
+	adc_reading_complete = ADC_TRANSFER_NOT_COMPLETED;//external global flag defined in main and shared with the adc complete transfer interrupt handler.
 	HAL_ADC_Start_DMA(power_module->hadc_power_module, adc_measurement_dma_power_modules, 66);
 
 	/*Process Measurements*/
@@ -127,7 +127,7 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	uint32_t current_avg =0;
 
 	/*Wait till DMA ADC sequence transfer is ready*/
-	while(adc_reading_complete==0){
+	while(adc_reading_complete==ADC_TRANSFER_NOT_COMPLETED){
 		//wait for dma transfer complete.
 	}
 	//ADC must be stopped in the adc dma transfer complete callback.

@@ -9,22 +9,18 @@
 #include "tc74_temp_sensor.h"
 #include "cpu_adc_utilities.h"
 
-extern volatile uint8_t adc_reading_complete;//flag to check when dma transfer is complete.
+EPS_adc_dma_transfer_status adc_reading_complete=ADC_TRANSFER_NOT_COMPLETED;/* flag to check when dma transfer is complete.*/
 
 /*update eps state analog measurements*/
 static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps);
 /*get battery pack temperature*/
-static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state);
+static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state);
 
 
 
 EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
 	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_INIT;
-
-	EPS_mode_status eps_functional_mode;
-	EPS_safety_battery_status EPS_safety_battery_mode;
-	EPS_safety_temperature_status EPS_safety_temperature_mode;
 
 	state->eps_functional_mode = EPS_NOMINAL_MODE;
 	state->EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
@@ -122,7 +118,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	/*Start conversion and dma transfer*/
 	uint32_t adc_measurement_dma_eps_state[55]= { 0 };//2*6 +1
 
-	adc_reading_complete = 0;
+	adc_reading_complete = ADC_TRANSFER_NOT_COMPLETED;
 	HAL_ADC_Start_DMA(hadc_eps, adc_measurement_dma_eps_state, 54);
 
 	/*Process Measurements*/
@@ -134,7 +130,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	uint32_t cpu_temp_avg =0;
 
 	/*Wait till DMA ADC sequence transfer is ready*/
-	while(adc_reading_complete==0){
+	while(adc_reading_complete==ADC_TRANSFER_NOT_COMPLETED){
  	}
 	HAL_ADC_Stop_DMA(hadc_eps);
 
@@ -170,7 +166,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 
 
 
-int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address, EPS_State *state){
+int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state){
 
 	static  uint8_t battery_temperature_valid_counter=0;//counter to control the battery sensor scheme
 	/*calculate battery temperature depending on sensor status*/
@@ -265,7 +261,7 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 
 
 
-void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status, EPS_State *state){
+void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status,volatile EPS_State *state){
 
  	GPIO_PinState gpio_write_value;
 
@@ -318,7 +314,7 @@ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status swit
 
 
 
-void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status, EPS_State *state){
+void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status,volatile EPS_State *state){
 
  	GPIO_PinState gpio_write_value;
 

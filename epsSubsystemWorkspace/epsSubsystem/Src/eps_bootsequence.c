@@ -15,9 +15,8 @@
 #include "stm32l1xx_hal.h"
 #include "eps_non_volatile_mem_handling.h"
 #include "eps_configuration.h"
+#include "eps_soft_error_handling.h"
 
-extern volatile EPS_soft_error_status error_status;/* global software error status - in the interrupt is called  the soft error handling.*/
-extern volatile EPS_umbilical_status EPS_umbilical_mode;/* global status flag for umbilical connector status - if connected no deployment occurs.*/
 extern EPS_State eps_board_state;/*global eps subsystem state.*/
 
 
@@ -59,9 +58,9 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 
 	/*Power up all voltage rails except SU */
 	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(50);
+	HAL_Delay(50);
 	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(50);
+	HAL_Delay(50);
 //	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
 //	HAL_sys_delay(50);
 //	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
@@ -88,7 +87,7 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 	for (uint8_t var = 0; var < 10; ++var) {
 
 		GPIO_PinState umbilical_pin =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
-		HAL_sys_delay(10);
+		HAL_Delay(10);
 		if(umbilical_pin == GPIO_PIN_SET){
 			state->umbilical_switch = 0x00;//false
 		}
@@ -152,27 +151,27 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
-		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_RIGHT;
 		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
-		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_BOTTOM;
 		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
-		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_TOP;
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
-		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_ANT1;
 		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
-		HAL_sys_delay(DEPLOY_BURNOUT_DELAY);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
 
 
@@ -181,36 +180,36 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_A;
 		memory_write_value = DEPLOYMENT_KEY_A;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_B;
 		memory_write_value = DEPLOYMENT_KEY_B;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_C;
 		memory_write_value = DEPLOYMENT_KEY_C;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_D;
 		memory_write_value = DEPLOYMENT_KEY_D;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_E;
 		memory_write_value = DEPLOYMENT_KEY_E;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_F;
 		memory_write_value = DEPLOYMENT_KEY_F;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 		bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_G;
 		memory_write_value = DEPLOYMENT_KEY_G;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
-		HAL_sys_delay(1);
+		HAL_Delay(1);
 	}
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;

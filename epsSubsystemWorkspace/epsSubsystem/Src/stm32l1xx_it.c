@@ -41,8 +41,7 @@
 #include "eps_safety.h"
 #include "eps_time.h"
 
-extern volatile EPS_timed_event_status EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
-extern volatile EPS_soft_error_status error_status;// global software error status - in the interrupt is called  the soft error handling.
+
 
 /* USER CODE END 0 */
 

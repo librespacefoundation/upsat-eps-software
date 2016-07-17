@@ -10,6 +10,10 @@
 
 extern TIM_HandleTypeDef htim6;/* timer 6 peripheral, the timer used for the timed schedule.*/
 
+
+volatile EPS_umbilical_status EPS_umbilical_mode = UMBILICAL_CONNECTED;/* initialize global umbilical flag to connected - When umbillical is connected no deployment stage occurs.*/
+
+
 /* TIM6 init function */
 EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds) {
 
