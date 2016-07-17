@@ -1,0 +1,3 @@
+[submodule "ecss_services"]
+	path = ecss_services
+	url = https://github.com/librespacefoundation/ecss_services.git
