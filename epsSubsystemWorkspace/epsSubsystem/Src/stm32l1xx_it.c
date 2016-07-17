@@ -35,9 +35,11 @@
 #include "stm32l1xx.h"
 #include "stm32l1xx_it.h"
 
+
 /* USER CODE BEGIN 0 */
 #include "eps_configuration.h"
 #include "eps_safety.h"
+#include "eps_time.h"
 
 extern volatile EPS_timed_event_status EPS_event_period_status;//  global timed event defined in main and shared here to timer6 interrupt handler.
 extern volatile EPS_soft_error_status error_status;// global software error status - in the interrupt is called  the soft error handling.
@@ -54,6 +56,7 @@ extern DMA_HandleTypeDef hdma_usart3_rx;
 extern DMA_HandleTypeDef hdma_usart3_tx;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart3;
+
 
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
@@ -182,14 +185,15 @@ void USART1_IRQHandler(void)
 /**
 * @brief This function handles USART3 global interrupt.
 */
-void USART3_IRQHandler(void) {
-	/* USER CODE BEGIN USART3_IRQn 0 */
+void USART3_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART3_IRQn 0 */
 	HAL_EPS_UART_IRQHandler(&huart3);
-	/* USER CODE END USART3_IRQn 0 */
-	HAL_UART_IRQHandler(&huart3);
-	/* USER CODE BEGIN USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 0 */
+  HAL_UART_IRQHandler(&huart3);
+  /* USER CODE BEGIN USART3_IRQn 1 */
 
-	/* USER CODE END USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 1 */
 }
 
 /**
@@ -197,19 +201,25 @@ void USART3_IRQHandler(void) {
 */
 void TIM6_IRQHandler(void)
 {
-	/* USER CODE BEGIN TIM6_IRQn 0 */
+  /* USER CODE BEGIN TIM6_IRQn 0 */
 
 
-	/* USER CODE END TIM6_IRQn 0 */
-	HAL_TIM_IRQHandler(&htim6);
-	/* USER CODE BEGIN TIM6_IRQn 1 */
+  /* USER CODE END TIM6_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim6);
+  /* USER CODE BEGIN TIM6_IRQn 1 */
+
+   /*update timed event handling status to not serviced*/
 	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
 
-	/*check for software error and properly handle them. */
+	/*check for software error and properly handle them if status ok kick watchdog. */
 	EPS_soft_error_handling(error_status);
 
+	/*increment eps time counter*/
+	EPS_time_counter_increment();
 
-	/* USER CODE END TIM6_IRQn 1 */
+
+
+  /* USER CODE END TIM6_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

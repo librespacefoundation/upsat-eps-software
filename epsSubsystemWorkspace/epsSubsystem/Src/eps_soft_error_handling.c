@@ -4,8 +4,11 @@
  *  Created on: May 10, 2016
  *      Author: ariolis
  */
+#include "stm32l1xx_hal.h"
 #include "eps_soft_error_handling.h"
 
+
+extern IWDG_HandleTypeDef hiwdg;
 
 void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 
@@ -13,7 +16,8 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 	switch (eps_error_status) {
 
 	case EPS_SOFT_ERROR_OK:
-		/*kick watchdog*/
+		/*Refresh watchdog. */
+	    HAL_IWDG_Refresh(&hiwdg);
 		break;
 
 	case EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED:
