@@ -42,7 +42,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 		/*if moving from nominal state to critical signal obc tin order to close non critical loads.*/
 		if(state->EPS_safety_battery_mode == EPS_SAFETY_MODE_BATTERY_NORMAL){
 			/* send message to obc that battery is in critical point and it should turn off non critical loads. */
-			event_eps_voltage_state( 69);
+			//event_eps_voltage_state( 69);
 		}
 		/*bat critical - keep alive only basic subsystems - and signal obc*/
 		EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, state);
@@ -69,7 +69,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 		/*if moving from critical state to nominal signal obc tin order to reopen non critical loads.*/
 		if(state->EPS_safety_battery_mode == EPS_SAFETY_MODE_BATTERY_CRITICAL){
 			/* send message to obc that battery is back in nominal mode. */
-			event_eps_voltage_state( 13);
+			//event_eps_voltage_state( 13);
 		}
 
 		/*normal bat - nominal state*/

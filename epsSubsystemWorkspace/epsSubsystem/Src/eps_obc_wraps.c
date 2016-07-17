@@ -44,6 +44,8 @@ EPS_soft_error_status EPS_obc_communication_service(void){
 
 	check_timeouts();
 
+	export_pkt(OBC_APP_ID, &eps_data.obc_uart);
+
 	obc_com_status = EPS_SOFT_ERROR_OK;
 	return obc_com_status;
 }
