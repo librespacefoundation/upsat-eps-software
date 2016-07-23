@@ -1,0 +1,15 @@
+/*
+ * eps_time.h
+ *
+ *  Created on: Jul 17, 2016
+ *      Author: ariolis
+ */
+
+#ifndef INC_EPS_TIME_H_
+#define INC_EPS_TIME_H_
+
+extern volatile uint32_t EPS_time_counter; /*a counter that increments at every interrupt every TIMED_EVENT_PERIOD microseconds */
+
+
+
+#endif /* INC_EPS_TIME_H_ */

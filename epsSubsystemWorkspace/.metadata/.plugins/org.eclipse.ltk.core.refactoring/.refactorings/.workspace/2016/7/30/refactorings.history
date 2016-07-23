@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;epsSubsystem/Src/eps_time.h&apos;" deleteContents="false" description="Delete resource &apos;epsSubsystem/Src/eps_time.h&apos;" element1="/epsSubsystem/Src/eps_time.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1468772710837"/>
+</session>

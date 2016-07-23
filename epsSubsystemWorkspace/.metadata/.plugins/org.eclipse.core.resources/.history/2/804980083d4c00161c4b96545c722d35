@@ -1,0 +1,11 @@
+/*
+ * eps_time.c
+ *
+ *  Created on: Jul 17, 2016
+ *      Author: ariolis
+ */
+
+#include "eps_time.h"
+
+
+volatile uint32_t EPS_time_counter =0;
