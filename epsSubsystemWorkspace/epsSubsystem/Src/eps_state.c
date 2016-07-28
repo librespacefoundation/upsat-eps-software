@@ -22,7 +22,7 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
 	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_INIT;
 
-	state->eps_functional_mode = EPS_NOMINAL_MODE;
+	state->eps_functional_mode = EPS_MODE_LAST_VALUE;
 	state->EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
 	state->EPS_safety_temperature_mode = EPS_SAFETY_MODE_TEMPERATURE_NOT_SET;
 	state->v5_current_avg = 0x00;
@@ -31,7 +31,7 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 	state->battery_current_plus = 0x00;
 	state->battery_current_minus = 0x00;
 	state->battery_temp = 10;//do not initialize to zero so as not to false trigger safety limits during initialization.
-	state->batterypack_health_status = EPS_BATTERY_SENSOR_SYSTEM_OK;
+	state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
 
 
 	eps_status = EPS_SOFT_ERROR_OK;
@@ -164,74 +164,74 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	return adc_update_state;
 }
 
-
-
 int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state){
 
-	static  uint8_t battery_temperature_valid_counter=0;//counter to control the battery sensor scheme
+	static  uint8_t battery_temperature_valid_counter=0;/*counter to control the battery sensor scheme*/
 	/*calculate battery temperature depending on sensor status*/
 	int16_t battery_temp_avg;
+	TC_74_STATUS statusA =DEVICE_STATUS_LAST_VALUE;
+	TC_74_STATUS statusB =DEVICE_STATUS_LAST_VALUE;
 
+	/*add check to turn on tc74power if theyr eoff*/
 
-	if(battery_temperature_valid_counter>19){
+	if(battery_temperature_valid_counter<15){
+		/*sleep time*/
+		battery_temp_avg = state->battery_temp;/*update return value*/
+		battery_temperature_valid_counter++;/*update counter*/
+	}
+	else if((battery_temperature_valid_counter>=15)&&(battery_temperature_valid_counter<18)){
+		//waky-waky
+		statusA = TC74_read_device_status(h_i2c, sensor_A_i2c_address);
+		statusB = TC74_read_device_status(h_i2c, sensor_B_i2c_address);
 
-
-		/* if i2c rail is off turn it on - this is how to reset the i2c power line.*/
-		if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
-			EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+		if(statusA == DEVICE_STANDBY){
+			/*wake up sensor1*/
+			statusA = TC74_device_wake_up( h_i2c, sensor_A_i2c_address);
 		}
 
-		TC_74_STATUS statusA, statusB;
-		/*wake up sensor1*/
-		statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
-
-		/*wake up sensor2*/
-		statusB = device_wake_up( h_i2c, sensor_B_i2c_address);
-
-		/*check sensor1 status if still in standby or error*/
-		if(statusA == DEVICE_NORMAL){
-			statusA = read_device_status(h_i2c, sensor_A_i2c_address);
+		if(statusB == DEVICE_STANDBY){
+			/*wake up sensor2*/
+			statusB = TC74_device_wake_up( h_i2c, sensor_B_i2c_address);
 		}
+		battery_temp_avg = state->battery_temp;/*update return value*/
+	    battery_temperature_valid_counter++;/*update counter*/
+	}
 
-		/*check sensor2 status if still in standby or error*/
-		if(statusB == DEVICE_NORMAL){
-			statusB = read_device_status(h_i2c, sensor_B_i2c_address);
-		}
+	else if((battery_temperature_valid_counter>=18)&&(battery_temperature_valid_counter<20)){
+		//take measurement
 
+		statusA = TC74_read_device_status(h_i2c, sensor_A_i2c_address);
+		statusB = TC74_read_device_status(h_i2c, sensor_B_i2c_address);
 
 		/*get temperatue1*/
 		int8_t temperature_measurementA;
-		if(statusA == DEVICE_NORMAL){
-			statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
+		if(statusA == DEVICE_NORMAL_DATA_READY){
+			statusA= TC74_read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
 		}
 		/*get temperatue2*/
 		int8_t temperature_measurementB;
-		if(statusB == DEVICE_NORMAL){
-			statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
+		if(statusB == DEVICE_NORMAL_DATA_READY){
+			statusB= TC74_read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
 		}
 
-		/*if you put temp sesors to sleep you will never have a new conversion */
-		/* beloved tc74 has 4 samples per second rate - thank you ti*/
 
 
-
-
-		if((statusA!=DEVICE_ERROR)&&(statusB!=DEVICE_ERROR)){
+		if((statusA==DEVICE_NORMAL_DATA_READY)&&(statusB==DEVICE_NORMAL_DATA_READY)){
 			//nominal state: both temp sensors not in erroneous state.
 			battery_temp_avg =  (temperature_measurementA + temperature_measurementB)>>1;
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_SYSTEM_OK;
 		}
-		else if((statusA!=DEVICE_ERROR)&&(statusB==DEVICE_ERROR)){
+		else if((statusA==DEVICE_NORMAL_DATA_READY)&&(statusB!=DEVICE_NORMAL_DATA_READY)){
 			//temp sensor A is OK but B is in eroneous state.
 			battery_temp_avg =  temperature_measurementA;
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_B_DEAD;
 		}
-		else if((statusA==DEVICE_ERROR)&&(statusA!=DEVICE_ERROR)){
+		else if((statusA!=DEVICE_NORMAL_DATA_READY)&&(statusB==DEVICE_NORMAL_DATA_READY)){
 			//temp sensor A is OK but B is in eroneous state.
 			battery_temp_avg =  temperature_measurementB;
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_A_DEAD;
 		}
-		else if((statusA==DEVICE_ERROR)&&(statusA==DEVICE_ERROR)){
+		else if((statusA!=DEVICE_NORMAL_DATA_READY)&&(statusB!=DEVICE_NORMAL_DATA_READY)){
 			//both temp sensors are dead... so we extraploate the only temp sensor availiable, the cpu temp sensor.
 			battery_temp_avg = state->cpu_temperature - CPU_TO_BATTERY_TEMPERATURE_OFFSET;
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_CPU_TEMP_ONLY;
@@ -245,19 +245,123 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
 		}
 
-		battery_temperature_valid_counter = 0;//reset valid battery temperature counter
+		battery_temperature_valid_counter++;/*update counter*/
+		/*if counter overflows zero out*/
+		if(battery_temperature_valid_counter>=20){
+			/*reset valid battery temperature counter*/
+			battery_temperature_valid_counter = 0;
+			/*put sensor to sleep*/
+			statusA = TC74_device_sleep( h_i2c, sensor_A_i2c_address);
+			statusB = TC74_device_sleep( h_i2c, sensor_B_i2c_address);
+		}
+
+
 
 	}
 	else{
-		//if o update has been made - return the previous state.
-		battery_temp_avg = state->battery_temp;
-		battery_temperature_valid_counter++;
+		//handle this-you shouldnt be here.
 	}
 
-	 return battery_temp_avg;
+
+	return battery_temp_avg;
+
 
 }
 
+
+
+//int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state){
+//
+//	static  uint8_t battery_temperature_valid_counter=0;//counter to control the battery sensor scheme
+//	/*calculate battery temperature depending on sensor status*/
+//	int16_t battery_temp_avg;
+//
+//
+//	if(battery_temperature_valid_counter>19){
+//
+//
+//		/* if i2c rail is off turn it on - this is how to reset the i2c power line.*/
+//		if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
+//			EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+//		}
+//
+//		TC_74_STATUS statusA, statusB;
+//		/*wake up sensor1*/
+//		statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
+//
+//		/*wake up sensor2*/
+//		statusB = device_wake_up( h_i2c, sensor_B_i2c_address);
+//
+//		/*check sensor1 status if still in standby or error*/
+//		if(statusA == DEVICE_NORMAL){
+//			statusA = read_device_status(h_i2c, sensor_A_i2c_address);
+//		}
+//
+//		/*check sensor2 status if still in standby or error*/
+//		if(statusB == DEVICE_NORMAL){
+//			statusB = read_device_status(h_i2c, sensor_B_i2c_address);
+//		}
+//
+//
+//		/*get temperatue1*/
+//		int8_t temperature_measurementA;
+//		if(statusA == DEVICE_NORMAL){
+//			statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
+//		}
+//		/*get temperatue2*/
+//		int8_t temperature_measurementB;
+//		if(statusB == DEVICE_NORMAL){
+//			statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
+//		}
+//
+//		/*if you put temp sesors to sleep you will never have a new conversion */
+//		/* beloved tc74 has 4 samples per second rate - thank you ti*/
+//
+//
+//
+//
+//		if((statusA!=DEVICE_ERROR)&&(statusB!=DEVICE_ERROR)){
+//			//nominal state: both temp sensors not in erroneous state.
+//			battery_temp_avg =  (temperature_measurementA + temperature_measurementB)>>1;
+//			state->batterypack_health_status = EPS_BATTERY_SENSOR_SYSTEM_OK;
+//		}
+//		else if((statusA!=DEVICE_ERROR)&&(statusB==DEVICE_ERROR)){
+//			//temp sensor A is OK but B is in eroneous state.
+//			battery_temp_avg =  temperature_measurementA;
+//			state->batterypack_health_status = EPS_BATTERY_SENSOR_B_DEAD;
+//		}
+//		else if((statusA==DEVICE_ERROR)&&(statusA!=DEVICE_ERROR)){
+//			//temp sensor A is OK but B is in eroneous state.
+//			battery_temp_avg =  temperature_measurementB;
+//			state->batterypack_health_status = EPS_BATTERY_SENSOR_A_DEAD;
+//		}
+//		else if((statusA==DEVICE_ERROR)&&(statusA==DEVICE_ERROR)){
+//			//both temp sensors are dead... so we extraploate the only temp sensor availiable, the cpu temp sensor.
+//			battery_temp_avg = state->cpu_temperature - CPU_TO_BATTERY_TEMPERATURE_OFFSET;
+//			state->batterypack_health_status = EPS_BATTERY_SENSOR_CPU_TEMP_ONLY;
+//			/* turn of power temperature power supply so as to reset to next temp requet */
+//			EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
+//
+//			//TODO: find the relation of cpu temperature to battery pack temperature.
+//		}
+//		else{
+//			//TODO: handle this ...
+//			state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
+//		}
+//
+//		battery_temperature_valid_counter = 0;//reset valid battery temperature counter
+//
+//	}
+//	else{
+//		//if o update has been made - return the previous state.
+//		battery_temp_avg = state->battery_temp;
+//		battery_temperature_valid_counter++;
+//	}
+//
+//	 return battery_temp_avg;
+//
+//}
+//
 
 
 
