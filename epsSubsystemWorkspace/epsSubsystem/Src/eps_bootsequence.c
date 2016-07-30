@@ -63,9 +63,9 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 	HAL_Delay(50);
 //	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
 //	HAL_sys_delay(50);
-//	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
-//	HAL_sys_delay(50);
-// 	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
+	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
+	HAL_sys_delay(50);
+ 	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;
 

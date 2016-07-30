@@ -240,8 +240,6 @@ int main(void)
 			error_status = EPS_update_state( &eps_board_state, &hadc, &hi2c2);
 
 			/*check for limit safety issues */
-			//TODO: maybe safety limits should be out of interrupt control.
-			//TODO: add hysterisis control for heater on off
 			error_status = EPS_perform_safety_checks(&eps_board_state, &eps_limits);
 
 #ifdef EPS_DEBUG_MODE
@@ -255,7 +253,6 @@ int main(void)
 
 		/* handle OBC packets */
 		error_status = EPS_obc_communication_service();
-
 
 		/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
 		HAL_SuspendTick();
