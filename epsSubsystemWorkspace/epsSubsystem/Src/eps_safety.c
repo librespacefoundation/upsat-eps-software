@@ -13,7 +13,27 @@
 
 extern EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
 
+/** @addtogroup eps_safety_Functions
+  * @{
+  */
 
+/**
+  * @brief  Perform safety checks of the satelite eps for the current state.
+  *         Protections:
+  *          - Overvoltage: solar panels current output is shut down.
+  *          - Undervoltage: if not in normal operating voltage, the eps takes action
+  *                             -low bat mode: battery is about to be depleted. All subsystems are shut down until the
+  *                              satelite batterypack reaches nominal voltage.
+  *                             -critical mode: non critical loads (adcs,su) are explicitly shutdown - ideally a signal to obc
+  *                              would be nice. Still we can know about this in the extended health response.
+  *         - Overtemperature: explicitly turn off heaters - maybe consider shutting down other subsystems since batteries are heated by
+  *                            regulators thermal vias.
+  *         - Undertemperature: Turn on heaters protection system. The  heater protection has a +-1 celsius degree threshold margin to avoid redundant switching.
+  *
+  * @param  state: pointer to the eps state structure containing central info of the EPS subsystem.
+  * @param  limits: pointer to the eps safety limits structure containing threshold values for safety protection mechanisms.*
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_limits *limits){
 
 
@@ -161,7 +181,14 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 	return safety_check_status;
 }
 
-//load limits from memory at startup. this is done so if needed to change them for safety issues, then the values wont be again problematic on reset and startup.
+/**
+  * @brief  Function to write to memory the defined memory limits to the defined limits memory addresses. Load limits from memory
+  *         at startup. this is done so if needed to change them for safety issues, then the values wont be again problematic
+  *         on reset and startup.
+  *
+  * @param  limits: pointer to the eps safety limits structure containing threshold values for safety protection mechanisms.*
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limits){
 
 	EPS_soft_error_status limits_status = EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS;
@@ -183,3 +210,6 @@ EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limi
 	return limits_status;
 
 }
+/**
+  * @}
+  */

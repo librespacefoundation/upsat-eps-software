@@ -12,7 +12,21 @@
 extern ADC_HandleTypeDef hadc;
 extern TIM_HandleTypeDef htim3;
 
+/** @addtogroup eps_state_Functions
+  * @{
+  */
 
+/**
+  * @brief Initializes power module instance.
+  * @param  module_X: pointer to the power module instance to set.
+  * @param  starting_pwm_dutycycle: initial duty cycle at which the power module will start the mppt !0 is not a good start.
+  * @param  htim: pointer to timer peripheral handle for pwm generation.
+  * @param  timer_channel: timer peripheral channel used for this pwm module.
+  * @param  hadc_power_module: pointer to adc peripheral handle that holds the current/voltage measurements.
+  * @param  ADC_channel_current: pointer to adc channel with the current measurement.
+  * @param  ADC_channel_voltage:  pointer to adc channel with the voltage measurement.
+  * @retval None.
+  */
 void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutycycle, TIM_HandleTypeDef *htim, uint32_t timer_channel, ADC_HandleTypeDef *hadc_power_module, uint32_t ADC_channel_current, uint32_t ADC_channel_voltage){
 
 	//initialize properly all power module entries.
@@ -29,12 +43,19 @@ void EPS_PowerModule_init(EPS_PowerModule *module_X, uint32_t starting_pwm_dutyc
 	module_X->ADC_channel_current = ADC_channel_current;
 	module_X->ADC_channel_voltage = ADC_channel_voltage;
 
-	//Start pwm with initialized from cube mx pwm duty cycle for timerX at timer_channel.
+	/*Start pwm with initialized from cube mx pwm duty cycle for timerX at timer_channel.*/
 	HAL_TIM_PWM_Start(htim, timer_channel);
 
 }
 
-
+/**
+  * @brief Initializes all satellite power module instances.
+  * @param  module_top: pointer to top solar panel side power module.
+  * @param  module_bottom: pointer to bottom solar panel side power module.
+  * @param  module_left: pointer to left solar panel side power module.
+  * @param  module_right: pointer to right solar panel side power module
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_PowerModule_init_ALL(EPS_PowerModule *module_top, EPS_PowerModule *module_bottom, EPS_PowerModule *module_left, EPS_PowerModule *module_right){
 
 	EPS_soft_error_status power_module_init_status = EPS_SOFT_ERROR_POWER_MODULE_INIT_ALL;
@@ -56,37 +77,14 @@ EPS_soft_error_status EPS_PowerModule_init_ALL(EPS_PowerModule *module_top, EPS_
 	return power_module_init_status;
 }
 
-
+/**
+  * @brief Update power module instance adc measurements.
+  * @param  power_module: pointer to  power module instance for which to get adc measurements.
+  * @retval None.
+  */
 void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
-
-
-    //setup adc handle sequence and initialize adc peripheral
-
 	/*initialize adc handle*/
-
-	///////////////////////////////
-//	power_module->hadc_power_module->Instance = ADC1;
-//	power_module->hadc_power_module->Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
-//	power_module->hadc_power_module->Init.Resolution = ADC_RESOLUTION_12B;
-//	power_module->hadc_power_module->Init.DataAlign = ADC_DATAALIGN_RIGHT;
-//	power_module->hadc_power_module->Init.ScanConvMode = ADC_SCAN_ENABLE;
-//	//power_module->hadc_power_module->Init.EOCSelection = ADC_EOC_SEQ_CONV;
-//	power_module->hadc_power_module->Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-//	power_module->hadc_power_module->Init.LowPowerAutoWait = ADC_AUTOWAIT_DISABLE;
-//	power_module->hadc_power_module->Init.LowPowerAutoPowerOff = ADC_AUTOPOWEROFF_DISABLE;
-//	power_module->hadc_power_module->Init.ChannelsBank = ADC_CHANNELS_BANK_A;
-//	power_module->hadc_power_module->Init.ContinuousConvMode = ENABLE;
-////	power_module->hadc_power_module->Init.NbrOfConversion = 2;
-//	power_module->hadc_power_module->Init.DiscontinuousConvMode = DISABLE;
-//	power_module->hadc_power_module->Init.ExternalTrigConv = ADC_SOFTWARE_START;
-//	power_module->hadc_power_module->Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-//	power_module->hadc_power_module->Init.DMAContinuousRequests = ENABLE;
-
-
-	//////////////////////////////
-
-
 	power_module->hadc_power_module->Init.NbrOfConversion = 2;
 	//power_module->hadc_power_module->NbrOfConversionRank = 2;
 	HAL_ADC_Init(power_module->hadc_power_module);
@@ -107,17 +105,9 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 
 
 
-	//start dma transfer from adc to memory.
+	/*start dma transfer from adc to memory.*/
 
 	uint32_t adc_measurement_dma_power_modules[67]= { 0 };//2*64 +1
-//////////////////////////////////////////////////////////////////////////
-//	for (int zero_index = 0; zero_index < 67; zero_index+=1) {
-//
-//		adc_measurement_dma_power_modules[zero_index] =0;
-//
-//	}
-//////////////////////////////////////////////////////////////////////////
-
 
 	adc_reading_complete = ADC_TRANSFER_NOT_COMPLETED;//external global flag defined in main and shared with the adc complete transfer interrupt handler.
 	HAL_ADC_Start_DMA(power_module->hadc_power_module, adc_measurement_dma_power_modules, 66);
@@ -130,17 +120,11 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	while(adc_reading_complete==ADC_TRANSFER_NOT_COMPLETED){
 		//wait for dma transfer complete.
 	}
-	//ADC must be stopped in the adc dma transfer complete callback.
+	/*ADC must be stopped in the adc dma transfer complete callback.*/
 
 	HAL_ADC_Stop_DMA(power_module->hadc_power_module);
-	//HAL_ADC_Stop(power_module->hadc_power_module);
 
-	////////////////////////////////////////////////////////////////
-	//HAL_ADC_DeInit(power_module->hadc_power_module);
-	////////////////////////////////////////////////////////////////
-
-
-	//de-interleave and sum voltage and current measurements. TODO:overflow strategy??? : 2^12(max adc value) * 32 = 2^17 < 2^32 so you do not need one!
+	/*de-interleave and sum voltage and current measurements.*/
 	for (int sum_index = 2; sum_index < 66; sum_index+=2) {
 		/*top*/
 		current_avg = current_avg + adc_measurement_dma_power_modules[sum_index];
@@ -148,14 +132,18 @@ void EPS_update_power_module_state(EPS_PowerModule *power_module){
 	}
 
 	/*filter ting*/
-	//average of 16 concecutive adc measurements.skip the first to avoid adc power up distortion.
+	/*average of 16 concecutive adc measurements.skip the first to avoid adc power up distortion.*/
 	power_module->voltage = voltage_avg>>5;
 	power_module->current = current_avg>>5;
 
 
 }
 
-
+/**
+  * @brief Update power module instance MPPT next step pwm duty cycle.
+  * @param  moduleX: pointer to  power module instance for which to calculate pwm duty cycle based on P&O (protrube and observe) mppt sstrategy algorithm.
+  * @retval None.
+  */
 void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 
@@ -176,13 +164,7 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 		uint32_t step_size = MPPT_STEP_SIZE;
 
-		//	  if (moduleX->current<1000){
-		//		  step_size = MPPT_STEP_SIZE + 5;
-		//		  //moduleX->incremennt_flag = 1;
-		//	  }
-
-
-		// decide duty cycle orientation - set increment flag.
+		/*decide duty cycle orientation - set increment flag.*/
 		if (power_now_avg  <(moduleX->previous_power)){
 
 			if (moduleX->incremennt_flag>0){
@@ -196,7 +178,7 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 				moduleX->incremennt_flag = 1;
 			}
 		}
-		//add appropriate offset - create new duty cycle.
+		/*add appropriate offset - create new duty cycle.*/
 
 		if(moduleX->incremennt_flag){
 			duty_cycle = duty_cycle+step_size;
@@ -204,15 +186,13 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 		else{
 			duty_cycle = duty_cycle-step_size;
 		}
-		//Check for Overflow and Underflow
+		/*Check for Overflow and Underflow*/
 		if (duty_cycle>(160+MPPT_STEP_SIZE)){//first check for underflow
 			duty_cycle= MPPT_STARTUP_PWM_DUTYCYCLE;//
 		}
 		if (duty_cycle==(160+MPPT_STEP_SIZE)){//then check for overflow
 			duty_cycle=160;
 		}
-		// Set new PWM compare register
-		//duty_cycle =0;
 
 	}
 
@@ -222,7 +202,11 @@ void EPS_PowerModule_mppt_update_pwm(EPS_PowerModule *moduleX){
 
 }
 
-
+/**
+  * @brief Apply calculated MPPT step pwm duty cycle.
+  * @param  moduleX: pointer to  power module instance for which to apply the calculated pwm dutycycle.
+  * @retval None.
+  */
 void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX){
 
 	uint32_t pwm_output;
@@ -255,4 +239,6 @@ void EPS_PowerModule_mppt_apply_pwm(EPS_PowerModule *moduleX){
 	}
 
 }
-
+/**
+  * @}
+  */

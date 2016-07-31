@@ -45,32 +45,11 @@
 #include "eps_obc_wraps.h"
 #include "eps_time.h"
 /*TODO:
- *  -new ecss merge
- *  -safety limits add the correct values
  *  -add prototype for remotely setting new limits over comms-obc or generally writing to flash
  *  -check wod values range before transmit and codes for enumeration
- *  -tc74 drivers revision and test
  *  -uart debug monitor
  *  -doxy commenting
  *  -flow diagram
- *
- * -set the correct(finalized) settings and initialization values for all peripherals at mx init functions
- *
- * - add nvm handling and startup deployment checks and initialization.
- *
- * - implemet missing prototypes
- * - uart debug would be awsome - also awesome would be to write from the debug uart to the state update stage KABOOM! eps in the loop mothafuckaz_
- * - *** deployment strategy SOLID
- * - *** error handling and error reporting in debug mode
- * -proper memory initialization routine - preferably automated...
- *
- *
- *  - should error status be declared as a volatile ?(to guarantee that it is checkd in the appropriate places.)
- *
- * TODO: maybe peripherals inits should be placed in deployment stage only. Specifically for the gpio init, if
- *       not properly considered at every reset all the subsystemswill be shut down and powered up... maybe the right
- *       way is to keep the last state ...
- *
  */
 /* USER CODE END Includes */
 
@@ -156,7 +135,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
-	//this is used only once to arm the satellite - this should by no means stay in the code.
+	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
 	//EPS_set_flash_memory_initial_values();
 
 	EPS_bootseq_poweroff_all_rails(&eps_board_state);
@@ -181,7 +160,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-	//load eps limits from memory
+	/*load eps limits from memory*/
 	EPS_safety_limits eps_limits;
 	error_status = EPS_load_safety_limits_from_memory(&eps_limits);
 
@@ -633,14 +612,14 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-// ADC DMA interrupt handler
+/**
+   * @brief ADC DMA interrupt handler
+   * marks the global flag of adc peripheral as a transfer complete.
+   * @param file: pointer to adc handle peripheral
+   * @retval None
+   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef * hadc) {
 
-	//printf("ADC conversion done.\n");
-	//HAL_ADC_Stop_DMA(hadc);
-
-	//	HAL_ADC_Stop_DMA(hadc);
-	//HAL_ADC_Stop(hadc);
 	adc_reading_complete = ADC_TRANSFER_COMPLETED;
 }
 
