@@ -31,6 +31,10 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level.124957698" name="Optimization Level" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="fr.ac6.managedbuild.gnu.c.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.739652980" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1246738967" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SystemView}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SystemView/Src/OS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SystemView/Src/Config}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SystemView/Src/SEGGER}&quot;"/>
 									<listOptionValue builtIn="false" value="../Inc"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/eps}&quot;"/>
@@ -84,8 +88,8 @@
 							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.826881055" name="Resource Custom Build Step Output Type"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.241977177" name="mass_storage_service.h" rcbsApplicability="disable" resourcePath="services/mass_storage_service.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.984627091" name="large_data_service.h" rcbsApplicability="disable" resourcePath="services/large_data_service.h" toolsToInvoke=""/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.241977177" name="mass_storage_service.h" rcbsApplicability="disable" resourcePath="services/mass_storage_service.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.42222157" name="scheduling_service.h" rcbsApplicability="disable" resourcePath="services/scheduling_service.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.211363264" name="gps.h" rcbsApplicability="disable" resourcePath="core/gps.h" toolsToInvoke=""/>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.2021812430.582772747" name="su_mnlp.h" rcbsApplicability="disable" resourcePath="core/su_mnlp.h" toolsToInvoke=""/>

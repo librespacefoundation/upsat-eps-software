@@ -37,6 +37,7 @@ uint32_t EPS_time_counter_get(void){
 void EPS_time_counter_increment(void){
 
 	++EPS_time_counter;
+	if(EPS_time_counter>85899345){EPS_time_counter=0;}
 }
 /**
   * @}

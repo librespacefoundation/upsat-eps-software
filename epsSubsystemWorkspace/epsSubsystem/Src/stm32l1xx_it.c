@@ -201,7 +201,7 @@ void USART3_IRQHandler(void)
 void TIM6_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM6_IRQn 0 */
-
+  //SEGGER_SYSVIEW_RecordEnterISR();
 
   /* USER CODE END TIM6_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
@@ -216,7 +216,7 @@ void TIM6_IRQHandler(void)
 	/*increment eps time counter*/
 	EPS_time_counter_increment();
 
-
+	//SEGGER_SYSVIEW_RecordExitISR();
 
   /* USER CODE END TIM6_IRQn 1 */
 }
