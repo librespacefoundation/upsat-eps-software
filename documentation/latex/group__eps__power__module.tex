@@ -1,0 +1,186 @@
+\hypertarget{group__eps__power__module}{\section{Eps\-\_\-power\-\_\-module}
+\label{group__eps__power__module}\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module}
+\begin{DoxyCompactList}\small\item\em Power module parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__eps__power__module_gadd75354311e873b06e0f85b643c5cea2}{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state} \{ \hyperlink{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a736e356719d62059c975b07f1b4d24ef}{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F}, 
+\hyperlink{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a577e74d24852a24295d63e50021704cd}{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N}, 
+{\bfseries P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em Power module powerstate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__eps__power__module_ga0c3525e3a3eacc3a7dd41944194c919d}{E\-P\-S\-\_\-\-Power\-Module\-\_\-init} (\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-\_\-\-X, uint32\-\_\-t starting\-\_\-pwm\-\_\-dutycycle, T\-I\-M\-\_\-\-Handle\-Type\-Def $\ast$htim, uint32\-\_\-t timer\-\_\-channel, A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$hadc\-\_\-power\-\_\-module, uint32\-\_\-t A\-D\-C\-\_\-channel\-\_\-current, uint32\-\_\-t A\-D\-C\-\_\-channel\-\_\-voltage)
+\begin{DoxyCompactList}\small\item\em Initializes power module instance. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__power__module_gac5d4a4cc33370ab66b87a009674f421a}{E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state} (\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$power\-\_\-module)
+\begin{DoxyCompactList}\small\item\em Update power module instance adc measurements. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__power__module_gaf492aeceb25b57af9236e98a8c78192c}{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm} (\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-X)
+\begin{DoxyCompactList}\small\item\em Update power module instance M\-P\-P\-T next step pwm duty cycle. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__power__module_ga197b1a19adb7c60f4cae8b17bc922bab}{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm} (\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-X)
+\begin{DoxyCompactList}\small\item\em Apply calculated M\-P\-P\-T step pwm duty cycle. \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__power__module_ga91f2694f503bf970c7e3139beba5ef77}{E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L} (\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-\_\-top, \hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-\_\-bottom, \hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-\_\-left, \hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} $\ast$module\-\_\-right)
+\begin{DoxyCompactList}\small\item\em Initializes all satellite power module instances. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__eps__power__module_gadd75354311e873b06e0f85b643c5cea2}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state@{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state}}
+\index{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state@{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state}}}\label{group__eps__power__module_gadd75354311e873b06e0f85b643c5cea2}
+
+
+Power module powerstate. 
+
+state to control each power module of the satelite \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F@{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F}!Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}}\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F@{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F}}\item[{\em 
+\hypertarget{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a736e356719d62059c975b07f1b4d24ef}{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-F\-F}\label{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a736e356719d62059c975b07f1b4d24ef}
+}]power module is turned off -\/ no power from solar panel to batteries \index{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N@{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N}!Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}}\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N@{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N}}\item[{\em 
+\hypertarget{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a577e74d24852a24295d63e50021704cd}{P\-O\-W\-E\-R\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-O\-N}\label{group__eps__power__module_ggadd75354311e873b06e0f85b643c5cea2a577e74d24852a24295d63e50021704cd}
+}]power module is turned on-\/ Maximum Power Point Tracking for this solar panel \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__power__module_ga0c3525e3a3eacc3a7dd41944194c919d}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-\-Power\-Module\-\_\-init@{E\-P\-S\-\_\-\-Power\-Module\-\_\-init}}
+\index{E\-P\-S\-\_\-\-Power\-Module\-\_\-init@{E\-P\-S\-\_\-\-Power\-Module\-\_\-init}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-\-Power\-Module\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-\-Power\-Module\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-\_\-\-X, }
+\item[{uint32\-\_\-t}]{starting\-\_\-pwm\-\_\-dutycycle, }
+\item[{T\-I\-M\-\_\-\-Handle\-Type\-Def $\ast$}]{htim, }
+\item[{uint32\-\_\-t}]{timer\-\_\-channel, }
+\item[{A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{hadc\-\_\-power\-\_\-module, }
+\item[{uint32\-\_\-t}]{A\-D\-C\-\_\-channel\-\_\-current, }
+\item[{uint32\-\_\-t}]{A\-D\-C\-\_\-channel\-\_\-voltage}
+\end{DoxyParamCaption}
+)}}\label{group__eps__power__module_ga0c3525e3a3eacc3a7dd41944194c919d}
+
+
+Initializes power module instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module\-\_\-\-X} & pointer to the power module instance to set. \\
+\hline
+{\em starting\-\_\-pwm\-\_\-dutycycle} & initial duty cycle at which the power module will start the mppt !0 is not a good start. \\
+\hline
+{\em htim} & pointer to timer peripheral handle for pwm generation. \\
+\hline
+{\em timer\-\_\-channel} & timer peripheral channel used for this pwm module. \\
+\hline
+{\em hadc\-\_\-power\-\_\-module} & pointer to adc peripheral handle that holds the current/voltage measurements. \\
+\hline
+{\em A\-D\-C\-\_\-channel\-\_\-current} & pointer to adc channel with the current measurement. \\
+\hline
+{\em A\-D\-C\-\_\-channel\-\_\-voltage} & pointer to adc channel with the voltage measurement. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__power__module_ga91f2694f503bf970c7e3139beba5ef77}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L@{E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L}}
+\index{E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L@{E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-\-Power\-Module\-\_\-init\-\_\-\-A\-L\-L (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-\_\-top, }
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-\_\-bottom, }
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-\_\-left, }
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-\_\-right}
+\end{DoxyParamCaption}
+)}}\label{group__eps__power__module_ga91f2694f503bf970c7e3139beba5ef77}
+
+
+Initializes all satellite power module instances. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module\-\_\-top} & pointer to top solar panel side power module. \\
+\hline
+{\em module\-\_\-bottom} & pointer to bottom solar panel side power module. \\
+\hline
+{\em module\-\_\-left} & pointer to left solar panel side power module. \\
+\hline
+{\em module\-\_\-right} & pointer to right solar panel side power module \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__power__module_ga197b1a19adb7c60f4cae8b17bc922bab}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm@{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm}}
+\index{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm@{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-apply\-\_\-pwm (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-X}
+\end{DoxyParamCaption}
+)}}\label{group__eps__power__module_ga197b1a19adb7c60f4cae8b17bc922bab}
+
+
+Apply calculated M\-P\-P\-T step pwm duty cycle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module\-X} & pointer to power module instance for which to apply the calculated pwm dutycycle. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__power__module_gaf492aeceb25b57af9236e98a8c78192c}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm@{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm}}
+\index{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm@{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-\-Power\-Module\-\_\-mppt\-\_\-update\-\_\-pwm (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{module\-X}
+\end{DoxyParamCaption}
+)}}\label{group__eps__power__module_gaf492aeceb25b57af9236e98a8c78192c}
+
+
+Update power module instance M\-P\-P\-T next step pwm duty cycle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em module\-X} & pointer to power module instance for which to calculate pwm duty cycle based on P\&O (protrube and observe) mppt sstrategy algorithm. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__power__module_gac5d4a4cc33370ab66b87a009674f421a}{\index{Eps\-\_\-power\-\_\-module@{Eps\-\_\-power\-\_\-module}!E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state@{E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state}}
+\index{E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state@{E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state}!Eps_power_module@{Eps\-\_\-power\-\_\-module}}
+\subsubsection[{E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-update\-\_\-power\-\_\-module\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-Power\-Module} $\ast$}]{power\-\_\-module}
+\end{DoxyParamCaption}
+)}}\label{group__eps__power__module_gac5d4a4cc33370ab66b87a009674f421a}
+
+
+Update power module instance adc measurements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em power\-\_\-module} & pointer to power module instance for which to get adc measurements. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}

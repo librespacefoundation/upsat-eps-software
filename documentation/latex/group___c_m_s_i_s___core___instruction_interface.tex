@@ -1,0 +1,617 @@
+\hypertarget{group___c_m_s_i_s___core___instruction_interface}{\section{C\-M\-S\-I\-S Core Instruction Interface}
+\label{group___c_m_s_i_s___core___instruction_interface}\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\-\_\-\-\_\-\-N\-O\-P}~\-\_\-\-\_\-nop
+\begin{DoxyCompactList}\small\item\em No Operation. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}{\-\_\-\-\_\-\-W\-F\-I}~\-\_\-\-\_\-wfi
+\begin{DoxyCompactList}\small\item\em Wait For Interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}{\-\_\-\-\_\-\-W\-F\-E}~\-\_\-\-\_\-wfe
+\begin{DoxyCompactList}\small\item\em Wait For Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}{\-\_\-\-\_\-\-S\-E\-V}~\-\_\-\-\_\-sev
+\begin{DoxyCompactList}\small\item\em Send Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}{\-\_\-\-\_\-\-I\-S\-B}()
+\begin{DoxyCompactList}\small\item\em Instruction Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}{\-\_\-\-\_\-\-D\-S\-B}()
+\begin{DoxyCompactList}\small\item\em Data Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}{\-\_\-\-\_\-\-D\-M\-B}()
+\begin{DoxyCompactList}\small\item\em Data Memory Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}{\-\_\-\-\_\-\-R\-E\-V}~\-\_\-\-\_\-rev
+\begin{DoxyCompactList}\small\item\em Reverse byte order (32 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga95b9bd281ddeda378b85afdb8f2ced86}{\-\_\-\-\_\-\-R\-O\-R}~\-\_\-\-\_\-ror
+\begin{DoxyCompactList}\small\item\em Rotate Right in unsigned value (32 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\-\_\-\-\_\-\-B\-K\-P\-T}(value)~\-\_\-\-\_\-breakpoint(value)
+\begin{DoxyCompactList}\small\item\em Breakpoint. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\-\_\-\-\_\-\-C\-L\-Z}~\-\_\-\-\_\-clz
+\begin{DoxyCompactList}\small\item\em Count leading zeros. \end{DoxyCompactList}\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}(r)~\char`\"{}=r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}
+
+\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-U\-S\-E\-\_\-\-R\-E\-G}(r)~\char`\"{}r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}
+
+\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\-\_\-\-\_\-\-N\-O\-P}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-nop
+\begin{DoxyCompactList}\small\item\em No Operation. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}{\-\_\-\-\_\-\-W\-F\-I}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfi
+\begin{DoxyCompactList}\small\item\em Wait For Interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}{\-\_\-\-\_\-\-W\-F\-E}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfe
+\begin{DoxyCompactList}\small\item\em Wait For Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}{\-\_\-\-\_\-\-S\-E\-V}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-sev
+\begin{DoxyCompactList}\small\item\em Send Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}{\-\_\-\-\_\-\-I\-S\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-isb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Instruction Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}{\-\_\-\-\_\-\-D\-S\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dsb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Data Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}{\-\_\-\-\_\-\-D\-M\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dmb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Data Memory Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}{\-\_\-\-\_\-\-R\-E\-V}~\-\_\-\-\_\-builtin\-\_\-bswap32
+\begin{DoxyCompactList}\small\item\em Reverse byte order (32 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga4e3acd41e7667cdf65ffcd8c76a8613f}{\-\_\-\-\_\-\-R\-E\-V16}~\-\_\-\-\_\-builtin\-\_\-bswap16                           /$\ast$ To\-Do\-:  A\-R\-M\-C\-C\-\_\-\-V6\-: check if \-\_\-\-\_\-builtin\-\_\-bswap16 could be used $\ast$/
+\begin{DoxyCompactList}\small\item\em Reverse byte order (16 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\-\_\-\-\_\-\-B\-K\-P\-T}(value)~\-\_\-\-\_\-\-A\-S\-M volatile (\char`\"{}bkpt \char`\"{}\#value)
+\begin{DoxyCompactList}\small\item\em Breakpoint. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\-\_\-\-\_\-\-C\-L\-Z}~\-\_\-\-\_\-builtin\-\_\-clz
+\begin{DoxyCompactList}\small\item\em Count leading zeros. \end{DoxyCompactList}\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}(r)~\char`\"{}=r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}
+
+\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-U\-S\-E\-\_\-\-R\-E\-G}(r)~\char`\"{}r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}
+
+\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\-\_\-\-\_\-\-B\-K\-P\-T}(value)~\-\_\-\-\_\-\-A\-S\-M volatile (\char`\"{}bkpt \char`\"{}\#value)
+\begin{DoxyCompactList}\small\item\em Breakpoint. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\-\_\-\-\_\-\-C\-L\-Z}~\-\_\-\-\_\-builtin\-\_\-clz
+\begin{DoxyCompactList}\small\item\em Count leading zeros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___c_m_s_i_s___core___instruction_interface_gae84a2733711339c5eefeb0d899506b96}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((section(\char`\"{}.rev16\-\_\-text\char`\"{}))) \-\_\-\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-I\-N\-L\-I\-N\-E \-\_\-\-\_\-\-A\-S\-M uint32\-\_\-t \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga4e3acd41e7667cdf65ffcd8c76a8613f}{\-\_\-\-\_\-\-R\-E\-V16}(uint32\-\_\-t value)
+\begin{DoxyCompactList}\small\item\em Reverse byte order (16 bit) \end{DoxyCompactList}\item 
+\hyperlink{group___c_m_s_i_s___core___instruction_interface_ga8e7a866927d3257a82b884ad14dbef4c}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((section(\char`\"{}.revsh\-\_\-text\char`\"{}))) \-\_\-\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-I\-N\-L\-I\-N\-E \-\_\-\-\_\-\-A\-S\-M int32\-\_\-t \-\_\-\-\_\-\-R\-E\-V\-S\-H(int32\-\_\-t value)
+\begin{DoxyCompactList}\small\item\em Reverse byte order in signed short value. \end{DoxyCompactList}\item 
+\hyperlink{group___c_m_s_i_s___core___instruction_interface_gab926fe7178a379c3a7c0410b06fcb661}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \-\_\-\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-I\-N\-L\-I\-N\-E uint32\-\_\-t \-\_\-\-\_\-\-R\-B\-I\-T(uint32\-\_\-t value)
+\begin{DoxyCompactList}\small\item\em Reverse bit order of value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t {\bfseries op2}
+\item 
+uint32\-\_\-t {\bfseries op2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Access to dedicated instructions 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}}
+\index{\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-B\-K\-P\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-B\-K\-P\-T(
+\begin{DoxyParamCaption}
+\item[{}]{value}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-breakpoint(value)}}\label{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}
+
+
+Breakpoint. 
+
+Causes the processor to enter Debug state. Debug tools can use this to investigate system state when the instruction at a particular address is reached. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & is ignored by the processor. If required, a debugger can use it to store additional information about the breakpoint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}}
+\index{\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-B\-K\-P\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-B\-K\-P\-T(
+\begin{DoxyParamCaption}
+\item[{}]{value}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-\-A\-S\-M volatile (\char`\"{}bkpt \char`\"{}\#value)}}\label{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}
+
+
+Breakpoint. 
+
+Causes the processor to enter Debug state. Debug tools can use this to investigate system state when the instruction at a particular address is reached. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & is ignored by the processor. If required, a debugger can use it to store additional information about the breakpoint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}}
+\index{\-\_\-\-\_\-\-B\-K\-P\-T@{\-\_\-\-\_\-\-B\-K\-P\-T}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-B\-K\-P\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-B\-K\-P\-T(
+\begin{DoxyParamCaption}
+\item[{}]{value}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-\-A\-S\-M volatile (\char`\"{}bkpt \char`\"{}\#value)}}\label{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}
+
+
+Breakpoint. 
+
+Causes the processor to enter Debug state. Debug tools can use this to investigate system state when the instruction at a particular address is reached. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & is ignored by the processor. If required, a debugger can use it to store additional information about the breakpoint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}}
+\index{\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-C\-L\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-C\-L\-Z~\-\_\-\-\_\-clz}}\label{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}
+
+
+Count leading zeros. 
+
+Counts the number of leading zeros of a data value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to count the leading zeros \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of leading zeros in value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}}
+\index{\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-C\-L\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-C\-L\-Z~\-\_\-\-\_\-builtin\-\_\-clz}}\label{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}
+
+
+Count leading zeros. 
+
+Counts the number of leading zeros of a data value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to count the leading zeros \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of leading zeros in value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}}
+\index{\-\_\-\-\_\-\-C\-L\-Z@{\-\_\-\-\_\-\-C\-L\-Z}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-C\-L\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-C\-L\-Z~\-\_\-\-\_\-builtin\-\_\-clz}}\label{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}
+
+
+Count leading zeros. 
+
+Counts the number of leading zeros of a data value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to count the leading zeros \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of leading zeros in value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-D\-M\-B@{\-\_\-\-\_\-\-D\-M\-B}}
+\index{\-\_\-\-\_\-\-D\-M\-B@{\-\_\-\-\_\-\-D\-M\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-D\-M\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-D\-M\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                   \_\_dmb(0xF);\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                \} \textcolor{keywordflow}{while} (0U)
+\end{DoxyCode}
+
+
+Data Memory Barrier. 
+
+Ensures the apparent order of the explicit memory operations before and after the instruction, without ensuring their completion. \hypertarget{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-D\-M\-B@{\-\_\-\-\_\-\-D\-M\-B}}
+\index{\-\_\-\-\_\-\-D\-M\-B@{\-\_\-\-\_\-\-D\-M\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-D\-M\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-D\-M\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dmb(0x\-F);}}\label{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}
+
+
+Data Memory Barrier. 
+
+Ensures the apparent order of the explicit memory operations before and after the instruction, without ensuring their completion. \hypertarget{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-D\-S\-B@{\-\_\-\-\_\-\-D\-S\-B}}
+\index{\-\_\-\-\_\-\-D\-S\-B@{\-\_\-\-\_\-\-D\-S\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-D\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-D\-S\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                   \_\_dsb(0xF);\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                \} \textcolor{keywordflow}{while} (0U)
+\end{DoxyCode}
+
+
+Data Synchronization Barrier. 
+
+Acts as a special kind of Data Memory Barrier. It completes when all explicit memory accesses before this instruction complete. \hypertarget{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-D\-S\-B@{\-\_\-\-\_\-\-D\-S\-B}}
+\index{\-\_\-\-\_\-\-D\-S\-B@{\-\_\-\-\_\-\-D\-S\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-D\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-D\-S\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dsb(0x\-F);}}\label{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}
+
+
+Data Synchronization Barrier. 
+
+Acts as a special kind of Data Memory Barrier. It completes when all explicit memory accesses before this instruction complete. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-I\-S\-B@{\-\_\-\-\_\-\-I\-S\-B}}
+\index{\-\_\-\-\_\-\-I\-S\-B@{\-\_\-\-\_\-\-I\-S\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-I\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-I\-S\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                   \_\_isb(0xF);\(\backslash\)
+                   \_\_schedule\_barrier();\(\backslash\)
+                \} \textcolor{keywordflow}{while} (0U)
+\end{DoxyCode}
+
+
+Instruction Synchronization Barrier. 
+
+Instruction Synchronization Barrier flushes the pipeline in the processor, so that all instructions following the I\-S\-B are fetched from cache or memory, after the instruction has been completed. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-I\-S\-B@{\-\_\-\-\_\-\-I\-S\-B}}
+\index{\-\_\-\-\_\-\-I\-S\-B@{\-\_\-\-\_\-\-I\-S\-B}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-I\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-I\-S\-B(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-isb(0x\-F);}}\label{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}
+
+
+Instruction Synchronization Barrier. 
+
+Instruction Synchronization Barrier flushes the pipeline in the processor, so that all instructions following the I\-S\-B are fetched from cache or memory, after the instruction has been completed. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-N\-O\-P@{\-\_\-\-\_\-\-N\-O\-P}}
+\index{\-\_\-\-\_\-\-N\-O\-P@{\-\_\-\-\_\-\-N\-O\-P}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-N\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-N\-O\-P~\-\_\-\-\_\-nop}}\label{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}
+
+
+No Operation. 
+
+No Operation does nothing. This instruction can be used for code alignment purposes. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-N\-O\-P@{\-\_\-\-\_\-\-N\-O\-P}}
+\index{\-\_\-\-\_\-\-N\-O\-P@{\-\_\-\-\_\-\-N\-O\-P}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-N\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-N\-O\-P~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-nop}}\label{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}
+
+
+No Operation. 
+
+No Operation does nothing. This instruction can be used for code alignment purposes. \hypertarget{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-R\-E\-V@{\-\_\-\-\_\-\-R\-E\-V}}
+\index{\-\_\-\-\_\-\-R\-E\-V@{\-\_\-\-\_\-\-R\-E\-V}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-R\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-R\-E\-V~\-\_\-\-\_\-rev}}\label{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}
+
+
+Reverse byte order (32 bit) 
+
+Reverses the byte order in integer value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-R\-E\-V@{\-\_\-\-\_\-\-R\-E\-V}}
+\index{\-\_\-\-\_\-\-R\-E\-V@{\-\_\-\-\_\-\-R\-E\-V}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-R\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-R\-E\-V~\-\_\-\-\_\-builtin\-\_\-bswap32}}\label{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}
+
+
+Reverse byte order (32 bit) 
+
+Reverses the byte order in integer value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga4e3acd41e7667cdf65ffcd8c76a8613f}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-R\-E\-V16@{\-\_\-\-\_\-\-R\-E\-V16}}
+\index{\-\_\-\-\_\-\-R\-E\-V16@{\-\_\-\-\_\-\-R\-E\-V16}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-R\-E\-V16}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-R\-E\-V16~\-\_\-\-\_\-builtin\-\_\-bswap16                           /$\ast$ To\-Do\-:  A\-R\-M\-C\-C\-\_\-\-V6\-: check if \-\_\-\-\_\-builtin\-\_\-bswap16 could be used $\ast$/}}\label{group___c_m_s_i_s___core___instruction_interface_ga4e3acd41e7667cdf65ffcd8c76a8613f}
+
+
+Reverse byte order (16 bit) 
+
+Reverses the byte order in two unsigned short values. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga95b9bd281ddeda378b85afdb8f2ced86}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-R\-O\-R@{\-\_\-\-\_\-\-R\-O\-R}}
+\index{\-\_\-\-\_\-\-R\-O\-R@{\-\_\-\-\_\-\-R\-O\-R}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-R\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-R\-O\-R~\-\_\-\-\_\-ror}}\label{group___c_m_s_i_s___core___instruction_interface_ga95b9bd281ddeda378b85afdb8f2ced86}
+
+
+Rotate Right in unsigned value (32 bit) 
+
+Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to rotate \\
+\hline
+\mbox{\tt in}  & {\em value} & Number of Bits to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rotated value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-S\-E\-V@{\-\_\-\-\_\-\-S\-E\-V}}
+\index{\-\_\-\-\_\-\-S\-E\-V@{\-\_\-\-\_\-\-S\-E\-V}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-S\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-S\-E\-V~\-\_\-\-\_\-sev}}\label{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}
+
+
+Send Event. 
+
+Send Event is a hint instruction. It causes an event to be signaled to the C\-P\-U. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-S\-E\-V@{\-\_\-\-\_\-\-S\-E\-V}}
+\index{\-\_\-\-\_\-\-S\-E\-V@{\-\_\-\-\_\-\-S\-E\-V}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-S\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-S\-E\-V~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-sev}}\label{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}
+
+
+Send Event. 
+
+Send Event is a hint instruction. It causes an event to be signaled to the C\-P\-U. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-W\-F\-E@{\-\_\-\-\_\-\-W\-F\-E}}
+\index{\-\_\-\-\_\-\-W\-F\-E@{\-\_\-\-\_\-\-W\-F\-E}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-W\-F\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-W\-F\-E~\-\_\-\-\_\-wfe}}\label{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}
+
+
+Wait For Event. 
+
+Wait For Event is a hint instruction that permits the processor to enter a low-\/power state until one of a number of events occurs. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-W\-F\-E@{\-\_\-\-\_\-\-W\-F\-E}}
+\index{\-\_\-\-\_\-\-W\-F\-E@{\-\_\-\-\_\-\-W\-F\-E}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-W\-F\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-W\-F\-E~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfe}}\label{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}
+
+
+Wait For Event. 
+
+Wait For Event is a hint instruction that permits the processor to enter a low-\/power state until one of a number of events occurs. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-W\-F\-I@{\-\_\-\-\_\-\-W\-F\-I}}
+\index{\-\_\-\-\_\-\-W\-F\-I@{\-\_\-\-\_\-\-W\-F\-I}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-W\-F\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-W\-F\-I~\-\_\-\-\_\-wfi}}\label{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}
+
+
+Wait For Interrupt. 
+
+Wait For Interrupt is a hint instruction that suspends execution until one of a number of events occurs. \hypertarget{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-\-W\-F\-I@{\-\_\-\-\_\-\-W\-F\-I}}
+\index{\-\_\-\-\_\-\-W\-F\-I@{\-\_\-\-\_\-\-W\-F\-I}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-\-W\-F\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-W\-F\-I~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfi}}\label{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}
+
+
+Wait For Interrupt. 
+
+Wait For Interrupt is a hint instruction that suspends execution until one of a number of events occurs. 
+
+\subsection{Function Documentation}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gae84a2733711339c5eefeb0d899506b96}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(section(\char`\"{}.rev16\-\_\-text\char`\"{}))}]{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_gae84a2733711339c5eefeb0d899506b96}
+
+
+Reverse byte order (16 bit) 
+
+Reverses the byte order in two unsigned short values. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga8e7a866927d3257a82b884ad14dbef4c}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(section(\char`\"{}.revsh\-\_\-text\char`\"{}))}]{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_ga8e7a866927d3257a82b884ad14dbef4c}
+
+
+Reverse byte order in signed short value. 
+
+Reverses the byte order in a signed short value with sign extension to integer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value 
+\end{DoxyReturn}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gab926fe7178a379c3a7c0410b06fcb661}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(always\-\_\-inline)}]{}
+\end{DoxyParamCaption}
+)}}\label{group___c_m_s_i_s___core___instruction_interface_gab926fe7178a379c3a7c0410b06fcb661}
+
+
+Reverse bit order of value. 
+
+Enable I\-R\-Q Interrupts.
+
+Set Priority Mask.
+
+Get Priority Mask.
+
+Set Main Stack Pointer.
+
+Get Main Stack Pointer.
+
+Set Process Stack Pointer.
+
+Get Process Stack Pointer.
+
+Get x\-P\-S\-R Register.
+
+Get A\-P\-S\-R Register.
+
+Get I\-P\-S\-R Register.
+
+Set Control Register.
+
+Get Control Register.
+
+Disable I\-R\-Q Interrupts.
+
+Reverse byte order (16 bit)
+
+Reverse byte order (32 bit)
+
+Data Memory Barrier.
+
+Data Synchronization Barrier.
+
+Instruction Synchronization Barrier.
+
+Send Event.
+
+Wait For Event.
+
+Wait For Interrupt.
+
+No Operation.
+
+Rotate Right in unsigned value (32 bit)
+
+Reverse byte order in signed short value.
+
+Reverses the bit order of the given value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value
+\end{DoxyReturn}
+Reverses the byte order in a signed short value with sign extension to integer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value
+\end{DoxyReturn}
+Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em op1} & Value to rotate \\
+\hline
+\mbox{\tt in}  & {\em op2} & Number of Bits to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rotated value
+\end{DoxyReturn}
+No Operation does nothing. This instruction can be used for code alignment purposes.
+
+Wait For Interrupt is a hint instruction that suspends execution until one of a number of events occurs.
+
+Wait For Event is a hint instruction that permits the processor to enter a low-\/power state until one of a number of events occurs.
+
+Send Event is a hint instruction. It causes an event to be signaled to the C\-P\-U.
+
+Instruction Synchronization Barrier flushes the pipeline in the processor, so that all instructions following the I\-S\-B are fetched from cache or memory, after the instruction has been completed.
+
+Acts as a special kind of Data Memory Barrier. It completes when all explicit memory accesses before this instruction complete.
+
+Ensures the apparent order of the explicit memory operations before and after the instruction, without ensuring their completion.
+
+Reverses the byte order in integer value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value
+\end{DoxyReturn}
+Reverses the byte order in two unsigned short values. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to reverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reversed value
+\end{DoxyReturn}
+Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to rotate \\
+\hline
+\mbox{\tt in}  & {\em value} & Number of Bits to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rotated value
+\end{DoxyReturn}
+Disables I\-R\-Q interrupts by setting the I-\/bit in the C\-P\-S\-R. Can only be executed in Privileged modes.
+
+Returns the content of the Control Register. \begin{DoxyReturn}{Returns}
+Control Register value
+\end{DoxyReturn}
+Writes the given value to the Control Register. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em control} & Control Register value to set\\
+\hline
+\end{DoxyParams}
+Returns the content of the I\-P\-S\-R Register. \begin{DoxyReturn}{Returns}
+I\-P\-S\-R Register value
+\end{DoxyReturn}
+Returns the content of the A\-P\-S\-R Register. \begin{DoxyReturn}{Returns}
+A\-P\-S\-R Register value
+\end{DoxyReturn}
+Returns the content of the x\-P\-S\-R Register. \begin{DoxyReturn}{Returns}
+x\-P\-S\-R Register value
+\end{DoxyReturn}
+Returns the current value of the Process Stack Pointer (P\-S\-P). \begin{DoxyReturn}{Returns}
+P\-S\-P Register value
+\end{DoxyReturn}
+Assigns the given value to the Process Stack Pointer (P\-S\-P). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em top\-Of\-Proc\-Stack} & Process Stack Pointer value to set\\
+\hline
+\end{DoxyParams}
+Returns the current value of the Main Stack Pointer (M\-S\-P). \begin{DoxyReturn}{Returns}
+M\-S\-P Register value
+\end{DoxyReturn}
+Assigns the given value to the Main Stack Pointer (M\-S\-P). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em top\-Of\-Main\-Stack} & Main Stack Pointer value to set\\
+\hline
+\end{DoxyParams}
+Returns the current state of the priority mask bit from the Priority Mask Register. \begin{DoxyReturn}{Returns}
+Priority Mask value
+\end{DoxyReturn}
+Assigns the given value to the Priority Mask Register. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pri\-Mask} & Priority Mask\\
+\hline
+\end{DoxyParams}
+Enables I\-R\-Q interrupts by clearing the I-\/bit in the C\-P\-S\-R. Can only be executed in Privileged modes. 
+
+\subsection{Variable Documentation}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gadb2bb33809b6f35ba4d176cbec7c7b75}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!op2@{op2}}
+\index{op2@{op2}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{op2}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t op2}}\label{group___c_m_s_i_s___core___instruction_interface_gadb2bb33809b6f35ba4d176cbec7c7b75}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+\{
+  \textcolor{keywordflow}{return} (op1 >> op2) | (op1 << (32U - op2))
+\end{DoxyCode}
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gadb2bb33809b6f35ba4d176cbec7c7b75}{\index{C\-M\-S\-I\-S Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}!op2@{op2}}
+\index{op2@{op2}!CMSIS Core Instruction Interface@{C\-M\-S\-I\-S Core Instruction Interface}}
+\subsubsection[{op2}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t op2}}\label{group___c_m_s_i_s___core___instruction_interface_gadb2bb33809b6f35ba4d176cbec7c7b75}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+\{
+  \textcolor{keywordflow}{return} (op1 >> op2) | (op1 << (32U - op2))
+\end{DoxyCode}

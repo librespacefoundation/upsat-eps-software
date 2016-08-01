@@ -1,0 +1,48 @@
+\hypertarget{group__eps__time___functions}{\section{Eps\-\_\-time\-\_\-\-Functions}
+\label{group__eps__time___functions}\index{Eps\-\_\-time\-\_\-\-Functions@{Eps\-\_\-time\-\_\-\-Functions}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{group__eps__time___functions_gafc4bbe218c73c1b84d1fd256309e6cf2}{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get} (void)
+\begin{DoxyCompactList}\small\item\em Returns the eps\-\_\-timer value. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__time___functions_ga06794a87db28fcff055b67f7485f3e67}{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment} (void)
+\begin{DoxyCompactList}\small\item\em Incrementss the E\-P\-S\-\_\-time\-\_\-counter. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__time___functions_gafc4bbe218c73c1b84d1fd256309e6cf2}{\index{Eps\-\_\-time\-\_\-\-Functions@{Eps\-\_\-time\-\_\-\-Functions}!E\-P\-S\-\_\-time\-\_\-counter\-\_\-get@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}}
+\index{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}!Eps_time_Functions@{Eps\-\_\-time\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-time\-\_\-counter\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__eps__time___functions_gafc4bbe218c73c1b84d1fd256309e6cf2}
+
+
+Returns the eps\-\_\-timer value. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em E\-P\-S\-\_\-time\-\_\-counter(!global} & ting!) value. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__time___functions_ga06794a87db28fcff055b67f7485f3e67}{\index{Eps\-\_\-time\-\_\-\-Functions@{Eps\-\_\-time\-\_\-\-Functions}!E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}}
+\index{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}!Eps_time_Functions@{Eps\-\_\-time\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__eps__time___functions_ga06794a87db28fcff055b67f7485f3e67}
+
+
+Incrementss the E\-P\-S\-\_\-time\-\_\-counter. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em none.} & \\
+\hline
+\end{DoxyRetVals}

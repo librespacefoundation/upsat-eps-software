@@ -11,6 +11,11 @@
 #include "stm32l1xx_hal.h"
 #include "eps_safety.h"
 
+/** @addtogroup eps_non_volatile_mem_handling
+  * @{
+  */
+
+
 /*ATTENTION:
  * on startup the device MUST be properly initialized.
  * this means that the final firmware must have the
@@ -19,12 +24,9 @@
  * value is considered corrupt, use a default value instead.
  * */
 
+#define DATA_EEPROM_BASE_ADDRESS 0x08080000/**< Data EEPROM addresses:  0x0808 0000 - 0x0808 1FFF  size: 8 Kbytes - cat3 device memory map from stm32l datasheet*/
 
-//cat3 device memory map from stm32l datasheet
-//Data EEPROM addresses:  0x0808 0000 - 0x0808 1FFF  size: 8 Kbytes
-#define DATA_EEPROM_BASE_ADDRESS 0x08080000
-
-//this word is written in the deployment flag address and read back to check if deployment stage has occured.this memory address mut be cleared the firt time the eps progam launches
+//**< This word is written in the deployment flag address and read back to check if deployment stage has occured.this memory address mut be cleared the firt time the eps progam launches*/
 #define DEPLOYMENT_KEY_A 0xDEADBEEF
 #define DEPLOYMENT_KEY_B 0xDEADBEE1
 #define DEPLOYMENT_KEY_C 0xDEADBEE2
@@ -43,7 +45,7 @@
 #define DEPLOYMENT_NOT_KEY_F 0xB16B00B7
 #define DEPLOYMENT_NOT_KEY_G 0xB16B00B6
 
-#define DEPLOYMENT_FLAG_ADDRESS_OFFSET 64
+#define DEPLOYMENT_FLAG_ADDRESS_OFFSET 64/**< FLASH MEMORY  ADDRESS OFFSET */
 
 #define DEPLOYMENT_FLAG_ADDRESS_A (DATA_EEPROM_BASE_ADDRESS+4)
 #define DEPLOYMENT_FLAG_ADDRESS_B (DEPLOYMENT_FLAG_ADDRESS_A+DEPLOYMENT_FLAG_ADDRESS_OFFSET)
@@ -55,17 +57,22 @@
 
 #define BOOT_COUNTER_ADDRESS (DATA_EEPROM_BASE_ADDRESS+8)
 
-#define LIMIT_BATTERY_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+16)
-#define LIMIT_BATTERY_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+20)
-#define LIMIT_BATTERY_CRITICAL_ADDRESS (DATA_EEPROM_BASE_ADDRESS+24)
-#define LIMIT_BATTERY_TEMPERATURE_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+28)
-#define LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+32)
+#define LIMIT_BATTERY_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+16)/**< FLASH MEMORY  ADDRESS OF BATTERY LOW THRESHOLD */
+#define LIMIT_BATTERY_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+20)/**< FLASH MEMORY  ADDRESS OF BATTERY HIGH THRESHOLD */
+#define LIMIT_BATTERY_CRITICAL_ADDRESS (DATA_EEPROM_BASE_ADDRESS+24)/**< FLASH MEMORY  ADDRESS OF BATTERY CRITICAL THRESHOLD */
+#define LIMIT_BATTERY_TEMPERATURE_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+28)/**< FLASH MEMORY  ADDRESS OF TEMPERATURE LOW THRESHOLD */
+#define LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+32)/**< FLASH MEMORY  ADDRESS OF TEMPERATURE HIGH THRESHOLD */
 
+/**
+ * @brief Deployment flag status.
+ *
+ * This datatype is used to define the status of the umbilical connector.
+ */
 typedef enum {
-	DEPLOYMENT_NOT,
-	DEPLOYMENT_OK,
-	DEPLOYMENT_UNDEFINED,
-	DEPLOYMENT_LAST_VALUE
+	DEPLOYMENT_NOT,/**< deployment has not happened but satellite is properly armed */
+	DEPLOYMENT_OK,/**< deployment has  happened but satellite is properly dissarmed */
+	DEPLOYMENT_UNDEFINED,/**< deployment sequence droped in unresolved situation */
+	DEPLOYMENT_LAST_VALUE/**< deployment status non valid. */
 }EPS_deployment_status;
 
 /*please delete this please...*/
@@ -88,3 +95,6 @@ void EPS_get_memory_word(uint32_t memory_address, uint32_t *memory_data );
 void EPS_set_memory_word(uint32_t memory_address, uint32_t *memory_data);
 
 #endif /* INC_EPS_NON_VOLATILE_MEM_HANDLING_H_ */
+/**
+  * @}
+  */

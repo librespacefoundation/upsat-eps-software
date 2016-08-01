@@ -1,0 +1,117 @@
+\hypertarget{struct_a_d_c___init_type_def}{\section{A\-D\-C\-\_\-\-Init\-Type\-Def Struct Reference}
+\label{struct_a_d_c___init_type_def}\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+}
+
+
+Structure definition of A\-D\-C and regular group initialization.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-adc.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a7e49d0db9ef7db8806bbfa57a1bd73a6}{Clock\-Prescaler}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_abebb8d3277cb9a5aae72578076762f5d}{Resolution}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_af9ec9040d55aa68c23d92d174b464ac1}{Data\-Align}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a47cd689a52562a2481059a5d8ed82788}{Scan\-Conv\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_ae3eedd269c3acc6c6933e8a252c36e71}{E\-O\-C\-Selection}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a6ebf4a0acd13047e0ac6316ace559d5d}{Low\-Power\-Auto\-Wait}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a34caee54ab87dbe4560dad512513fd42}{Low\-Power\-Auto\-Power\-Off}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a0309138376012c68518fb9e5e88213cb}{Channels\-Bank}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a4bf957b8be6ae85d71e9376e6f1e633b}{Continuous\-Conv\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_aa72b0cc3e8dac3a30097cf12093c42a7}{Nbr\-Of\-Conversion}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a35cc74067e2d269bb2f5e8d71c245b4b}{Discontinuous\-Conv\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a5c0078be814bfe2608ae5758826eafb8}{Nbr\-Of\-Disc\-Conversion}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_a47aba277f9d8f3c5774983de4ce9455b}{External\-Trig\-Conv}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_aeed14631d5f1d118a252ea24edd68ede}{External\-Trig\-Conv\-Edge}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___init_type_def_afa360066652d6e8a2a3f56426b756fab}{D\-M\-A\-Continuous\-Requests}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure definition of A\-D\-C and regular group initialization. 
+
+\begin{DoxyNote}{Note}
+Parameters of this structure are shared within 2 scopes\-:
+\begin{DoxyItemize}
+\item Scope entire A\-D\-C (affects regular and injected groups)\-: Clock\-Prescaler, Resolution, Scan\-Conv\-Mode, Data\-Align, Scan\-Conv\-Mode, E\-O\-C\-Selection, Low\-Power\-Auto\-Wait, Low\-Power\-Auto\-Power\-Off, Channels\-Bank.
+\item Scope regular group\-: Continuous\-Conv\-Mode, Nbr\-Of\-Conversion, Discontinuous\-Conv\-Mode, Nbr\-Of\-Disc\-Conversion, External\-Trig\-Conv\-Edge, External\-Trig\-Conv. 
+\end{DoxyItemize}
+
+The setting of these parameters with function H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Init() is conditioned to A\-D\-C state. A\-D\-C state can be either\-:
+\begin{DoxyItemize}
+\item For all parameters\-: A\-D\-C disabled
+\item For all parameters except 'Resolution', 'Scan\-Conv\-Mode', 'Low\-Power\-Auto\-Wait', 'Low\-Power\-Auto\-Power\-Off', 'Discontinuous\-Conv\-Mode', 'Nbr\-Of\-Disc\-Conversion' \-: A\-D\-C enabled without conversion on going on regular group.
+\item For parameters 'External\-Trig\-Conv' and 'External\-Trig\-Conv\-Edge'\-: A\-D\-C enabled, even with conversion on going. If A\-D\-C is not in the appropriate state to modify some parameters, these parameters setting is bypassed without error reporting (as it can be the expected behaviour in case of intended action to update another parameter (which fullfills the A\-D\-C state condition) on the fly). 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_a_d_c___init_type_def_a0309138376012c68518fb9e5e88213cb}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Channels\-Bank@{Channels\-Bank}}
+\index{Channels\-Bank@{Channels\-Bank}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Channels\-Bank}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Channels\-Bank}}\label{struct_a_d_c___init_type_def_a0309138376012c68518fb9e5e88213cb}
+Selects the A\-D\-C channels bank. This parameter can be a value of \hyperlink{group___a_d_c___channels_bank}{A\-D\-C Channels\-Bank}. Note\-: Banks availability depends on devices categories. Note\-: To change bank selection on the fly, without going through execution of 'H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Init()', macro '\hyperlink{group___a_d_c_ex___exported___macros_gaefce3b3493d4fc37fc478adf542ee064}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S\-\_\-\-B\-A\-N\-K()}' can be used directly. \hypertarget{struct_a_d_c___init_type_def_a7e49d0db9ef7db8806bbfa57a1bd73a6}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Clock\-Prescaler@{Clock\-Prescaler}}
+\index{Clock\-Prescaler@{Clock\-Prescaler}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Clock\-Prescaler}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Clock\-Prescaler}}\label{struct_a_d_c___init_type_def_a7e49d0db9ef7db8806bbfa57a1bd73a6}
+Select A\-D\-C clock source (asynchronous clock derived from H\-S\-I R\-C oscillator) and clock prescaler. This parameter can be a value of \hyperlink{group___a_d_c___clock_prescaler}{A\-D\-C Clock\-Prescaler} Note\-: In case of usage of channels on injected group, A\-D\-C frequency should be lower than A\-H\-B clock frequency /4 for resolution 12 or 10 bits, A\-H\-B clock frequency /3 for resolution 8 bits, A\-H\-B clock frequency /2 for resolution 6 bits. Note\-: H\-S\-I R\-C oscillator must be preliminarily enabled at R\-C\-C top level. \hypertarget{struct_a_d_c___init_type_def_a4bf957b8be6ae85d71e9376e6f1e633b}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Continuous\-Conv\-Mode@{Continuous\-Conv\-Mode}}
+\index{Continuous\-Conv\-Mode@{Continuous\-Conv\-Mode}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Continuous\-Conv\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Continuous\-Conv\-Mode}}\label{struct_a_d_c___init_type_def_a4bf957b8be6ae85d71e9376e6f1e633b}
+Specifies whether the conversion is performed in single mode (one conversion) or continuous mode for regular group, after the selected trigger occurred (software start or external trigger). This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E. \hypertarget{struct_a_d_c___init_type_def_af9ec9040d55aa68c23d92d174b464ac1}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Data\-Align@{Data\-Align}}
+\index{Data\-Align@{Data\-Align}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Data\-Align}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Data\-Align}}\label{struct_a_d_c___init_type_def_af9ec9040d55aa68c23d92d174b464ac1}
+Specifies A\-D\-C data alignment to right (M\-S\-B on register bit 11 and L\-S\-B on register bit 0) (default setting) or to left (if regular group\-: M\-S\-B on register bit 15 and L\-S\-B on register bit 4, if injected group (M\-S\-B kept as signed value due to potential negative value after offset application)\-: M\-S\-B on register bit 14 and L\-S\-B on register bit 3). This parameter can be a value of \hyperlink{group___a_d_c___data__align}{A\-D\-C Data\-\_\-align} \hypertarget{struct_a_d_c___init_type_def_a35cc74067e2d269bb2f5e8d71c245b4b}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Discontinuous\-Conv\-Mode@{Discontinuous\-Conv\-Mode}}
+\index{Discontinuous\-Conv\-Mode@{Discontinuous\-Conv\-Mode}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Discontinuous\-Conv\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Discontinuous\-Conv\-Mode}}\label{struct_a_d_c___init_type_def_a35cc74067e2d269bb2f5e8d71c245b4b}
+Specifies whether the conversions sequence of regular group is performed in Complete-\/sequence/\-Discontinuous-\/sequence (main sequence subdivided in successive parts). Discontinuous mode is used only if sequencer is enabled (parameter 'Scan\-Conv\-Mode'). If sequencer is disabled, this parameter is discarded. Discontinuous mode can be enabled only if continuous mode is disabled. If continuous mode is enabled, this parameter setting is discarded. This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E. \hypertarget{struct_a_d_c___init_type_def_afa360066652d6e8a2a3f56426b756fab}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!D\-M\-A\-Continuous\-Requests@{D\-M\-A\-Continuous\-Requests}}
+\index{D\-M\-A\-Continuous\-Requests@{D\-M\-A\-Continuous\-Requests}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{D\-M\-A\-Continuous\-Requests}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-D\-M\-A\-Continuous\-Requests}}\label{struct_a_d_c___init_type_def_afa360066652d6e8a2a3f56426b756fab}
+Specifies whether the D\-M\-A requests are performed in one shot mode (D\-M\-A transfer stop when number of conversions is reached) or in Continuous mode (D\-M\-A transfer unlimited, whatever number of conversions). Note\-: In continuous mode, D\-M\-A must be configured in circular mode. Otherwise an overrun will be triggered when D\-M\-A buffer maximum pointer is reached. Note\-: This parameter must be modified when no conversion is on going on both regular and injected groups (A\-D\-C disabled, or A\-D\-C enabled without continuous mode or external trigger that could launch a conversion). This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E. \hypertarget{struct_a_d_c___init_type_def_ae3eedd269c3acc6c6933e8a252c36e71}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!E\-O\-C\-Selection@{E\-O\-C\-Selection}}
+\index{E\-O\-C\-Selection@{E\-O\-C\-Selection}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{E\-O\-C\-Selection}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-E\-O\-C\-Selection}}\label{struct_a_d_c___init_type_def_ae3eedd269c3acc6c6933e8a252c36e71}
+Specifies what E\-O\-C (End Of Conversion) flag is used for conversion by polling and interruption\-: end of conversion of each rank or complete sequence. This parameter can be a value of \hyperlink{group___a_d_c___e_o_c_selection}{A\-D\-C E\-O\-C\-Selection}. Note\-: For injected group, end of conversion (flag\&I\-T) is raised only at the end of the sequence. Therefore, if end of conversion is set to end of each conversion, injected group should not be used with interruption (H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Start\-\_\-\-I\-T) or polling (H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Start and H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Poll\-For\-Conversion). By the way, polling is still possible since driver will use an estimated timing for end of injected conversion. Note\-: If overrun feature is intended to be used, use A\-D\-C in mode 'interruption' (function H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Start\-\_\-\-I\-T() ) with parameter E\-O\-C\-Selection set to end of each conversion or in mode 'transfer by D\-M\-A' (function H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Start\-\_\-\-D\-M\-A()). If overrun feature is intended to be bypassed, use A\-D\-C in mode 'polling' or 'interruption' with parameter E\-O\-C\-Selection must be set to end of sequence \hypertarget{struct_a_d_c___init_type_def_a47aba277f9d8f3c5774983de4ce9455b}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!External\-Trig\-Conv@{External\-Trig\-Conv}}
+\index{External\-Trig\-Conv@{External\-Trig\-Conv}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{External\-Trig\-Conv}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-External\-Trig\-Conv}}\label{struct_a_d_c___init_type_def_a47aba277f9d8f3c5774983de4ce9455b}
+Selects the external event used to trigger the conversion start of regular group. If set to A\-D\-C\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T, external triggers are disabled. If set to external trigger source, triggering is on event rising edge by default. This parameter can be a value of \hyperlink{group___a_d_c___external__trigger__source___regular}{A\-D\-C External trigger source Regular} \hypertarget{struct_a_d_c___init_type_def_aeed14631d5f1d118a252ea24edd68ede}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!External\-Trig\-Conv\-Edge@{External\-Trig\-Conv\-Edge}}
+\index{External\-Trig\-Conv\-Edge@{External\-Trig\-Conv\-Edge}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{External\-Trig\-Conv\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-External\-Trig\-Conv\-Edge}}\label{struct_a_d_c___init_type_def_aeed14631d5f1d118a252ea24edd68ede}
+Selects the external trigger edge of regular group. If trigger is set to A\-D\-C\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T, this parameter is discarded. This parameter can be a value of \hyperlink{group___a_d_c___external__trigger__edge___regular}{A\-D\-C external trigger enable for regular group} \hypertarget{struct_a_d_c___init_type_def_a34caee54ab87dbe4560dad512513fd42}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Low\-Power\-Auto\-Power\-Off@{Low\-Power\-Auto\-Power\-Off}}
+\index{Low\-Power\-Auto\-Power\-Off@{Low\-Power\-Auto\-Power\-Off}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Low\-Power\-Auto\-Power\-Off}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Low\-Power\-Auto\-Power\-Off}}\label{struct_a_d_c___init_type_def_a34caee54ab87dbe4560dad512513fd42}
+Selects the auto-\/off mode\-: the A\-D\-C automatically powers-\/off after a conversion and automatically wakes-\/up when a new conversion is triggered (with startup time between trigger and start of sampling). This feature can be combined with automatic wait mode (parameter 'Low\-Power\-Auto\-Wait'). This parameter can be a value of \hyperlink{group___a_d_c___low_power_auto_power_off}{A\-D\-C Low\-Power\-Auto\-Power\-Off}. \hypertarget{struct_a_d_c___init_type_def_a6ebf4a0acd13047e0ac6316ace559d5d}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Low\-Power\-Auto\-Wait@{Low\-Power\-Auto\-Wait}}
+\index{Low\-Power\-Auto\-Wait@{Low\-Power\-Auto\-Wait}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Low\-Power\-Auto\-Wait}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Low\-Power\-Auto\-Wait}}\label{struct_a_d_c___init_type_def_a6ebf4a0acd13047e0ac6316ace559d5d}
+Selects the dynamic low power Auto Delay\-: new conversion start only when the previous conversion (for regular group) or previous sequence (for injected group) has been treated by user software, using function H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Get\-Value() or H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Get\-Value(). This feature automatically adapts the speed of A\-D\-C to the speed of the system that reads the data. Moreover, this avoids risk of overrun for low frequency applications. This parameter can be a value of \hyperlink{group___a_d_c___low_power_auto_wait}{A\-D\-C Low\-Power\-Auto\-Wait}. Note\-: Do not use with interruption or D\-M\-A (H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Start\-\_\-\-I\-T(), H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Start\-\_\-\-D\-M\-A()) since they have to clear immediately the E\-O\-C flag to free the I\-R\-Q vector sequencer. Do use with polling\-: 1. Start conversion with H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Start(), 2. Later on, when conversion data is needed\-: use H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Poll\-For\-Conversion() to ensure that conversion is completed and use H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Get\-Value() to retrieve conversion result and trig another conversion (in case of usage of injected group, use the equivalent functions H\-A\-L\-\_\-\-A\-D\-C\-Ex\-Injected\-\_\-\-Start(), H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Get\-Value(), ...). Note\-: A\-D\-C clock latency and some timing constraints depending on clock prescaler have to be taken into account\-: refer to reference manual (register A\-D\-C\-\_\-\-C\-R2 bit D\-E\-L\-S description). \hypertarget{struct_a_d_c___init_type_def_aa72b0cc3e8dac3a30097cf12093c42a7}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Nbr\-Of\-Conversion@{Nbr\-Of\-Conversion}}
+\index{Nbr\-Of\-Conversion@{Nbr\-Of\-Conversion}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Nbr\-Of\-Conversion}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Nbr\-Of\-Conversion}}\label{struct_a_d_c___init_type_def_aa72b0cc3e8dac3a30097cf12093c42a7}
+Specifies the number of ranks that will be converted within the regular group sequencer. To use regular group sequencer and convert several ranks, parameter 'Scan\-Conv\-Mode' must be enabled. This parameter must be a number between Min\-\_\-\-Data = 1 and Max\-\_\-\-Data = 27. \hypertarget{struct_a_d_c___init_type_def_a5c0078be814bfe2608ae5758826eafb8}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Nbr\-Of\-Disc\-Conversion@{Nbr\-Of\-Disc\-Conversion}}
+\index{Nbr\-Of\-Disc\-Conversion@{Nbr\-Of\-Disc\-Conversion}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Nbr\-Of\-Disc\-Conversion}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Nbr\-Of\-Disc\-Conversion}}\label{struct_a_d_c___init_type_def_a5c0078be814bfe2608ae5758826eafb8}
+Specifies the number of discontinuous conversions in which the main sequence of regular group (parameter Nbr\-Of\-Conversion) will be subdivided. If parameter 'Discontinuous\-Conv\-Mode' is disabled, this parameter is discarded. This parameter must be a number between Min\-\_\-\-Data = 1 and Max\-\_\-\-Data = 8. \hypertarget{struct_a_d_c___init_type_def_abebb8d3277cb9a5aae72578076762f5d}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Resolution@{Resolution}}
+\index{Resolution@{Resolution}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Resolution}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Resolution}}\label{struct_a_d_c___init_type_def_abebb8d3277cb9a5aae72578076762f5d}
+Configures the A\-D\-C resolution. This parameter can be a value of \hyperlink{group___a_d_c___resolution}{A\-D\-C Resolution} \hypertarget{struct_a_d_c___init_type_def_a47cd689a52562a2481059a5d8ed82788}{\index{A\-D\-C\-\_\-\-Init\-Type\-Def@{A\-D\-C\-\_\-\-Init\-Type\-Def}!Scan\-Conv\-Mode@{Scan\-Conv\-Mode}}
+\index{Scan\-Conv\-Mode@{Scan\-Conv\-Mode}!ADC_InitTypeDef@{A\-D\-C\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Scan\-Conv\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Init\-Type\-Def\-::\-Scan\-Conv\-Mode}}\label{struct_a_d_c___init_type_def_a47cd689a52562a2481059a5d8ed82788}
+Configures the sequencer of regular and injected groups. This parameter can be associated to parameter 'Discontinuous\-Conv\-Mode' to have main sequence subdivided in successive parts. If disabled\-: Conversion is performed in single mode (one channel converted, the one defined in rank 1). Parameters 'Nbr\-Of\-Conversion' and 'Injected\-Nbr\-Of\-Conversion' are discarded (equivalent to set to 1). If enabled\-: Conversions are performed in sequence mode (multiple ranks defined by 'Nbr\-Of\-Conversion'/'Injected\-Nbr\-Of\-Conversion' and each channel rank). Scan direction is upward\-: from rank1 to rank 'n'. This parameter can be a value of \hyperlink{group___a_d_c___scan__mode}{A\-D\-C Scan mode} 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__adc_8h}{stm32l1xx\-\_\-hal\-\_\-adc.\-h}\end{DoxyCompactItemize}

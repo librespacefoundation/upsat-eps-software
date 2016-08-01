@@ -1,0 +1,41 @@
+\hypertarget{structarm__fir__instance__q7}{\section{arm\-\_\-fir\-\_\-instance\-\_\-q7 Struct Reference}
+\label{structarm__fir__instance__q7}\index{arm\-\_\-fir\-\_\-instance\-\_\-q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}}
+}
+
+
+Instance structure for the Q7 F\-I\-R filter.  
+
+
+
+
+{\ttfamily \#include $<$arm\-\_\-math.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\-\_\-t \hyperlink{structarm__fir__instance__q7_a9b50840e2c5ef5b17e1a584fb4cf0d06}{num\-Taps}
+\item 
+q7\-\_\-t $\ast$ \hyperlink{structarm__fir__instance__q7_aaddea3b9c7e16ddfd9428b7bf9f9c200}{p\-State}
+\item 
+q7\-\_\-t $\ast$ \hyperlink{structarm__fir__instance__q7_a0e45aedefc3fffad6cb315c5b6e5bd49}{p\-Coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instance structure for the Q7 F\-I\-R filter. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structarm__fir__instance__q7_a9b50840e2c5ef5b17e1a584fb4cf0d06}{\index{arm\-\_\-fir\-\_\-instance\-\_\-q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}!num\-Taps@{num\-Taps}}
+\index{num\-Taps@{num\-Taps}!arm_fir_instance_q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}}
+\subsubsection[{num\-Taps}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t arm\-\_\-fir\-\_\-instance\-\_\-q7\-::num\-Taps}}\label{structarm__fir__instance__q7_a9b50840e2c5ef5b17e1a584fb4cf0d06}
+number of filter coefficients in the filter. \hypertarget{structarm__fir__instance__q7_a0e45aedefc3fffad6cb315c5b6e5bd49}{\index{arm\-\_\-fir\-\_\-instance\-\_\-q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}!p\-Coeffs@{p\-Coeffs}}
+\index{p\-Coeffs@{p\-Coeffs}!arm_fir_instance_q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}}
+\subsubsection[{p\-Coeffs}]{\setlength{\rightskip}{0pt plus 5cm}q7\-\_\-t$\ast$ arm\-\_\-fir\-\_\-instance\-\_\-q7\-::p\-Coeffs}}\label{structarm__fir__instance__q7_a0e45aedefc3fffad6cb315c5b6e5bd49}
+points to the coefficient array. The array is of length num\-Taps. \hypertarget{structarm__fir__instance__q7_aaddea3b9c7e16ddfd9428b7bf9f9c200}{\index{arm\-\_\-fir\-\_\-instance\-\_\-q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}!p\-State@{p\-State}}
+\index{p\-State@{p\-State}!arm_fir_instance_q7@{arm\-\_\-fir\-\_\-instance\-\_\-q7}}
+\subsubsection[{p\-State}]{\setlength{\rightskip}{0pt plus 5cm}q7\-\_\-t$\ast$ arm\-\_\-fir\-\_\-instance\-\_\-q7\-::p\-State}}\label{structarm__fir__instance__q7_aaddea3b9c7e16ddfd9428b7bf9f9c200}
+points to the state variable array. The array is of length num\-Taps+block\-Size-\/1. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/arm\-\_\-math.\-h\end{DoxyCompactItemize}

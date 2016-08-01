@@ -1,0 +1,46 @@
+\hypertarget{struct_a_d_c___channel_conf_type_def}{\section{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def Struct Reference}
+\label{struct_a_d_c___channel_conf_type_def}\index{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}}
+}
+
+
+Structure definition of A\-D\-C channel for regular group.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-adc.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___channel_conf_type_def_a771e64a3695f61cb1cce4fd65e956f6b}{Channel}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___channel_conf_type_def_a106e52a928aefb7778802bac0b75cf2d}{Rank}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___channel_conf_type_def_ae9486a657d515b87e2c2853db59afaaa}{Sampling\-Time}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure definition of A\-D\-C channel for regular group. 
+
+\begin{DoxyNote}{Note}
+The setting of these parameters with function H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Config\-Channel() is conditioned to A\-D\-C state. A\-D\-C can be either disabled or enabled without conversion on going on regular group. 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_a_d_c___channel_conf_type_def_a771e64a3695f61cb1cce4fd65e956f6b}{\index{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}!Channel@{Channel}}
+\index{Channel@{Channel}!ADC_ChannelConfTypeDef@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}}
+\subsubsection[{Channel}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def\-::\-Channel}}\label{struct_a_d_c___channel_conf_type_def_a771e64a3695f61cb1cce4fd65e956f6b}
+Specifies the channel to configure into A\-D\-C regular group. This parameter can be a value of \hyperlink{group___a_d_c__channels}{A\-D\-C channels} Note\-: Depending on devices, some channels may not be available on package pins. Refer to device datasheet for channels availability. Maximum number of channels by device category (without taking in account each device package constraints)\-: S\-T\-M32\-L1 category 1, 2\-: 24 channels on external pins + 3 channels on internal measurement paths (Vref\-Int, Temp sensor, Vcomp)\-: Channel 0 to channel 26. S\-T\-M32\-L1 category 3\-: 25 channels on external pins + 3 channels on internal measurement paths (Vref\-Int, Temp sensor, Vcomp)\-: Channel 0 to channel 26, 1 additional channel in bank B. Note\-: O\-P\-A\-M\-P1 and O\-P\-A\-M\-P2 are connected internally but not increasing internal channels number\-: they are sharing A\-D\-C input with external channels A\-D\-C\-\_\-\-I\-N3 and A\-D\-C\-\_\-\-I\-N8. S\-T\-M32\-L1 category 4, 5\-: 40 channels on external pins + 3 channels on internal measurement paths (Vref\-Int, Temp sensor, Vcomp)\-: Channel 0 to channel 31, 11 additional channels in bank B. Note\-: O\-P\-A\-M\-P1 and O\-P\-A\-M\-P2 are connected internally but not increasing internal channels number\-: they are sharing A\-D\-C input with external channels A\-D\-C\-\_\-\-I\-N3 and A\-D\-C\-\_\-\-I\-N8. Note\-: In case of peripherals O\-P\-A\-M\-Px not used\-: 3 channels (3, 8, 13) can be configured as direct channels (fast channels). Refer to macro ' \-\_\-\-\_\-\-H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-P\-E\-E\-D\-\_\-\-F\-A\-S\-T() '. Note\-: In case of peripheral O\-P\-A\-M\-P3 and A\-D\-C channel O\-P\-A\-M\-P3 used (O\-P\-A\-M\-P3 available on S\-T\-M32\-L1 devices Cat.\-4 only)\-: the analog switch C\-O\-M\-P1\-\_\-\-S\-W1 must be closed. Refer to macro\-: ' \-\_\-\-\_\-\-H\-A\-L\-\_\-\-O\-P\-A\-M\-P\-\_\-\-O\-P\-A\-M\-P3\-O\-U\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-\_\-\-A\-D\-C\-\_\-\-C\-O\-M\-P1() '. \hypertarget{struct_a_d_c___channel_conf_type_def_a106e52a928aefb7778802bac0b75cf2d}{\index{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}!Rank@{Rank}}
+\index{Rank@{Rank}!ADC_ChannelConfTypeDef@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}}
+\subsubsection[{Rank}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def\-::\-Rank}}\label{struct_a_d_c___channel_conf_type_def_a106e52a928aefb7778802bac0b75cf2d}
+Specifies the rank in the regular group sequencer. This parameter can be a value of \hyperlink{group___a_d_c__regular__rank}{A\-D\-C rank into regular group} Note\-: In case of need to disable a channel or change order of conversion sequencer, rank containing a previous channel setting can be overwritten by the new channel setting (or parameter number of conversions can be adjusted) \hypertarget{struct_a_d_c___channel_conf_type_def_ae9486a657d515b87e2c2853db59afaaa}{\index{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}!Sampling\-Time@{Sampling\-Time}}
+\index{Sampling\-Time@{Sampling\-Time}!ADC_ChannelConfTypeDef@{A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def}}
+\subsubsection[{Sampling\-Time}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Channel\-Conf\-Type\-Def\-::\-Sampling\-Time}}\label{struct_a_d_c___channel_conf_type_def_ae9486a657d515b87e2c2853db59afaaa}
+Sampling time value to be set for the selected channel. Unit\-: A\-D\-C clock cycles Conversion time is the addition of sampling time and processing time (12 A\-D\-C clock cycles at A\-D\-C resolution 12 bits, 11 cycles at 10 bits, 9 cycles at 8 bits, 7 cycles at 6 bits). This parameter can be a value of \hyperlink{group___a_d_c__sampling__times}{A\-D\-C sampling times} Caution\-: This parameter updates the parameter property of the channel, that can be used into regular and/or injected groups. If this same channel has been previously configured in the other group (regular/injected), it will be updated to last setting. Note\-: In case of usage of internal measurement channels (Vref\-Int/\-Vbat/\-Temp\-Sensor), sampling time constraints must be respected (sampling time can be adjusted in function of A\-D\-C clock frequency and sampling time setting) Refer to device datasheet for timings values, parameters T\-S\-\_\-vrefint, T\-S\-\_\-temp (values rough order\-: 4us min). 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__adc_8h}{stm32l1xx\-\_\-hal\-\_\-adc.\-h}\end{DoxyCompactItemize}

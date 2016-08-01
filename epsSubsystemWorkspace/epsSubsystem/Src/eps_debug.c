@@ -9,16 +9,31 @@
 
 extern UART_HandleTypeDef huart1;
 
+/** @addtogroup eps_debug
+  * @{
+  */
+
+/**
+  * @brief write data to debug uart.
+  *        TODO: implement this! for uart debug record.
+  * @param  void.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_flush_debug_data_to_uart(void){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_DEBUG_UART_FLUSH;
-
 
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;
 	return bootsequence_status;
 }
 
+/**
+  * @brief Initialize uart debug.
+  *        TODO: implement this! for uart debug record.
+  * @param  void.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_debug_uart_init(void){
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_DEBUG_UART_INIT;
@@ -36,3 +51,6 @@ EPS_soft_error_status EPS_debug_uart_init(void){
 	bootsequence_status = EPS_SOFT_ERROR_OK;
 	return bootsequence_status;
 }
+/**
+  * @}
+  */

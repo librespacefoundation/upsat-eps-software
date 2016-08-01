@@ -59,11 +59,11 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 	/*Power up all voltage rails except SU */
 	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
 	HAL_Delay(50);
-	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-	HAL_Delay(50);
-//	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
-//	HAL_sys_delay(50);
 	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
+	HAL_Delay(50);
+	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
+	HAL_sys_delay(50);
+	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
 	HAL_sys_delay(50);
  	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
 
@@ -78,23 +78,25 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
   * @param  state: the eps state structure containing central info of the EPS subsystem.
   * @retval Error status for handling and debugging.
   */
-EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
+EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state) {
 
-	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_UMBILICAL_CHECK;
+	EPS_soft_error_status bootsequence_status =
+	        EPS_SOFT_ERROR_BOOTSEQ_UMBILICAL_CHECK;
 
-	state->umbilical_switch = 0xff;//true
+	state->umbilical_switch = 0xff; //true
 
 	for (uint8_t var = 0; var < 10; ++var) {
 
-		GPIO_PinState umbilical_pin =HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port, GPIO_UMBILICAL_Pin);
+		GPIO_PinState umbilical_pin = HAL_GPIO_ReadPin(GPIO_UMBILICAL_GPIO_Port,
+		        GPIO_UMBILICAL_Pin);
 		HAL_Delay(10);
-		if(umbilical_pin == GPIO_PIN_SET){
-			state->umbilical_switch = 0x00;//false
+		if (umbilical_pin == GPIO_PIN_SET) {
+			state->umbilical_switch = 0x00; //false
+			break;
 		}
 	}
 
-
-	if (state->umbilical_switch==0x00){//false
+	if (state->umbilical_switch == 0x00) { //false
 		/* umbilical is not connected = high */
 
 		/* nominal mode. */
@@ -103,14 +105,12 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state){
 		/* deployment stage*/
 		error_status = EPS_bootseq_enter_deployment_stage(&eps_board_state);
 
-	}
-	else if(state->umbilical_switch==0xff){//true
+	} else if (state->umbilical_switch == 0xff) { //true
 		/* umbilical is connected = low */
 
 		/* debug mode. */
 		EPS_umbilical_mode = UMBILICAL_CONNECTED;
-	}
-	else{
+	} else {
 		//error handling for undefined umbilical behavior.
 		error_status = EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED;
 		EPS_umbilical_mode = UMBILICAL_CONNECTOR_UNDEFINED_STATE;
@@ -134,8 +134,9 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 
 	EPS_soft_error_status bootsequence_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_STAGE;
 
+	EPS_deployment_status curret_deployment_status = EPS_check_deployment_status();
 	//perfrom deployment check and if needed enter deployment mode.
-	if(EPS_check_deployment_status() == DEPLOYMENT_NOT){
+	if(curret_deployment_status == DEPLOYMENT_NOT){
 
 
 		/* power of all rails */
@@ -211,6 +212,12 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
 		HAL_Delay(1);
 	}
+	else if(curret_deployment_status == DEPLOYMENT_OK){
+		/* Deployment has succesfully occured.*/
+	}
+	else{
+		/*TON PINOUME*/
+	}
 
 	bootsequence_status = EPS_SOFT_ERROR_OK;
 	return bootsequence_status;
@@ -220,4 +227,3 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 /**
   * @}
   */
-

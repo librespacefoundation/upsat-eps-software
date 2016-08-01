@@ -1,0 +1,91 @@
+\hypertarget{group__cpu-adc-utilities}{\section{Cpu-\/adc-\/utilities}
+\label{group__cpu-adc-utilities}\index{Cpu-\/adc-\/utilities@{Cpu-\/adc-\/utilities}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__cpu-adc-utilities_ga773a2f94399984a865880e64f40a6172}{\#define {\bfseries V\-D\-D\-A\-\_\-\-A\-P\-P\-L\-I}~((uint32\-\_\-t) 3300)    /$\ast$ Value of analog voltage supply Vdda (unit\-: m\-V) $\ast$/}\label{group__cpu-adc-utilities_ga773a2f94399984a865880e64f40a6172}
+
+\item 
+\hypertarget{group__cpu-adc-utilities_gaad9d5bc8be540a4a3b51556d2c989986}{\#define {\bfseries R\-A\-N\-G\-E\-\_\-12\-B\-I\-T\-S}~((uint32\-\_\-t) 4095)    /$\ast$ Max digital value with a full range of 12 bits $\ast$/}\label{group__cpu-adc-utilities_gaad9d5bc8be540a4a3b51556d2c989986}
+
+\item 
+\hypertarget{group__cpu-adc-utilities_gac6ec4e75c2713b03028da7e4fae538bb}{\#define {\bfseries T\-E\-M\-P30\-\_\-\-C\-A\-L\-\_\-\-A\-D\-D\-R}~((uint16\-\_\-t$\ast$) ((uint32\-\_\-t) 0x1\-F\-F8007\-A)) /$\ast$ Internal temperature sensor, parameter T\-S\-\_\-\-C\-A\-L1\-: T\-S A\-D\-C raw data acquired at a temperature of 110 Deg\-C (+-\/5 Deg\-C), V\-D\-D\-A = 3.\-3 V (+-\/10 m\-V). $\ast$/}\label{group__cpu-adc-utilities_gac6ec4e75c2713b03028da7e4fae538bb}
+
+\item 
+\hypertarget{group__cpu-adc-utilities_ga12cff7d68ffa596315a731d300ad77b9}{\#define {\bfseries T\-E\-M\-P110\-\_\-\-C\-A\-L\-\_\-\-A\-D\-D\-R}~((uint16\-\_\-t$\ast$) ((uint32\-\_\-t) 0x1\-F\-F8007\-E)) /$\ast$ Internal temperature sensor, parameter T\-S\-\_\-\-C\-A\-L2\-: T\-S A\-D\-C raw data acquired at a temperature of  30 Deg\-C (+-\/5 Deg\-C), V\-D\-D\-A = 3.\-3 V (+-\/10 m\-V). $\ast$/}\label{group__cpu-adc-utilities_ga12cff7d68ffa596315a731d300ad77b9}
+
+\item 
+\hypertarget{group__cpu-adc-utilities_ga77d1256333815f31d608d31528b7dddd}{\#define {\bfseries V\-D\-D\-A\-\_\-\-T\-E\-M\-P\-\_\-\-C\-A\-L}~((uint32\-\_\-t) 3000)        /$\ast$ Vdda value with which temperature sensor has been calibrated in production (+-\/10 m\-V). $\ast$/                                                               /$\ast$ This calibration parameter is intended to calculate the actual V\-D\-D\-A from Vrefint A\-D\-C measurement. $\ast$/}\label{group__cpu-adc-utilities_ga77d1256333815f31d608d31528b7dddd}
+
+\item 
+\#define \hyperlink{group__cpu-adc-utilities_ga5621ec04f58777b467e339966f910e54}{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110}(T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A)
+\begin{DoxyCompactList}\small\item\em Computation of temperature (unit\-: degree Celsius) from the internal temperature sensor measurement by A\-D\-C. Computation is using temperature sensor calibration values done in production. Computation formula\-: Temperature = (T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A -\/ T\-S\-\_\-\-C\-A\-L1) $\ast$ (110deg\-C -\/ 30deg\-C) / (T\-S\-\_\-\-C\-A\-L2 -\/ T\-S\-\_\-\-C\-A\-L1) + 30deg\-C with T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A = temperature sensor raw data measured by A\-D\-C Avg\-\_\-\-Slope = (T\-S\-\_\-\-C\-A\-L2 -\/ T\-S\-\_\-\-C\-A\-L1) / (110 -\/ 30) T\-S\-\_\-\-C\-A\-L1 = T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A @30deg\-C (calibrated in factory) T\-S\-\_\-\-C\-A\-L2 = T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A @110deg\-C (calibrated in factory) Calculation validity conditioned to settings\-: \end{DoxyCompactList}\item 
+\#define \hyperlink{group__cpu-adc-utilities_ga793e1b3d3c834d5402767910f604a209}{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E}(A\-D\-C\-\_\-\-D\-A\-T\-A)~( ((A\-D\-C\-\_\-\-D\-A\-T\-A) $\ast$ V\-D\-D\-A\-\_\-\-A\-P\-P\-L\-I) / R\-A\-N\-G\-E\-\_\-12\-B\-I\-T\-S)
+\begin{DoxyCompactList}\small\item\em Computation of voltage (unit\-: m\-V) from A\-D\-C measurement digital value on range 12 bits. Calculation validity conditioned to settings\-: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__cpu-adc-utilities_ga793e1b3d3c834d5402767910f604a209}{\index{Cpu-\/adc-\/utilities@{Cpu-\/adc-\/utilities}!C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E@{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E}}
+\index{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E@{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E}!Cpu-adc-utilities@{Cpu-\/adc-\/utilities}}
+\subsubsection[{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-D\-I\-G\-I\-T\-A\-L\-\_\-12\-B\-I\-T\-S\-\_\-\-T\-O\-\_\-\-V\-O\-L\-T\-A\-G\-E(
+\begin{DoxyParamCaption}
+\item[{}]{A\-D\-C\-\_\-\-D\-A\-T\-A}
+\end{DoxyParamCaption}
+)~( ((A\-D\-C\-\_\-\-D\-A\-T\-A) $\ast$ V\-D\-D\-A\-\_\-\-A\-P\-P\-L\-I) / R\-A\-N\-G\-E\-\_\-12\-B\-I\-T\-S)}}\label{group__cpu-adc-utilities_ga793e1b3d3c834d5402767910f604a209}
+
+
+Computation of voltage (unit\-: m\-V) from A\-D\-C measurement digital value on range 12 bits. Calculation validity conditioned to settings\-: 
+
+
+\begin{DoxyItemize}
+\item A\-D\-C resolution 12 bits (need to scale value if using a different resolution).
+\item Power supply of analog voltage Vdda 3.\-3\-V (need to scale value if using a different analog voltage supply value). 
+\begin{DoxyParams}{Parameters}
+{\em A\-D\-C\-\_\-\-D\-A\-T\-A} & Digital value measured by A\-D\-C \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}\hypertarget{group__cpu-adc-utilities_ga5621ec04f58777b467e339966f910e54}{\index{Cpu-\/adc-\/utilities@{Cpu-\/adc-\/utilities}!C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110@{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110}}
+\index{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110@{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110}!Cpu-adc-utilities@{Cpu-\/adc-\/utilities}}
+\subsubsection[{C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-M\-P\-U\-T\-A\-T\-I\-O\-N\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-T\-E\-M\-P30\-\_\-\-T\-E\-M\-P110(
+\begin{DoxyParamCaption}
+\item[{}]{T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A}
+\end{DoxyParamCaption}
+)}}\label{group__cpu-adc-utilities_ga5621ec04f58777b467e339966f910e54}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((( ((int32\_t)((TS\_ADC\_DATA * VDDA\_APPLI) / VDDA\_TEMP\_CAL)                  \(\backslash\)
+        - (int32\_t) *TEMP30\_CAL\_ADDR)                                          \(\backslash\)
+     ) * (int32\_t)(110 - 30)                                                   \(\backslash\)
+    ) / (int32\_t)(*TEMP110\_CAL\_ADDR - *TEMP30\_CAL\_ADDR)                        \(\backslash\)
+   ) + 30                                                                      \(\backslash\)
+  )
+\end{DoxyCode}
+
+
+Computation of temperature (unit\-: degree Celsius) from the internal temperature sensor measurement by A\-D\-C. Computation is using temperature sensor calibration values done in production. Computation formula\-: Temperature = (T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A -\/ T\-S\-\_\-\-C\-A\-L1) $\ast$ (110deg\-C -\/ 30deg\-C) / (T\-S\-\_\-\-C\-A\-L2 -\/ T\-S\-\_\-\-C\-A\-L1) + 30deg\-C with T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A = temperature sensor raw data measured by A\-D\-C Avg\-\_\-\-Slope = (T\-S\-\_\-\-C\-A\-L2 -\/ T\-S\-\_\-\-C\-A\-L1) / (110 -\/ 30) T\-S\-\_\-\-C\-A\-L1 = T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A @30deg\-C (calibrated in factory) T\-S\-\_\-\-C\-A\-L2 = T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A @110deg\-C (calibrated in factory) Calculation validity conditioned to settings\-: 
+
+
+\begin{DoxyItemize}
+\item A\-D\-C resolution 12 bits (need to scale conversion value if using a different resolution).
+\item Power supply of analog voltage set to literal V\-D\-D\-A\-\_\-\-A\-P\-P\-L\-I (need to scale value if using a different value of analog voltage supply). 
+\begin{DoxyParams}{Parameters}
+{\em T\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A} & Temperature sensor digital value measured by A\-D\-C \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}

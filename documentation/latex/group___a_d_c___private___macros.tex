@@ -1,0 +1,806 @@
+\hypertarget{group___a_d_c___private___macros}{\section{A\-D\-C Private Macros}
+\label{group___a_d_c___private___macros}\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___a_d_c___private___macros_gafe3a7a04ff078c62ae98b19403f696c7}{A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Verification of A\-D\-C state\-: enabled or disabled. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga2ccb82ecf85d6c6d1ff2cdf9b6a82d2b}{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)~(((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Instance-\/$>$C\-R2 \& \hyperlink{group___peripheral___registers___bits___definition_ga574b4d8e90655d0432882d620e629234}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-E\-N}) == R\-E\-S\-E\-T)
+\begin{DoxyCompactList}\small\item\em Test if conversion trigger of regular group is software start or external trigger. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaa3a1c2197a097b9bb8159b6eb1ac8941}{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)~(((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Instance-\/$>$C\-R2 \& \hyperlink{group___peripheral___registers___bits___definition_ga07330f702208792faca3a563dc4fd9c6}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-J\-E\-X\-T\-E\-N}) == R\-E\-S\-E\-T)
+\begin{DoxyCompactList}\small\item\em Test if conversion trigger of injected group is software start or external trigger. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaaf93e91b164d4a220aae475eff82665f}{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T}~M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G
+\begin{DoxyCompactList}\small\item\em Simultaneously clears and sets specific bits of the handle State. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gac7ab87a3ab932eed1b3ac5faad4e3aa9}{A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)~((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Error\-Code = \hyperlink{group___a_d_c___error___code_ga93b4576d46ee0f8c53b7d69f39778e38}{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-E\-R\-R\-O\-R\-\_\-\-N\-O\-N\-E})
+\begin{DoxyCompactList}\small\item\em Clear A\-D\-C error code (set it to error code\-: \char`\"{}no error\char`\"{}) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga2b29c0e46fa4205f77b15fe7c3425fb8}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T}(\-\_\-\-Nbr\-Of\-Conversion\-\_\-)~(((\-\_\-\-Nbr\-Of\-Conversion\-\_\-) -\/ (uint8\-\_\-t)1) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\hyperlink{group___peripheral___registers___bits___definition_gae68a19a18d72f6d87c6f2b8cc8bfc6dc}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L}))
+\begin{DoxyCompactList}\small\item\em Set A\-D\-C number of ranks into regular channel sequence length. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaeb66714538d978d4d336a4a6ef0d58bc}{A\-D\-C\-\_\-\-S\-M\-P\-R2}(\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, \-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ ((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) -\/ 10)))
+\begin{DoxyCompactList}\small\item\em Set the A\-D\-C's sample time for channel numbers between 10 and 18. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaa019110bc5a725ea0cba5820a01c265f}{A\-D\-C\-\_\-\-S\-M\-P\-R3}(\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, \-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ (\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)))
+\begin{DoxyCompactList}\small\item\em Set the A\-D\-C's sample time for channel numbers between 0 and 9. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga14b2c463c168ba7fac13b1f3c6df0705}{A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 1)))
+\begin{DoxyCompactList}\small\item\em Set the selected regular channel rank for rank between 1 and 6. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaf35d2c67b4ad32e2408df11ffcee8ba6}{A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 7)))
+\begin{DoxyCompactList}\small\item\em Set the selected regular channel rank for rank between 7 and 12. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga173aa2d3480ddaac12fe6a853bead899}{A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 13)))
+\begin{DoxyCompactList}\small\item\em Set the selected regular channel rank for rank between 13 and 18. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gad07a38a5b6d28f23ecbe027222f59bd0}{A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 19)))
+\begin{DoxyCompactList}\small\item\em Set the selected regular channel rank for rank between 19 and 24. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga89869cd79b14d222a9b235bd150fc512}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 25)))
+\begin{DoxyCompactList}\small\item\em Set the selected regular channel rank for rank between 25 and 28. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gafac7dc7cf0679da43a697df5ca1b79fd}{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T}(\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-)~(((\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-) -\/1) $<$$<$ 20)
+\begin{DoxyCompactList}\small\item\em Set the injected sequence length. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaa7218626a8bbabdc160a2c5cbe6fb0ab}{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L}(\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, \-\_\-\-R\-A\-N\-K\-N\-B\-\_\-, \-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((4 -\/ ((\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-) -\/ (\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-))) -\/ 1)))
+\begin{DoxyCompactList}\small\item\em Set the selected injected channel rank Note\-: on S\-T\-M32\-L1 devices, channel rank position in J\-S\-Q\-R register is depending on total number of ranks selected into injected sequencer (ranks sequence starting from 4-\/\-J\-L) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gad253baf77fa4b8512547755c931284c1}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q}(\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q\-\_\-\-M\-O\-D\-E\-\_\-)~((\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q\-\_\-\-M\-O\-D\-E\-\_\-) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\hyperlink{group___peripheral___registers___bits___definition_ga0d7d75f0c4c8fa190fbf9f86fbe6dfc8}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-D\-S}))
+\begin{DoxyCompactList}\small\item\em Enable the A\-D\-C D\-M\-A continuous request. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gae92924f248b2fd7693ce648275a8087c}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S}(\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-M\-O\-D\-E\-\_\-)~((\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-M\-O\-D\-E\-\_\-) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\hyperlink{group___peripheral___registers___bits___definition_ga49bb71a868c9d88a0f7bbe48918b2140}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T}))
+\begin{DoxyCompactList}\small\item\em Enable A\-D\-C continuous conversion mode. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_gaf52092c7978306ff922b2a6b42087472}{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M}(\-\_\-\-N\-B\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-C\-O\-N\-V\-\_\-)~(((\-\_\-\-N\-B\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-C\-O\-N\-V\-\_\-) -\/ 1) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\hyperlink{group___peripheral___registers___bits___definition_gaeaa416a291023449ae82e7ef39844075}{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-N\-U\-M}))
+\begin{DoxyCompactList}\small\item\em Configures the number of discontinuous conversions for the regular group channels. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga8cd628bbd49f48a40b2de13077c7ba3d}{A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T}(\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E\-\_\-)
+\begin{DoxyCompactList}\small\item\em Enable A\-D\-C scan mode to convert multiple ranks with sequencer. \end{DoxyCompactList}\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R}(A\-D\-C\-\_\-\-C\-L\-O\-C\-K)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N}(R\-E\-S\-O\-L\-U\-T\-I\-O\-N)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S}(R\-E\-S\-O\-L\-U\-T\-I\-O\-N)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N}(A\-L\-I\-G\-N)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E}(S\-C\-A\-N\-\_\-\-M\-O\-D\-E)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E}(E\-D\-G\-E)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G}(R\-E\-G\-T\-R\-I\-G)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N}(E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T}(A\-U\-T\-O\-W\-A\-I\-T)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F}(A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E}(T\-I\-M\-E)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K}(C\-H\-A\-N\-N\-E\-L)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E}(W\-A\-T\-C\-H\-D\-O\-G)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P}(C\-O\-N\-V\-E\-R\-S\-I\-O\-N)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E}(E\-V\-E\-N\-T)
+\item 
+\#define \hyperlink{group___a_d_c___private___macros_ga389d36dc9dadf5e1c0f085751812c1d8}{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E}(\-\_\-\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-\_\-, \-\_\-\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Verify that a A\-D\-C data is within range corresponding to A\-D\-C resolution. \end{DoxyCompactList}\item 
+\hypertarget{group___a_d_c___private___macros_ga81fb7f617e88ad4d86c25f040dcbc12f}{\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-N\-B\-\_\-\-C\-O\-N\-V}(L\-E\-N\-G\-T\-H)~(((L\-E\-N\-G\-T\-H) $>$= ((uint32\-\_\-t)1)) \&\& ((L\-E\-N\-G\-T\-H) $<$= ((uint32\-\_\-t)27)))}\label{group___a_d_c___private___macros_ga81fb7f617e88ad4d86c25f040dcbc12f}
+
+\item 
+\hypertarget{group___a_d_c___private___macros_ga5883ebe5aa1b4424a532439dbb2e9428}{\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-\_\-\-N\-U\-M\-B\-E\-R}(N\-U\-M\-B\-E\-R)~(((N\-U\-M\-B\-E\-R) $>$= ((uint32\-\_\-t)1)) \&\& ((N\-U\-M\-B\-E\-R) $<$= ((uint32\-\_\-t)8)))}\label{group___a_d_c___private___macros_ga5883ebe5aa1b4424a532439dbb2e9428}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___a_d_c___private___macros_gac7ab87a3ab932eed1b3ac5faad4e3aa9}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E@{A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E}}
+\index{A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E@{A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-L\-E\-A\-R\-\_\-\-E\-R\-R\-O\-R\-C\-O\-D\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Error\-Code = {\bf H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-E\-R\-R\-O\-R\-\_\-\-N\-O\-N\-E})}}\label{group___a_d_c___private___macros_gac7ab87a3ab932eed1b3ac5faad4e3aa9}
+
+
+Clear A\-D\-C error code (set it to error code\-: \char`\"{}no error\char`\"{}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaf52092c7978306ff922b2a6b42087472}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M@{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M}}
+\index{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M@{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-N\-U\-M(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-N\-B\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-C\-O\-N\-V\-\_\-}
+\end{DoxyParamCaption}
+)~(((\-\_\-\-N\-B\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-C\-O\-N\-V\-\_\-) -\/ 1) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L({\bf A\-D\-C\-\_\-\-C\-R1\-\_\-\-D\-I\-S\-C\-N\-U\-M}))}}\label{group___a_d_c___private___macros_gaf52092c7978306ff922b2a6b42087472}
+
+
+Configures the number of discontinuous conversions for the regular group channels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-N\-B\-R\-\_\-\-D\-I\-S\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-C\-O\-N\-V$<$/em$>$} & Number of discontinuous conversions. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga8cd628bbd49f48a40b2de13077c7ba3d}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T}}
+\index{A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R1\-\_\-\-S\-C\-A\-N\-\_\-\-S\-E\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga8cd628bbd49f48a40b2de13077c7ba3d}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(( ((\_SCAN\_MODE\_) == ADC\_SCAN\_ENABLE) || ((\_SCAN\_MODE\_) == ENABLE)           \(\backslash\)
+   )? (ADC\_SCAN\_ENABLE) : (ADC\_SCAN\_DISABLE)                                   \(\backslash\)
+  )
+\end{DoxyCode}
+
+
+Enable A\-D\-C scan mode to convert multiple ranks with sequencer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E$<$/em$>$} & Scan conversion mode. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gae92924f248b2fd7693ce648275a8087c}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S}}
+\index{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-M\-O\-D\-E\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-M\-O\-D\-E\-\_\-) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L({\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T}))}}\label{group___a_d_c___private___macros_gae92924f248b2fd7693ce648275a8087c}
+
+
+Enable A\-D\-C continuous conversion mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-O\-N\-T\-I\-N\-U\-O\-U\-S\-\_\-\-M\-O\-D\-E$<$/em$>$} & Continuous mode. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gad253baf77fa4b8512547755c931284c1}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q}}
+\index{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q\-\_\-\-M\-O\-D\-E\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q\-\_\-\-M\-O\-D\-E\-\_\-) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L({\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-D\-S}))}}\label{group___a_d_c___private___macros_gad253baf77fa4b8512547755c931284c1}
+
+
+Enable the A\-D\-C D\-M\-A continuous request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-D\-M\-A\-C\-O\-N\-T\-R\-E\-Q\-\_\-\-M\-O\-D\-E$<$/em$>$} & D\-M\-A continuous request mode. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gafe3a7a04ff078c62ae98b19403f696c7}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E@{A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E@{A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-I\-S\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_gafe3a7a04ff078c62ae98b19403f696c7}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+((( ((\_\_HANDLE\_\_)->Instance->SR & \hyperlink{group___peripheral___registers___bits___definition_ga8833ced601371447a7628e2728232410}{ADC\_SR\_ADONS}) == \hyperlink{group___peripheral___registers___bits___definition_ga8833ced601371447a7628e2728232410}{ADC\_SR\_ADONS} )            \(\backslash\)
+  ) ? SET : RESET)
+\end{DoxyCode}
+
+
+Verification of A\-D\-C state\-: enabled or disabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\-E\-T} & (A\-D\-C enabled) or R\-E\-S\-E\-T (A\-D\-C disabled) \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaa3a1c2197a097b9bb8159b6eb1ac8941}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D@{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D}}
+\index{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D@{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~(((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Instance-\/$>$C\-R2 \& {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-J\-E\-X\-T\-E\-N}) == R\-E\-S\-E\-T)}}\label{group___a_d_c___private___macros_gaa3a1c2197a097b9bb8159b6eb1ac8941}
+
+
+Test if conversion trigger of injected group is software start or external trigger. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\-E\-T} & (software start) or R\-E\-S\-E\-T (external trigger) \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga2ccb82ecf85d6c6d1ff2cdf9b6a82d2b}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R@{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R}}
+\index{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R@{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-I\-S\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T\-\_\-\-R\-E\-G\-U\-L\-A\-R(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~(((\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)-\/$>$Instance-\/$>$C\-R2 \& {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-E\-N}) == R\-E\-S\-E\-T)}}\label{group___a_d_c___private___macros_ga2ccb82ecf85d6c6d1ff2cdf9b6a82d2b}
+
+
+Test if conversion trigger of regular group is software start or external trigger. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\-E\-T} & (software start) or R\-E\-S\-E\-T (external trigger) \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gafac7dc7cf0679da43a697df5ca1b79fd}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T@{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T}}
+\index{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T@{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-\-S\-H\-I\-F\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-}
+\end{DoxyParamCaption}
+)~(((\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-) -\/1) $<$$<$ 20)}}\label{group___a_d_c___private___macros_gafac7dc7cf0679da43a697df5ca1b79fd}
+
+
+Set the injected sequence length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-J\-S\-Q\-R\-\_\-\-J\-L$<$/em$>$} & Sequence length. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaa7218626a8bbabdc160a2c5cbe6fb0ab}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L@{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L}}
+\index{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L@{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-J\-S\-Q\-R\-\_\-\-R\-K\-\_\-\-J\-L(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((4 -\/ ((\-\_\-\-J\-S\-Q\-R\-\_\-\-J\-L\-\_\-) -\/ (\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-))) -\/ 1)))}}\label{group___a_d_c___private___macros_gaa7218626a8bbabdc160a2c5cbe6fb0ab}
+
+
+Set the selected injected channel rank Note\-: on S\-T\-M32\-L1 devices, channel rank position in J\-S\-Q\-R register is depending on total number of ranks selected into injected sequencer (ranks sequence starting from 4-\/\-J\-L) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+{\em $<$em$>$\-J\-S\-Q\-R\-\_\-\-J\-L$<$/em$>$} & Sequence length. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaeb66714538d978d4d336a4a6ef0d58bc}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-M\-P\-R2@{A\-D\-C\-\_\-\-S\-M\-P\-R2}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R2@{A\-D\-C\-\_\-\-S\-M\-P\-R2}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R2}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R2(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, }
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ ((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) -\/ 10)))}}\label{group___a_d_c___private___macros_gaeb66714538d978d4d336a4a6ef0d58bc}
+
+
+Set the A\-D\-C's sample time for channel numbers between 10 and 18. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E$<$/em$>$} & Sample time parameter. \\
+\hline
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaa019110bc5a725ea0cba5820a01c265f}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-M\-P\-R3@{A\-D\-C\-\_\-\-S\-M\-P\-R3}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R3@{A\-D\-C\-\_\-\-S\-M\-P\-R3}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R3}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R3(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, }
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ (\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)))}}\label{group___a_d_c___private___macros_gaa019110bc5a725ea0cba5820a01c265f}
+
+
+Set the A\-D\-C's sample time for channel numbers between 0 and 9. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E$<$/em$>$} & Sample time parameter. \\
+\hline
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga2b29c0e46fa4205f77b15fe7c3425fb8}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T@{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T@{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L\-\_\-\-S\-H\-I\-F\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-Nbr\-Of\-Conversion\-\_\-}
+\end{DoxyParamCaption}
+)~(((\-\_\-\-Nbr\-Of\-Conversion\-\_\-) -\/ (uint8\-\_\-t)1) $<$$<$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L({\bf A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-L}))}}\label{group___a_d_c___private___macros_ga2b29c0e46fa4205f77b15fe7c3425fb8}
+
+
+Set A\-D\-C number of ranks into regular channel sequence length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-Nbr\-Of\-Conversion$<$/em$>$} & Regular channel sequence length \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga89869cd79b14d222a9b235bd150fc512}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 25)))}}\label{group___a_d_c___private___macros_ga89869cd79b14d222a9b235bd150fc512}
+
+
+Set the selected regular channel rank for rank between 25 and 28. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gad07a38a5b6d28f23ecbe027222f59bd0}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R2\-\_\-\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 19)))}}\label{group___a_d_c___private___macros_gad07a38a5b6d28f23ecbe027222f59bd0}
+
+
+Set the selected regular channel rank for rank between 19 and 24. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga173aa2d3480ddaac12fe6a853bead899}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R3\-\_\-\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 13)))}}\label{group___a_d_c___private___macros_ga173aa2d3480ddaac12fe6a853bead899}
+
+
+Set the selected regular channel rank for rank between 13 and 18. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaf35d2c67b4ad32e2408df11ffcee8ba6}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R4\-\_\-\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 7)))}}\label{group___a_d_c___private___macros_gaf35d2c67b4ad32e2408df11ffcee8ba6}
+
+
+Set the selected regular channel rank for rank between 7 and 12. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga14b2c463c168ba7fac13b1f3c6df0705}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K}}
+\index{A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K@{A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-Q\-R5\-\_\-\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-, }
+\item[{}]{\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) $<$$<$ (5 $\ast$ ((\-\_\-\-R\-A\-N\-K\-N\-B\-\_\-) -\/ 1)))}}\label{group___a_d_c___private___macros_ga14b2c463c168ba7fac13b1f3c6df0705}
+
+
+Set the selected regular channel rank for rank between 1 and 6. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+{\em $<$em$>$\-R\-A\-N\-K\-N\-B$<$/em$>$} & Rank number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_gaaf93e91b164d4a220aae475eff82665f}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T}}
+\index{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T~M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G}}\label{group___a_d_c___private___macros_gaaf93e91b164d4a220aae475eff82665f}
+
+
+Simultaneously clears and sets specific bits of the handle State. 
+
+\begin{DoxyNote}{Note}
+\-: \hyperlink{group___a_d_c___private___macros_gaaf93e91b164d4a220aae475eff82665f}{A\-D\-C\-\_\-\-S\-T\-A\-T\-E\-\_\-\-C\-L\-R\-\_\-\-S\-E\-T()} macro is merely aliased to generic macro M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G(), the first parameter is the A\-D\-C handle State, the second parameter is the bit field to clear, the third and last parameter is the bit field to set. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga331ffc36ba5922efeff033f075e8174d}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-N\-A\-L\-O\-G\-\_\-\-W\-A\-T\-C\-H\-D\-O\-G\-\_\-\-M\-O\-D\-E(
+\begin{DoxyParamCaption}
+\item[{}]{W\-A\-T\-C\-H\-D\-O\-G}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga331ffc36ba5922efeff033f075e8174d}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((WATCHDOG) == ADC\_ANALOGWATCHDOG\_NONE)             || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_SINGLE\_REG)       || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_SINGLE\_INJEC)     || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_SINGLE\_REGINJEC)  || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_ALL\_REG)          || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_ALL\_INJEC)        || \(\backslash\)
+                                               ((WATCHDOG) == ADC\_ANALOGWATCHDOG\_ALL\_REGINJEC)       )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga7689a3fdda30c808bba41089b41f1119}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F(
+\begin{DoxyParamCaption}
+\item[{}]{A\-U\-T\-O\-P\-O\-W\-E\-R\-O\-F\-F}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga7689a3fdda30c808bba41089b41f1119}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((AUTOPOWEROFF) == ADC\_AUTOPOWEROFF\_DISABLE)          || \(\backslash\)
+                                           ((AUTOPOWEROFF) == 
+      \hyperlink{group___a_d_c___low_power_auto_power_off_ga5b7d6c5a7bd748c4ab4ee0125e85c000}{ADC\_AUTOPOWEROFF\_IDLE\_PHASE})       || \(\backslash\)
+                                           ((AUTOPOWEROFF) == 
+      \hyperlink{group___a_d_c___low_power_auto_power_off_gad9724ceb96cbb0a548a09ca4966098c9}{ADC\_AUTOPOWEROFF\_DELAY\_PHASE})      || \(\backslash\)
+                                           ((AUTOPOWEROFF) == 
+      \hyperlink{group___a_d_c___low_power_auto_power_off_gaf9657a901b768c1dfd3eb8c06d1627d1}{ADC\_AUTOPOWEROFF\_IDLE\_DELAY\_PHASES})  )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga2ae8714aa5d67acd1c9ff33a5510a73b}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T@{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-A\-U\-T\-O\-W\-A\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{A\-U\-T\-O\-W\-A\-I\-T}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga2ae8714aa5d67acd1c9ff33a5510a73b}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_gadae7de88708831899ab8ea2271a0f081}{ADC\_AUTOWAIT\_DISABLE})            || \(\backslash\)
+                                   ((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_gaec051a920450fe887e64c6f8437b8001}{ADC\_AUTOWAIT\_UNTIL\_DATA\_READ})
+          || \(\backslash\)
+                                   ((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_ga5d904bd930133c1825b4091a6ae35d0e}{ADC\_AUTOWAIT\_7\_APBCLOCKCYCLES}
+      )   || \(\backslash\)
+                                   ((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_gaa4ab3acaf62f7b118176c4fbf559c663}{ADC\_AUTOWAIT\_15\_APBCLOCKCYCLES}
+      )  || \(\backslash\)
+                                   ((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_ga16db726b89bba6df1b04f28b254be192}{ADC\_AUTOWAIT\_31\_APBCLOCKCYCLES}
+      )  || \(\backslash\)
+                                   ((AUTOWAIT) == \hyperlink{group___a_d_c___low_power_auto_wait_ga2e35389ff61bfd565254e96b250d3cbf}{ADC\_AUTOWAIT\_63\_APBCLOCKCYCLES}
+      )  || \(\backslash\)
+                                   ((AUTOWAIT) == 
+      \hyperlink{group___a_d_c___low_power_auto_wait_gaa78cd6ab72c23f7e49423fef37a68919}{ADC\_AUTOWAIT\_127\_APBCLOCKCYCLES}) || \(\backslash\)
+                                   ((AUTOWAIT) == 
+      \hyperlink{group___a_d_c___low_power_auto_wait_gaa18a79aa780ae1056c7a498604612678}{ADC\_AUTOWAIT\_255\_APBCLOCKCYCLES})   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga519de99233de22e355a7702a7dab2f06}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R@{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R@{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-L\-O\-C\-K\-P\-R\-E\-S\-C\-A\-L\-E\-R(
+\begin{DoxyParamCaption}
+\item[{}]{A\-D\-C\-\_\-\-C\-L\-O\-C\-K}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga519de99233de22e355a7702a7dab2f06}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((ADC\_CLOCK) == \hyperlink{group___a_d_c___clock_prescaler_ga092c0277fd6db9b905d229c9f8dda8ab}{ADC\_CLOCK\_ASYNC\_DIV1}) || \(\backslash\)
+                                          ((ADC\_CLOCK) == \hyperlink{group___a_d_c___clock_prescaler_gacf4ae9c70dd75168acf17fbce10af8b8}{ADC\_CLOCK\_ASYNC\_DIV2}) || \(\backslash\)
+                                          ((ADC\_CLOCK) == \hyperlink{group___a_d_c___clock_prescaler_ga5fb738b8222dfdbceb02a0ad041f5da5}{ADC\_CLOCK\_ASYNC\_DIV4})   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga575ea8557edb68b24e8f9a10bb8b1cae}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P@{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P@{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-\_\-\-G\-R\-O\-U\-P(
+\begin{DoxyParamCaption}
+\item[{}]{C\-O\-N\-V\-E\-R\-S\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga575ea8557edb68b24e8f9a10bb8b1cae}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((CONVERSION) == ADC\_REGULAR\_GROUP)         || \(\backslash\)
+                                             ((CONVERSION) == ADC\_INJECTED\_GROUP)        || \(\backslash\)
+                                             ((CONVERSION) == ADC\_REGULAR\_INJECTED\_GROUP)  )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga2903b620e3c61dc47ed8c0fbf4197801}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-A\-L\-I\-G\-N(
+\begin{DoxyParamCaption}
+\item[{}]{A\-L\-I\-G\-N}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga2903b620e3c61dc47ed8c0fbf4197801}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((ALIGN) == ADC\_DATAALIGN\_RIGHT) || \(\backslash\)
+                                  ((ALIGN) == ADC\_DATAALIGN\_LEFT)    )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga9e0a777b64cb66657c862021cd05ae64}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N(
+\begin{DoxyParamCaption}
+\item[{}]{E\-O\-C\-\_\-\-S\-E\-L\-E\-C\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga9e0a777b64cb66657c862021cd05ae64}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((EOC\_SELECTION) == ADC\_EOC\_SINGLE\_CONV)    || \(\backslash\)
+                                             ((EOC\_SELECTION) == ADC\_EOC\_SEQ\_CONV)         )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga26fd0ba397566ade5d960ff29bccbc31}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-V\-E\-N\-T\-\_\-\-T\-Y\-P\-E(
+\begin{DoxyParamCaption}
+\item[{}]{E\-V\-E\-N\-T}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga26fd0ba397566ade5d960ff29bccbc31}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((EVENT) == \hyperlink{group___a_d_c___event__type_ga2d1d545ea1bfecba7a7081be6ef2cb93}{ADC\_AWD\_EVENT})  || \(\backslash\)
+                                  ((EVENT) == \hyperlink{group___a_d_c__flags__definition_ga6e8f399d2af342bd18b9f5803cb986e7}{ADC\_FLAG\_OVR}) )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_gab3f646d603911820b104dd134c42f028}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G(
+\begin{DoxyParamCaption}
+\item[{}]{R\-E\-G\-T\-R\-I\-G}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_gab3f646d603911820b104dd134c42f028}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T2\_CC3)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T2\_CC2)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T2\_TRGO)  || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T3\_CC1)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T3\_CC3)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T3\_TRGO)  || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T4\_CC4)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T4\_TRGO)  || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T6\_TRGO)  || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T9\_CC2)   || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_T9\_TRGO)  || \(\backslash\)
+                                 ((REGTRIG) == ADC\_EXTERNALTRIGCONV\_EXT\_IT11) || \(\backslash\)
+                                 ((REGTRIG) == ADC\_SOFTWARE\_START)              )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_gaa862868aea997c7a9e1c808faee75e6c}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-\_\-\-E\-D\-G\-E(
+\begin{DoxyParamCaption}
+\item[{}]{E\-D\-G\-E}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_gaa862868aea997c7a9e1c808faee75e6c}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((EDGE) == ADC\_EXTERNALTRIGCONVEDGE\_NONE)         || \(\backslash\)
+                                   ((EDGE) == ADC\_EXTERNALTRIGCONVEDGE\_RISING)       || \(\backslash\)
+                                   ((EDGE) == ADC\_EXTERNALTRIGCONVEDGE\_FALLING)      || \(\backslash\)
+                                   ((EDGE) == ADC\_EXTERNALTRIGCONVEDGE\_RISINGFALLING)  )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga389d36dc9dadf5e1c0f085751812c1d8}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-A\-N\-G\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-\_\-, }
+\item[{}]{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-D\-A\-T\-A\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga389d36dc9dadf5e1c0f085751812c1d8}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+((((\_\_RESOLUTION\_\_) == \hyperlink{group___a_d_c___resolution_ga49c8408a1cdbf97bbf29234c3770fa74}{ADC\_RESOLUTION\_12B}) && ((\_\_ADC\_DATA\_\_) <= ((uint32\_t)0x0FFF))) || 
+      \(\backslash\)
+    (((\_\_RESOLUTION\_\_) == \hyperlink{group___a_d_c___resolution_ga91289e269eb3080d25301909c0f417e5}{ADC\_RESOLUTION\_10B}) && ((\_\_ADC\_DATA\_\_) <= ((uint32\_t)0x03FF))) 
+      || \(\backslash\)
+    (((\_\_RESOLUTION\_\_) == \hyperlink{group___a_d_c___resolution_ga39925af93719877bdcc5664e4b95e69a}{ADC\_RESOLUTION\_8B})  && ((\_\_ADC\_DATA\_\_) <= ((uint32\_t)0x00FF))) 
+      || \(\backslash\)
+    (((\_\_RESOLUTION\_\_) == \hyperlink{group___a_d_c___resolution_ga24c5226e05db78b4065f2f187d497b04}{ADC\_RESOLUTION\_6B})  && ((\_\_ADC\_DATA\_\_) <= ((uint32\_t)0x003F)))  
+       )
+\end{DoxyCode}
+
+
+Verify that a A\-D\-C data is within range corresponding to A\-D\-C resolution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N$<$/strong$>$} & A\-D\-C resolution (12, 10, 8 or 6 bits). \\
+\hline
+{\em $<$strong$>$\-A\-D\-C\-\_\-\-D\-A\-T\-A$<$/strong$>$} & value checked against the resolution. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\-E\-T} & A\-D\-C data is within range corresponding to A\-D\-C resolution R\-E\-S\-E\-T\-: A\-D\-C data is not within range corresponding to A\-D\-C resolution \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c___private___macros_ga5f9a2272b497dd6afd324d6dedbb89dc}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-G\-U\-L\-A\-R\-\_\-\-R\-A\-N\-K(
+\begin{DoxyParamCaption}
+\item[{}]{C\-H\-A\-N\-N\-E\-L}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga5f9a2272b497dd6afd324d6dedbb89dc}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((CHANNEL) == ADC\_REGULAR\_RANK\_1 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_2 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_3 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_4 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_5 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_6 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_7 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_8 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_9 ) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_10) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_11) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_12) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_13) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_14) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_15) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_16) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_17) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_18) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_19) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_20) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_21) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_22) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_23) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_24) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_25) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_26) || \(\backslash\)
+                                      ((CHANNEL) == ADC\_REGULAR\_RANK\_27)   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga346d83dd4af81b36a6dbd78c7bf2ff0a}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N(
+\begin{DoxyParamCaption}
+\item[{}]{R\-E\-S\-O\-L\-U\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga346d83dd4af81b36a6dbd78c7bf2ff0a}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((RESOLUTION) == \hyperlink{group___a_d_c___resolution_ga49c8408a1cdbf97bbf29234c3770fa74}{ADC\_RESOLUTION\_12B}) || \(\backslash\)
+                                       ((RESOLUTION) == \hyperlink{group___a_d_c___resolution_ga91289e269eb3080d25301909c0f417e5}{ADC\_RESOLUTION\_10B}) || \(\backslash\)
+                                       ((RESOLUTION) == \hyperlink{group___a_d_c___resolution_ga39925af93719877bdcc5664e4b95e69a}{ADC\_RESOLUTION\_8B})  || \(\backslash\)
+                                       ((RESOLUTION) == \hyperlink{group___a_d_c___resolution_ga24c5226e05db78b4065f2f187d497b04}{ADC\_RESOLUTION\_6B})    )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga93a56cc5f3027127a5076bfcb0850c44}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S@{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-R\-E\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-8\-\_\-6\-\_\-\-B\-I\-T\-S(
+\begin{DoxyParamCaption}
+\item[{}]{R\-E\-S\-O\-L\-U\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga93a56cc5f3027127a5076bfcb0850c44}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((RESOLUTION) == \hyperlink{group___a_d_c___resolution_ga39925af93719877bdcc5664e4b95e69a}{ADC\_RESOLUTION\_8B}) || \(\backslash\)
+                                                ((RESOLUTION) == 
+      \hyperlink{group___a_d_c___resolution_ga24c5226e05db78b4065f2f187d497b04}{ADC\_RESOLUTION\_6B})   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_ga30e0307fa009e1c383d3047b48e94644}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-A\-M\-P\-L\-E\-\_\-\-T\-I\-M\-E(
+\begin{DoxyParamCaption}
+\item[{}]{T\-I\-M\-E}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_ga30e0307fa009e1c383d3047b48e94644}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((TIME) == \hyperlink{group___a_d_c__sampling__times_ga3728aca9c956ddbfd8a5ee3911da4c42}{ADC\_SAMPLETIME\_4CYCLES})   || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_ga3247cf2436bd0b78d0b14cee186124eb}{ADC\_SAMPLETIME\_9CYCLES})   || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_gaf15bcf0a46629dd2fdc7ea573f277f10}{ADC\_SAMPLETIME\_16CYCLES})  || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_ga033ce520948d4617b2299ce3e3462dc6}{ADC\_SAMPLETIME\_24CYCLES})  || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_gadfa71db29ab3802561a460c41970dd60}{ADC\_SAMPLETIME\_48CYCLES})  || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_ga4f6f7e5b1dc793eacb3ce87714be7862}{ADC\_SAMPLETIME\_96CYCLES})  || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_gad34264d2d4e3f4b80efab27e7b7a91cd}{ADC\_SAMPLETIME\_192CYCLES}) || \(\backslash\)
+                                  ((TIME) == \hyperlink{group___a_d_c__sampling__times_ga8e38926a620e1c84dab31f7fa5dfb11d}{ADC\_SAMPLETIME\_384CYCLES})   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c___private___macros_gad86e7d7e94679a54f66e79b002f936f0}{\index{A\-D\-C Private Macros@{A\-D\-C Private Macros}!I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E}!ADC Private Macros@{A\-D\-C Private Macros}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-S\-C\-A\-N\-\_\-\-M\-O\-D\-E(
+\begin{DoxyParamCaption}
+\item[{}]{S\-C\-A\-N\-\_\-\-M\-O\-D\-E}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c___private___macros_gad86e7d7e94679a54f66e79b002f936f0}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((SCAN\_MODE) == ADC\_SCAN\_DISABLE) || \(\backslash\)
+                                     ((SCAN\_MODE) == ADC\_SCAN\_ENABLE)    )
+\end{DoxyCode}

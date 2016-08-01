@@ -1,33 +1,16 @@
 /**
-  ******************************************************************************
-  * File Name          : main.c
-  * Description        : Main program body
-  ******************************************************************************
-  *
-  * COPYRIGHT(c) 2016 STMicroelectronics
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
+ ******************************************************************************
+ * File Name          : main.c
+ * Description        : Main program body
+ ******************************************************************************
+ *
+ * @file    main.c
+ * @author  Aris Stathakis
+ * @version V1.0
+ * @date    27-May-2016
+ * @brief   Main body of EPS subsystem module. The MCU system is initialized
+ *          from CUBE MX software thus the generated structure is kept as is.
+ *
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
@@ -45,32 +28,11 @@
 #include "eps_obc_wraps.h"
 #include "eps_time.h"
 /*TODO:
- *  -new ecss merge
- *  -safety limits add the correct values
  *  -add prototype for remotely setting new limits over comms-obc or generally writing to flash
  *  -check wod values range before transmit and codes for enumeration
- *  -tc74 drivers revision and test
  *  -uart debug monitor
  *  -doxy commenting
  *  -flow diagram
- *
- * -set the correct(finalized) settings and initialization values for all peripherals at mx init functions
- *
- * - add nvm handling and startup deployment checks and initialization.
- *
- * - implemet missing prototypes
- * - uart debug would be awsome - also awesome would be to write from the debug uart to the state update stage KABOOM! eps in the loop mothafuckaz_
- * - *** deployment strategy SOLID
- * - *** error handling and error reporting in debug mode
- * -proper memory initialization routine - preferably automated...
- *
- *
- *  - should error status be declared as a volatile ?(to guarantee that it is checkd in the appropriate places.)
- *
- * TODO: maybe peripherals inits should be placed in deployment stage only. Specifically for the gpio init, if
- *       not properly considered at every reset all the subsystemswill be shut down and powered up... maybe the right
- *       way is to keep the last state ...
- *
  */
 /* USER CODE END Includes */
 
@@ -156,7 +118,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
-	//this is used only once to arm the satellite - this should by no means stay in the code.
+	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
 	//EPS_set_flash_memory_initial_values();
 
 	EPS_bootseq_poweroff_all_rails(&eps_board_state);
@@ -181,7 +143,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-	//load eps limits from memory
+	/*load eps limits from memory*/
 	EPS_safety_limits eps_limits;
 	error_status = EPS_load_safety_limits_from_memory(&eps_limits);
 
@@ -633,14 +595,14 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-// ADC DMA interrupt handler
+/**
+   * @brief ADC DMA interrupt handler
+   * marks the global flag of adc peripheral as a transfer complete.
+   * @param file: pointer to adc handle peripheral
+   * @retval None
+   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef * hadc) {
 
-	//printf("ADC conversion done.\n");
-	//HAL_ADC_Stop_DMA(hadc);
-
-	//	HAL_ADC_Stop_DMA(hadc);
-	//HAL_ADC_Stop(hadc);
 	adc_reading_complete = ADC_TRANSFER_COMPLETED;
 }
 

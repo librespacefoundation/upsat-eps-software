@@ -11,7 +11,9 @@
 #include "stm32l1xx_hal.h"
 #include "eps_soft_error_handling.h"
 
-
+/** @addtogroup eps_configuration
+  * @{
+  */
 
 #define DEPLOY_BURNOUT_DELAY ((uint32_t)6000)/*TIME IN MILLISECONDS TO BURN THE RESISTOR IN DEPLOYMENT SYSTEM.*/
 
@@ -50,12 +52,17 @@
 #define ADC_I5V ADC_CHANNEL_12;
 
 
-
+/**
+ * @brief Umbillical connector status.
+ *
+ * Umbilical is the external connector of the satellite. When connected means that the satellite is under debug/development
+ * and when connected the sattelite is ready to deploy and start running. This status is used to enter debug mode or not.
+ */
 typedef enum {
-	UMBILICAL_NOT_CONNECTED,
-	UMBILICAL_CONNECTED,
-	UMBILICAL_CONNECTOR_UNDEFINED_STATE,
-	UMBILICAL_LAST_VALUE
+	UMBILICAL_NOT_CONNECTED,/**<  Umbilicall connector is not connected - satellite is ready ti deploy*/
+	UMBILICAL_CONNECTED,/**<  Umbilicall connector is   connected - satellite is in debug mode*/
+	UMBILICAL_CONNECTOR_UNDEFINED_STATE,/**<  Umbilicall connector is in undefined state*/
+	UMBILICAL_LAST_VALUE/**<  Umbilicall connector is in undefined state*/
 }EPS_umbilical_status;
 
 extern volatile EPS_umbilical_status EPS_umbilical_mode;/* initialize global umbilical flag to connected - When umbillical is connected no deployment stage occurs.*/
@@ -65,3 +72,6 @@ EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds)
 
 
 #endif /* INC_EPS_CONFIGURATION_H_ */
+/**
+  * @}
+  */

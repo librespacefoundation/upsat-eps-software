@@ -1,0 +1,157 @@
+\hypertarget{main_8c}{\section{eps\-Subsystem\-Workspace/eps\-Subsystem/\-Src/main.c File Reference}
+\label{main_8c}\index{eps\-Subsystem\-Workspace/eps\-Subsystem/\-Src/main.\-c@{eps\-Subsystem\-Workspace/eps\-Subsystem/\-Src/main.\-c}}
+}
+
+
+Main body of E\-P\-S subsystem module. The M\-C\-U system is initialized from C\-U\-B\-E M\-X software thus the generated structure is kept as is.  
+
+
+{\ttfamily \#include \char`\"{}stm32l1xx\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-configuration.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-state.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-power\-\_\-module.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-non\-\_\-volatile\-\_\-mem\-\_\-handling.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-safety.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-soft\-\_\-error\-\_\-handling.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-debug.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-bootsequence.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-obc\-\_\-wraps.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}eps\-\_\-time.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\-Clock\-\_\-\-Config} (void)
+\item 
+void \hyperlink{main_8c_ae70bce6c39d0b570a7523b86738cec4b}{H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init} (T\-I\-M\-\_\-\-Handle\-Type\-Def $\ast$htim)
+\item 
+\hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{int {\bfseries main} (void)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+\item 
+void \hyperlink{main_8c_af20a88180db1113be1e89266917d148b}{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback} (A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$hadc)
+\begin{DoxyCompactList}\small\item\em A\-D\-C D\-M\-A interrupt handler marks the global flag of adc peripheral as a transfer complete. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{main_8c_a62fcafba91cf315db7e0e0c8f22c656f}{A\-D\-C\-\_\-\-Handle\-Type\-Def {\bfseries hadc}}\label{main_8c_a62fcafba91cf315db7e0e0c8f22c656f}
+
+\item 
+D\-M\-A\-\_\-\-Handle\-Type\-Def \hyperlink{main_8c_a556a7c43d0d5bbeccebc55d3f97e0fd5}{hdma\-\_\-adc}
+\item 
+\hypertarget{main_8c_ac379bcc152d860f08b1279fd3e232295}{I2\-C\-\_\-\-Handle\-Type\-Def {\bfseries hi2c2}}\label{main_8c_ac379bcc152d860f08b1279fd3e232295}
+
+\item 
+\hypertarget{main_8c_a80f055e38f52ca3c57e183fc685ea477}{I\-W\-D\-G\-\_\-\-Handle\-Type\-Def {\bfseries hiwdg}}\label{main_8c_a80f055e38f52ca3c57e183fc685ea477}
+
+\item 
+\hypertarget{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}{T\-I\-M\-\_\-\-Handle\-Type\-Def {\bfseries htim3}}\label{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}
+
+\item 
+\hypertarget{main_8c_a1564492831a79fa18466467c3420c3c3}{T\-I\-M\-\_\-\-Handle\-Type\-Def {\bfseries htim6}}\label{main_8c_a1564492831a79fa18466467c3420c3c3}
+
+\item 
+\hypertarget{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{U\-A\-R\-T\-\_\-\-Handle\-Type\-Def {\bfseries huart1}}\label{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}
+
+\item 
+\hypertarget{main_8c_ab7c63c1b0f65db92b6a4ea19edf957e1}{U\-A\-R\-T\-\_\-\-Handle\-Type\-Def {\bfseries huart3}}\label{main_8c_ab7c63c1b0f65db92b6a4ea19edf957e1}
+
+\item 
+\hypertarget{main_8c_a34251392f0d5e2461e3aef615918c235}{D\-M\-A\-\_\-\-Handle\-Type\-Def {\bfseries hdma\-\_\-usart1\-\_\-rx}}\label{main_8c_a34251392f0d5e2461e3aef615918c235}
+
+\item 
+\hypertarget{main_8c_a5af94ab36bfe698db3e6beea96d10a90}{D\-M\-A\-\_\-\-Handle\-Type\-Def {\bfseries hdma\-\_\-usart1\-\_\-tx}}\label{main_8c_a5af94ab36bfe698db3e6beea96d10a90}
+
+\item 
+\hypertarget{main_8c_a418ff7f6b595dcf41b10de1083e62340}{D\-M\-A\-\_\-\-Handle\-Type\-Def {\bfseries hdma\-\_\-usart3\-\_\-rx}}\label{main_8c_a418ff7f6b595dcf41b10de1083e62340}
+
+\item 
+\hypertarget{main_8c_a8556819c2aafb13de4f13869b2c315ed}{D\-M\-A\-\_\-\-Handle\-Type\-Def {\bfseries hdma\-\_\-usart3\-\_\-tx}}\label{main_8c_a8556819c2aafb13de4f13869b2c315ed}
+
+\item 
+\hypertarget{main_8c_a32b512e1cf5b3760034ffc5ab2102ee1}{\hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} {\bfseries eps\-\_\-board\-\_\-state}}\label{main_8c_a32b512e1cf5b3760034ffc5ab2102ee1}
+
+\item 
+\hypertarget{main_8c_adb231798bc51f82e0739b2479eaa6aeb}{\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} {\bfseries power\-\_\-module\-\_\-top}}\label{main_8c_adb231798bc51f82e0739b2479eaa6aeb}
+
+\item 
+\hypertarget{main_8c_adea933c4b4f91304cb2458d017c2e80c}{\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} {\bfseries power\-\_\-module\-\_\-bottom}}\label{main_8c_adea933c4b4f91304cb2458d017c2e80c}
+
+\item 
+\hypertarget{main_8c_adca9f4134edb10401a96ef21c13b45e5}{\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} {\bfseries power\-\_\-module\-\_\-left}}\label{main_8c_adca9f4134edb10401a96ef21c13b45e5}
+
+\item 
+\hypertarget{main_8c_a090b531beb983e31d5127172a32e714f}{\hyperlink{struct_e_p_s___power_module}{E\-P\-S\-\_\-\-Power\-Module} {\bfseries power\-\_\-module\-\_\-right}}\label{main_8c_a090b531beb983e31d5127172a32e714f}
+
+\item 
+\hypertarget{main_8c_ac6f56d137c679d7f6ef55a7dc89299a8}{uint8\-\_\-t {\bfseries uart\-\_\-temp} \mbox{[}200\mbox{]}}\label{main_8c_ac6f56d137c679d7f6ef55a7dc89299a8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main body of E\-P\-S subsystem module. The M\-C\-U system is initialized from C\-U\-B\-E M\-X software thus the generated structure is kept as is. File Name \-: \hyperlink{main_8c}{main.\-c} Description \-: Main program body
+
+\begin{DoxyAuthor}{Author}
+Aris Stathakis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\-0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27-\/\-May-\/2016 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8c_af20a88180db1113be1e89266917d148b}{\index{main.\-c@{main.\-c}!H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback@{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback}}
+\index{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback@{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback}!main.c@{main.\-c}}
+\subsubsection[{H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void H\-A\-L\-\_\-\-A\-D\-C\-\_\-\-Conv\-Cplt\-Callback (
+\begin{DoxyParamCaption}
+\item[{A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{hadc}
+\end{DoxyParamCaption}
+)}}\label{main_8c_af20a88180db1113be1e89266917d148b}
+
+
+A\-D\-C D\-M\-A interrupt handler marks the global flag of adc peripheral as a transfer complete. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & pointer to adc handle peripheral \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{main_8c_ae70bce6c39d0b570a7523b86738cec4b}{\index{main.\-c@{main.\-c}!H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init@{H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init}}
+\index{H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init@{H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init}!main.c@{main.\-c}}
+\subsubsection[{H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void H\-A\-L\-\_\-\-T\-I\-M\-\_\-\-Msp\-Post\-Init (
+\begin{DoxyParamCaption}
+\item[{T\-I\-M\-\_\-\-Handle\-Type\-Def $\ast$}]{htim}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ae70bce6c39d0b570a7523b86738cec4b}
+T\-I\-M3 G\-P\-I\-O Configuration P\-A7 -\/-\/-\/---$>$ T\-I\-M3\-\_\-\-C\-H2 P\-B0 -\/-\/-\/---$>$ T\-I\-M3\-\_\-\-C\-H3 P\-B1 -\/-\/-\/---$>$ T\-I\-M3\-\_\-\-C\-H4 P\-C6 -\/-\/-\/---$>$ T\-I\-M3\-\_\-\-C\-H1\hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}{\index{main.\-c@{main.\-c}!System\-Clock\-\_\-\-Config@{System\-Clock\-\_\-\-Config}}
+\index{System\-Clock\-\_\-\-Config@{System\-Clock\-\_\-\-Config}!main.c@{main.\-c}}
+\subsubsection[{System\-Clock\-\_\-\-Config}]{\setlength{\rightskip}{0pt plus 5cm}void System\-Clock\-\_\-\-Config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}
+System Clock Configuration 
+
+\subsection{Variable Documentation}
+\hypertarget{main_8c_a556a7c43d0d5bbeccebc55d3f97e0fd5}{\index{main.\-c@{main.\-c}!hdma\-\_\-adc@{hdma\-\_\-adc}}
+\index{hdma\-\_\-adc@{hdma\-\_\-adc}!main.c@{main.\-c}}
+\subsubsection[{hdma\-\_\-adc}]{\setlength{\rightskip}{0pt plus 5cm}D\-M\-A\-\_\-\-Handle\-Type\-Def hdma\-\_\-adc}}\label{main_8c_a556a7c43d0d5bbeccebc55d3f97e0fd5}
+File Name \-: stm32l1xx\-\_\-hal\-\_\-msp.\-c Description \-: This file provides code for the M\-S\-P Initialization and de-\/\-Initialization codes.
+
+C\-O\-P\-Y\-R\-I\-G\-H\-T(c) 2016 S\-T\-Microelectronics
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\-T\-Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E. 

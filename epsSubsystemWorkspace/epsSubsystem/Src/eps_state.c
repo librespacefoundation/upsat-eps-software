@@ -17,7 +17,15 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state);
 
 
+/** @addtogroup eps_state_Functions
+  * @{
+  */
 
+/**
+  * @brief Initialize the eps state structure with valid initial values.
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
 	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_INIT;
@@ -39,6 +47,12 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
 }
 
+/**
+  * @brief Update the eps state structure with state values. This is called every 50msec as the first main task of the eps.
+  *        This basically collect info from the adc connected sensors, and the temperature sensors.
+  * @param  state: the eps state structure containing central info of the EPS subsystem.
+  * @retval Error status for handling and debugging.
+  */
 EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c) {
 
 	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_UPDATE;
@@ -70,7 +84,12 @@ EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleType
 
 }
 
-
+/**
+  * @brief  set adc handle properly and get adc measurements and perform a basic low pass filtering on them.
+  * @param  state: pointer to the eps state structure containing central info of the EPS subsystem.
+  * @param  hadc_eps: pointer to the adc peripheral handle.
+  * @retval Error status for handling and debugging.
+  */
 static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps){
 
 	EPS_soft_error_status adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC;
@@ -137,7 +156,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 
 	adc_update_state = EPS_SOFT_ERROR_UPDATE_STATE_ADC_FILTER;
 
-	//de-interleave and sum adc state measurements.overflow strategy??? : 2^12(max adc value) * 32 = 2^17 < 2^32 so you do not need one!
+	/*de-interleave and sum adc state measurements.*/
 	for (int sum_index = 6; sum_index < 54; sum_index+=6) {
 		/*top*/
 		battery_voltage_avg = battery_voltage_avg + adc_measurement_dma_eps_state[sum_index];
@@ -149,7 +168,7 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	}
 
 	/*filter ting*/
-	//average of 8 concecutive adc measurements.skip the first to avoid adc power up distortion.
+	/*average of 8 concecutive adc measurements.skip the first to avoid adc power up distortion.*/
 	state->battery_voltage = battery_voltage_avg>>3;
 	state->battery_current_plus = battery_current_plus_avg>>3;
 	state->battery_current_minus = battery_current_minus_avg>>3;
@@ -164,6 +183,23 @@ static EPS_soft_error_status EPS_update_state_adc_measurements(volatile EPS_Stat
 	return adc_update_state;
 }
 
+/**
+  * @brief  Strategy to calculate eps batterypack temperature.
+  *         The battery temperature measurement is updated every 20 calls of this function, assuming it is called once every 50msec,
+  *         the battery measurement update mechanism is:
+  *         calls:  -0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-
+  *         actions:|--------sleep---------------|----wakeup----|--measure|
+  *         tc74 temperature sensors need at least 125msec to return a valid measurement from wakeup.
+  *         If a temperature sensor returns a device error status, only the valid temperature is considered.
+  *         If both sensors are functioning then the average values is returned.
+  *         If both sensors are malfunctioning then the stm32l1 internal temp sensor is considered plus a calibration
+  *          constant that has been derived from experimental calibration.
+  * @param  h_i2c: pointer to the i2c bus peripheral handle that the temperature sensor ics are connected.
+  * @param  sensor_A_i2c_address: i2c address of the first tc74 temperature sensor.
+  * @param  sensor_B_i2c_address: i2c address of the second tc74 temperature sensor.
+  * @param  state: pointer to the eps state structure containing central info of the EPS subsystem.
+  * @retval The measured battery-pack temperature given the sensors device status.
+  */
 int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state){
 
 	static  uint8_t battery_temperature_valid_counter=0;/*counter to control the battery sensor scheme*/
@@ -268,103 +304,14 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 
 }
 
-
-
-//int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i2c_address, uint8_t sensor_B_i2c_address,volatile EPS_State *state){
-//
-//	static  uint8_t battery_temperature_valid_counter=0;//counter to control the battery sensor scheme
-//	/*calculate battery temperature depending on sensor status*/
-//	int16_t battery_temp_avg;
-//
-//
-//	if(battery_temperature_valid_counter>19){
-//
-//
-//		/* if i2c rail is off turn it on - this is how to reset the i2c power line.*/
-//		if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
-//			EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
-//		}
-//
-//		TC_74_STATUS statusA, statusB;
-//		/*wake up sensor1*/
-//		statusA = device_wake_up( h_i2c, sensor_A_i2c_address);
-//
-//		/*wake up sensor2*/
-//		statusB = device_wake_up( h_i2c, sensor_B_i2c_address);
-//
-//		/*check sensor1 status if still in standby or error*/
-//		if(statusA == DEVICE_NORMAL){
-//			statusA = read_device_status(h_i2c, sensor_A_i2c_address);
-//		}
-//
-//		/*check sensor2 status if still in standby or error*/
-//		if(statusB == DEVICE_NORMAL){
-//			statusB = read_device_status(h_i2c, sensor_B_i2c_address);
-//		}
-//
-//
-//		/*get temperatue1*/
-//		int8_t temperature_measurementA;
-//		if(statusA == DEVICE_NORMAL){
-//			statusA= read_device_temperature(h_i2c, sensor_A_i2c_address, &temperature_measurementA);
-//		}
-//		/*get temperatue2*/
-//		int8_t temperature_measurementB;
-//		if(statusB == DEVICE_NORMAL){
-//			statusB= read_device_temperature(h_i2c, sensor_B_i2c_address, &temperature_measurementB);
-//		}
-//
-//		/*if you put temp sesors to sleep you will never have a new conversion */
-//		/* beloved tc74 has 4 samples per second rate - thank you ti*/
-//
-//
-//
-//
-//		if((statusA!=DEVICE_ERROR)&&(statusB!=DEVICE_ERROR)){
-//			//nominal state: both temp sensors not in erroneous state.
-//			battery_temp_avg =  (temperature_measurementA + temperature_measurementB)>>1;
-//			state->batterypack_health_status = EPS_BATTERY_SENSOR_SYSTEM_OK;
-//		}
-//		else if((statusA!=DEVICE_ERROR)&&(statusB==DEVICE_ERROR)){
-//			//temp sensor A is OK but B is in eroneous state.
-//			battery_temp_avg =  temperature_measurementA;
-//			state->batterypack_health_status = EPS_BATTERY_SENSOR_B_DEAD;
-//		}
-//		else if((statusA==DEVICE_ERROR)&&(statusA!=DEVICE_ERROR)){
-//			//temp sensor A is OK but B is in eroneous state.
-//			battery_temp_avg =  temperature_measurementB;
-//			state->batterypack_health_status = EPS_BATTERY_SENSOR_A_DEAD;
-//		}
-//		else if((statusA==DEVICE_ERROR)&&(statusA==DEVICE_ERROR)){
-//			//both temp sensors are dead... so we extraploate the only temp sensor availiable, the cpu temp sensor.
-//			battery_temp_avg = state->cpu_temperature - CPU_TO_BATTERY_TEMPERATURE_OFFSET;
-//			state->batterypack_health_status = EPS_BATTERY_SENSOR_CPU_TEMP_ONLY;
-//			/* turn of power temperature power supply so as to reset to next temp requet */
-//			EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, state);
-//
-//			//TODO: find the relation of cpu temperature to battery pack temperature.
-//		}
-//		else{
-//			//TODO: handle this ...
-//			state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
-//		}
-//
-//		battery_temperature_valid_counter = 0;//reset valid battery temperature counter
-//
-//	}
-//	else{
-//		//if o update has been made - return the previous state.
-//		battery_temp_avg = state->battery_temp;
-//		battery_temperature_valid_counter++;
-//	}
-//
-//	 return battery_temp_avg;
-//
-//}
-//
-
-
-
+/**
+  * @brief  Turn on or off the power switches of the connected subsystem. These are inverted logic mosfets that control
+  *          power supply rails at the rest of the satellite subsystems.
+  * @param  eps_switch: eps power control subsystem ports.
+  * @param  switch_status: power switch status.
+  * @param  state: pointer to the eps state structure containing central info of the EPS subsystem.
+  * @retval None.
+  */
 void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status switch_status,volatile EPS_State *state){
 
  	GPIO_PinState gpio_write_value;
@@ -417,7 +364,14 @@ void EPS_set_rail_switch(EPS_switch_rail eps_switch, EPS_switch_rail_status swit
 
 
 
-
+/**
+  * @brief  Turn on or off the control switches of the eps control mechanisms. These are normal logic mosfets that control
+  *         deploy system and battery heaters safety mechanism.
+  * @param  eps_switch: eps control port.
+  * @param  switch_status: control switch status.
+  * @param  state: pointer to the eps state structure containing central info of the EPS subsystem.
+  * @retval None.
+  */
 void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_status switch_status,volatile EPS_State *state){
 
  	GPIO_PinState gpio_write_value;
@@ -474,7 +428,11 @@ void EPS_set_control_switch(EPS_switch_control eps_switch, EPS_switch_control_st
 }
 
 
-
+/**
+  * @brief  get the state of a power switch.
+  * @param  eps_switch: eps power port.
+  * @retval  switch_status: power switch status.
+  */
 EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch) {
 
 	EPS_switch_rail_status return_status;
@@ -521,6 +479,11 @@ EPS_switch_rail_status EPS_get_rail_switch_status(EPS_switch_rail eps_switch) {
 
 }
 
+/**
+  * @brief  get the state of a control switch.
+  * @param  eps_switch: eps control port.
+  * @retval  switch_status: control switch status.
+  */
 EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_switch) {
 
 	EPS_switch_control_status return_status;
@@ -569,3 +532,6 @@ EPS_switch_control_status EPS_get_control_switch_status(EPS_switch_control eps_s
 	return return_status;
 
 }
+/**
+  * @}
+  */

@@ -1,0 +1,106 @@
+\hypertarget{group__eps__safety}{\section{Eps\-\_\-safety}
+\label{group__eps__safety}\index{Eps\-\_\-safety@{Eps\-\_\-safety}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_e_p_s__safety__limits}{E\-P\-S\-\_\-safety\-\_\-limits}
+\begin{DoxyCompactList}\small\item\em safety system limit values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__eps__safety_ga5dddaf23079a7dca9a9c4f4439926cf3}{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T}~((uint32\-\_\-t) 1694)
+\item 
+\#define \hyperlink{group__eps__safety_gad02e2ee8c31f47248226e2096de49820}{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}~((uint32\-\_\-t) 2854)
+\item 
+\#define \hyperlink{group__eps__safety_ga8bf211e2280e0f8098f3b6c23a750b12}{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T}~((uint32\-\_\-t) 1895)
+\item 
+\hypertarget{group__eps__safety_ga1a5e7b24738a256e56f93da19e732bba}{\#define {\bfseries L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T}~((uint32\-\_\-t) 5)}\label{group__eps__safety_ga1a5e7b24738a256e56f93da19e732bba}
+
+\item 
+\#define \hyperlink{group__eps__safety_ga4b0c4dfb6628ab3e7fbb0d87493c4c7d}{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}~((uint32\-\_\-t) 55)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__safety_ga39c4acaac6d5e9818c1570ca02c2e015}{E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory} (\hyperlink{struct_e_p_s__safety__limits}{E\-P\-S\-\_\-safety\-\_\-limits} $\ast$limits)
+\begin{DoxyCompactList}\small\item\em Function to write to memory the defined memory limits to the defined limits memory addresses. Load limits from memory at startup. this is done so if needed to change them for safety issues, then the values wont be again problematic on reset and startup. \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__safety_ga2867775c8dee462ce7a20867e8582df0}{E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks} (\hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state, \hyperlink{struct_e_p_s__safety__limits}{E\-P\-S\-\_\-safety\-\_\-limits} $\ast$limits)
+\begin{DoxyCompactList}\small\item\em Perform safety checks of the satelite eps for the current state. Protections\-: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__eps__safety_ga4b0c4dfb6628ab3e7fbb0d87493c4c7d}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}}
+\index{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T~((uint32\-\_\-t) 55)}}\label{group__eps__safety_ga4b0c4dfb6628ab3e7fbb0d87493c4c7d}
+55 Celcius degree \hypertarget{group__eps__safety_ga8bf211e2280e0f8098f3b6c23a750b12}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T}}
+\index{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-R\-I\-T\-I\-C\-A\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T~((uint32\-\_\-t) 1895)}}\label{group__eps__safety_ga8bf211e2280e0f8098f3b6c23a750b12}
+8.\-5\-Volt \hypertarget{group__eps__safety_gad02e2ee8c31f47248226e2096de49820}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}}
+\index{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-H\-I\-G\-H\-\_\-\-D\-E\-F\-A\-U\-L\-T~((uint32\-\_\-t) 2854)}}\label{group__eps__safety_gad02e2ee8c31f47248226e2096de49820}
+12.\-8\-Volt X 222,93651 \hypertarget{group__eps__safety_ga5dddaf23079a7dca9a9c4f4439926cf3}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T}}
+\index{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T@{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-M\-I\-T\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-L\-O\-W\-\_\-\-D\-E\-F\-A\-U\-L\-T~((uint32\-\_\-t) 1694)}}\label{group__eps__safety_ga5dddaf23079a7dca9a9c4f4439926cf3}
+7.\-6\-Volt X 222,93651 
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__safety_ga39c4acaac6d5e9818c1570ca02c2e015}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory@{E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory}}
+\index{E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory@{E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-load\-\_\-safety\-\_\-limits\-\_\-from\-\_\-memory (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-safety\-\_\-limits} $\ast$}]{limits}
+\end{DoxyParamCaption}
+)}}\label{group__eps__safety_ga39c4acaac6d5e9818c1570ca02c2e015}
+
+
+Function to write to memory the defined memory limits to the defined limits memory addresses. Load limits from memory at startup. this is done so if needed to change them for safety issues, then the values wont be again problematic on reset and startup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em limits} & pointer to the eps safety limits structure containing threshold values for safety protection mechanisms.$\ast$ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__safety_ga2867775c8dee462ce7a20867e8582df0}{\index{Eps\-\_\-safety@{Eps\-\_\-safety}!E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks@{E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks}}
+\index{E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks@{E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks}!Eps_safety@{Eps\-\_\-safety}}
+\subsubsection[{E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-perform\-\_\-safety\-\_\-checks (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-P\-S\-\_\-\-State} $\ast$}]{state, }
+\item[{{\bf E\-P\-S\-\_\-safety\-\_\-limits} $\ast$}]{limits}
+\end{DoxyParamCaption}
+)}}\label{group__eps__safety_ga2867775c8dee462ce7a20867e8582df0}
+
+
+Perform safety checks of the satelite eps for the current state. Protections\-: 
+
+
+\begin{DoxyItemize}
+\item Overvoltage\-: solar panels current output is shut down.
+\item Undervoltage\-: if not in normal operating voltage, the eps takes action -\/low bat mode\-: battery is about to be depleted. All subsystems are shut down until the satelite batterypack reaches nominal voltage. -\/critical mode\-: non critical loads (adcs,su) are explicitly shutdown -\/ ideally a signal to obc would be nice. Still we can know about this in the extended health response.
+\end{DoxyItemize}
+
+Overtemperature\-: explicitly turn off heaters -\/ maybe consider shutting down other subsystems since batteries are heated by regulators thermal vias.
+\begin{DoxyItemize}
+\item Undertemperature\-: Turn on heaters protection system. The heater protection has a +-\/1 celsius degree threshold margin to avoid redundant switching.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & pointer to the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+{\em limits} & pointer to the eps safety limits structure containing threshold values for safety protection mechanisms.$\ast$ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}

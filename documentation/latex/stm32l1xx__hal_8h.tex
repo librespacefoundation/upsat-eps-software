@@ -1,0 +1,381 @@
+\hypertarget{stm32l1xx__hal_8h}{\section{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/stm32l1xx\-\_\-hal.h File Reference}
+\label{stm32l1xx__hal_8h}\index{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/stm32l1xx\-\_\-hal.\-h@{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/stm32l1xx\-\_\-hal.\-h}}
+}
+
+
+This file contains all the functions prototypes for the H\-A\-L module driver.  
+
+
+{\ttfamily \#include \char`\"{}stm32l1xx\-\_\-hal\-\_\-conf.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_ga1cfa68f41fcdf064fe4f57424067581c}{\#define {\bfseries S\-Y\-S\-C\-F\-G\-\_\-\-B\-O\-O\-T\-\_\-\-M\-A\-I\-N\-F\-L\-A\-S\-H}~((uint32\-\_\-t)0x00000000)}\label{group___s_y_s_c_f_g___boot_mode_ga1cfa68f41fcdf064fe4f57424067581c}
+
+\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_ga603891dcd1d145e4ffbaa2873181974a}{\#define {\bfseries S\-Y\-S\-C\-F\-G\-\_\-\-B\-O\-O\-T\-\_\-\-S\-Y\-S\-T\-E\-M\-F\-L\-A\-S\-H}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_gab3aac746e615c3eb9681d6561ca8b1d2}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-B\-O\-O\-T\-\_\-\-M\-O\-D\-E\-\_\-0})}\label{group___s_y_s_c_f_g___boot_mode_ga603891dcd1d145e4ffbaa2873181974a}
+
+\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_gab5f9d82b9c7af24984cb807d22ea0996}{\#define {\bfseries S\-Y\-S\-C\-F\-G\-\_\-\-B\-O\-O\-T\-\_\-\-S\-R\-A\-M}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga38d77b745bf303f4f353c7029591102b}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-B\-O\-O\-T\-\_\-\-M\-O\-D\-E})}\label{group___s_y_s_c_f_g___boot_mode_gab5f9d82b9c7af24984cb807d22ea0996}
+
+\item 
+\#define \hyperlink{group___r_i___input_capture_gaa98d1e873a27efd633af657e8b968870}{R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-\_\-\-I\-C1}~\hyperlink{group___peripheral___registers___bits___definition_ga991a7aa3c0986605cb45831b5f16d02e}{R\-I\-\_\-\-I\-C\-R\-\_\-\-I\-C1}
+\item 
+\#define \hyperlink{group___r_i___input_capture_gabfeb9d558e0b2be2376a8de7bba47c6f}{R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-\_\-\-I\-C2}~\hyperlink{group___peripheral___registers___bits___definition_ga5430845f1a57feef529bae0704c56968}{R\-I\-\_\-\-I\-C\-R\-\_\-\-I\-C2}
+\item 
+\#define \hyperlink{group___r_i___input_capture_gaa6898cb4fe4fa9c7c8f1575dacde0200}{R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-\_\-\-I\-C3}~\hyperlink{group___peripheral___registers___bits___definition_ga02a8c41438b820e6909a8a44311d2d2e}{R\-I\-\_\-\-I\-C\-R\-\_\-\-I\-C3}
+\item 
+\#define \hyperlink{group___r_i___input_capture_ga0fbcaaee4c38c255c923397053db8013}{R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-\_\-\-I\-C4}~\hyperlink{group___peripheral___registers___bits___definition_gacaf8eea8686232d8e0e04d3c07526883}{R\-I\-\_\-\-I\-C\-R\-\_\-\-I\-C4}
+\item 
+\#define \hyperlink{group___t_i_m___select_ga646e3019e83865fa050ddce0b8d3bb99}{T\-I\-M\-\_\-\-S\-E\-L\-E\-C\-T\-\_\-\-N\-O\-N\-E}~((uint32\-\_\-t)0x00000000)
+\item 
+\#define \hyperlink{group___t_i_m___select_ga3e27a854ea5a487faa34cecbe716f882}{T\-I\-M\-\_\-\-S\-E\-L\-E\-C\-T\-\_\-\-T\-I\-M2}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_gad850473c75d4ba29f970cc12688e7aca}{R\-I\-\_\-\-I\-C\-R\-\_\-\-T\-I\-M\-\_\-0})
+\item 
+\#define \hyperlink{group___t_i_m___select_gaf654500d4d845cfc1d89db5ae2b82489}{T\-I\-M\-\_\-\-S\-E\-L\-E\-C\-T\-\_\-\-T\-I\-M3}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga2bfcc48a0dc738636cfaab24db053e74}{R\-I\-\_\-\-I\-C\-R\-\_\-\-T\-I\-M\-\_\-1})
+\item 
+\#define \hyperlink{group___t_i_m___select_gae19e2277f213cc2eda07c1258d5621af}{T\-I\-M\-\_\-\-S\-E\-L\-E\-C\-T\-\_\-\-T\-I\-M4}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga0b2db345cf0c0710bb1ef69148383eaa}{R\-I\-\_\-\-I\-C\-R\-\_\-\-T\-I\-M})
+\item 
+\#define {\bfseries I\-S\-\_\-\-R\-I\-\_\-\-T\-I\-M}(\-\_\-\-\_\-\-T\-I\-M\-\_\-\-\_\-)
+\item 
+\hypertarget{group___r_i___input_capture_routing_gafd5e6eeddaab86cb1d13c91ef37cbf79}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-0}~((uint32\-\_\-t)0x00000000) /$\ast$ P\-A0       P\-A1      P\-A2       P\-A3      $\ast$/}\label{group___r_i___input_capture_routing_gafd5e6eeddaab86cb1d13c91ef37cbf79}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga558a965c269bd07a59f8169f2a11e091}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-1}~((uint32\-\_\-t)0x00000001) /$\ast$ P\-A4       P\-A5      P\-A6       P\-A7      $\ast$/}\label{group___r_i___input_capture_routing_ga558a965c269bd07a59f8169f2a11e091}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gadfd6d9659b7193d113a15949387705b3}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-2}~((uint32\-\_\-t)0x00000002) /$\ast$ P\-A8       P\-A9      P\-A10      P\-A11     $\ast$/}\label{group___r_i___input_capture_routing_gadfd6d9659b7193d113a15949387705b3}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gaa3d87f14b718cdb5c833b6beb1e3c823}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-3}~((uint32\-\_\-t)0x00000003) /$\ast$ P\-A12      P\-A13     P\-A14      P\-A15     $\ast$/}\label{group___r_i___input_capture_routing_gaa3d87f14b718cdb5c833b6beb1e3c823}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga39646a1f0d212d8a5e0d7ad5c6a80b73}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-4}~((uint32\-\_\-t)0x00000004) /$\ast$ P\-C0       P\-C1      P\-C2       P\-C3      $\ast$/}\label{group___r_i___input_capture_routing_ga39646a1f0d212d8a5e0d7ad5c6a80b73}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gafb8de6324b7122a1d4bc7fb853307a81}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-5}~((uint32\-\_\-t)0x00000005) /$\ast$ P\-C4       P\-C5      P\-C6       P\-C7      $\ast$/}\label{group___r_i___input_capture_routing_gafb8de6324b7122a1d4bc7fb853307a81}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gade2f23cfc2a4c856b45dbe2b128e9b00}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-6}~((uint32\-\_\-t)0x00000006) /$\ast$ P\-C8       P\-C9      P\-C10      P\-C11     $\ast$/}\label{group___r_i___input_capture_routing_gade2f23cfc2a4c856b45dbe2b128e9b00}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga79fd494f01ecf2baec69456f1d51ec20}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-7}~((uint32\-\_\-t)0x00000007) /$\ast$ P\-C12      P\-C13     P\-C14      P\-C15     $\ast$/}\label{group___r_i___input_capture_routing_ga79fd494f01ecf2baec69456f1d51ec20}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga0009e0d13359feffaa8d23155fc73eba}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-8}~((uint32\-\_\-t)0x00000008) /$\ast$ P\-D0       P\-D1      P\-D2       P\-D3      $\ast$/}\label{group___r_i___input_capture_routing_ga0009e0d13359feffaa8d23155fc73eba}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga69e503bb9c7b93e4527e3b9dfc99f0ed}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-9}~((uint32\-\_\-t)0x00000009) /$\ast$ P\-D4       P\-D5      P\-D6       P\-D7      $\ast$/}\label{group___r_i___input_capture_routing_ga69e503bb9c7b93e4527e3b9dfc99f0ed}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gab4f455ce0bd7f6b9d039d8b3b397d515}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-10}~((uint32\-\_\-t)0x0000000\-A) /$\ast$ P\-D8       P\-D9      P\-D10      P\-D11     $\ast$/}\label{group___r_i___input_capture_routing_gab4f455ce0bd7f6b9d039d8b3b397d515}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gad0f4578aca2f2969b01d2e286b7eaba3}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-11}~((uint32\-\_\-t)0x0000000\-B) /$\ast$ P\-D12      P\-D13     P\-D14      P\-D15     $\ast$/}\label{group___r_i___input_capture_routing_gad0f4578aca2f2969b01d2e286b7eaba3}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_gac3079d98c769abd5c341567043ed9139}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-12}~((uint32\-\_\-t)0x0000000\-C) /$\ast$ P\-E0       P\-E1      P\-E2       P\-E3      $\ast$/}\label{group___r_i___input_capture_routing_gac3079d98c769abd5c341567043ed9139}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga7afce070e1a949d2d6b3b4cf658dc97e}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-13}~((uint32\-\_\-t)0x0000000\-D) /$\ast$ P\-E4       P\-E5      P\-E6       P\-E7      $\ast$/}\label{group___r_i___input_capture_routing_ga7afce070e1a949d2d6b3b4cf658dc97e}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga7ce2ef383f9eb86cd52a68576ea5ebd4}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-14}~((uint32\-\_\-t)0x0000000\-E) /$\ast$ P\-E8       P\-E9      P\-E10      P\-E11     $\ast$/}\label{group___r_i___input_capture_routing_ga7ce2ef383f9eb86cd52a68576ea5ebd4}
+
+\item 
+\hypertarget{group___r_i___input_capture_routing_ga8b1a9aed68110aa0d5732b6d043b53ee}{\#define {\bfseries R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-R\-O\-U\-T\-I\-N\-G\-\_\-15}~((uint32\-\_\-t)0x0000000\-F) /$\ast$ P\-E12      P\-E13     P\-E14      P\-E15     $\ast$/}\label{group___r_i___input_capture_routing_ga8b1a9aed68110aa0d5732b6d043b53ee}
+
+\item 
+\#define {\bfseries I\-S\-\_\-\-R\-I\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E\-\_\-\-R\-O\-U\-T\-I\-N\-G}(\-\_\-\-\_\-\-R\-O\-U\-T\-I\-N\-G\-\_\-\-\_\-)
+\item 
+\hypertarget{group___r_i___i_o_switch_gaec574d20dd6b304f25344a443b2fc59a}{\#define {\bfseries R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R}~((uint32\-\_\-t)0x80000000)}\label{group___r_i___i_o_switch_gaec574d20dd6b304f25344a443b2fc59a}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga1e22bbf7c7ac5c6a90b1a99f4ed3908c}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H0}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga35c3581ed4de728efae4b8420d61b6cf}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-0})}\label{group___r_i___i_o_switch_ga1e22bbf7c7ac5c6a90b1a99f4ed3908c}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga39a2d3bd0d2b3dba78183f7f15f3981c}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H1}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga476a30055082cb6239183609c321ed84}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-1})}\label{group___r_i___i_o_switch_ga39a2d3bd0d2b3dba78183f7f15f3981c}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gaf579d0a5349473de9274854ff2268409}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H2}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gac3837d2221490cdbe32aa73ecccb81d6}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-2})}\label{group___r_i___i_o_switch_gaf579d0a5349473de9274854ff2268409}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga69e1edda4e512ad0e4cd41df87e2d1e8}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H3}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga39a1b76b597db291f342168ca86c592a}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-3})}\label{group___r_i___i_o_switch_ga69e1edda4e512ad0e4cd41df87e2d1e8}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga9dcf19f166894f88b3a8251b69507e38}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H4}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga3dec0b3bcfe7befb75a43f5573a56659}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-4})}\label{group___r_i___i_o_switch_ga9dcf19f166894f88b3a8251b69507e38}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga442259f099d470d4d9a0c5ba09b463d5}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H5}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga2aca78076d819d0c1d1a3cbdce680d16}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-5})}\label{group___r_i___i_o_switch_ga442259f099d470d4d9a0c5ba09b463d5}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga5a163377be6198bd33637a0662150abe}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H6}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga5baabbaf4ba016fe7038e4e1779f56d0}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-6})}\label{group___r_i___i_o_switch_ga5a163377be6198bd33637a0662150abe}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga69a240b7fad88239b88da259d960f1a4}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H7}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gafb20649c9e05d7a925346f863627bba2}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-7})}\label{group___r_i___i_o_switch_ga69a240b7fad88239b88da259d960f1a4}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga23a783c3facd7efd0092eae9c33fd7d6}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H8}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga91d063f26cb508e8f8ecc6e4732410dc}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-8})}\label{group___r_i___i_o_switch_ga23a783c3facd7efd0092eae9c33fd7d6}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gad687cd24d0a17d17694dcf2509b9948b}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H9}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga0ed38883e815c56c2dfc1af1084fc04d}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-9})}\label{group___r_i___i_o_switch_gad687cd24d0a17d17694dcf2509b9948b}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga1a700c79adf1d50ac943737355bf6c82}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H10}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gae3c516346dc0c53359bd91ebce3f5d4d}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-10})}\label{group___r_i___i_o_switch_ga1a700c79adf1d50ac943737355bf6c82}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga8e6e7b20244dd1775f7874e07e5fec4c}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H11}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga8db621c8a0d2fce4fbfb50ee99ae4842}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-11})}\label{group___r_i___i_o_switch_ga8e6e7b20244dd1775f7874e07e5fec4c}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga2cde4d3f89293874621433e754066b49}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H12}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga3569a064eebb7148cfc450e89e637d11}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-12})}\label{group___r_i___i_o_switch_ga2cde4d3f89293874621433e754066b49}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gab0fcb464f29430da817b7f6e3311903a}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H13}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaed83dec747e47af6e8731ba9a386dba1}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-13})}\label{group___r_i___i_o_switch_gab0fcb464f29430da817b7f6e3311903a}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga4d620b8940da85a37de94440dd926531}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H14}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga3dd4bd779d14f04ca4f9d72dd772d0e9}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-14})}\label{group___r_i___i_o_switch_ga4d620b8940da85a37de94440dd926531}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gabbebf3228e1d303278cd34d6261d99bd}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H15}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga7171966843026503e0319c89d95dc275}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-15})}\label{group___r_i___i_o_switch_gabbebf3228e1d303278cd34d6261d99bd}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gabef05696c9554eb7ce80e9bfa795c439}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H18}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaceb195ff1c181b4cfc9586ac7c19a34d}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-18})}\label{group___r_i___i_o_switch_gabef05696c9554eb7ce80e9bfa795c439}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga23e857f3b2c617e62a95231caaedf16f}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H19}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gab7ca7729b1644b9d9ace22e5815b596e}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-19})}\label{group___r_i___i_o_switch_ga23e857f3b2c617e62a95231caaedf16f}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gaf87063b0800de54e61cba45e49af0508}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H20}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga5a76688e594aebf9ead13d28a4618534}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-20})}\label{group___r_i___i_o_switch_gaf87063b0800de54e61cba45e49af0508}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gaf4cbc545f20f7b58420f5ad3bd7c1a14}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H21}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga5afe98d489b31057e3013293fbb13c8d}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-21})}\label{group___r_i___i_o_switch_gaf4cbc545f20f7b58420f5ad3bd7c1a14}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga78478a60de3b47617d61a7ebba3300ec}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H22}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaf815cb08076563c90563eec1b746d11a}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-22})}\label{group___r_i___i_o_switch_ga78478a60de3b47617d61a7ebba3300ec}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga68277f0de29b54ba9d24d949ed8e526a}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H23}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga4ee58ed0f420ae3f55141b5e540d4c9d}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-23})}\label{group___r_i___i_o_switch_ga68277f0de29b54ba9d24d949ed8e526a}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga40e84756761134055e6dddf706ff746c}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H24}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gae29aa20ea8efe6e1c21dc438cbd408d8}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-24})}\label{group___r_i___i_o_switch_ga40e84756761134055e6dddf706ff746c}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga5b9af819e2b157bdf45f56b57620fe5c}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-H25}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaabf632afea743545719609559260b308}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-C\-H\-\_\-25})}\label{group___r_i___i_o_switch_ga5b9af819e2b157bdf45f56b57620fe5c}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gadb39f8d408a9e8a7031e417dd1de65d1}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-V\-C\-O\-M\-P}~((uint32\-\_\-t)R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-R\-E\-G\-I\-S\-T\-E\-R $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gae5638ca72d0a62251410161b71037aa7}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-V\-C\-O\-M\-P}) /$\ast$ V\-C\-O\-M\-P (A\-D\-C channel 26) is an internal switch used to connect selected channel to C\-O\-M\-P1 non inverting input $\ast$/}\label{group___r_i___i_o_switch_gadb39f8d408a9e8a7031e417dd1de65d1}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga0f2ae2e2a8c53d957709c9e78dc08f31}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R10\-\_\-1}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga107731f14487352ff843d3c1aedd4640}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R10\-\_\-1})}\label{group___r_i___i_o_switch_ga0f2ae2e2a8c53d957709c9e78dc08f31}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gad0baab5202a246bf37a1700e6a28d3f7}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R10\-\_\-2}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga66c71861e9ad11b44150b93505988b51}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R10\-\_\-2})}\label{group___r_i___i_o_switch_gad0baab5202a246bf37a1700e6a28d3f7}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga173ba05e20df8537bcf8cd29dd8ae764}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R10\-\_\-3}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_gad915c71a6ca56cb9ed8107a4f3d55a22}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R10\-\_\-3})}\label{group___r_i___i_o_switch_ga173ba05e20df8537bcf8cd29dd8ae764}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga291da0aa5c5e5513a9984cae8431f721}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R10\-\_\-4}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga77d08e89c26c8fd3948f4b1ffc821fb3}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R10\-\_\-4})}\label{group___r_i___i_o_switch_ga291da0aa5c5e5513a9984cae8431f721}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga47c4ac8cabbecfc5c8ed452d28f2628f}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R6\-\_\-1}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga68a0445518cab86238c19ec70b1a7f82}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R6\-\_\-1})}\label{group___r_i___i_o_switch_ga47c4ac8cabbecfc5c8ed452d28f2628f}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga4b24b500ebe7b5540de425a8b5ad1979}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R6\-\_\-2}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga180b56b3ecc2deff88f2428b402b5631}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R6\-\_\-2})}\label{group___r_i___i_o_switch_ga4b24b500ebe7b5540de425a8b5ad1979}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga26e71594c744199da514c7e9221a5542}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R5\-\_\-1}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga35b70043d76941e46c05ed954181de99}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R5\-\_\-1})}\label{group___r_i___i_o_switch_ga26e71594c744199da514c7e9221a5542}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga6a88dbc97f571285747e987f96355a8b}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R5\-\_\-2}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga092c8873e1ccc149ac20820165afa3a6}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R5\-\_\-2})}\label{group___r_i___i_o_switch_ga6a88dbc97f571285747e987f96355a8b}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_gad336a9ebd3ec31e94d46e18d85935757}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R5\-\_\-3}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga662bfe4dc3f4442594e603739e2b31f3}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R5\-\_\-3})}\label{group___r_i___i_o_switch_gad336a9ebd3ec31e94d46e18d85935757}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga65e2bb0b95d6467641971998a32ae4c6}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R4\-\_\-1}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_gaa987eaf3fb4b755150aba6c1c1869541}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R4\-\_\-1})}\label{group___r_i___i_o_switch_ga65e2bb0b95d6467641971998a32ae4c6}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga0322d0e21aea5365497e19119b15065e}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R4\-\_\-2}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga78a3bb7d3099a87e6fd417e748f50a47}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R4\-\_\-2})}\label{group___r_i___i_o_switch_ga0322d0e21aea5365497e19119b15065e}
+
+\item 
+\hypertarget{group___r_i___i_o_switch_ga745a4c7a8642a9925420ce16b68f0e10}{\#define {\bfseries R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-G\-R4\-\_\-3}~((uint32\-\_\-t)\hyperlink{group___peripheral___registers___bits___definition_ga75318d892c468098e8d4ca30ff59c21b}{R\-I\-\_\-\-A\-S\-C\-R2\-\_\-\-G\-R4\-\_\-3})}\label{group___r_i___i_o_switch_ga745a4c7a8642a9925420ce16b68f0e10}
+
+\item 
+\#define {\bfseries I\-S\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H}(\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-)
+\item 
+\#define \hyperlink{group___r_i___pin_ga989e7aedb415c13bb98ddc4d96cfaea1}{R\-I\-\_\-\-P\-I\-N\-\_\-0}~((uint16\-\_\-t)0x0001)
+\item 
+\#define \hyperlink{group___r_i___pin_gaae78f54d0bdfc28f2c6281dd5e6d6731}{R\-I\-\_\-\-P\-I\-N\-\_\-1}~((uint16\-\_\-t)0x0002)
+\item 
+\#define \hyperlink{group___r_i___pin_gaa274394025b195740a30e1f8ebe2b4e2}{R\-I\-\_\-\-P\-I\-N\-\_\-2}~((uint16\-\_\-t)0x0004)
+\item 
+\#define \hyperlink{group___r_i___pin_ga4c79fe9dcee5bda36f7067ed22ba77a4}{R\-I\-\_\-\-P\-I\-N\-\_\-3}~((uint16\-\_\-t)0x0008)
+\item 
+\#define \hyperlink{group___r_i___pin_ga7f443ade586a8aa3be0da85eee9e7fb9}{R\-I\-\_\-\-P\-I\-N\-\_\-4}~((uint16\-\_\-t)0x0010)
+\item 
+\#define \hyperlink{group___r_i___pin_ga0db731223773e6d28b38134e64c40076}{R\-I\-\_\-\-P\-I\-N\-\_\-5}~((uint16\-\_\-t)0x0020)
+\item 
+\#define \hyperlink{group___r_i___pin_gafdb2d5d7e07e02f945d51d509bb54cce}{R\-I\-\_\-\-P\-I\-N\-\_\-6}~((uint16\-\_\-t)0x0040)
+\item 
+\#define \hyperlink{group___r_i___pin_ga6dfdbc6035e977af6d9191805a51f8c8}{R\-I\-\_\-\-P\-I\-N\-\_\-7}~((uint16\-\_\-t)0x0080)
+\item 
+\#define \hyperlink{group___r_i___pin_gae80b308782b3bf8dc7c7ca756cd26493}{R\-I\-\_\-\-P\-I\-N\-\_\-8}~((uint16\-\_\-t)0x0100)
+\item 
+\#define \hyperlink{group___r_i___pin_ga1e3cdb6c6e8aa36f83e2bb38f41331f4}{R\-I\-\_\-\-P\-I\-N\-\_\-9}~((uint16\-\_\-t)0x0200)
+\item 
+\#define \hyperlink{group___r_i___pin_gafa3387738d707b9a48178d140d643496}{R\-I\-\_\-\-P\-I\-N\-\_\-10}~((uint16\-\_\-t)0x0400)
+\item 
+\#define \hyperlink{group___r_i___pin_ga962eca26189e20d9baa081670fe2cda5}{R\-I\-\_\-\-P\-I\-N\-\_\-11}~((uint16\-\_\-t)0x0800)
+\item 
+\#define \hyperlink{group___r_i___pin_gaaccc7bafa925a119c19e6ad8a648cce2}{R\-I\-\_\-\-P\-I\-N\-\_\-12}~((uint16\-\_\-t)0x1000)
+\item 
+\#define \hyperlink{group___r_i___pin_ga155ffce85eb8da785a973bc239db95e3}{R\-I\-\_\-\-P\-I\-N\-\_\-13}~((uint16\-\_\-t)0x2000)
+\item 
+\#define \hyperlink{group___r_i___pin_gafa312ad93801f8c9e12eefd7ded80992}{R\-I\-\_\-\-P\-I\-N\-\_\-14}~((uint16\-\_\-t)0x4000)
+\item 
+\#define \hyperlink{group___r_i___pin_ga4d6732c2e125652e77c35e213ac21d86}{R\-I\-\_\-\-P\-I\-N\-\_\-15}~((uint16\-\_\-t)0x8000)
+\item 
+\#define \hyperlink{group___r_i___pin_ga45ed67020370018f1964e7686e9d7187}{R\-I\-\_\-\-P\-I\-N\-\_\-\-A\-L\-L}~((uint16\-\_\-t)0x\-F\-F\-F\-F)
+\item 
+\hypertarget{group___r_i___pin_ga00b40a9de92cd35a34b0ddabd5e074b8}{\#define {\bfseries I\-S\-\_\-\-R\-I\-\_\-\-P\-I\-N}(\-\_\-\-\_\-\-P\-I\-N\-\_\-\-\_\-)~((\-\_\-\-\_\-\-P\-I\-N\-\_\-\-\_\-) != (uint16\-\_\-t)0x00)}\label{group___r_i___pin_ga00b40a9de92cd35a34b0ddabd5e074b8}
+
+\item 
+\#define \hyperlink{group___s_y_s_c_f_g___vref_int_gaaf7a83b4563a6dc56f6ffcf4b5a4d3ab}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-V\-R\-E\-F\-I\-N\-T\-\_\-\-O\-U\-T\-\_\-\-E\-N\-A\-B\-L\-E}()~S\-E\-T\-\_\-\-B\-I\-T(C\-O\-M\-P-\/$>$C\-S\-R, \hyperlink{group___peripheral___registers___bits___definition_gaf1acb48a929c69332b5067efa080aa7e}{C\-O\-M\-P\-\_\-\-C\-S\-R\-\_\-\-V\-R\-E\-F\-O\-U\-T\-E\-N})
+\begin{DoxyCompactList}\small\item\em Enables or disables the output of internal reference voltage (V\-R\-E\-F\-I\-N\-T) on I/\-O pin. The V\-R\-E\-F\-I\-N\-T output can be routed to any I/\-O in group 3\-: \end{DoxyCompactList}\item 
+\hypertarget{group___s_y_s_c_f_g___vref_int_gacd1d40334627b9dced9471b91cd11f10}{\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-V\-R\-E\-F\-I\-N\-T\-\_\-\-O\-U\-T\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~C\-L\-E\-A\-R\-\_\-\-B\-I\-T(C\-O\-M\-P-\/$>$C\-S\-R, \hyperlink{group___peripheral___registers___bits___definition_gaf1acb48a929c69332b5067efa080aa7e}{C\-O\-M\-P\-\_\-\-C\-S\-R\-\_\-\-V\-R\-E\-F\-O\-U\-T\-E\-N})}\label{group___s_y_s_c_f_g___vref_int_gacd1d40334627b9dced9471b91cd11f10}
+
+\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_config_ga9500619e1ec21659bd32b1dfecd5afc1}{\#define \hyperlink{group___s_y_s_c_f_g___boot_mode_config_ga9500619e1ec21659bd32b1dfecd5afc1}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-R\-E\-M\-A\-P\-M\-E\-M\-O\-R\-Y\-\_\-\-F\-L\-A\-S\-H}()~C\-L\-E\-A\-R\-\_\-\-B\-I\-T(S\-Y\-S\-C\-F\-G-\/$>$M\-E\-M\-R\-M\-P, \hyperlink{group___peripheral___registers___bits___definition_ga3c05039ec67573c00da29f58b914f258}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E})}\label{group___s_y_s_c_f_g___boot_mode_config_ga9500619e1ec21659bd32b1dfecd5afc1}
+
+\begin{DoxyCompactList}\small\item\em Main Flash memory mapped at 0x00000000. \end{DoxyCompactList}\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_config_ga59782d94690fd538b25def536c81c3ed}{\#define \hyperlink{group___s_y_s_c_f_g___boot_mode_config_ga59782d94690fd538b25def536c81c3ed}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-R\-E\-M\-A\-P\-M\-E\-M\-O\-R\-Y\-\_\-\-S\-Y\-S\-T\-E\-M\-F\-L\-A\-S\-H}()~M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G(S\-Y\-S\-C\-F\-G-\/$>$M\-E\-M\-R\-M\-P, \hyperlink{group___peripheral___registers___bits___definition_ga3c05039ec67573c00da29f58b914f258}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E}, \hyperlink{group___peripheral___registers___bits___definition_ga30d5f406535f94faea2e7f924d50201b}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E\-\_\-0})}\label{group___s_y_s_c_f_g___boot_mode_config_ga59782d94690fd538b25def536c81c3ed}
+
+\begin{DoxyCompactList}\small\item\em System Flash memory mapped at 0x00000000. \end{DoxyCompactList}\item 
+\hypertarget{group___s_y_s_c_f_g___boot_mode_config_ga86d36fdb1571fd56ffeecfaed80c6805}{\#define \hyperlink{group___s_y_s_c_f_g___boot_mode_config_ga86d36fdb1571fd56ffeecfaed80c6805}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-R\-E\-M\-A\-P\-M\-E\-M\-O\-R\-Y\-\_\-\-S\-R\-A\-M}()~M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G(S\-Y\-S\-C\-F\-G-\/$>$M\-E\-M\-R\-M\-P, \hyperlink{group___peripheral___registers___bits___definition_ga3c05039ec67573c00da29f58b914f258}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E}, \hyperlink{group___peripheral___registers___bits___definition_ga30d5f406535f94faea2e7f924d50201b}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E\-\_\-0} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gab5d76e8b4d801b35c31ef352b33407be}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-M\-E\-M\-\_\-\-M\-O\-D\-E\-\_\-1})}\label{group___s_y_s_c_f_g___boot_mode_config_ga86d36fdb1571fd56ffeecfaed80c6805}
+
+\begin{DoxyCompactList}\small\item\em Embedded S\-R\-A\-M mapped at 0x00000000. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___s_y_s_c_f_g___boot_mode_config_ga0e71eb2b553f1a7b8172710184a89caa}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-G\-E\-T\-\_\-\-B\-O\-O\-T\-\_\-\-M\-O\-D\-E}()~R\-E\-A\-D\-\_\-\-B\-I\-T(S\-Y\-S\-C\-F\-G-\/$>$M\-E\-M\-R\-M\-P, \hyperlink{group___peripheral___registers___bits___definition_ga38d77b745bf303f4f353c7029591102b}{S\-Y\-S\-C\-F\-G\-\_\-\-M\-E\-M\-R\-M\-P\-\_\-\-B\-O\-O\-T\-\_\-\-M\-O\-D\-E})
+\begin{DoxyCompactList}\small\item\em Returns the boot mode as configured by user. \end{DoxyCompactList}\item 
+\hypertarget{group___s_y_s_c_f_g___u_s_b_config_ga7faf3c6611dfc84b6356619d992bdb7e}{\#define \hyperlink{group___s_y_s_c_f_g___u_s_b_config_ga7faf3c6611dfc84b6356619d992bdb7e}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-U\-S\-B\-P\-U\-L\-L\-U\-P\-\_\-\-E\-N\-A\-B\-L\-E}()~S\-E\-T\-\_\-\-B\-I\-T(S\-Y\-S\-C\-F\-G-\/$>$P\-M\-C, \hyperlink{group___peripheral___registers___bits___definition_gaeacd458ca5466228f2f21c66253a9f5e}{S\-Y\-S\-C\-F\-G\-\_\-\-P\-M\-C\-\_\-\-U\-S\-B\-\_\-\-P\-U})}\label{group___s_y_s_c_f_g___u_s_b_config_ga7faf3c6611dfc84b6356619d992bdb7e}
+
+\begin{DoxyCompactList}\small\item\em Control the internal pull-\/up on U\-S\-B D\-P line. \end{DoxyCompactList}\item 
+\hypertarget{group___s_y_s_c_f_g___u_s_b_config_gaee2096666e85cef164572e443433d6f5}{\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-S\-Y\-S\-C\-F\-G\-\_\-\-U\-S\-B\-P\-U\-L\-L\-U\-P\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~C\-L\-E\-A\-R\-\_\-\-B\-I\-T(S\-Y\-S\-C\-F\-G-\/$>$P\-M\-C, \hyperlink{group___peripheral___registers___bits___definition_gaeacd458ca5466228f2f21c66253a9f5e}{S\-Y\-S\-C\-F\-G\-\_\-\-P\-M\-C\-\_\-\-U\-S\-B\-\_\-\-P\-U})}\label{group___s_y_s_c_f_g___u_s_b_config_gaee2096666e85cef164572e443433d6f5}
+
+\item 
+\#define \hyperlink{group___r_i___input_caputure_config_gaab9c6ad79238b046d2c4777e4be81b85}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-R\-E\-M\-A\-P\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E1}(\-\_\-\-\_\-\-T\-I\-M\-S\-E\-L\-E\-C\-T\-\_\-\-\_\-, \-\_\-\-\_\-\-I\-N\-P\-U\-T\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Configures the routing interface to map Input Capture 1 of T\-I\-Mx to a selected I/\-O pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_i___input_caputure_config_gab8a178ab5420d9256e02063347704970}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-R\-E\-M\-A\-P\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E2}(\-\_\-\-\_\-\-T\-I\-M\-S\-E\-L\-E\-C\-T\-\_\-\-\_\-, \-\_\-\-\_\-\-I\-N\-P\-U\-T\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Configures the routing interface to map Input Capture 2 of T\-I\-Mx to a selected I/\-O pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_i___input_caputure_config_ga7505f9d5c4a5bbf3691515e8522ce5f1}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-R\-E\-M\-A\-P\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E3}(\-\_\-\-\_\-\-T\-I\-M\-S\-E\-L\-E\-C\-T\-\_\-\-\_\-, \-\_\-\-\_\-\-I\-N\-P\-U\-T\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Configures the routing interface to map Input Capture 3 of T\-I\-Mx to a selected I/\-O pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_i___input_caputure_config_ga194940d54be3e5091c3225b8f7f312c2}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-R\-E\-M\-A\-P\-\_\-\-I\-N\-P\-U\-T\-C\-A\-P\-T\-U\-R\-E4}(\-\_\-\-\_\-\-T\-I\-M\-S\-E\-L\-E\-C\-T\-\_\-\-\_\-, \-\_\-\-\_\-\-I\-N\-P\-U\-T\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Configures the routing interface to map Input Capture 4 of T\-I\-Mx to a selected I/\-O pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___r_i___switch_control_config_ga2aac480a08cbd6937ed3741a03796ac6}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E}()~S\-E\-T\-\_\-\-B\-I\-T(R\-I-\/$>$A\-S\-C\-R1, \hyperlink{group___peripheral___registers___bits___definition_gaa61a2caf9bf76335404532180c033236}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-S\-C\-M})
+\begin{DoxyCompactList}\small\item\em Enable or disable the switch control mode. \end{DoxyCompactList}\item 
+\hypertarget{group___r_i___switch_control_config_ga41dca172ed53f7787a32d0f0b7a5e485}{\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~C\-L\-E\-A\-R\-\_\-\-B\-I\-T(R\-I-\/$>$A\-S\-C\-R1, \hyperlink{group___peripheral___registers___bits___definition_gaa61a2caf9bf76335404532180c033236}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-S\-C\-M})}\label{group___r_i___switch_control_config_ga41dca172ed53f7787a32d0f0b7a5e485}
+
+\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E}(\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-)
+\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N}(\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-)
+\item 
+\#define \hyperlink{group___r_i___hyst_config_gaae52b285744a36800f8493c58972b8a6}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-A\-\_\-\-O\-N}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Enable or disable Hysteresis of the input schmitt triger of Ports A When the I/\-Os are programmed in input mode by standard I/\-O port registers, the Schmitt trigger and the hysteresis are enabled by default. When hysteresis is disabled, it is possible to read the corresponding port with a trigger level of V\-D\-D\-I\-O/2. \end{DoxyCompactList}\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-A\-\_\-\-O\-F\-F}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\item 
+\#define \hyperlink{group___r_i___hyst_config_ga839072e04e904822a6083d21ebf5be18}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-B\-\_\-\-O\-N}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Enable or disable Hysteresis of the input schmitt triger of Ports B When the I/\-Os are programmed in input mode by standard I/\-O port registers, the Schmitt trigger and the hysteresis are enabled by default. When hysteresis is disabled, it is possible to read the corresponding port with a trigger level of V\-D\-D\-I\-O/2. \end{DoxyCompactList}\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-B\-\_\-\-O\-F\-F}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\item 
+\#define \hyperlink{group___r_i___hyst_config_ga9c36eeb08d67361ad75e414fa3a5d425}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-C\-\_\-\-O\-N}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Enable or disable Hysteresis of the input schmitt triger of Ports C When the I/\-Os are programmed in input mode by standard I/\-O port registers, the Schmitt trigger and the hysteresis are enabled by default. When hysteresis is disabled, it is possible to read the corresponding port with a trigger level of V\-D\-D\-I\-O/2. \end{DoxyCompactList}\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-C\-\_\-\-O\-F\-F}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\item 
+\#define \hyperlink{group___r_i___hyst_config_ga6e0f3198dfce556529fc5b7fe9143c6c}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-D\-\_\-\-O\-N}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Enable or disable Hysteresis of the input schmitt triger of Ports D When the I/\-Os are programmed in input mode by standard I/\-O port registers, the Schmitt trigger and the hysteresis are enabled by default. When hysteresis is disabled, it is possible to read the corresponding port with a trigger level of V\-D\-D\-I\-O/2. \end{DoxyCompactList}\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-H\-Y\-S\-T\-E\-R\-I\-S\-\_\-\-P\-O\-R\-T\-D\-\_\-\-O\-F\-F}(\-\_\-\-\_\-\-I\-O\-P\-I\-N\-\_\-\-\_\-)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___h_a_l___exported___functions___group1_gaecac54d350c3730e6831eb404e557dc4}{\hyperlink{stm32l1xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{H\-A\-L\-\_\-\-Status\-Type\-Def} {\bfseries H\-A\-L\-\_\-\-Init} (void)}\label{group___h_a_l___exported___functions___group1_gaecac54d350c3730e6831eb404e557dc4}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group1_ga95911129a26afb05232caaaefa31956f}{\hyperlink{stm32l1xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{H\-A\-L\-\_\-\-Status\-Type\-Def} {\bfseries H\-A\-L\-\_\-\-De\-Init} (void)}\label{group___h_a_l___exported___functions___group1_ga95911129a26afb05232caaaefa31956f}
+
+\item 
+void \hyperlink{group___h_a_l___exported___functions___group1_gae4fb8e66865c87d0ebab74a726a6891f}{H\-A\-L\-\_\-\-Msp\-Init} (void)
+\item 
+\hypertarget{group___h_a_l___exported___functions___group1_gadd10d026ef02d00e32e80c9eab9db830}{void {\bfseries H\-A\-L\-\_\-\-Msp\-De\-Init} (void)}\label{group___h_a_l___exported___functions___group1_gadd10d026ef02d00e32e80c9eab9db830}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group1_ga879cdb21ef051eb81ec51c18147397d5}{\hyperlink{stm32l1xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{H\-A\-L\-\_\-\-Status\-Type\-Def} {\bfseries H\-A\-L\-\_\-\-Init\-Tick} (uint32\-\_\-t Tick\-Priority)}\label{group___h_a_l___exported___functions___group1_ga879cdb21ef051eb81ec51c18147397d5}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gaa8361d44d76b7f6256834f828165837a}{void {\bfseries H\-A\-L\-\_\-\-Inc\-Tick} (void)}\label{group___h_a_l___exported___functions___group2_gaa8361d44d76b7f6256834f828165837a}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gad0304dec8e33aca8c99e2836947b76d6}{void {\bfseries H\-A\-L\-\_\-\-Delay} (\hyperlink{core__sc300_8h_aec43007d9998a0a0e01faede4133d6be}{\-\_\-\-\_\-\-I\-O} uint32\-\_\-t Delay)}\label{group___h_a_l___exported___functions___group2_gad0304dec8e33aca8c99e2836947b76d6}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gaf2c4f03d53e997a54e1fd5e80daa55c4}{uint32\-\_\-t {\bfseries H\-A\-L\-\_\-\-Get\-Tick} (void)}\label{group___h_a_l___exported___functions___group2_gaf2c4f03d53e997a54e1fd5e80daa55c4}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gaaf651af2afe688a991c657f64f8fa5f9}{void {\bfseries H\-A\-L\-\_\-\-Suspend\-Tick} (void)}\label{group___h_a_l___exported___functions___group2_gaaf651af2afe688a991c657f64f8fa5f9}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_ga24e0ee9dae1ec0f9d19200f5575ff790}{void {\bfseries H\-A\-L\-\_\-\-Resume\-Tick} (void)}\label{group___h_a_l___exported___functions___group2_ga24e0ee9dae1ec0f9d19200f5575ff790}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gafb139b375512ad2a234e4619b129b966}{uint32\-\_\-t {\bfseries H\-A\-L\-\_\-\-Get\-Hal\-Version} (void)}\label{group___h_a_l___exported___functions___group2_gafb139b375512ad2a234e4619b129b966}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gae051ef9e932404b21f5877c7186406b8}{uint32\-\_\-t {\bfseries H\-A\-L\-\_\-\-Get\-R\-E\-V\-I\-D} (void)}\label{group___h_a_l___exported___functions___group2_gae051ef9e932404b21f5877c7186406b8}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gaff785f069ed650de77ff82ac407f7c84}{uint32\-\_\-t {\bfseries H\-A\-L\-\_\-\-Get\-D\-E\-V\-I\-D} (void)}\label{group___h_a_l___exported___functions___group2_gaff785f069ed650de77ff82ac407f7c84}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gaf031bcc71ebad9b7edf405547efd762b}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Enable\-D\-B\-G\-Sleep\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_gaf031bcc71ebad9b7edf405547efd762b}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gac7820d0561f19999a68d714655b901b5}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Disable\-D\-B\-G\-Sleep\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_gac7820d0561f19999a68d714655b901b5}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_gadf25043b17de4bef38a95a75fd03e5c4}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Enable\-D\-B\-G\-Stop\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_gadf25043b17de4bef38a95a75fd03e5c4}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_ga2c93dcee35e5983d74f1000de7c042d5}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Disable\-D\-B\-G\-Stop\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_ga2c93dcee35e5983d74f1000de7c042d5}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_ga28a1323b2eeb0a408c1cfdbfa0db5ead}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Enable\-D\-B\-G\-Standby\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_ga28a1323b2eeb0a408c1cfdbfa0db5ead}
+
+\item 
+\hypertarget{group___h_a_l___exported___functions___group2_ga7faa58d8508ea3123b9f247a70379779}{void {\bfseries H\-A\-L\-\_\-\-D\-B\-G\-M\-C\-U\-\_\-\-Disable\-D\-B\-G\-Standby\-Mode} (void)}\label{group___h_a_l___exported___functions___group2_ga7faa58d8508ea3123b9f247a70379779}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains all the functions prototypes for the H\-A\-L module driver. \begin{DoxyAuthor}{Author}
+M\-C\-D Application Team 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\-1.\-3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+04-\/\-March-\/2016 
+\end{DoxyDate}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\subsubsection*{\begin{center}\copyright{} C\-O\-P\-Y\-R\-I\-G\-H\-T(c) 2016 S\-T\-Microelectronics\end{center} }
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\-T\-Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E. 

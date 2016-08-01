@@ -12,6 +12,16 @@ extern IWDG_HandleTypeDef hiwdg;
 
 volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_UNRESOLVED;/* initialize global software error status to OK.*/
 
+/** @addtogroup softerror
+  * @{
+  */
+
+/**
+  * @brief Actions based on soft error status state machine.
+  *        If an error has occured the watchdog is not updated so a reset is to come.
+  * @param  eps_error_status: the eps state structure containing central info of the EPS subsystem.
+  * @retval None.
+  */
 void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 
 
@@ -158,4 +168,19 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 		// 		   //YOU SHOULDNT BE HERE!
 		// 		   //ERROR HANDLING
 	}
+
+//	//TODO: if not a valid status maybe you should somehow lock until the rest or else you go back in action not?
+//	        //at least write to flash the status if not a valid status i.e:
+//	if(eps_error_status~=EPS_SOFT_ERROR_OK) {
+//
+//		EPS_set_memory_word(SOFT_ERROR_STATUS_MEM_ADDRESS, (uint32_t)eps_error_status);
+//		while(1){
+//			/*brake here until a reset from watchdog occurs*/
+//		}
+//
+//	}
+
 }
+/**
+  * @}
+  */

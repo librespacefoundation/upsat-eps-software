@@ -1,0 +1,104 @@
+\hypertarget{group__bootsequence___functions}{\section{Bootsequence\-\_\-\-Functions}
+\label{group__bootsequence___functions}\index{Bootsequence\-\_\-\-Functions@{Bootsequence\-\_\-\-Functions}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__bootsequence___functions_gab53e7a83de602916760ec8a7328a4b16}{E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Turn off all subsystem power rails. pmos mosfets are used so on startup the connected subsystems are powered up. This is something that all the subsystems must handle(soft delay on startup) \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__bootsequence___functions_gaae0fe32313dbd8724dfc256810e5d7a3}{E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Turn on all subsystems, except S\-U subsystem, with 50ms delay to avoid current spikes. \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__bootsequence___functions_gadb28d55e8dce0744c3716a0cec896698}{E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Check 10 times the umbilical pin and enter the appropriate mode. \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__bootsequence___functions_ga318fb5dacc8fcb853b193250601bcc0a}{E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Check deployment status and if needed enter the appropriate state. A set of 7 keys are read from flash memory to verify if deployment has occurred. If any of them is already set, deployment has already happened and is skipped. If This is the first time or it has not complete deployment stage already once, The system waits for 30 minutes, deploys all deployable devices and writes the appropriate keys to flash memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__bootsequence___functions_ga318fb5dacc8fcb853b193250601bcc0a}{\index{Bootsequence\-\_\-\-Functions@{Bootsequence\-\_\-\-Functions}!E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage@{E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage}}
+\index{E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage@{E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage}!Bootsequence_Functions@{Bootsequence\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-bootseq\-\_\-enter\-\_\-deployment\-\_\-stage (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__bootsequence___functions_ga318fb5dacc8fcb853b193250601bcc0a}
+
+
+Check deployment status and if needed enter the appropriate state. A set of 7 keys are read from flash memory to verify if deployment has occurred. If any of them is already set, deployment has already happened and is skipped. If This is the first time or it has not complete deployment stage already once, The system waits for 30 minutes, deploys all deployable devices and writes the appropriate keys to flash memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__bootsequence___functions_gab53e7a83de602916760ec8a7328a4b16}{\index{Bootsequence\-\_\-\-Functions@{Bootsequence\-\_\-\-Functions}!E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails@{E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails}}
+\index{E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails@{E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails}!Bootsequence_Functions@{Bootsequence\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-bootseq\-\_\-poweroff\-\_\-all\-\_\-rails (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__bootsequence___functions_gab53e7a83de602916760ec8a7328a4b16}
+
+
+Turn off all subsystem power rails. pmos mosfets are used so on startup the connected subsystems are powered up. This is something that all the subsystems must handle(soft delay on startup) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__bootsequence___functions_gaae0fe32313dbd8724dfc256810e5d7a3}{\index{Bootsequence\-\_\-\-Functions@{Bootsequence\-\_\-\-Functions}!E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails@{E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails}}
+\index{E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails@{E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails}!Bootsequence_Functions@{Bootsequence\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-bootseq\-\_\-poweron\-\_\-all\-\_\-rails (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__bootsequence___functions_gaae0fe32313dbd8724dfc256810e5d7a3}
+
+
+Turn on all subsystems, except S\-U subsystem, with 50ms delay to avoid current spikes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging.\\
+\hline
+\end{DoxyRetVals}
+T\-O\-D\-O\-: when recovering from startup should I turn on coms or turn only obc and wait for oobc to tell me to turn adcs and comms on? \hypertarget{group__bootsequence___functions_gadb28d55e8dce0744c3716a0cec896698}{\index{Bootsequence\-\_\-\-Functions@{Bootsequence\-\_\-\-Functions}!E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check@{E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check}}
+\index{E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check@{E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check}!Bootsequence_Functions@{Bootsequence\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-bootseq\-\_\-umbilical\-\_\-check (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__bootsequence___functions_gadb28d55e8dce0744c3716a0cec896698}
+
+
+Check 10 times the umbilical pin and enter the appropriate mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}

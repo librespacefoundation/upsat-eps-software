@@ -9,7 +9,15 @@
 #include "eps_safety.h"
 
 
-//TODO: delete this or yo're in deep shift.
+/** @addtogroup eps_non_volatile_mem_handling
+  * @{
+  */
+
+/**
+  * @brief supposed to erase memory adresses having been reserved to arm the satelite
+  *        //TODO: delete this or yo're in deep shift.
+   * @retval none.
+  */
 void EPS_erase_deployment_flags(void){
 
 	/* zero out all deploy flags from flash */
@@ -19,7 +27,13 @@ void EPS_erase_deployment_flags(void){
  }
 
 
-
+/**
+  * @brief Initialize flash memory: deployment keys and limit values
+  *
+  *        This is a debug only utility by no means this is to be done in proper runtime.
+  *
+  * @retval none.
+  */
 void EPS_set_flash_memory_initial_values(void){
 
 	/*set deployment keys to not deployed: ARMS THE SATELITE FOR DEPLOYMENT*/
@@ -67,55 +81,70 @@ void EPS_set_flash_memory_initial_values(void){
 }
 
 
-
-
-
-//check if deployment has already happened.
-EPS_deployment_status EPS_check_deployment_status(void){
+/**
+  * @brief Check if deployment has already happened.
+  *
+  *       If any of the arm keys is in place then the satellite is armed
+  *       If any of the dissarm keys is in place the satellite is disarmed.
+  *
+  * @retval EPS_deployment_status.
+  */
+EPS_deployment_status EPS_check_deployment_status(void) {
 
 	EPS_deployment_status return_status = DEPLOYMENT_UNDEFINED;
 
 	/* read all deploy flags from flash */
 	uint32_t memory_read_valueA;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_read_valueA );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_read_valueA);
 	uint32_t memory_read_valueB;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_read_valueB );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_read_valueB);
 	uint32_t memory_read_valueC;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_read_valueC );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_read_valueC);
 	uint32_t memory_read_valueD;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_read_valueD );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_read_valueD);
 	uint32_t memory_read_valueE;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_read_valueE );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_read_valueE);
 	uint32_t memory_read_valueF;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_read_valueF );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_read_valueF);
 	uint32_t memory_read_valueG;
-	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_read_valueG );
+	EPS_get_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_read_valueG);
 
-
-
-	if((memory_read_valueA==DEPLOYMENT_KEY_A)||(memory_read_valueB==DEPLOYMENT_KEY_B)||(memory_read_valueC==DEPLOYMENT_KEY_C)||(memory_read_valueD==DEPLOYMENT_KEY_D)||(memory_read_valueE==DEPLOYMENT_KEY_E)||(memory_read_valueF==DEPLOYMENT_KEY_F)||(memory_read_valueG==DEPLOYMENT_KEY_G)){
+	if ((memory_read_valueA == DEPLOYMENT_KEY_A)
+	        || (memory_read_valueB == DEPLOYMENT_KEY_B)
+	        || (memory_read_valueC == DEPLOYMENT_KEY_C)
+	        || (memory_read_valueD == DEPLOYMENT_KEY_D)
+	        || (memory_read_valueE == DEPLOYMENT_KEY_E)
+	        || (memory_read_valueF == DEPLOYMENT_KEY_F)
+	        || (memory_read_valueG == DEPLOYMENT_KEY_G)) {
 
 		//DEPLOYMENT KEY HAS HAPENNED
 		return_status = DEPLOYMENT_OK;
 
-	}
-	else if((memory_read_valueA==DEPLOYMENT_NOT_KEY_A)||(memory_read_valueB==DEPLOYMENT_NOT_KEY_B)||(memory_read_valueC==DEPLOYMENT_NOT_KEY_C)||(memory_read_valueD==DEPLOYMENT_NOT_KEY_D)||(memory_read_valueE==DEPLOYMENT_NOT_KEY_E)||(memory_read_valueF==DEPLOYMENT_NOT_KEY_F)||(memory_read_valueG==DEPLOYMENT_NOT_KEY_G)){
+	} else if ((memory_read_valueA == DEPLOYMENT_NOT_KEY_A)
+	        || (memory_read_valueB == DEPLOYMENT_NOT_KEY_B)
+	        || (memory_read_valueC == DEPLOYMENT_NOT_KEY_C)
+	        || (memory_read_valueD == DEPLOYMENT_NOT_KEY_D)
+	        || (memory_read_valueE == DEPLOYMENT_NOT_KEY_E)
+	        || (memory_read_valueF == DEPLOYMENT_NOT_KEY_F)
+	        || (memory_read_valueG == DEPLOYMENT_NOT_KEY_G)) {
 
 		//DEPLOYMENT KEY HAS NOT HAPENNED
 		return_status = DEPLOYMENT_NOT;
-	}
-	else{
+	} else {
 
 		//THIS SHIT IS MORE SERIOUS THAN WE CAN POSSIBLY HANDLE
 	}
 
-
-
 	return return_status;
 }
 
-
-//increment boot counter
+/**
+  * @brief Increment boot counter.
+  *
+  *       Sadly not in use.
+  *
+  * @retval None.
+  */
 void EPS_startup_increment_bootcounter(void){
 
 	uint32_t memory_read_value;
@@ -125,9 +154,14 @@ void EPS_startup_increment_bootcounter(void){
 
 }
 
-
-
-//get word from a specific memory address: remote debug session.
+/**
+  * @brief Get word from a specific memory address.
+  *
+  * @param memory_address: memory address - good idea to pass only defined values and avoid mishapsmemory_address
+  * @param memory_data:  32bit word just read from the specified memory address.
+  *
+  * @retval None.
+  */
 void EPS_get_memory_word(uint32_t memory_address, uint32_t *memory_data ){
 
 	  uint32_t flash_read_value;
@@ -136,7 +170,14 @@ void EPS_get_memory_word(uint32_t memory_address, uint32_t *memory_data ){
 
 }
 
-//set word from a specific memory address: remote debug session.
+/**
+  * @brief Set word from a specific memory address.
+  *
+  * @param memory_address: memory address - good idea to pass only defined values and avoid mishapsmemory_address
+  * @param memory_data: payload, 32bit word to write at the specified memory address.
+  *
+  * @retval None.
+  */
 void EPS_set_memory_word(uint32_t memory_address, uint32_t *memory_data){
 
 
@@ -148,3 +189,6 @@ void EPS_set_memory_word(uint32_t memory_address, uint32_t *memory_data){
 	HAL_FLASH_Lock();
 
 }
+/**
+  * @}
+  */

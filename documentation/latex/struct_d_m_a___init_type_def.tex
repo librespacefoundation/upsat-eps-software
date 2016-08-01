@@ -1,0 +1,64 @@
+\hypertarget{struct_d_m_a___init_type_def}{\section{D\-M\-A\-\_\-\-Init\-Type\-Def Struct Reference}
+\label{struct_d_m_a___init_type_def}\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+}
+
+
+D\-M\-A Configuration Structure definition.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-dma.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_a0145b5d0e074fa8e2e185ecf2c4a15ca}{Direction}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_a46811eb656170cb5c542054d1a41db3a}{Periph\-Inc}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_a49b187ba5ab8ba4354e02837e8b99414}{Mem\-Inc}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_a10a4a549953efa20c235dcbb381b6f0b}{Periph\-Data\-Alignment}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_a7784efedc4a61325fa7364fcace10136}{Mem\-Data\-Alignment}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_adbbca090b53d32ac93cc7359b7994db2}{Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_d_m_a___init_type_def_af110cc02c840207930e3c0e5de5d7dc4}{Priority}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\-M\-A Configuration Structure definition. 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_d_m_a___init_type_def_a0145b5d0e074fa8e2e185ecf2c4a15ca}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Direction@{Direction}}
+\index{Direction@{Direction}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Direction}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Direction}}\label{struct_d_m_a___init_type_def_a0145b5d0e074fa8e2e185ecf2c4a15ca}
+Specifies if the data will be transferred from memory to peripheral, from memory to memory or from peripheral to memory. This parameter can be a value of \hyperlink{group___d_m_a___data__transfer__direction}{D\-M\-A Data transfer direction} \hypertarget{struct_d_m_a___init_type_def_a7784efedc4a61325fa7364fcace10136}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Mem\-Data\-Alignment@{Mem\-Data\-Alignment}}
+\index{Mem\-Data\-Alignment@{Mem\-Data\-Alignment}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Mem\-Data\-Alignment}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Mem\-Data\-Alignment}}\label{struct_d_m_a___init_type_def_a7784efedc4a61325fa7364fcace10136}
+Specifies the Memory data width. This parameter can be a value of \hyperlink{group___d_m_a___memory__data__size}{D\-M\-A Memory data size} \hypertarget{struct_d_m_a___init_type_def_a49b187ba5ab8ba4354e02837e8b99414}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Mem\-Inc@{Mem\-Inc}}
+\index{Mem\-Inc@{Mem\-Inc}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Mem\-Inc}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Mem\-Inc}}\label{struct_d_m_a___init_type_def_a49b187ba5ab8ba4354e02837e8b99414}
+Specifies whether the memory address register should be incremented or not. This parameter can be a value of \hyperlink{group___d_m_a___memory__incremented__mode}{D\-M\-A Memory incremented mode} \hypertarget{struct_d_m_a___init_type_def_adbbca090b53d32ac93cc7359b7994db2}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Mode@{Mode}}
+\index{Mode@{Mode}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Mode}}\label{struct_d_m_a___init_type_def_adbbca090b53d32ac93cc7359b7994db2}
+Specifies the operation mode of the D\-M\-Ay Channelx. This parameter can be a value of \hyperlink{group___d_m_a__mode}{D\-M\-A mode} \begin{DoxyNote}{Note}
+The circular buffer mode cannot be used if the memory-\/to-\/memory data transfer is configured on the selected Channel 
+\end{DoxyNote}
+\hypertarget{struct_d_m_a___init_type_def_a10a4a549953efa20c235dcbb381b6f0b}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Periph\-Data\-Alignment@{Periph\-Data\-Alignment}}
+\index{Periph\-Data\-Alignment@{Periph\-Data\-Alignment}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Periph\-Data\-Alignment}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Periph\-Data\-Alignment}}\label{struct_d_m_a___init_type_def_a10a4a549953efa20c235dcbb381b6f0b}
+Specifies the Peripheral data width. This parameter can be a value of \hyperlink{group___d_m_a___peripheral__data__size}{D\-M\-A Peripheral data size} \hypertarget{struct_d_m_a___init_type_def_a46811eb656170cb5c542054d1a41db3a}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Periph\-Inc@{Periph\-Inc}}
+\index{Periph\-Inc@{Periph\-Inc}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Periph\-Inc}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Periph\-Inc}}\label{struct_d_m_a___init_type_def_a46811eb656170cb5c542054d1a41db3a}
+Specifies whether the Peripheral address register should be incremented or not. This parameter can be a value of \hyperlink{group___d_m_a___peripheral__incremented__mode}{D\-M\-A Peripheral incremented mode} \hypertarget{struct_d_m_a___init_type_def_af110cc02c840207930e3c0e5de5d7dc4}{\index{D\-M\-A\-\_\-\-Init\-Type\-Def@{D\-M\-A\-\_\-\-Init\-Type\-Def}!Priority@{Priority}}
+\index{Priority@{Priority}!DMA_InitTypeDef@{D\-M\-A\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Priority}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t D\-M\-A\-\_\-\-Init\-Type\-Def\-::\-Priority}}\label{struct_d_m_a___init_type_def_af110cc02c840207930e3c0e5de5d7dc4}
+Specifies the software priority for the D\-M\-Ay Channelx. This parameter can be a value of \hyperlink{group___d_m_a___priority__level}{D\-M\-A Priority level} 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__dma_8h}{stm32l1xx\-\_\-hal\-\_\-dma.\-h}\end{DoxyCompactItemize}

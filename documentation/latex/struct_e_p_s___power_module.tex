@@ -1,0 +1,88 @@
+\hypertarget{struct_e_p_s___power_module}{\section{E\-P\-S\-\_\-\-Power\-Module Struct Reference}
+\label{struct_e_p_s___power_module}\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}}
+}
+
+
+Power module parameters.  
+
+
+
+
+{\ttfamily \#include $<$eps\-\_\-power\-\_\-module.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__eps__power__module_gadd75354311e873b06e0f85b643c5cea2}{E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state} \hyperlink{struct_e_p_s___power_module_a9a52d5c5d5ced69c7df0f68217deffe9}{module\-\_\-state}
+\item 
+uint16\-\_\-t \hyperlink{struct_e_p_s___power_module_a3a08d6acca23d042f74a0226b0eb9f60}{voltage}
+\item 
+uint16\-\_\-t \hyperlink{struct_e_p_s___power_module_a641fa79c7e6e507facb56591efb6f5c2}{current}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_a2b2a75d0b1e63c0bcbed3261fd416e86}{previous\-\_\-power}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_afb65c6bd90e52b0ecaca4594124170e2}{previous\-\_\-voltage}
+\item 
+uint8\-\_\-t \hyperlink{struct_e_p_s___power_module_af6a8b8e716cbb721a278fe363ef6e419}{incremennt\-\_\-flag}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_a52c830161b366fecd8d4307c5a33a287}{pwm\-\_\-duty\-\_\-cycle}
+\item 
+T\-I\-M\-\_\-\-Handle\-Type\-Def $\ast$ \hyperlink{struct_e_p_s___power_module_a5ad473552e5fd9414c52f36b79303166}{htim\-\_\-pwm}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_a8322d9097b46a1eb94ce87e57dc4dea4}{tim\-Channel}
+\item 
+A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$ \hyperlink{struct_e_p_s___power_module_af8e5b3c170ecdd8170ec7186b923dc96}{hadc\-\_\-power\-\_\-module}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_a97992f5d4595a30086e1c7c1ee0d1225}{A\-D\-C\-\_\-channel\-\_\-current}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s___power_module_a01f651d33935804c5c6b32d063c09c9a}{A\-D\-C\-\_\-channel\-\_\-voltage}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Power module parameters. 
+
+structure to config and control a power module 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_e_p_s___power_module_a97992f5d4595a30086e1c7c1ee0d1225}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!A\-D\-C\-\_\-channel\-\_\-current@{A\-D\-C\-\_\-channel\-\_\-current}}
+\index{A\-D\-C\-\_\-channel\-\_\-current@{A\-D\-C\-\_\-channel\-\_\-current}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{A\-D\-C\-\_\-channel\-\_\-current}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::\-A\-D\-C\-\_\-channel\-\_\-current}}\label{struct_e_p_s___power_module_a97992f5d4595a30086e1c7c1ee0d1225}
+adc channel; for current measurements for this power module \hypertarget{struct_e_p_s___power_module_a01f651d33935804c5c6b32d063c09c9a}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!A\-D\-C\-\_\-channel\-\_\-voltage@{A\-D\-C\-\_\-channel\-\_\-voltage}}
+\index{A\-D\-C\-\_\-channel\-\_\-voltage@{A\-D\-C\-\_\-channel\-\_\-voltage}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{A\-D\-C\-\_\-channel\-\_\-voltage}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::\-A\-D\-C\-\_\-channel\-\_\-voltage}}\label{struct_e_p_s___power_module_a01f651d33935804c5c6b32d063c09c9a}
+adc channel for voltage measurements for this power module \hypertarget{struct_e_p_s___power_module_a641fa79c7e6e507facb56591efb6f5c2}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!current@{current}}
+\index{current@{current}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{current}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::current}}\label{struct_e_p_s___power_module_a641fa79c7e6e507facb56591efb6f5c2}
+average curret at each mppt step \hypertarget{struct_e_p_s___power_module_af8e5b3c170ecdd8170ec7186b923dc96}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!hadc\-\_\-power\-\_\-module@{hadc\-\_\-power\-\_\-module}}
+\index{hadc\-\_\-power\-\_\-module@{hadc\-\_\-power\-\_\-module}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{hadc\-\_\-power\-\_\-module}]{\setlength{\rightskip}{0pt plus 5cm}A\-D\-C\-\_\-\-Handle\-Type\-Def$\ast$ E\-P\-S\-\_\-\-Power\-Module\-::hadc\-\_\-power\-\_\-module}}\label{struct_e_p_s___power_module_af8e5b3c170ecdd8170ec7186b923dc96}
+adc handle for voltage and current measurements for each power module \hypertarget{struct_e_p_s___power_module_a5ad473552e5fd9414c52f36b79303166}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!htim\-\_\-pwm@{htim\-\_\-pwm}}
+\index{htim\-\_\-pwm@{htim\-\_\-pwm}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{htim\-\_\-pwm}]{\setlength{\rightskip}{0pt plus 5cm}T\-I\-M\-\_\-\-Handle\-Type\-Def$\ast$ E\-P\-S\-\_\-\-Power\-Module\-::htim\-\_\-pwm}}\label{struct_e_p_s___power_module_a5ad473552e5fd9414c52f36b79303166}
+assign wich timer is assigned for this pwm output \hypertarget{struct_e_p_s___power_module_af6a8b8e716cbb721a278fe363ef6e419}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!incremennt\-\_\-flag@{incremennt\-\_\-flag}}
+\index{incremennt\-\_\-flag@{incremennt\-\_\-flag}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{incremennt\-\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::incremennt\-\_\-flag}}\label{struct_e_p_s___power_module_af6a8b8e716cbb721a278fe363ef6e419}
+flag for mppt algorithm must be initialized to 1 \hypertarget{struct_e_p_s___power_module_a9a52d5c5d5ced69c7df0f68217deffe9}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!module\-\_\-state@{module\-\_\-state}}
+\index{module\-\_\-state@{module\-\_\-state}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{module\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-mppt\-\_\-power\-\_\-module\-\_\-state} E\-P\-S\-\_\-\-Power\-Module\-::module\-\_\-state}}\label{struct_e_p_s___power_module_a9a52d5c5d5ced69c7df0f68217deffe9}
+control if power module of a solar panel is on or off \hypertarget{struct_e_p_s___power_module_a2b2a75d0b1e63c0bcbed3261fd416e86}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!previous\-\_\-power@{previous\-\_\-power}}
+\index{previous\-\_\-power@{previous\-\_\-power}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{previous\-\_\-power}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::previous\-\_\-power}}\label{struct_e_p_s___power_module_a2b2a75d0b1e63c0bcbed3261fd416e86}
+average power at previous mppt step \hypertarget{struct_e_p_s___power_module_afb65c6bd90e52b0ecaca4594124170e2}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!previous\-\_\-voltage@{previous\-\_\-voltage}}
+\index{previous\-\_\-voltage@{previous\-\_\-voltage}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{previous\-\_\-voltage}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::previous\-\_\-voltage}}\label{struct_e_p_s___power_module_afb65c6bd90e52b0ecaca4594124170e2}
+average voltage input at previous mppt step \hypertarget{struct_e_p_s___power_module_a52c830161b366fecd8d4307c5a33a287}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!pwm\-\_\-duty\-\_\-cycle@{pwm\-\_\-duty\-\_\-cycle}}
+\index{pwm\-\_\-duty\-\_\-cycle@{pwm\-\_\-duty\-\_\-cycle}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{pwm\-\_\-duty\-\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::pwm\-\_\-duty\-\_\-cycle}}\label{struct_e_p_s___power_module_a52c830161b366fecd8d4307c5a33a287}
+duty cycle of power module pwm output \hypertarget{struct_e_p_s___power_module_a8322d9097b46a1eb94ce87e57dc4dea4}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!tim\-Channel@{tim\-Channel}}
+\index{tim\-Channel@{tim\-Channel}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{tim\-Channel}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::tim\-Channel}}\label{struct_e_p_s___power_module_a8322d9097b46a1eb94ce87e57dc4dea4}
+assign the proper timer channel assigned to module pwm output \hypertarget{struct_e_p_s___power_module_a3a08d6acca23d042f74a0226b0eb9f60}{\index{E\-P\-S\-\_\-\-Power\-Module@{E\-P\-S\-\_\-\-Power\-Module}!voltage@{voltage}}
+\index{voltage@{voltage}!EPS_PowerModule@{E\-P\-S\-\_\-\-Power\-Module}}
+\subsubsection[{voltage}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t E\-P\-S\-\_\-\-Power\-Module\-::voltage}}\label{struct_e_p_s___power_module_a3a08d6acca23d042f74a0226b0eb9f60}
+average voltage at each mppt step 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem\-Workspace/eps\-Subsystem/\-Inc/eps\-\_\-power\-\_\-module.\-h\end{DoxyCompactItemize}
