@@ -15,7 +15,9 @@
 #ifndef INC_CPU_ADC_UTILITIES_H_
 #define INC_CPU_ADC_UTILITIES_H_
 
-
+/** @addtogroup cpu-adc-utilities
+  * @{
+  */
 #define VDDA_APPLI                     ((uint32_t) 3300)    /* Value of analog voltage supply Vdda (unit: mV) */
 #define RANGE_12BITS                   ((uint32_t) 4095)    /* Max digital value with a full range of 12 bits */
 
@@ -76,3 +78,6 @@
 
 
 #endif /* INC_CPU_ADC_UTILITIES_H_ */
+/**
+  * @}
+  */

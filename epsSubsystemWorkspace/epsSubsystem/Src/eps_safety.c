@@ -13,7 +13,7 @@
 
 extern EPS_PowerModule power_module_top, power_module_bottom, power_module_left, power_module_right;
 
-/** @addtogroup eps_safety_Functions
+/** @addtogroup eps_safety
   * @{
   */
 

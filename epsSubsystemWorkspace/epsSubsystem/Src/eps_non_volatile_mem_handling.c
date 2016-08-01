@@ -9,7 +9,7 @@
 #include "eps_safety.h"
 
 
-/** @addtogroup bootsequence_Functions
+/** @addtogroup eps_non_volatile_mem_handling
   * @{
   */
 

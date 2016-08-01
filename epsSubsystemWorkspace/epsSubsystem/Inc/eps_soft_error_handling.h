@@ -9,8 +9,15 @@
 #define INC_EPS_SOFT_ERROR_HANDLING_H_
 
 
+/** @addtogroup softerror
+  * @{
+  */
 
-
+/**
+ * @brief Soft error enumeration
+ *
+ * List of all possible error status.
+ */
 typedef enum {
 	EPS_SOFT_ERROR_OK,
 	EPS_SOFT_ERROR_UNRESOLVED,
@@ -69,3 +76,6 @@ extern volatile EPS_soft_error_status error_status;/* initialize global software
 void EPS_soft_error_handling(EPS_soft_error_status eps_error_status);
 
 #endif /* INC_EPS_SOFT_ERROR_HANDLING_H_ */
+/**
+  * @}
+  */

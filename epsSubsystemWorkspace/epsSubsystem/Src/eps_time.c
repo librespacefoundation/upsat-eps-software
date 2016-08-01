@@ -12,7 +12,7 @@ volatile uint32_t EPS_time_counter =0;/*a counter that increments at every inter
 volatile EPS_timed_event_status EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;/* initialize global timed event flag to true.*/
 
 
-/** @addtogroup eps_time_Functions
+/** @addtogroup eps_time
   * @{
   */
 

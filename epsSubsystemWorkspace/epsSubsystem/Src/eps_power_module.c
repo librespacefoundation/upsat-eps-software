@@ -12,7 +12,7 @@
 extern ADC_HandleTypeDef hadc;
 extern TIM_HandleTypeDef htim3;
 
-/** @addtogroup eps_state_Functions
+/** @addtogroup eps_power_module
   * @{
   */
 

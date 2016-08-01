@@ -12,7 +12,7 @@ extern IWDG_HandleTypeDef hiwdg;
 
 volatile EPS_soft_error_status error_status = EPS_SOFT_ERROR_UNRESOLVED;/* initialize global software error status to OK.*/
 
-/** @addtogroup softerror_Functions
+/** @addtogroup softerror
   * @{
   */
 
@@ -177,8 +177,8 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 //		while(1){
 //			/*brake here until a reset from watchdog occurs*/
 //		}
-
-	}
+//
+//	}
 
 }
 /**

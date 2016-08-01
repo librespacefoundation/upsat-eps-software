@@ -9,7 +9,7 @@
 
 extern UART_HandleTypeDef huart1;
 
-/** @addtogroup eps_debug_Functions
+/** @addtogroup eps_debug
   * @{
   */
 
