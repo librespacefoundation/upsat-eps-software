@@ -1,0 +1,68 @@
+\hypertarget{struct_u_a_r_t___init_type_def}{\section{U\-A\-R\-T\-\_\-\-Init\-Type\-Def Struct Reference}
+\label{struct_u_a_r_t___init_type_def}\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+}
+
+
+U\-A\-R\-T Init Structure definition.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-uart.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_ae460c2e4d7ddc67bca9f5756f45b1d83}{Baud\-Rate}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_a0f1cd85e62aa4fd4b36ee9e610e7789f}{Word\-Length}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_a6717dfe595617c7b2d57139d9cd306ef}{Stop\-Bits}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_adc92243425cb18cb8b5f03692841db48}{Parity}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_ab2ee6ea5a5d4ca5ee6b759be197bcfcb}{Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_adbf4734130666b94201c6658464c1622}{Hw\-Flow\-Ctl}
+\item 
+uint32\-\_\-t \hyperlink{struct_u_a_r_t___init_type_def_a77c2c86a2186e09cbf022e27c0c82324}{Over\-Sampling}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+U\-A\-R\-T Init Structure definition. 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_u_a_r_t___init_type_def_ae460c2e4d7ddc67bca9f5756f45b1d83}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Baud\-Rate@{Baud\-Rate}}
+\index{Baud\-Rate@{Baud\-Rate}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Baud\-Rate}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Baud\-Rate}}\label{struct_u_a_r_t___init_type_def_ae460c2e4d7ddc67bca9f5756f45b1d83}
+This member configures the U\-A\-R\-T communication baud rate. The baud rate is computed using the following formula\-:
+\begin{DoxyItemize}
+\item Integer\-Divider = ((P\-C\-L\-Kx) / (8 $\ast$ (O\-V\-R8+1) $\ast$ (huart-\/$>$Init.\-Baud\-Rate)))
+\item Fractional\-Divider = ((Integer\-Divider -\/ ((uint32\-\_\-t) Integer\-Divider)) $\ast$ 8 $\ast$ (O\-V\-R8+1)) + 0.\-5 Where O\-V\-R8 is the \char`\"{}oversampling by 8 mode\char`\"{} configuration bit in the C\-R1 register. 
+\end{DoxyItemize}\hypertarget{struct_u_a_r_t___init_type_def_adbf4734130666b94201c6658464c1622}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Hw\-Flow\-Ctl@{Hw\-Flow\-Ctl}}
+\index{Hw\-Flow\-Ctl@{Hw\-Flow\-Ctl}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Hw\-Flow\-Ctl}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Hw\-Flow\-Ctl}}\label{struct_u_a_r_t___init_type_def_adbf4734130666b94201c6658464c1622}
+Specifies wether the hardware flow control mode is enabled or disabled. This parameter can be a value of \hyperlink{group___u_a_r_t___hardware___flow___control}{U\-A\-R\-T Hardware Flow Control} \hypertarget{struct_u_a_r_t___init_type_def_ab2ee6ea5a5d4ca5ee6b759be197bcfcb}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Mode@{Mode}}
+\index{Mode@{Mode}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Mode}}\label{struct_u_a_r_t___init_type_def_ab2ee6ea5a5d4ca5ee6b759be197bcfcb}
+Specifies wether the Receive or Transmit mode is enabled or disabled. This parameter can be a value of \hyperlink{group___u_a_r_t___mode}{U\-A\-R\-T Transfer Mode} \hypertarget{struct_u_a_r_t___init_type_def_a77c2c86a2186e09cbf022e27c0c82324}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Over\-Sampling@{Over\-Sampling}}
+\index{Over\-Sampling@{Over\-Sampling}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Over\-Sampling}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Over\-Sampling}}\label{struct_u_a_r_t___init_type_def_a77c2c86a2186e09cbf022e27c0c82324}
+Specifies wether the Over sampling 8 is enabled or disabled, to achieve higher speed (up to f\-P\-C\-L\-K/8). This parameter can be a value of \hyperlink{group___u_a_r_t___over___sampling}{U\-A\-R\-T Over Sampling} \hypertarget{struct_u_a_r_t___init_type_def_adc92243425cb18cb8b5f03692841db48}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Parity@{Parity}}
+\index{Parity@{Parity}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Parity}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Parity}}\label{struct_u_a_r_t___init_type_def_adc92243425cb18cb8b5f03692841db48}
+Specifies the parity mode. This parameter can be a value of \hyperlink{group___u_a_r_t___parity}{U\-A\-R\-T Parity} \begin{DoxyNote}{Note}
+When parity is enabled, the computed parity is inserted at the M\-S\-B position of the transmitted data (9th bit when the word length is set to 9 data bits; 8th bit when the word length is set to 8 data bits). 
+\end{DoxyNote}
+\hypertarget{struct_u_a_r_t___init_type_def_a6717dfe595617c7b2d57139d9cd306ef}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Stop\-Bits@{Stop\-Bits}}
+\index{Stop\-Bits@{Stop\-Bits}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Stop\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Stop\-Bits}}\label{struct_u_a_r_t___init_type_def_a6717dfe595617c7b2d57139d9cd306ef}
+Specifies the number of stop bits transmitted. This parameter can be a value of \hyperlink{group___u_a_r_t___stop___bits}{U\-A\-R\-T Number of Stop Bits} \hypertarget{struct_u_a_r_t___init_type_def_a0f1cd85e62aa4fd4b36ee9e610e7789f}{\index{U\-A\-R\-T\-\_\-\-Init\-Type\-Def@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}!Word\-Length@{Word\-Length}}
+\index{Word\-Length@{Word\-Length}!UART_InitTypeDef@{U\-A\-R\-T\-\_\-\-Init\-Type\-Def}}
+\subsubsection[{Word\-Length}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t U\-A\-R\-T\-\_\-\-Init\-Type\-Def\-::\-Word\-Length}}\label{struct_u_a_r_t___init_type_def_a0f1cd85e62aa4fd4b36ee9e610e7789f}
+Specifies the number of data bits transmitted or received in a frame. This parameter can be a value of \hyperlink{group___u_a_r_t___word___length}{U\-A\-R\-T Word Length} 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__uart_8h}{stm32l1xx\-\_\-hal\-\_\-uart.\-h}\end{DoxyCompactItemize}

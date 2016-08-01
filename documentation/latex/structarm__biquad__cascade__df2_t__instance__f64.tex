@@ -1,0 +1,41 @@
+\hypertarget{structarm__biquad__cascade__df2_t__instance__f64}{\section{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64 Struct Reference}
+\label{structarm__biquad__cascade__df2_t__instance__f64}\index{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}}
+}
+
+
+Instance structure for the floating-\/point transposed direct form I\-I Biquad cascade filter.  
+
+
+
+
+{\ttfamily \#include $<$arm\-\_\-math.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{structarm__biquad__cascade__df2_t__instance__f64_ad55380ff835b533aa5168f836db8a4de}{num\-Stages}
+\item 
+float64\-\_\-t $\ast$ \hyperlink{structarm__biquad__cascade__df2_t__instance__f64_a0bde57b618e3f9059b23b0de64e12ce3}{p\-State}
+\item 
+float64\-\_\-t $\ast$ \hyperlink{structarm__biquad__cascade__df2_t__instance__f64_ae2f0180f9038c0393e1d6921bb3b878b}{p\-Coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instance structure for the floating-\/point transposed direct form I\-I Biquad cascade filter. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structarm__biquad__cascade__df2_t__instance__f64_ad55380ff835b533aa5168f836db8a4de}{\index{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}!num\-Stages@{num\-Stages}}
+\index{num\-Stages@{num\-Stages}!arm_biquad_cascade_df2T_instance_f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}}
+\subsubsection[{num\-Stages}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64\-::num\-Stages}}\label{structarm__biquad__cascade__df2_t__instance__f64_ad55380ff835b533aa5168f836db8a4de}
+number of 2nd order stages in the filter. Overall order is 2$\ast$num\-Stages. \hypertarget{structarm__biquad__cascade__df2_t__instance__f64_ae2f0180f9038c0393e1d6921bb3b878b}{\index{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}!p\-Coeffs@{p\-Coeffs}}
+\index{p\-Coeffs@{p\-Coeffs}!arm_biquad_cascade_df2T_instance_f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}}
+\subsubsection[{p\-Coeffs}]{\setlength{\rightskip}{0pt plus 5cm}float64\-\_\-t$\ast$ arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64\-::p\-Coeffs}}\label{structarm__biquad__cascade__df2_t__instance__f64_ae2f0180f9038c0393e1d6921bb3b878b}
+points to the array of coefficients. The array is of length 5$\ast$num\-Stages. \hypertarget{structarm__biquad__cascade__df2_t__instance__f64_a0bde57b618e3f9059b23b0de64e12ce3}{\index{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}!p\-State@{p\-State}}
+\index{p\-State@{p\-State}!arm_biquad_cascade_df2T_instance_f64@{arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64}}
+\subsubsection[{p\-State}]{\setlength{\rightskip}{0pt plus 5cm}float64\-\_\-t$\ast$ arm\-\_\-biquad\-\_\-cascade\-\_\-df2\-T\-\_\-instance\-\_\-f64\-::p\-State}}\label{structarm__biquad__cascade__df2_t__instance__f64_a0bde57b618e3f9059b23b0de64e12ce3}
+points to the array of state coefficients. The array is of length 2$\ast$num\-Stages. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/arm\-\_\-math.\-h\end{DoxyCompactItemize}

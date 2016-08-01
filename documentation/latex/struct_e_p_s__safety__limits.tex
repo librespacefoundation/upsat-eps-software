@@ -1,0 +1,53 @@
+\hypertarget{struct_e_p_s__safety__limits}{\section{E\-P\-S\-\_\-safety\-\_\-limits Struct Reference}
+\label{struct_e_p_s__safety__limits}\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+}
+
+
+safety system limit values.  
+
+
+
+
+{\ttfamily \#include $<$eps\-\_\-safety.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s__safety__limits_aa7d1e0bc82ec3f5fb8f879ba1b8ebcef}{limit\-\_\-battery\-\_\-low}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s__safety__limits_a158a30d24036f68a9ecadce30c75e619}{limit\-\_\-battery\-\_\-high}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s__safety__limits_a2e17c5ab10147b9d067fd1e5cb187edd}{limit\-\_\-battery\-\_\-critical}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s__safety__limits_a2395c833f98b5c3df23b252719b85097}{limit\-\_\-battery\-\_\-temperature\-\_\-low}
+\item 
+uint32\-\_\-t \hyperlink{struct_e_p_s__safety__limits_a39027034504fbe06a380c1bf045c5fd0}{limit\-\_\-battery\-\_\-temperature\-\_\-high}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+safety system limit values. 
+
+This structure is used to pass around to safety system related functions related safety limit values. Limits are initially loaded from memory -\/ must be properly initialized! 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_e_p_s__safety__limits_a2e17c5ab10147b9d067fd1e5cb187edd}{\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}!limit\-\_\-battery\-\_\-critical@{limit\-\_\-battery\-\_\-critical}}
+\index{limit\-\_\-battery\-\_\-critical@{limit\-\_\-battery\-\_\-critical}!EPS_safety_limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+\subsubsection[{limit\-\_\-battery\-\_\-critical}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-safety\-\_\-limits\-::limit\-\_\-battery\-\_\-critical}}\label{struct_e_p_s__safety__limits_a2e17c5ab10147b9d067fd1e5cb187edd}
+Voltage level threshold of battery critical. \hypertarget{struct_e_p_s__safety__limits_a158a30d24036f68a9ecadce30c75e619}{\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}!limit\-\_\-battery\-\_\-high@{limit\-\_\-battery\-\_\-high}}
+\index{limit\-\_\-battery\-\_\-high@{limit\-\_\-battery\-\_\-high}!EPS_safety_limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+\subsubsection[{limit\-\_\-battery\-\_\-high}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-safety\-\_\-limits\-::limit\-\_\-battery\-\_\-high}}\label{struct_e_p_s__safety__limits_a158a30d24036f68a9ecadce30c75e619}
+Voltage level threshold of battery high -\/ Overvoltage. \hypertarget{struct_e_p_s__safety__limits_aa7d1e0bc82ec3f5fb8f879ba1b8ebcef}{\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}!limit\-\_\-battery\-\_\-low@{limit\-\_\-battery\-\_\-low}}
+\index{limit\-\_\-battery\-\_\-low@{limit\-\_\-battery\-\_\-low}!EPS_safety_limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+\subsubsection[{limit\-\_\-battery\-\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-safety\-\_\-limits\-::limit\-\_\-battery\-\_\-low}}\label{struct_e_p_s__safety__limits_aa7d1e0bc82ec3f5fb8f879ba1b8ebcef}
+Voltage level threshold of battery low -\/ Undervoltage. \hypertarget{struct_e_p_s__safety__limits_a39027034504fbe06a380c1bf045c5fd0}{\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}!limit\-\_\-battery\-\_\-temperature\-\_\-high@{limit\-\_\-battery\-\_\-temperature\-\_\-high}}
+\index{limit\-\_\-battery\-\_\-temperature\-\_\-high@{limit\-\_\-battery\-\_\-temperature\-\_\-high}!EPS_safety_limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+\subsubsection[{limit\-\_\-battery\-\_\-temperature\-\_\-high}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-safety\-\_\-limits\-::limit\-\_\-battery\-\_\-temperature\-\_\-high}}\label{struct_e_p_s__safety__limits_a39027034504fbe06a380c1bf045c5fd0}
+Temperature level threshold of temperature low -\/ Under\-Temperature. \hypertarget{struct_e_p_s__safety__limits_a2395c833f98b5c3df23b252719b85097}{\index{E\-P\-S\-\_\-safety\-\_\-limits@{E\-P\-S\-\_\-safety\-\_\-limits}!limit\-\_\-battery\-\_\-temperature\-\_\-low@{limit\-\_\-battery\-\_\-temperature\-\_\-low}}
+\index{limit\-\_\-battery\-\_\-temperature\-\_\-low@{limit\-\_\-battery\-\_\-temperature\-\_\-low}!EPS_safety_limits@{E\-P\-S\-\_\-safety\-\_\-limits}}
+\subsubsection[{limit\-\_\-battery\-\_\-temperature\-\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-safety\-\_\-limits\-::limit\-\_\-battery\-\_\-temperature\-\_\-low}}\label{struct_e_p_s__safety__limits_a2395c833f98b5c3df23b252719b85097}
+Temperature level threshold of temperature high -\/ Over\-Temperature. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem\-Workspace/eps\-Subsystem/\-Inc/eps\-\_\-safety.\-h\end{DoxyCompactItemize}

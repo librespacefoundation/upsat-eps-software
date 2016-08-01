@@ -1,0 +1,121 @@
+\hypertarget{group__tc74__device__driver___functions}{\section{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}
+\label{group__tc74__device__driver___functions}\index{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S \hyperlink{group__tc74__device__driver___functions_gaaad8e710b5b20ff439c20c3e6a1899df}{T\-C74\-\_\-read\-\_\-device\-\_\-temperature} (I2\-C\-\_\-\-Handle\-Type\-Def $\ast$h\-\_\-i2c, uint8\-\_\-t device\-\_\-i2c\-\_\-address, int8\-\_\-t $\ast$receive\-\_\-word)
+\begin{DoxyCompactList}\small\item\em Reads the word in temperature measurement register of the device and returns the current status of the specified address. \end{DoxyCompactList}\item 
+T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S \hyperlink{group__tc74__device__driver___functions_gac7c41cdd9ddc545f8ba0cf9502211825}{T\-C74\-\_\-device\-\_\-wake\-\_\-up} (I2\-C\-\_\-\-Handle\-Type\-Def $\ast$h\-\_\-i2c, uint8\-\_\-t device\-\_\-i2c\-\_\-address)
+\begin{DoxyCompactList}\small\item\em Wake up request to the sensor on the specified address. \end{DoxyCompactList}\item 
+T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S \hyperlink{group__tc74__device__driver___functions_ga3763067025ca01685ccae3b7c2d8bc8d}{T\-C74\-\_\-device\-\_\-sleep} (I2\-C\-\_\-\-Handle\-Type\-Def $\ast$h\-\_\-i2c, uint8\-\_\-t device\-\_\-i2c\-\_\-address)
+\begin{DoxyCompactList}\small\item\em Sleep device request to the sensor on the specified address. \end{DoxyCompactList}\item 
+T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S \hyperlink{group__tc74__device__driver___functions_ga03276e6c60fb80c35af1bd788a4dabbd}{T\-C74\-\_\-read\-\_\-device\-\_\-status} (I2\-C\-\_\-\-Handle\-Type\-Def $\ast$h\-\_\-i2c, uint8\-\_\-t device\-\_\-i2c\-\_\-address)
+\begin{DoxyCompactList}\small\item\em Reads the word in device status register of the device and returns the current status of the specified address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__tc74__device__driver___functions_ga3763067025ca01685ccae3b7c2d8bc8d}{\index{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}!T\-C74\-\_\-device\-\_\-sleep@{T\-C74\-\_\-device\-\_\-sleep}}
+\index{T\-C74\-\_\-device\-\_\-sleep@{T\-C74\-\_\-device\-\_\-sleep}!Tc74_device_driver_Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}}
+\subsubsection[{T\-C74\-\_\-device\-\_\-sleep}]{\setlength{\rightskip}{0pt plus 5cm}T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S T\-C74\-\_\-device\-\_\-sleep (
+\begin{DoxyParamCaption}
+\item[{I2\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{h\-\_\-i2c, }
+\item[{uint8\-\_\-t}]{device\-\_\-i2c\-\_\-address}
+\end{DoxyParamCaption}
+)}}\label{group__tc74__device__driver___functions_ga3763067025ca01685ccae3b7c2d8bc8d}
+
+
+Sleep device request to the sensor on the specified address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h\-\_\-i2c} & pointer to the i2c bus peripheral handle that the temperature sensor ics are connected. \\
+\hline
+{\em device\-\_\-i2c\-\_\-address} & i2c address of the sensor to request measurement. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__tc74__device__driver___functions_gac7c41cdd9ddc545f8ba0cf9502211825}{\index{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}!T\-C74\-\_\-device\-\_\-wake\-\_\-up@{T\-C74\-\_\-device\-\_\-wake\-\_\-up}}
+\index{T\-C74\-\_\-device\-\_\-wake\-\_\-up@{T\-C74\-\_\-device\-\_\-wake\-\_\-up}!Tc74_device_driver_Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}}
+\subsubsection[{T\-C74\-\_\-device\-\_\-wake\-\_\-up}]{\setlength{\rightskip}{0pt plus 5cm}T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S T\-C74\-\_\-device\-\_\-wake\-\_\-up (
+\begin{DoxyParamCaption}
+\item[{I2\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{h\-\_\-i2c, }
+\item[{uint8\-\_\-t}]{device\-\_\-i2c\-\_\-address}
+\end{DoxyParamCaption}
+)}}\label{group__tc74__device__driver___functions_gac7c41cdd9ddc545f8ba0cf9502211825}
+
+
+Wake up request to the sensor on the specified address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h\-\_\-i2c} & pointer to the i2c bus peripheral handle that the temperature sensor ics are connected. \\
+\hline
+{\em device\-\_\-i2c\-\_\-address} & i2c address of the sensor to request measurement. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__tc74__device__driver___functions_ga03276e6c60fb80c35af1bd788a4dabbd}{\index{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}!T\-C74\-\_\-read\-\_\-device\-\_\-status@{T\-C74\-\_\-read\-\_\-device\-\_\-status}}
+\index{T\-C74\-\_\-read\-\_\-device\-\_\-status@{T\-C74\-\_\-read\-\_\-device\-\_\-status}!Tc74_device_driver_Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}}
+\subsubsection[{T\-C74\-\_\-read\-\_\-device\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S T\-C74\-\_\-read\-\_\-device\-\_\-status (
+\begin{DoxyParamCaption}
+\item[{I2\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{h\-\_\-i2c, }
+\item[{uint8\-\_\-t}]{device\-\_\-i2c\-\_\-address}
+\end{DoxyParamCaption}
+)}}\label{group__tc74__device__driver___functions_ga03276e6c60fb80c35af1bd788a4dabbd}
+
+
+Reads the word in device status register of the device and returns the current status of the specified address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h\-\_\-i2c} & pointer to the i2c bus peripheral handle that the temperature sensor ics are connected. \\
+\hline
+{\em device\-\_\-i2c\-\_\-address} & i2c adress of the sensor to request measurement. \\
+\hline
+{\em receive\-\_\-word} & pointer to the word where the measurement register will be returned. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__tc74__device__driver___functions_gaaad8e710b5b20ff439c20c3e6a1899df}{\index{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}!T\-C74\-\_\-read\-\_\-device\-\_\-temperature@{T\-C74\-\_\-read\-\_\-device\-\_\-temperature}}
+\index{T\-C74\-\_\-read\-\_\-device\-\_\-temperature@{T\-C74\-\_\-read\-\_\-device\-\_\-temperature}!Tc74_device_driver_Functions@{Tc74\-\_\-device\-\_\-driver\-\_\-\-Functions}}
+\subsubsection[{T\-C74\-\_\-read\-\_\-device\-\_\-temperature}]{\setlength{\rightskip}{0pt plus 5cm}T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S T\-C74\-\_\-read\-\_\-device\-\_\-temperature (
+\begin{DoxyParamCaption}
+\item[{I2\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{h\-\_\-i2c, }
+\item[{uint8\-\_\-t}]{device\-\_\-i2c\-\_\-address, }
+\item[{int8\-\_\-t $\ast$}]{receive\-\_\-word}
+\end{DoxyParamCaption}
+)}}\label{group__tc74__device__driver___functions_gaaad8e710b5b20ff439c20c3e6a1899df}
+
+
+Reads the word in temperature measurement register of the device and returns the current status of the specified address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h\-\_\-i2c} & pointer to the i2c bus peripheral handle that the temperature sensor ics are connected. \\
+\hline
+{\em device\-\_\-i2c\-\_\-address} & i2c adress of the sensor to request measurement. \\
+\hline
+{\em receive\-\_\-word} & pointer to the word where the measurement register will be returned. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em T\-C\-\_\-74\-\_\-\-S\-T\-A\-T\-U\-S.} & \\
+\hline
+\end{DoxyRetVals}

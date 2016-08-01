@@ -1,0 +1,87 @@
+\hypertarget{struct_a_d_c___injection_conf_type_def}{\section{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def Struct Reference}
+\label{struct_a_d_c___injection_conf_type_def}\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+}
+
+
+A\-D\-C Configuration injected Channel structure definition.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-adc\-\_\-ex.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_aad0cab6ed3f66e8ffa4bd0490298b715}{Injected\-Channel}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_af8a1717c0f5a5d0c7a705224f28a844f}{Injected\-Rank}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_a3d15c0590dbafc9e99e21ea4df5b0c6b}{Injected\-Sampling\-Time}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_ac7d28d71ec3aec4d1587ee04fc585f09}{Injected\-Offset}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_ac59f9795b1b8c4ce6745d99f8231b768}{Injected\-Nbr\-Of\-Conversion}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_adf871acec9ab869d14b5d58e1549739b}{Injected\-Discontinuous\-Conv\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_ab0e74342214a5610e6b4f1f080f10544}{Auto\-Injected\-Conv}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_ac3431d4d3e3089f0db271bfb06dbffc0}{External\-Trig\-Injec\-Conv}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___injection_conf_type_def_a4f2cfa808b5ace1e47fc3f94da7b850f}{External\-Trig\-Injec\-Conv\-Edge}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\-D\-C Configuration injected Channel structure definition. 
+
+\begin{DoxyNote}{Note}
+Parameters of this structure are shared within 2 scopes\-:
+\begin{DoxyItemize}
+\item Scope channel\-: Injected\-Channel, Injected\-Rank, Injected\-Sampling\-Time, Injected\-Offset
+\item Scope injected group (affects all channels of injected group)\-: Injected\-Nbr\-Of\-Conversion, Injected\-Discontinuous\-Conv\-Mode, Auto\-Injected\-Conv, External\-Trig\-Injec\-Conv\-Edge, External\-Trig\-Injec\-Conv. 
+\end{DoxyItemize}
+
+The setting of these parameters with function H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() is conditioned to A\-D\-C state. A\-D\-C state can be either\-:
+\begin{DoxyItemize}
+\item For all parameters\-: A\-D\-C disabled
+\item For all except parameters 'Injected\-Discontinuous\-Conv\-Mode' and 'Auto\-Injected\-Conv'\-: A\-D\-C enabled without conversion on going on injected group.
+\item For parameters 'External\-Trig\-Injec\-Conv' and 'External\-Trig\-Injec\-Conv\-Edge'\-: A\-D\-C enabled, even with conversion on going on injected group. 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_a_d_c___injection_conf_type_def_ab0e74342214a5610e6b4f1f080f10544}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Auto\-Injected\-Conv@{Auto\-Injected\-Conv}}
+\index{Auto\-Injected\-Conv@{Auto\-Injected\-Conv}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Auto\-Injected\-Conv}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Auto\-Injected\-Conv}}\label{struct_a_d_c___injection_conf_type_def_ab0e74342214a5610e6b4f1f080f10544}
+Enables or disables the selected A\-D\-C automatic injected group conversion after regular one This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E. Note\-: To use Automatic injected conversion, discontinuous mode must be disabled ('Discontinuous\-Conv\-Mode' and 'Injected\-Discontinuous\-Conv\-Mode' set to D\-I\-S\-A\-B\-L\-E) Note\-: To use Automatic injected conversion, injected group external triggers must be disabled ('External\-Trig\-Injec\-Conv' set to A\-D\-C\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T) Note\-: In case of D\-M\-A used with regular group\-: if D\-M\-A configured in normal mode (single shot) J\-A\-U\-T\-O will be stopped upon D\-M\-A transfer complete. To maintain J\-A\-U\-T\-O always enabled, D\-M\-A must be configured in circular mode. Caution\-: this setting impacts the entire injected group. Therefore, call of H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() to configure a channel on injected group can impact the configuration of other channels previously set. \hypertarget{struct_a_d_c___injection_conf_type_def_ac3431d4d3e3089f0db271bfb06dbffc0}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!External\-Trig\-Injec\-Conv@{External\-Trig\-Injec\-Conv}}
+\index{External\-Trig\-Injec\-Conv@{External\-Trig\-Injec\-Conv}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{External\-Trig\-Injec\-Conv}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-External\-Trig\-Injec\-Conv}}\label{struct_a_d_c___injection_conf_type_def_ac3431d4d3e3089f0db271bfb06dbffc0}
+Selects the external event used to trigger the conversion start of injected group. If set to A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T, external triggers are disabled. If set to external trigger source, triggering is on event rising edge. This parameter can be a value of \hyperlink{group___a_d_c_ex___external__trigger__source___injected}{A\-D\-C\-Ex External trigger source Injected} Note\-: This parameter must be modified when A\-D\-C is disabled (before A\-D\-C start conversion or after A\-D\-C stop conversion). If A\-D\-C is enabled, this parameter setting is bypassed without error reporting (as it can be the expected behaviour in case of another parameter update on the fly) Caution\-: this setting impacts the entire injected group. Therefore, call of H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() to configure a channel on injected group can impact the configuration of other channels previously set. \hypertarget{struct_a_d_c___injection_conf_type_def_a4f2cfa808b5ace1e47fc3f94da7b850f}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!External\-Trig\-Injec\-Conv\-Edge@{External\-Trig\-Injec\-Conv\-Edge}}
+\index{External\-Trig\-Injec\-Conv\-Edge@{External\-Trig\-Injec\-Conv\-Edge}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{External\-Trig\-Injec\-Conv\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-External\-Trig\-Injec\-Conv\-Edge}}\label{struct_a_d_c___injection_conf_type_def_a4f2cfa808b5ace1e47fc3f94da7b850f}
+Selects the external trigger edge of injected group. This parameter can be a value of \hyperlink{group___a_d_c_ex___external__trigger__edge___injected}{A\-D\-C\-Ex external trigger enable for injected group}. If trigger is set to A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-S\-O\-F\-T\-W\-A\-R\-E\-\_\-\-S\-T\-A\-R\-T, this parameter is discarded. Caution\-: this setting impacts the entire injected group. Therefore, call of H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() to configure a channel on injected group can impact the configuration of other channels previously set. \hypertarget{struct_a_d_c___injection_conf_type_def_aad0cab6ed3f66e8ffa4bd0490298b715}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Channel@{Injected\-Channel}}
+\index{Injected\-Channel@{Injected\-Channel}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Channel}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Channel}}\label{struct_a_d_c___injection_conf_type_def_aad0cab6ed3f66e8ffa4bd0490298b715}
+Selection of A\-D\-C channel to configure This parameter can be a value of \hyperlink{group___a_d_c__channels}{A\-D\-C channels} Note\-: Depending on devices, some channels may not be available on package pins. Refer to device datasheet for channels availability. \hypertarget{struct_a_d_c___injection_conf_type_def_adf871acec9ab869d14b5d58e1549739b}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Discontinuous\-Conv\-Mode@{Injected\-Discontinuous\-Conv\-Mode}}
+\index{Injected\-Discontinuous\-Conv\-Mode@{Injected\-Discontinuous\-Conv\-Mode}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Discontinuous\-Conv\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Discontinuous\-Conv\-Mode}}\label{struct_a_d_c___injection_conf_type_def_adf871acec9ab869d14b5d58e1549739b}
+Specifies whether the conversions sequence of injected group is performed in Complete-\/sequence/\-Discontinuous-\/sequence (main sequence subdivided in successive parts). Discontinuous mode is used only if sequencer is enabled (parameter 'Scan\-Conv\-Mode'). If sequencer is disabled, this parameter is discarded. Discontinuous mode can be enabled only if continuous mode is disabled. If continuous mode is enabled, this parameter setting is discarded. This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E. Note\-: For injected group, number of discontinuous ranks increment is fixed to one-\/by-\/one. Caution\-: this setting impacts the entire injected group. Therefore, call of H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() to configure a channel on injected group can impact the configuration of other channels previously set. \hypertarget{struct_a_d_c___injection_conf_type_def_ac59f9795b1b8c4ce6745d99f8231b768}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Nbr\-Of\-Conversion@{Injected\-Nbr\-Of\-Conversion}}
+\index{Injected\-Nbr\-Of\-Conversion@{Injected\-Nbr\-Of\-Conversion}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Nbr\-Of\-Conversion}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Nbr\-Of\-Conversion}}\label{struct_a_d_c___injection_conf_type_def_ac59f9795b1b8c4ce6745d99f8231b768}
+Specifies the number of ranks that will be converted within the injected group sequencer. To use the injected group sequencer and convert several ranks, parameter 'Scan\-Conv\-Mode' must be enabled. This parameter must be a number between Min\-\_\-\-Data = 1 and Max\-\_\-\-Data = 4. Caution\-: this setting impacts the entire injected group. Therefore, call of H\-A\-L\-\_\-\-A\-D\-C\-Ex\-\_\-\-Injected\-Config\-Channel() to configure a channel on injected group can impact the configuration of other channels previously set. \hypertarget{struct_a_d_c___injection_conf_type_def_ac7d28d71ec3aec4d1587ee04fc585f09}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Offset@{Injected\-Offset}}
+\index{Injected\-Offset@{Injected\-Offset}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Offset}}\label{struct_a_d_c___injection_conf_type_def_ac7d28d71ec3aec4d1587ee04fc585f09}
+Defines the offset to be subtracted from the raw converted data (for channels set on injected group only). Offset value must be a positive number. Depending of A\-D\-C resolution selected (12, 10, 8 or 6 bits), this parameter must be a number between Min\-\_\-\-Data = 0x000 and Max\-\_\-\-Data = 0x\-F\-F\-F, 0x3\-F\-F, 0x\-F\-F or 0x3\-F respectively. \hypertarget{struct_a_d_c___injection_conf_type_def_af8a1717c0f5a5d0c7a705224f28a844f}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Rank@{Injected\-Rank}}
+\index{Injected\-Rank@{Injected\-Rank}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Rank}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Rank}}\label{struct_a_d_c___injection_conf_type_def_af8a1717c0f5a5d0c7a705224f28a844f}
+Rank in the injected group sequencer This parameter must be a value of \hyperlink{group___a_d_c_ex__injected__rank}{A\-D\-C\-Ex rank into injected group} Note\-: In case of need to disable a channel or change order of conversion sequencer, rank containing a previous channel setting can be overwritten by the new channel setting (or parameter number of conversions can be adjusted) \hypertarget{struct_a_d_c___injection_conf_type_def_a3d15c0590dbafc9e99e21ea4df5b0c6b}{\index{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}!Injected\-Sampling\-Time@{Injected\-Sampling\-Time}}
+\index{Injected\-Sampling\-Time@{Injected\-Sampling\-Time}!ADC_InjectionConfTypeDef@{A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def}}
+\subsubsection[{Injected\-Sampling\-Time}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Injection\-Conf\-Type\-Def\-::\-Injected\-Sampling\-Time}}\label{struct_a_d_c___injection_conf_type_def_a3d15c0590dbafc9e99e21ea4df5b0c6b}
+Sampling time value to be set for the selected channel. Unit\-: A\-D\-C clock cycles Conversion time is the addition of sampling time and processing time (12 A\-D\-C clock cycles at A\-D\-C resolution 12 bits, 11 cycles at 10 bits, 9 cycles at 8 bits, 7 cycles at 6 bits). This parameter can be a value of \hyperlink{group___a_d_c__sampling__times}{A\-D\-C sampling times} Caution\-: This parameter updates the parameter property of the channel, that can be used into regular and/or injected groups. If this same channel has been previously configured in the other group (regular/injected), it will be updated to last setting. Note\-: In case of usage of internal measurement channels (Vref\-Int/\-Vbat/\-Temp\-Sensor), sampling time constraints must be respected (sampling time can be adjusted in function of A\-D\-C clock frequency and sampling time setting) Refer to device datasheet for timings values, parameters T\-S\-\_\-vrefint, T\-S\-\_\-temp (values rough order\-: 4us min). 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__adc__ex_8h}{stm32l1xx\-\_\-hal\-\_\-adc\-\_\-ex.\-h}\end{DoxyCompactItemize}

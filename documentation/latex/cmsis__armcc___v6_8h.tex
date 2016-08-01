@@ -1,0 +1,60 @@
+\hypertarget{cmsis__armcc___v6_8h}{\section{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/cmsis\-\_\-armcc\-\_\-\-V6.h File Reference}
+\label{cmsis__armcc___v6_8h}\index{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/cmsis\-\_\-armcc\-\_\-\-V6.\-h@{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/cmsis\-\_\-armcc\-\_\-\-V6.\-h}}
+}
+
+
+C\-M\-S\-I\-S Cortex-\/\-M Core Function/\-Instruction Header File.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}(r)~\char`\"{}=r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_gabc17e391c13c71702366c67cba39c276}
+
+\item 
+\hypertarget{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}{\#define {\bfseries \-\_\-\-\_\-\-C\-M\-S\-I\-S\-\_\-\-G\-C\-C\-\_\-\-U\-S\-E\-\_\-\-R\-E\-G}(r)~\char`\"{}r\char`\"{} (r)}\label{group___c_m_s_i_s___core___instruction_interface_ga9d94dee7402367961d2cf0accc00fd97}
+
+\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\-\_\-\-\_\-\-N\-O\-P}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-nop
+\begin{DoxyCompactList}\small\item\em No Operation. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gad23bf2b78a9a4524157c9de0d30b7448}{\-\_\-\-\_\-\-W\-F\-I}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfi
+\begin{DoxyCompactList}\small\item\em Wait For Interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaac6cc7dd4325d9cb40d3290fa5244b3d}{\-\_\-\-\_\-\-W\-F\-E}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-wfe
+\begin{DoxyCompactList}\small\item\em Wait For Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaab4f296d0022b4b10dc0976eb22052f9}{\-\_\-\-\_\-\-S\-E\-V}~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-sev
+\begin{DoxyCompactList}\small\item\em Send Event. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_gaad233022e850a009fc6f7602be1182f6}{\-\_\-\-\_\-\-I\-S\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-isb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Instruction Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga067d257a2b34565410acefb5afef2203}{\-\_\-\-\_\-\-D\-S\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dsb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Data Synchronization Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga671101179b5943990785f36f8c1e2269}{\-\_\-\-\_\-\-D\-M\-B}()~\-\_\-\-\_\-builtin\-\_\-arm\-\_\-dmb(0x\-F);
+\begin{DoxyCompactList}\small\item\em Data Memory Barrier. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga14f54807872c0f5e05604c4924abfdae}{\-\_\-\-\_\-\-R\-E\-V}~\-\_\-\-\_\-builtin\-\_\-bswap32
+\begin{DoxyCompactList}\small\item\em Reverse byte order (32 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga4e3acd41e7667cdf65ffcd8c76a8613f}{\-\_\-\-\_\-\-R\-E\-V16}~\-\_\-\-\_\-builtin\-\_\-bswap16                           /$\ast$ To\-Do\-:  A\-R\-M\-C\-C\-\_\-\-V6\-: check if \-\_\-\-\_\-builtin\-\_\-bswap16 could be used $\ast$/
+\begin{DoxyCompactList}\small\item\em Reverse byte order (16 bit) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga15ea6bd3c507d3e81c3b3a1258e46397}{\-\_\-\-\_\-\-B\-K\-P\-T}(value)~\-\_\-\-\_\-\-A\-S\-M volatile (\char`\"{}bkpt \char`\"{}\#value)
+\begin{DoxyCompactList}\small\item\em Breakpoint. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\-\_\-\-\_\-\-C\-L\-Z}~\-\_\-\-\_\-builtin\-\_\-clz
+\begin{DoxyCompactList}\small\item\em Count leading zeros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___c_m_s_i_s___core___reg_acc_functions_ga671b4fa3b3ab3dbc685a5473f3fc76aa}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \-\_\-\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-I\-N\-L\-I\-N\-E void \-\_\-\-\_\-enable\-\_\-irq(void)
+\begin{DoxyCompactList}\small\item\em Enable I\-R\-Q Interrupts. \end{DoxyCompactList}\item 
+\hyperlink{group___c_m_s_i_s___core___instruction_interface_gab926fe7178a379c3a7c0410b06fcb661}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((always\-\_\-inline)) \-\_\-\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-I\-N\-L\-I\-N\-E uint32\-\_\-t \-\_\-\-\_\-\-R\-B\-I\-T(uint32\-\_\-t value)
+\begin{DoxyCompactList}\small\item\em Reverse bit order of value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t {\bfseries op2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\-M\-S\-I\-S Cortex-\/\-M Core Function/\-Instruction Header File. \begin{DoxyVersion}{Version}
+V4.\-30 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20. October 2015 
+\end{DoxyDate}

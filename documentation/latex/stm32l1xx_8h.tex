@@ -1,0 +1,104 @@
+\hypertarget{stm32l1xx_8h}{\section{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Include/stm32l1xx.h File Reference}
+\label{stm32l1xx_8h}\index{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Include/stm32l1xx.\-h@{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Include/stm32l1xx.\-h}}
+}
+
+
+C\-M\-S\-I\-S S\-T\-M32\-L1xx Device Peripheral Access Layer Header File.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___library__configuration__section_ga779d6f7402917ba39d057bf865d4279a}{\#define \hyperlink{group___library__configuration__section_ga779d6f7402917ba39d057bf865d4279a}{S\-T\-M32\-L1}}\label{group___library__configuration__section_ga779d6f7402917ba39d057bf865d4279a}
+
+\begin{DoxyCompactList}\small\item\em S\-T\-M32 Family. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___library__configuration__section_ga7b0deaa970bfbbe1145abd1cba8a5957}{\-\_\-\-\_\-\-S\-T\-M32\-L1xx\-\_\-\-C\-M\-S\-I\-S\-\_\-\-V\-E\-R\-S\-I\-O\-N\-\_\-\-M\-A\-I\-N}~(0x02)
+\begin{DoxyCompactList}\small\item\em Comment the line below if you will not use the peripherals drivers. In this case, these drivers will not be included and the application code will be based on direct access to peripherals registers. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___library__configuration__section_ga6f7924aaddc0243d031cbe8d34db786a}{\-\_\-\-\_\-\-S\-T\-M32\-L1xx\-\_\-\-C\-M\-S\-I\-S\-\_\-\-V\-E\-R\-S\-I\-O\-N\-\_\-\-S\-U\-B1}~(0x01)
+\item 
+\#define \hyperlink{group___library__configuration__section_ga1dfac30132feed1a41875d404d77881a}{\-\_\-\-\_\-\-S\-T\-M32\-L1xx\-\_\-\-C\-M\-S\-I\-S\-\_\-\-V\-E\-R\-S\-I\-O\-N\-\_\-\-S\-U\-B2}~(0x03)
+\item 
+\#define \hyperlink{group___library__configuration__section_gaa41501c0f38513be75dc3c0af686438b}{\-\_\-\-\_\-\-S\-T\-M32\-L1xx\-\_\-\-C\-M\-S\-I\-S\-\_\-\-V\-E\-R\-S\-I\-O\-N\-\_\-\-R\-C}~(0x00)
+\item 
+\#define {\bfseries \-\_\-\-\_\-\-S\-T\-M32\-L1xx\-\_\-\-C\-M\-S\-I\-S\-\_\-\-V\-E\-R\-S\-I\-O\-N}
+\item 
+\hypertarget{group___exported__types_gaffaf7c3f537d7a3370b1bbdda67a2bf6}{\#define {\bfseries I\-S\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-A\-L\-\_\-\-S\-T\-A\-T\-E}(S\-T\-A\-T\-E)~(((S\-T\-A\-T\-E) == D\-I\-S\-A\-B\-L\-E) $\vert$$\vert$ ((S\-T\-A\-T\-E) == E\-N\-A\-B\-L\-E))}\label{group___exported__types_gaffaf7c3f537d7a3370b1bbdda67a2bf6}
+
+\item 
+\hypertarget{group___exported__macros_ga26474f43799fbade9cf300e21dd3a91a}{\#define {\bfseries S\-E\-T\-\_\-\-B\-I\-T}(R\-E\-G, B\-I\-T)~((R\-E\-G) $\vert$= (B\-I\-T))}\label{group___exported__macros_ga26474f43799fbade9cf300e21dd3a91a}
+
+\item 
+\hypertarget{group___exported__macros_ga133aae6fc0d41bffab39ab223a7001de}{\#define {\bfseries C\-L\-E\-A\-R\-\_\-\-B\-I\-T}(R\-E\-G, B\-I\-T)~((R\-E\-G) \&= $\sim$(B\-I\-T))}\label{group___exported__macros_ga133aae6fc0d41bffab39ab223a7001de}
+
+\item 
+\hypertarget{group___exported__macros_ga822bb1bb9710d5f2fa6396b84e583c33}{\#define {\bfseries R\-E\-A\-D\-\_\-\-B\-I\-T}(R\-E\-G, B\-I\-T)~((R\-E\-G) \& (B\-I\-T))}\label{group___exported__macros_ga822bb1bb9710d5f2fa6396b84e583c33}
+
+\item 
+\hypertarget{group___exported__macros_ga1378fbdda39f40b85420df55f41460ef}{\#define {\bfseries C\-L\-E\-A\-R\-\_\-\-R\-E\-G}(R\-E\-G)~((R\-E\-G) = (0x0))}\label{group___exported__macros_ga1378fbdda39f40b85420df55f41460ef}
+
+\item 
+\hypertarget{group___exported__macros_ga32f78bffcaf6d13023dcd7f05e0c4d57}{\#define {\bfseries W\-R\-I\-T\-E\-\_\-\-R\-E\-G}(R\-E\-G, V\-A\-L)~((R\-E\-G) = (V\-A\-L))}\label{group___exported__macros_ga32f78bffcaf6d13023dcd7f05e0c4d57}
+
+\item 
+\hypertarget{group___exported__macros_gae7f188a4d26c9e713a48414783421071}{\#define {\bfseries R\-E\-A\-D\-\_\-\-R\-E\-G}(R\-E\-G)~((R\-E\-G))}\label{group___exported__macros_gae7f188a4d26c9e713a48414783421071}
+
+\item 
+\hypertarget{group___exported__macros_ga6553c99f510c3bab8cc0a91602053247}{\#define {\bfseries M\-O\-D\-I\-F\-Y\-\_\-\-R\-E\-G}(R\-E\-G, C\-L\-E\-A\-R\-M\-A\-S\-K, S\-E\-T\-M\-A\-S\-K)~W\-R\-I\-T\-E\-\_\-\-R\-E\-G((R\-E\-G), (((R\-E\-A\-D\-\_\-\-R\-E\-G(R\-E\-G)) \& ($\sim$(C\-L\-E\-A\-R\-M\-A\-S\-K))) $\vert$ (S\-E\-T\-M\-A\-S\-K)))}\label{group___exported__macros_ga6553c99f510c3bab8cc0a91602053247}
+
+\item 
+\hypertarget{group___exported__macros_ga47a8870d71d55cefb3df47cd8c815ec8}{\#define {\bfseries P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L}(V\-A\-L)~(\hyperlink{group___c_m_s_i_s___core___instruction_interface_ga5d5bb1527e042be4a9fa5a33f65cc248}{\-\_\-\-\_\-\-C\-L\-Z}(\-\_\-\-\_\-\-R\-B\-I\-T(V\-A\-L)))}\label{group___exported__macros_ga47a8870d71d55cefb3df47cd8c815ec8}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___exported__types_gaacbd7ed539db0aacd973a0f6eca34074}{typedef enum Flag\-Status {\bfseries I\-T\-Status}}\label{group___exported__types_gaacbd7ed539db0aacd973a0f6eca34074}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Flag\-Status} \{ {\bfseries R\-E\-S\-E\-T} = 0, 
+{\bfseries S\-E\-T} = !\-R\-E\-S\-E\-T
+ \}
+\item 
+enum {\bfseries Functional\-State} \{ {\bfseries D\-I\-S\-A\-B\-L\-E} = 0, 
+{\bfseries E\-N\-A\-B\-L\-E} = !\-D\-I\-S\-A\-B\-L\-E
+ \}
+\item 
+enum {\bfseries Error\-Status} \{ {\bfseries E\-R\-R\-O\-R} = 0, 
+{\bfseries S\-U\-C\-C\-E\-S\-S} = !\-E\-R\-R\-O\-R
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\-M\-S\-I\-S S\-T\-M32\-L1xx Device Peripheral Access Layer Header File. \begin{DoxyAuthor}{Author}
+M\-C\-D Application Team 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V2.\-1.\-3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+04-\/\-March-\/2016 The file is the unique include file that the application programmer is using in the C source code, usually in main.\-c. This file contains\-:
+\begin{DoxyItemize}
+\item Configuration section that allows to select\-:
+\begin{DoxyItemize}
+\item The S\-T\-M32\-L1xx device used in the target application
+\item To use or not the peripheral’s drivers in application code(i.\-e. code will be based on direct access to peripheral’s registers rather than drivers A\-P\-I), this option is controlled by \char`\"{}\#define U\-S\-E\-\_\-\-H\-A\-L\-\_\-\-D\-R\-I\-V\-E\-R\char`\"{}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyDate}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\subsubsection*{\begin{center}\copyright{} C\-O\-P\-Y\-R\-I\-G\-H\-T(c) 2016 S\-T\-Microelectronics\end{center} }
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\-T\-Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E. 

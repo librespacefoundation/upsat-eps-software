@@ -1,0 +1,164 @@
+\hypertarget{group__eps__state___functions}{\section{Eps\-\_\-state\-\_\-\-Functions}
+\label{group__eps__state___functions}\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__state___functions_ga45b2db28354ce2fc717def9e9df0fc80}{E\-P\-S\-\_\-state\-\_\-init} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Initialize the eps state structure with valid initial values. \end{DoxyCompactList}\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__state___functions_ga7b4d6210572c20f5c47da460496d7cd0}{E\-P\-S\-\_\-update\-\_\-state} (volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state, A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$hadc\-\_\-eps, I2\-C\-\_\-\-Handle\-Type\-Def $\ast$h\-\_\-i2c)
+\begin{DoxyCompactList}\small\item\em Update the eps state structure with state values. This is called every 50msec as the first main task of the eps. This basically collect info from the adc connected sensors, and the temperature sensors. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__state___functions_ga0a10187a305282e2f01cd6acf58b5dff}{E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch} (E\-P\-S\-\_\-switch\-\_\-rail eps\-\_\-switch, E\-P\-S\-\_\-switch\-\_\-rail\-\_\-status switch\-\_\-status, volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Turn on or off the power switches of the connected subsystem. These are inverted logic mosfets that control power supply rails at the rest of the satellite subsystems. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__state___functions_ga51a2652104ab6c47450eb109d769e81e}{E\-P\-S\-\_\-set\-\_\-control\-\_\-switch} (E\-P\-S\-\_\-switch\-\_\-control eps\-\_\-switch, E\-P\-S\-\_\-switch\-\_\-control\-\_\-status switch\-\_\-status, volatile \hyperlink{struct_e_p_s___state}{E\-P\-S\-\_\-\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Turn on or off the control switches of the eps control mechanisms. These are normal logic mosfets that control deploy system and battery heaters safety mechanism. \end{DoxyCompactList}\item 
+E\-P\-S\-\_\-switch\-\_\-rail\-\_\-status \hyperlink{group__eps__state___functions_ga2fcea1d07c345315fc0840668152e60e}{E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status} (E\-P\-S\-\_\-switch\-\_\-rail eps\-\_\-switch)
+\begin{DoxyCompactList}\small\item\em get the state of a power switch. \end{DoxyCompactList}\item 
+E\-P\-S\-\_\-switch\-\_\-control\-\_\-status \hyperlink{group__eps__state___functions_ga028b9b9f9d61ad5bcc1f65b0bc92d75b}{E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status} (E\-P\-S\-\_\-switch\-\_\-control eps\-\_\-switch)
+\begin{DoxyCompactList}\small\item\em get the state of a control switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__state___functions_ga028b9b9f9d61ad5bcc1f65b0bc92d75b}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status@{E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status}}
+\index{E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status@{E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}E\-P\-S\-\_\-switch\-\_\-control\-\_\-status E\-P\-S\-\_\-get\-\_\-control\-\_\-switch\-\_\-status (
+\begin{DoxyParamCaption}
+\item[{E\-P\-S\-\_\-switch\-\_\-control}]{eps\-\_\-switch}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga028b9b9f9d61ad5bcc1f65b0bc92d75b}
+
+
+get the state of a control switch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eps\-\_\-switch} & eps control port. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em switch\-\_\-status} & control switch status. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__state___functions_ga2fcea1d07c345315fc0840668152e60e}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status@{E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status}}
+\index{E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status@{E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}E\-P\-S\-\_\-switch\-\_\-rail\-\_\-status E\-P\-S\-\_\-get\-\_\-rail\-\_\-switch\-\_\-status (
+\begin{DoxyParamCaption}
+\item[{E\-P\-S\-\_\-switch\-\_\-rail}]{eps\-\_\-switch}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga2fcea1d07c345315fc0840668152e60e}
+
+
+get the state of a power switch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eps\-\_\-switch} & eps power port. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em switch\-\_\-status} & power switch status. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__state___functions_ga51a2652104ab6c47450eb109d769e81e}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-set\-\_\-control\-\_\-switch@{E\-P\-S\-\_\-set\-\_\-control\-\_\-switch}}
+\index{E\-P\-S\-\_\-set\-\_\-control\-\_\-switch@{E\-P\-S\-\_\-set\-\_\-control\-\_\-switch}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-set\-\_\-control\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-set\-\_\-control\-\_\-switch (
+\begin{DoxyParamCaption}
+\item[{E\-P\-S\-\_\-switch\-\_\-control}]{eps\-\_\-switch, }
+\item[{E\-P\-S\-\_\-switch\-\_\-control\-\_\-status}]{switch\-\_\-status, }
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga51a2652104ab6c47450eb109d769e81e}
+
+
+Turn on or off the control switches of the eps control mechanisms. These are normal logic mosfets that control deploy system and battery heaters safety mechanism. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eps\-\_\-switch} & eps control port. \\
+\hline
+{\em switch\-\_\-status} & control switch status. \\
+\hline
+{\em state} & pointer to the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__state___functions_ga0a10187a305282e2f01cd6acf58b5dff}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch@{E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch}}
+\index{E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch@{E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-set\-\_\-rail\-\_\-switch (
+\begin{DoxyParamCaption}
+\item[{E\-P\-S\-\_\-switch\-\_\-rail}]{eps\-\_\-switch, }
+\item[{E\-P\-S\-\_\-switch\-\_\-rail\-\_\-status}]{switch\-\_\-status, }
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga0a10187a305282e2f01cd6acf58b5dff}
+
+
+Turn on or off the power switches of the connected subsystem. These are inverted logic mosfets that control power supply rails at the rest of the satellite subsystems. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eps\-\_\-switch} & eps power control subsystem ports. \\
+\hline
+{\em switch\-\_\-status} & power switch status. \\
+\hline
+{\em state} & pointer to the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None.} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__state___functions_ga45b2db28354ce2fc717def9e9df0fc80}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-state\-\_\-init@{E\-P\-S\-\_\-state\-\_\-init}}
+\index{E\-P\-S\-\_\-state\-\_\-init@{E\-P\-S\-\_\-state\-\_\-init}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-state\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-state\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga45b2db28354ce2fc717def9e9df0fc80}
+
+
+Initialize the eps state structure with valid initial values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__state___functions_ga7b4d6210572c20f5c47da460496d7cd0}{\index{Eps\-\_\-state\-\_\-\-Functions@{Eps\-\_\-state\-\_\-\-Functions}!E\-P\-S\-\_\-update\-\_\-state@{E\-P\-S\-\_\-update\-\_\-state}}
+\index{E\-P\-S\-\_\-update\-\_\-state@{E\-P\-S\-\_\-update\-\_\-state}!Eps_state_Functions@{Eps\-\_\-state\-\_\-\-Functions}}
+\subsubsection[{E\-P\-S\-\_\-update\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} E\-P\-S\-\_\-update\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{volatile {\bf E\-P\-S\-\_\-\-State} $\ast$}]{state, }
+\item[{A\-D\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{hadc\-\_\-eps, }
+\item[{I2\-C\-\_\-\-Handle\-Type\-Def $\ast$}]{h\-\_\-i2c}
+\end{DoxyParamCaption}
+)}}\label{group__eps__state___functions_ga7b4d6210572c20f5c47da460496d7cd0}
+
+
+Update the eps state structure with state values. This is called every 50msec as the first main task of the eps. This basically collect info from the adc connected sensors, and the temperature sensors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & the eps state structure containing central info of the E\-P\-S subsystem. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Error} & status for handling and debugging. \\
+\hline
+\end{DoxyRetVals}

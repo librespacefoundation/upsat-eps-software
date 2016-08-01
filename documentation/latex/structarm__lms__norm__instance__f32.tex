@@ -1,0 +1,56 @@
+\hypertarget{structarm__lms__norm__instance__f32}{\section{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32 Struct Reference}
+\label{structarm__lms__norm__instance__f32}\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+}
+
+
+Instance structure for the floating-\/point normalized L\-M\-S filter.  
+
+
+
+
+{\ttfamily \#include $<$arm\-\_\-math.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\-\_\-t \hyperlink{structarm__lms__norm__instance__f32_ac95f8ca3d816524c2070643852fac5e8}{num\-Taps}
+\item 
+float32\-\_\-t $\ast$ \hyperlink{structarm__lms__norm__instance__f32_a0bc03338687002ed5f2e4a363eb095ec}{p\-State}
+\item 
+float32\-\_\-t $\ast$ \hyperlink{structarm__lms__norm__instance__f32_a1ba688d90aba7de003ed4ad8e2e7ddda}{p\-Coeffs}
+\item 
+float32\-\_\-t \hyperlink{structarm__lms__norm__instance__f32_a84401d3cfc6c40f69c08223cf341b886}{mu}
+\item 
+float32\-\_\-t \hyperlink{structarm__lms__norm__instance__f32_a6a4119e4f39447bbee31b066deafa16f}{energy}
+\item 
+float32\-\_\-t \hyperlink{structarm__lms__norm__instance__f32_aec958fe89b164a30f38bcca9f5d96218}{x0}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instance structure for the floating-\/point normalized L\-M\-S filter. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structarm__lms__norm__instance__f32_a6a4119e4f39447bbee31b066deafa16f}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!energy@{energy}}
+\index{energy@{energy}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{energy}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::energy}}\label{structarm__lms__norm__instance__f32_a6a4119e4f39447bbee31b066deafa16f}
+saves previous frame energy. \hypertarget{structarm__lms__norm__instance__f32_a84401d3cfc6c40f69c08223cf341b886}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!mu@{mu}}
+\index{mu@{mu}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{mu}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::mu}}\label{structarm__lms__norm__instance__f32_a84401d3cfc6c40f69c08223cf341b886}
+step size that control filter coefficient updates. \hypertarget{structarm__lms__norm__instance__f32_ac95f8ca3d816524c2070643852fac5e8}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!num\-Taps@{num\-Taps}}
+\index{num\-Taps@{num\-Taps}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{num\-Taps}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::num\-Taps}}\label{structarm__lms__norm__instance__f32_ac95f8ca3d816524c2070643852fac5e8}
+number of coefficients in the filter. \hypertarget{structarm__lms__norm__instance__f32_a1ba688d90aba7de003ed4ad8e2e7ddda}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!p\-Coeffs@{p\-Coeffs}}
+\index{p\-Coeffs@{p\-Coeffs}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{p\-Coeffs}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t$\ast$ arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::p\-Coeffs}}\label{structarm__lms__norm__instance__f32_a1ba688d90aba7de003ed4ad8e2e7ddda}
+points to the coefficient array. The array is of length num\-Taps. \hypertarget{structarm__lms__norm__instance__f32_a0bc03338687002ed5f2e4a363eb095ec}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!p\-State@{p\-State}}
+\index{p\-State@{p\-State}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{p\-State}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t$\ast$ arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::p\-State}}\label{structarm__lms__norm__instance__f32_a0bc03338687002ed5f2e4a363eb095ec}
+points to the state variable array. The array is of length num\-Taps+block\-Size-\/1. \hypertarget{structarm__lms__norm__instance__f32_aec958fe89b164a30f38bcca9f5d96218}{\index{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}!x0@{x0}}
+\index{x0@{x0}!arm_lms_norm_instance_f32@{arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32}}
+\subsubsection[{x0}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t arm\-\_\-lms\-\_\-norm\-\_\-instance\-\_\-f32\-::x0}}\label{structarm__lms__norm__instance__f32_aec958fe89b164a30f38bcca9f5d96218}
+saves previous input sample. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Include/arm\-\_\-math.\-h\end{DoxyCompactItemize}

@@ -1,0 +1,117 @@
+\hypertarget{group___f_l_a_s_h___interrupt}{\section{F\-L\-A\-S\-H Interrupts}
+\label{group___f_l_a_s_h___interrupt}\index{F\-L\-A\-S\-H Interrupts@{F\-L\-A\-S\-H Interrupts}}
+}
+
+
+macros to handle F\-L\-A\-S\-H interrupts  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___f_l_a_s_h___interrupt_ga13fa137a911f02a2f94fb9fb0762a340}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T}(\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-)~S\-E\-T\-\_\-\-B\-I\-T((F\-L\-A\-S\-H-\/$>$P\-E\-C\-R), (\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-))
+\begin{DoxyCompactList}\small\item\em Enable the specified F\-L\-A\-S\-H interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___f_l_a_s_h___interrupt_ga1f40f507b5d4b3a4da68e4244a1097ee}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T}(\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-)~C\-L\-E\-A\-R\-\_\-\-B\-I\-T((F\-L\-A\-S\-H-\/$>$P\-E\-C\-R), (uint32\-\_\-t)(\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-))
+\begin{DoxyCompactList}\small\item\em Disable the specified F\-L\-A\-S\-H interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___f_l_a_s_h___interrupt_ga0d3dd161fecc0e47c9e109c7c28672c1}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G}(\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-)~(((F\-L\-A\-S\-H-\/$>$S\-R) \& (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-)) == (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-))
+\begin{DoxyCompactList}\small\item\em Get the specified F\-L\-A\-S\-H flag status. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___f_l_a_s_h___interrupt_ga68e49c4675761e2ec35153e747de7622}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G}(\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-)~((F\-L\-A\-S\-H-\/$>$S\-R) = (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-))
+\begin{DoxyCompactList}\small\item\em Clear the specified F\-L\-A\-S\-H flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+macros to handle F\-L\-A\-S\-H interrupts 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___f_l_a_s_h___interrupt_ga68e49c4675761e2ec35153e747de7622}{\index{F\-L\-A\-S\-H Interrupts@{F\-L\-A\-S\-H Interrupts}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G}!FLASH Interrupts@{F\-L\-A\-S\-H Interrupts}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-C\-L\-E\-A\-R\-\_\-\-F\-L\-A\-G(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~((F\-L\-A\-S\-H-\/$>$S\-R) = (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-))}}\label{group___f_l_a_s_h___interrupt_ga68e49c4675761e2ec35153e747de7622}
+
+
+Clear the specified F\-L\-A\-S\-H flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-F\-L\-A\-G$<$/strong$>$} & specifies the F\-L\-A\-S\-H flags to clear. This parameter can be any combination of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___f_l_a_s_h___flags_gaf043ba4d8f837350bfc7754a99fae5a9}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-E\-O\-P} F\-L\-A\-S\-H End of Operation flag \item \hyperlink{group___f_l_a_s_h___flags_ga9979b826ad18f10a565f5c0bbab2cd98}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-E\-N\-D\-H\-V} F\-L\-A\-S\-H End of High Voltage flag \item \hyperlink{group___f_l_a_s_h___flags_gacc11026963ab32982bb4811bd409c06f}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-R\-E\-A\-D\-Y} F\-L\-A\-S\-H Ready flag after low power mode \item \hyperlink{group___f_l_a_s_h___flags_ga2c3f4dbea065f8ea2987eada4dab30bd}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-P\-G\-A\-E\-R\-R} F\-L\-A\-S\-H Programming Alignment error flag \item \hyperlink{group___f_l_a_s_h___flags_gac20909664e371d2ca0436a055393f9c4}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-S\-I\-Z\-E\-R\-R} F\-L\-A\-S\-H Size error flag \item \hyperlink{group___f_l_a_s_h___flags_gacb2c4c991a260c3f110cd8c72f302864}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-O\-P\-T\-V\-E\-R\-R} F\-L\-A\-S\-H Option validity error error flag \item F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-O\-P\-T\-V\-E\-R\-R\-U\-S\-R F\-L\-A\-S\-H Option User\-Validity (available only Cat.\-3, Cat.\-4 and Cat.\-5 devices) \item F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-R\-D\-E\-R\-R F\-L\-A\-S\-H Read Protection error flag (P\-C\-R\-O\-P) (available only Cat.\-2 and Cat.\-3 devices) \item \hyperlink{group___f_l_a_s_h___flags_ga6abf64f916992585899369166db3f266}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-W\-R\-P\-E\-R\-R} F\-L\-A\-S\-H Write protected error flag \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___f_l_a_s_h___interrupt_ga1f40f507b5d4b3a4da68e4244a1097ee}{\index{F\-L\-A\-S\-H Interrupts@{F\-L\-A\-S\-H Interrupts}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T}!FLASH Interrupts@{F\-L\-A\-S\-H Interrupts}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-D\-I\-S\-A\-B\-L\-E\-\_\-\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~C\-L\-E\-A\-R\-\_\-\-B\-I\-T((F\-L\-A\-S\-H-\/$>$P\-E\-C\-R), (uint32\-\_\-t)(\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-))}}\label{group___f_l_a_s_h___interrupt_ga1f40f507b5d4b3a4da68e4244a1097ee}
+
+
+Disable the specified F\-L\-A\-S\-H interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-I\-N\-T\-E\-R\-R\-U\-P\-T$<$/strong$>$} & F\-L\-A\-S\-H interrupt This parameter can be any combination of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___f_l_a_s_h___interrupts_gaea20e80e1806d58a7544cfe8659e7f11}{F\-L\-A\-S\-H\-\_\-\-I\-T\-\_\-\-E\-O\-P} End of F\-L\-A\-S\-H Operation Interrupt \item \hyperlink{group___f_l_a_s_h___interrupts_ga4e2c23ab8c1b9a5ee49bf6d695d9ae8c}{F\-L\-A\-S\-H\-\_\-\-I\-T\-\_\-\-E\-R\-R} Error Interrupt \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___f_l_a_s_h___interrupt_ga13fa137a911f02a2f94fb9fb0762a340}{\index{F\-L\-A\-S\-H Interrupts@{F\-L\-A\-S\-H Interrupts}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T}!FLASH Interrupts@{F\-L\-A\-S\-H Interrupts}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-E\-N\-A\-B\-L\-E\-\_\-\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~S\-E\-T\-\_\-\-B\-I\-T((F\-L\-A\-S\-H-\/$>$P\-E\-C\-R), (\-\_\-\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-\_\-))}}\label{group___f_l_a_s_h___interrupt_ga13fa137a911f02a2f94fb9fb0762a340}
+
+
+Enable the specified F\-L\-A\-S\-H interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-I\-N\-T\-E\-R\-R\-U\-P\-T$<$/strong$>$} & F\-L\-A\-S\-H interrupt This parameter can be any combination of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___f_l_a_s_h___interrupts_gaea20e80e1806d58a7544cfe8659e7f11}{F\-L\-A\-S\-H\-\_\-\-I\-T\-\_\-\-E\-O\-P} End of F\-L\-A\-S\-H Operation Interrupt \item \hyperlink{group___f_l_a_s_h___interrupts_ga4e2c23ab8c1b9a5ee49bf6d695d9ae8c}{F\-L\-A\-S\-H\-\_\-\-I\-T\-\_\-\-E\-R\-R} Error Interrupt \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___f_l_a_s_h___interrupt_ga0d3dd161fecc0e47c9e109c7c28672c1}{\index{F\-L\-A\-S\-H Interrupts@{F\-L\-A\-S\-H Interrupts}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G}!FLASH Interrupts@{F\-L\-A\-S\-H Interrupts}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-F\-L\-A\-S\-H\-\_\-\-G\-E\-T\-\_\-\-F\-L\-A\-G(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~(((F\-L\-A\-S\-H-\/$>$S\-R) \& (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-)) == (\-\_\-\-\_\-\-F\-L\-A\-G\-\_\-\-\_\-))}}\label{group___f_l_a_s_h___interrupt_ga0d3dd161fecc0e47c9e109c7c28672c1}
+
+
+Get the specified F\-L\-A\-S\-H flag status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-F\-L\-A\-G$<$/strong$>$} & specifies the F\-L\-A\-S\-H flag to check. This parameter can be one of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___f_l_a_s_h___flags_gad3bc368f954ad7744deda3315da2fff7}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-B\-S\-Y} F\-L\-A\-S\-H Busy flag \item \hyperlink{group___f_l_a_s_h___flags_gaf043ba4d8f837350bfc7754a99fae5a9}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-E\-O\-P} F\-L\-A\-S\-H End of Operation flag \item \hyperlink{group___f_l_a_s_h___flags_ga9979b826ad18f10a565f5c0bbab2cd98}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-E\-N\-D\-H\-V} F\-L\-A\-S\-H End of High Voltage flag \item \hyperlink{group___f_l_a_s_h___flags_gacc11026963ab32982bb4811bd409c06f}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-R\-E\-A\-D\-Y} F\-L\-A\-S\-H Ready flag after low power mode \item \hyperlink{group___f_l_a_s_h___flags_ga2c3f4dbea065f8ea2987eada4dab30bd}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-P\-G\-A\-E\-R\-R} F\-L\-A\-S\-H Programming Alignment error flag \item \hyperlink{group___f_l_a_s_h___flags_gac20909664e371d2ca0436a055393f9c4}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-S\-I\-Z\-E\-R\-R} F\-L\-A\-S\-H Size error flag \item \hyperlink{group___f_l_a_s_h___flags_gacb2c4c991a260c3f110cd8c72f302864}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-O\-P\-T\-V\-E\-R\-R} F\-L\-A\-S\-H Option validity error error flag \item F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-O\-P\-T\-V\-E\-R\-R\-U\-S\-R F\-L\-A\-S\-H Option User\-Validity (available only Cat.\-3, Cat.\-4 and Cat.\-5 devices) \item F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-R\-D\-E\-R\-R F\-L\-A\-S\-H Read Protection error flag (P\-C\-R\-O\-P) (available only Cat.\-2 and Cat.\-3 devices) \item \hyperlink{group___f_l_a_s_h___flags_ga6abf64f916992585899369166db3f266}{F\-L\-A\-S\-H\-\_\-\-F\-L\-A\-G\-\_\-\-W\-R\-P\-E\-R\-R} F\-L\-A\-S\-H Write protected error flag \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & new state of {\bfseries F\-L\-A\-G} (S\-E\-T or R\-E\-S\-E\-T). \\
+\hline
+\end{DoxyRetVals}

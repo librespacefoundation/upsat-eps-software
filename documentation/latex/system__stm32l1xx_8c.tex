@@ -1,0 +1,66 @@
+\hypertarget{system__stm32l1xx_8c}{\section{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Source/\-Templates/system\-\_\-stm32l1xx.c File Reference}
+\label{system__stm32l1xx_8c}\index{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Source/\-Templates/system\-\_\-stm32l1xx.\-c@{eps\-Subsystem/\-Drivers/\-C\-M\-S\-I\-S/\-Device/\-S\-T/\-S\-T\-M32\-L1xx/\-Source/\-Templates/system\-\_\-stm32l1xx.\-c}}
+}
+
+
+C\-M\-S\-I\-S Cortex-\/\-M3 Device Peripheral Access Layer System Source File.  
+
+
+{\ttfamily \#include \char`\"{}stm32l1xx.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___s_t_m32_l1xx___system___private___defines_gaeafcff4f57440c60e64812dddd13e7cb}{H\-S\-E\-\_\-\-V\-A\-L\-U\-E}~((uint32\-\_\-t)8000000)
+\item 
+\#define \hyperlink{group___s_t_m32_l1xx___system___private___defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{H\-S\-I\-\_\-\-V\-A\-L\-U\-E}~((uint32\-\_\-t)8000000)
+\item 
+\#define \hyperlink{group___s_t_m32_l1xx___system___private___defines_ga40e1495541cbb4acbe3f1819bd87a9fe}{V\-E\-C\-T\-\_\-\-T\-A\-B\-\_\-\-O\-F\-F\-S\-E\-T}~0x0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_t_m32_l1xx___system___private___functions_ga93f514700ccf00d08dbdcff7f1224eb2}{System\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Setup the microcontroller system. Initialize the Embedded Flash Interface, the P\-L\-L and update the System\-Core\-Clock variable. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_t_m32_l1xx___system___private___functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}{System\-Core\-Clock\-Update} (void)
+\begin{DoxyCompactList}\small\item\em Update System\-Core\-Clock according to Clock Register Values The System\-Core\-Clock variable contains the core clock (H\-C\-L\-K), it can be used by the user application to setup the Sys\-Tick timer or configure other parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{group___s_t_m32_l1xx___system___private___variables_gaa3cd3e43291e81e795d642b79b6088e6}{System\-Core\-Clock} = 32000000
+\item 
+const uint8\-\_\-t \hyperlink{group___s_t_m32_l1xx___system___private___variables_gadab2d89c9fe6053f421278d154dcfb9d}{P\-L\-L\-Mul\-Table} \mbox{[}9\mbox{]} = \{3, 4, 6, 8, 12, 16, 24, 32, 48\}
+\item 
+const uint8\-\_\-t \hyperlink{group___s_t_m32_l1xx___system___private___variables_ga6e1d9cd666f0eacbfde31e9932a93466}{A\-H\-B\-Presc\-Table} \mbox{[}16\mbox{]} = \{0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9\}
+\item 
+const uint8\-\_\-t \hyperlink{group___s_t_m32_l1xx___system___private___variables_ga5b4f8b768465842cf854a8f993b375e9}{A\-P\-B\-Presc\-Table} \mbox{[}8\mbox{]} = \{0, 0, 0, 0, 1, 2, 3, 4\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\-M\-S\-I\-S Cortex-\/\-M3 Device Peripheral Access Layer System Source File. \begin{DoxyAuthor}{Author}
+M\-C\-D Application Team 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V2.\-1.\-3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+04-\/\-March-\/2016 This file provides two functions and one global variable to be called from user application\-:
+\begin{DoxyItemize}
+\item \hyperlink{group___s_t_m32_l1xx___system___private___functions_ga93f514700ccf00d08dbdcff7f1224eb2}{System\-Init()}\-: This function is called at startup just after reset and before branch to main program. This call is made inside the \char`\"{}startup\-\_\-stm32l1xx.\-s\char`\"{} file.
+\item System\-Core\-Clock variable\-: Contains the core clock (H\-C\-L\-K), it can be used by the user application to setup the Sys\-Tick timer or configure other parameters.
+\item \hyperlink{group___s_t_m32_l1xx___system___private___functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}{System\-Core\-Clock\-Update()}\-: Updates the variable System\-Core\-Clock and must be called whenever the core clock is changed during program execution.
+\end{DoxyItemize}
+\end{DoxyDate}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\subsubsection*{\begin{center}\copyright{} C\-O\-P\-Y\-R\-I\-G\-H\-T(c) 2016 S\-T\-Microelectronics\end{center} }
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\-T\-Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E. 

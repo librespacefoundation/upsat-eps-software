@@ -1,0 +1,63 @@
+\hypertarget{group___r_c_c___l_s_e___configuration}{\section{L\-S\-E Configuration}
+\label{group___r_c_c___l_s_e___configuration}\index{L\-S\-E Configuration@{L\-S\-E Configuration}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___r_c_c___l_s_e___configuration_ga6b2b48f429e347c1c9c469122c64798b}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}(\-\_\-\-\_\-\-S\-T\-A\-T\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Macro to configure the External Low Speed oscillator (L\-S\-E). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___r_c_c___l_s_e___configuration_ga6b2b48f429e347c1c9c469122c64798b}{\index{L\-S\-E Configuration@{L\-S\-E Configuration}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}!LSE Configuration@{L\-S\-E Configuration}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-S\-T\-A\-T\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___r_c_c___l_s_e___configuration_ga6b2b48f429e347c1c9c469122c64798b}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do}\{                                                     \(\backslash\)
+                      if ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___l_s_e___config_gac981ea636c2f215e4473901e0912f55a}{RCC\_LSE\_ON})                        \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        SET\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_gac5e71f3e06f010bbf7592571e541869a}{RCC\_CSR\_LSEON});                   \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else \textcolor{keywordflow}{if} ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___l_s_e___config_ga6645c27708d0cad1a4ab61d2abb24c77}{RCC\_LSE\_OFF})                  \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        CLEAR\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_gac5e71f3e06f010bbf7592571e541869a}{RCC\_CSR\_LSEON});                 \(\backslash\)
+                        CLEAR\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_ga2f5198ce9785eab7b8a483b092ff067b}{RCC\_CSR\_LSEBYP});                \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else \textcolor{keywordflow}{if} ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___l_s_e___config_gaad580157edbae878edbcc83c5a68e767}{RCC\_LSE\_BYPASS})               \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        SET\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_ga2f5198ce9785eab7b8a483b092ff067b}{RCC\_CSR\_LSEBYP});                  \(\backslash\)
+                        SET\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_gac5e71f3e06f010bbf7592571e541869a}{RCC\_CSR\_LSEON});                   \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else                                                  \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        CLEAR\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_gac5e71f3e06f010bbf7592571e541869a}{RCC\_CSR\_LSEON});                 \(\backslash\)
+                        CLEAR\_BIT(RCC->CSR, \hyperlink{group___peripheral___registers___bits___definition_ga2f5198ce9785eab7b8a483b092ff067b}{RCC\_CSR\_LSEBYP});                \(\backslash\)
+                      \}                                                     \(\backslash\)
+                    \}\textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+
+
+Macro to configure the External Low Speed oscillator (L\-S\-E). 
+
+\begin{DoxyNote}{Note}
+Transitions L\-S\-E Bypass to L\-S\-E On and L\-S\-E On to L\-S\-E Bypass are not supported by this macro. 
+
+As the L\-S\-E is in the Backup domain and write access is denied to this domain after reset, you have to enable write access using H\-A\-L\-\_\-\-P\-W\-R\-\_\-\-Enable\-Bk\-Up\-Access() function before to configure the L\-S\-E (to be done once after reset). 
+
+After enabling the L\-S\-E (R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-O\-N or R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-B\-Y\-P\-A\-S\-S), the application software should wait on L\-S\-E\-R\-D\-Y flag to be set indicating that L\-S\-E clock is stable and can be used to clock the R\-T\-C. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-S\-T\-A\-T\-E$<$/strong$>$} & specifies the new state of the L\-S\-E. This parameter can be one of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___r_c_c___l_s_e___config_ga6645c27708d0cad1a4ab61d2abb24c77}{R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-O\-F\-F} turn O\-F\-F the L\-S\-E oscillator, L\-S\-E\-R\-D\-Y flag goes low after 6 L\-S\-E oscillator clock cycles. \item \hyperlink{group___r_c_c___l_s_e___config_gac981ea636c2f215e4473901e0912f55a}{R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-O\-N} turn O\-N the L\-S\-E oscillator. \item \hyperlink{group___r_c_c___l_s_e___config_gaad580157edbae878edbcc83c5a68e767}{R\-C\-C\-\_\-\-L\-S\-E\-\_\-\-B\-Y\-P\-A\-S\-S} L\-S\-E oscillator bypassed with external clock. \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}

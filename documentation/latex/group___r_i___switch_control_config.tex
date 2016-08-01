@@ -1,0 +1,84 @@
+\hypertarget{group___r_i___switch_control_config}{\section{Switch Control configuration}
+\label{group___r_i___switch_control_config}\index{Switch Control configuration@{Switch Control configuration}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___r_i___switch_control_config_ga2aac480a08cbd6937ed3741a03796ac6}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E}()~S\-E\-T\-\_\-\-B\-I\-T(R\-I-\/$>$A\-S\-C\-R1, \hyperlink{group___peripheral___registers___bits___definition_gaa61a2caf9bf76335404532180c033236}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-S\-C\-M})
+\begin{DoxyCompactList}\small\item\em Enable or disable the switch control mode. \end{DoxyCompactList}\item 
+\hypertarget{group___r_i___switch_control_config_ga41dca172ed53f7787a32d0f0b7a5e485}{\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-D\-I\-S\-A\-B\-L\-E}()~C\-L\-E\-A\-R\-\_\-\-B\-I\-T(R\-I-\/$>$A\-S\-C\-R1, \hyperlink{group___peripheral___registers___bits___definition_gaa61a2caf9bf76335404532180c033236}{R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-S\-C\-M})}\label{group___r_i___switch_control_config_ga41dca172ed53f7787a32d0f0b7a5e485}
+
+\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E}(\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-)
+\item 
+\#define {\bfseries \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N}(\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___r_i___switch_control_config_ga7e35cfb22d277d6a484e206cfd6666c0}{\index{Switch Control configuration@{Switch Control configuration}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E}!Switch Control configuration@{Switch Control configuration}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-C\-L\-O\-S\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___r_i___switch_control_config_ga7e35cfb22d277d6a484e206cfd6666c0}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \hyperlink{stm32l1xx__hal__conf_8h_a631dea7b230e600555f979c62af1de21}{assert\_param}(IS\_RI\_IOSWITCH(\_\_IOSWITCH\_\_)); \(\backslash\)
+            if ((\_\_IOSWITCH\_\_) >> 31 != 0 ) \(\backslash\)
+            \{ \(\backslash\)
+              SET\_BIT(RI->ASCR1, (\_\_IOSWITCH\_\_) & 0x7FFFFFFF); \(\backslash\)
+            \} \(\backslash\)
+            else \(\backslash\)
+            \{ \(\backslash\)
+              SET\_BIT(RI->ASCR2, (\_\_IOSWITCH\_\_)); \(\backslash\)
+            \} \(\backslash\)
+          \}\textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+\hypertarget{group___r_i___switch_control_config_gadef860a5d9313b79a5a595a2788410ee}{\index{Switch Control configuration@{Switch Control configuration}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N}!Switch Control configuration@{Switch Control configuration}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-O\-P\-E\-N(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-I\-O\-S\-W\-I\-T\-C\-H\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___r_i___switch_control_config_gadef860a5d9313b79a5a595a2788410ee}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \hyperlink{stm32l1xx__hal__conf_8h_a631dea7b230e600555f979c62af1de21}{assert\_param}(IS\_RI\_IOSWITCH(\_\_IOSWITCH\_\_)); \(\backslash\)
+            if ((\_\_IOSWITCH\_\_) >> 31 != 0 ) \(\backslash\)
+            \{ \(\backslash\)
+              CLEAR\_BIT(RI->ASCR1, (\_\_IOSWITCH\_\_) & 0x7FFFFFFF); \(\backslash\)
+            \} \(\backslash\)
+            else \(\backslash\)
+            \{ \(\backslash\)
+              CLEAR\_BIT(RI->ASCR2, (\_\_IOSWITCH\_\_)); \(\backslash\)
+            \} \(\backslash\)
+          \}\textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+\hypertarget{group___r_i___switch_control_config_ga2aac480a08cbd6937ed3741a03796ac6}{\index{Switch Control configuration@{Switch Control configuration}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E}!Switch Control configuration@{Switch Control configuration}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-I\-\_\-\-S\-W\-I\-T\-C\-H\-C\-O\-N\-T\-R\-O\-L\-M\-O\-D\-E\-\_\-\-E\-N\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~S\-E\-T\-\_\-\-B\-I\-T(R\-I-\/$>$A\-S\-C\-R1, {\bf R\-I\-\_\-\-A\-S\-C\-R1\-\_\-\-S\-C\-M})}}\label{group___r_i___switch_control_config_ga2aac480a08cbd6937ed3741a03796ac6}
+
+
+Enable or disable the switch control mode. 
+
+\begin{DoxyNote}{Note}
+E\-N\-A\-B\-L\-E\-: A\-D\-C analog switches closed if the corresponding I/\-O switch is also closed. When using C\-O\-M\-P1, switch control mode must be enabled. 
+
+D\-I\-S\-A\-B\-L\-E\-: A\-D\-C analog switches open or controlled by the A\-D\-C interface. When using the A\-D\-C for acquisition, switch control mode must be disabled. 
+
+C\-O\-M\-P1 comparator and A\-D\-C cannot be used at the same time since they share the A\-D\-C switch matrix. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

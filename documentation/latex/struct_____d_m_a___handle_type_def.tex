@@ -1,0 +1,71 @@
+\hypertarget{struct_____d_m_a___handle_type_def}{\section{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def Struct Reference}
+\label{struct_____d_m_a___handle_type_def}\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+}
+
+
+D\-M\-A handle Structure definition.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-dma.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_d_m_a___channel___type_def}{D\-M\-A\-\_\-\-Channel\-\_\-\-Type\-Def} $\ast$ \hyperlink{struct_____d_m_a___handle_type_def_a9368ced5769abb92a56886ff879a7f5e}{Instance}
+\item 
+\hyperlink{struct_d_m_a___init_type_def}{D\-M\-A\-\_\-\-Init\-Type\-Def} \hyperlink{struct_____d_m_a___handle_type_def_a3792cb34cedb0e2ab204e41b53ef75ad}{Init}
+\item 
+\hyperlink{stm32l1xx__hal__def_8h_ab367482e943333a1299294eadaad284b}{H\-A\-L\-\_\-\-Lock\-Type\-Def} \hyperlink{struct_____d_m_a___handle_type_def_a005e867f695aa4b85aca665af7345b51}{Lock}
+\item 
+\hyperlink{group___d_m_a___exported___types_ga9c012af359987a240826f29073bbe463}{H\-A\-L\-\_\-\-D\-M\-A\-\_\-\-State\-Type\-Def} \hyperlink{struct_____d_m_a___handle_type_def_a0b49bf72e4c2a6071077020955978ecf}{State}
+\item 
+void $\ast$ \hyperlink{struct_____d_m_a___handle_type_def_af42684decd26b1c5d49a529fcf99be30}{Parent}
+\item 
+void($\ast$ \hyperlink{struct_____d_m_a___handle_type_def_a9df80ef74c20c2068a67dfe5f764dac7}{Xfer\-Cplt\-Callback} )(struct \hyperlink{struct_____d_m_a___handle_type_def}{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)
+\item 
+void($\ast$ \hyperlink{struct_____d_m_a___handle_type_def_ae28485fb5491c719ac0d765d40eb8ed7}{Xfer\-Half\-Cplt\-Callback} )(struct \hyperlink{struct_____d_m_a___handle_type_def}{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)
+\item 
+void($\ast$ \hyperlink{struct_____d_m_a___handle_type_def_aa9c22cf22623f4a9cff0346eb38aa157}{Xfer\-Error\-Callback} )(struct \hyperlink{struct_____d_m_a___handle_type_def}{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)
+\item 
+\hyperlink{core__sc300_8h_aec43007d9998a0a0e01faede4133d6be}{\-\_\-\-\_\-\-I\-O} uint32\-\_\-t \hyperlink{struct_____d_m_a___handle_type_def_a67a2a8b907bc9b5c0af87f9de2bffc29}{Error\-Code}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\-M\-A handle Structure definition. 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_____d_m_a___handle_type_def_a67a2a8b907bc9b5c0af87f9de2bffc29}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Error\-Code@{Error\-Code}}
+\index{Error\-Code@{Error\-Code}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Error\-Code}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-\_\-\-\_\-\-I\-O} uint32\-\_\-t \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Error\-Code}}\label{struct_____d_m_a___handle_type_def_a67a2a8b907bc9b5c0af87f9de2bffc29}
+D\-M\-A Error code \hypertarget{struct_____d_m_a___handle_type_def_a3792cb34cedb0e2ab204e41b53ef75ad}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Init@{Init}}
+\index{Init@{Init}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-M\-A\-\_\-\-Init\-Type\-Def} \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Init}}\label{struct_____d_m_a___handle_type_def_a3792cb34cedb0e2ab204e41b53ef75ad}
+D\-M\-A communication parameters \hypertarget{struct_____d_m_a___handle_type_def_a9368ced5769abb92a56886ff879a7f5e}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Instance@{Instance}}
+\index{Instance@{Instance}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-M\-A\-\_\-\-Channel\-\_\-\-Type\-Def}$\ast$ \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Instance}}\label{struct_____d_m_a___handle_type_def_a9368ced5769abb92a56886ff879a7f5e}
+Register base address \hypertarget{struct_____d_m_a___handle_type_def_a005e867f695aa4b85aca665af7345b51}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Lock@{Lock}}
+\index{Lock@{Lock}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-A\-L\-\_\-\-Lock\-Type\-Def} \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Lock}}\label{struct_____d_m_a___handle_type_def_a005e867f695aa4b85aca665af7345b51}
+D\-M\-A locking object \hypertarget{struct_____d_m_a___handle_type_def_af42684decd26b1c5d49a529fcf99be30}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Parent@{Parent}}
+\index{Parent@{Parent}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Parent}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Parent}}\label{struct_____d_m_a___handle_type_def_af42684decd26b1c5d49a529fcf99be30}
+Parent object state \hypertarget{struct_____d_m_a___handle_type_def_a0b49bf72e4c2a6071077020955978ecf}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!State@{State}}
+\index{State@{State}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-A\-L\-\_\-\-D\-M\-A\-\_\-\-State\-Type\-Def} \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-State}}\label{struct_____d_m_a___handle_type_def_a0b49bf72e4c2a6071077020955978ecf}
+D\-M\-A transfer state \hypertarget{struct_____d_m_a___handle_type_def_a9df80ef74c20c2068a67dfe5f764dac7}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Xfer\-Cplt\-Callback@{Xfer\-Cplt\-Callback}}
+\index{Xfer\-Cplt\-Callback@{Xfer\-Cplt\-Callback}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Xfer\-Cplt\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$  \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Xfer\-Cplt\-Callback)(struct {\bf \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)}}\label{struct_____d_m_a___handle_type_def_a9df80ef74c20c2068a67dfe5f764dac7}
+D\-M\-A transfer complete callback \hypertarget{struct_____d_m_a___handle_type_def_aa9c22cf22623f4a9cff0346eb38aa157}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Xfer\-Error\-Callback@{Xfer\-Error\-Callback}}
+\index{Xfer\-Error\-Callback@{Xfer\-Error\-Callback}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Xfer\-Error\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$  \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Xfer\-Error\-Callback)(struct {\bf \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)}}\label{struct_____d_m_a___handle_type_def_aa9c22cf22623f4a9cff0346eb38aa157}
+D\-M\-A transfer error callback \hypertarget{struct_____d_m_a___handle_type_def_ae28485fb5491c719ac0d765d40eb8ed7}{\index{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}!Xfer\-Half\-Cplt\-Callback@{Xfer\-Half\-Cplt\-Callback}}
+\index{Xfer\-Half\-Cplt\-Callback@{Xfer\-Half\-Cplt\-Callback}!__DMA_HandleTypeDef@{\-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def}}
+\subsubsection[{Xfer\-Half\-Cplt\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$  \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def\-::\-Xfer\-Half\-Cplt\-Callback)(struct {\bf \-\_\-\-\_\-\-D\-M\-A\-\_\-\-Handle\-Type\-Def} $\ast$hdma)}}\label{struct_____d_m_a___handle_type_def_ae28485fb5491c719ac0d765d40eb8ed7}
+D\-M\-A Half transfer complete callback 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__dma_8h}{stm32l1xx\-\_\-hal\-\_\-dma.\-h}\end{DoxyCompactItemize}

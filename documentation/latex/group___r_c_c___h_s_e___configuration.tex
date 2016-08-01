@@ -1,0 +1,67 @@
+\hypertarget{group___r_c_c___h_s_e___configuration}{\section{H\-S\-E Configuration}
+\label{group___r_c_c___h_s_e___configuration}\index{H\-S\-E Configuration@{H\-S\-E Configuration}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___r_c_c___h_s_e___configuration_gaa3d98648399f15d02645ef84f6ca8e4b}{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}(\-\_\-\-\_\-\-S\-T\-A\-T\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Macro to configure the External High Speed oscillator (H\-S\-E). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___r_c_c___h_s_e___configuration_gaa3d98648399f15d02645ef84f6ca8e4b}{\index{H\-S\-E Configuration@{H\-S\-E Configuration}!\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}}
+\index{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G@{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}!HSE Configuration@{H\-S\-E Configuration}}
+\subsubsection[{\-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-H\-A\-L\-\_\-\-R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-C\-O\-N\-F\-I\-G(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-S\-T\-A\-T\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___r_c_c___h_s_e___configuration_gaa3d98648399f15d02645ef84f6ca8e4b}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do}\{                                                     \(\backslash\)
+                      if ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___h_s_e___config_gabc4f70a44776c557af20496b04d9a9db}{RCC\_HSE\_ON})                        \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        SET\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gadb8228c9020595b4cf9995137b8c9a7d}{RCC\_CR\_HSEON});                     \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else \textcolor{keywordflow}{if} ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___h_s_e___config_ga1616626d23fbce440398578855df6f97}{RCC\_HSE\_OFF})                  \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        CLEAR\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gadb8228c9020595b4cf9995137b8c9a7d}{RCC\_CR\_HSEON});                   \(\backslash\)
+                        CLEAR\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gaa3288090671af5a959aae4d7f7696d55}{RCC\_CR\_HSEBYP});                  \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else \textcolor{keywordflow}{if} ((\_\_STATE\_\_) == \hyperlink{group___r_c_c___h_s_e___config_ga5ca515db2d5c4d5bdb9ee3d154df2704}{RCC\_HSE\_BYPASS})               \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        SET\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gaa3288090671af5a959aae4d7f7696d55}{RCC\_CR\_HSEBYP});                    \(\backslash\)
+                        SET\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gadb8228c9020595b4cf9995137b8c9a7d}{RCC\_CR\_HSEON});                     \(\backslash\)
+                      \}                                                     \(\backslash\)
+                      else                                                  \(\backslash\)
+                      \{                                                     \(\backslash\)
+                        CLEAR\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gadb8228c9020595b4cf9995137b8c9a7d}{RCC\_CR\_HSEON});                   \(\backslash\)
+                        CLEAR\_BIT(RCC->CR, \hyperlink{group___peripheral___registers___bits___definition_gaa3288090671af5a959aae4d7f7696d55}{RCC\_CR\_HSEBYP});                  \(\backslash\)
+                      \}                                                     \(\backslash\)
+                    \}\textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+
+
+Macro to configure the External High Speed oscillator (H\-S\-E). 
+
+\begin{DoxyNote}{Note}
+Transition H\-S\-E Bypass to H\-S\-E On and H\-S\-E On to H\-S\-E Bypass are not supported by this macro. User should request a transition to H\-S\-E Off first and then H\-S\-E On or H\-S\-E Bypass. 
+
+After enabling the H\-S\-E (R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-O\-N or R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-Bypass), the application software should wait on H\-S\-E\-R\-D\-Y flag to be set indicating that H\-S\-E clock is stable and can be used to clock the P\-L\-L and/or system clock. 
+
+H\-S\-E state can not be changed if it is used directly or through the P\-L\-L as system clock. In this case, you have to select another source of the system clock then change the H\-S\-E state (ex. disable it). 
+
+The H\-S\-E is stopped by hardware when entering S\-T\-O\-P and S\-T\-A\-N\-D\-B\-Y modes. 
+
+This function reset the C\-S\-S\-O\-N bit, so if the Clock security system(\-C\-S\-S) was previously enabled you have to enable it again after calling this function. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-S\-T\-A\-T\-E$<$/strong$>$} & specifies the new state of the H\-S\-E. This parameter can be one of the following values\-: \begin{DoxyItemize}
+\item \hyperlink{group___r_c_c___h_s_e___config_ga1616626d23fbce440398578855df6f97}{R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-O\-F\-F} turn O\-F\-F the H\-S\-E oscillator, H\-S\-E\-R\-D\-Y flag goes low after 6 H\-S\-E oscillator clock cycles. \item \hyperlink{group___r_c_c___h_s_e___config_gabc4f70a44776c557af20496b04d9a9db}{R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-O\-N} turn O\-N the H\-S\-E oscillator \item \hyperlink{group___r_c_c___h_s_e___config_ga5ca515db2d5c4d5bdb9ee3d154df2704}{R\-C\-C\-\_\-\-H\-S\-E\-\_\-\-B\-Y\-P\-A\-S\-S} H\-S\-E oscillator bypassed with external clock \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}

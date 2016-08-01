@@ -1,0 +1,61 @@
+\hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def}{\section{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def Struct Reference}
+\label{struct_a_d_c___analog_w_d_g_conf_type_def}\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+}
+
+
+A\-D\-C Configuration analog watchdog definition.  
+
+
+
+
+{\ttfamily \#include $<$stm32l1xx\-\_\-hal\-\_\-adc.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_ad4c60783321a30e8edffa323148e424d}{Watchdog\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_abc86b5861e3eff802fe765e62054f348}{Channel}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_ab67703b11dbb0303fb5b56bd328ef06d}{I\-T\-Mode}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_a9bee62b3d364713a16a15cefcc217e65}{High\-Threshold}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_a77e1743ebd27333ac2c9de55a25cd4c8}{Low\-Threshold}
+\item 
+uint32\-\_\-t \hyperlink{struct_a_d_c___analog_w_d_g_conf_type_def_a025e81af21b93c5b8daf9f5241383302}{Watchdog\-Number}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\-D\-C Configuration analog watchdog definition. 
+
+\begin{DoxyNote}{Note}
+The setting of these parameters with function is conditioned to A\-D\-C state. A\-D\-C state can be either disabled or enabled without conversion on going on regular and injected groups. 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_abc86b5861e3eff802fe765e62054f348}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!Channel@{Channel}}
+\index{Channel@{Channel}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{Channel}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-Channel}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_abc86b5861e3eff802fe765e62054f348}
+Selects which A\-D\-C channel to monitor by analog watchdog. This parameter has an effect only if watchdog mode is configured on single channel (parameter Watchdog\-Mode) This parameter can be a value of \hyperlink{group___a_d_c__channels}{A\-D\-C channels}. \hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_a9bee62b3d364713a16a15cefcc217e65}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!High\-Threshold@{High\-Threshold}}
+\index{High\-Threshold@{High\-Threshold}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{High\-Threshold}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-High\-Threshold}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_a9bee62b3d364713a16a15cefcc217e65}
+Configures the A\-D\-C analog watchdog High threshold value. This parameter must be a number between Min\-\_\-\-Data = 0x000 and Max\-\_\-\-Data = 0x\-F\-F\-F. \hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_ab67703b11dbb0303fb5b56bd328ef06d}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!I\-T\-Mode@{I\-T\-Mode}}
+\index{I\-T\-Mode@{I\-T\-Mode}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{I\-T\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-I\-T\-Mode}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_ab67703b11dbb0303fb5b56bd328ef06d}
+Specifies whether the analog watchdog is configured in interrupt or polling mode. This parameter can be set to E\-N\-A\-B\-L\-E or D\-I\-S\-A\-B\-L\-E \hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_a77e1743ebd27333ac2c9de55a25cd4c8}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!Low\-Threshold@{Low\-Threshold}}
+\index{Low\-Threshold@{Low\-Threshold}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{Low\-Threshold}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-Low\-Threshold}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_a77e1743ebd27333ac2c9de55a25cd4c8}
+Configures the A\-D\-C analog watchdog High threshold value. This parameter must be a number between Min\-\_\-\-Data = 0x000 and Max\-\_\-\-Data = 0x\-F\-F\-F. \hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_ad4c60783321a30e8edffa323148e424d}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!Watchdog\-Mode@{Watchdog\-Mode}}
+\index{Watchdog\-Mode@{Watchdog\-Mode}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{Watchdog\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-Watchdog\-Mode}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_ad4c60783321a30e8edffa323148e424d}
+Configures the A\-D\-C analog watchdog mode\-: single/all channels, regular/injected group. This parameter can be a value of \hyperlink{group___a_d_c__analog__watchdog__mode}{A\-D\-C analog watchdog mode}. \hypertarget{struct_a_d_c___analog_w_d_g_conf_type_def_a025e81af21b93c5b8daf9f5241383302}{\index{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}!Watchdog\-Number@{Watchdog\-Number}}
+\index{Watchdog\-Number@{Watchdog\-Number}!ADC_AnalogWDGConfTypeDef@{A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def}}
+\subsubsection[{Watchdog\-Number}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t A\-D\-C\-\_\-\-Analog\-W\-D\-G\-Conf\-Type\-Def\-::\-Watchdog\-Number}}\label{struct_a_d_c___analog_w_d_g_conf_type_def_a025e81af21b93c5b8daf9f5241383302}
+Reserved for future use, can be set to 0 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Inc/\hyperlink{stm32l1xx__hal__adc_8h}{stm32l1xx\-\_\-hal\-\_\-adc.\-h}\end{DoxyCompactItemize}

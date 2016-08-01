@@ -1,0 +1,97 @@
+\hypertarget{group__eps__time}{\section{Eps\-\_\-time}
+\label{group__eps__time}\index{Eps\-\_\-time@{Eps\-\_\-time}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__eps__time_gaf4da2404e3a3fe43521faf49858c18f9}{T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D}~((uint32\-\_\-t)50000)
+\item 
+\#define \hyperlink{group__eps__time_gaee54153b451669a5916ee8f65276356b}{S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D}~7200
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__eps__time_ga8a08e679766a496bf509cdc16a4041d9}{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status} \{ {\bfseries T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-S\-E\-R\-V\-I\-C\-E\-D} =1, 
+{\bfseries T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-N\-O\-T\-\_\-\-S\-E\-R\-V\-I\-C\-E\-D}, 
+{\bfseries T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em E\-P\-S state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\-\_\-t \hyperlink{group__eps__time_gafc4bbe218c73c1b84d1fd256309e6cf2}{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get} (void)
+\begin{DoxyCompactList}\small\item\em Returns the eps\-\_\-timer value. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. \end{DoxyCompactList}\item 
+void \hyperlink{group__eps__time_ga06794a87db28fcff055b67f7485f3e67}{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment} (void)
+\begin{DoxyCompactList}\small\item\em Incrementss the E\-P\-S\-\_\-time\-\_\-counter. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\-\_\-t \hyperlink{group__eps__time_ga7ecc06961ad259810b3ffa53c5425300}{E\-P\-S\-\_\-time\-\_\-counter}
+\item 
+\hypertarget{group__eps__time_ga2dd3768eb272587ff5dee56951315220}{volatile \hyperlink{group__eps__time_ga8a08e679766a496bf509cdc16a4041d9}{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status} {\bfseries E\-P\-S\-\_\-event\-\_\-period\-\_\-status}}\label{group__eps__time_ga2dd3768eb272587ff5dee56951315220}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__eps__time_gaee54153b451669a5916ee8f65276356b}{\index{Eps\-\_\-time@{Eps\-\_\-time}!S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D@{S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D}}
+\index{S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D@{S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-U\-B\-S\-Y\-S\-T\-E\-M\-\_\-\-T\-I\-M\-E\-O\-U\-T\-\_\-\-P\-E\-R\-I\-O\-D~7200}}\label{group__eps__time_gaee54153b451669a5916ee8f65276356b}
+this value times T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D is the period that eps waits a timeout ping from every subsystem or it resets the subsystem that has not responded in time. \hypertarget{group__eps__time_gaf4da2404e3a3fe43521faf49858c18f9}{\index{Eps\-\_\-time@{Eps\-\_\-time}!T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D@{T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D}}
+\index{T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D@{T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D~((uint32\-\_\-t)50000)}}\label{group__eps__time_gaf4da2404e3a3fe43521faf49858c18f9}
+50msec to serve the main task o eps state update and safety handling 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__eps__time_ga8a08e679766a496bf509cdc16a4041d9}{\index{Eps\-\_\-time@{Eps\-\_\-time}!E\-P\-S\-\_\-timed\-\_\-event\-\_\-status@{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status}}
+\index{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status@{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{E\-P\-S\-\_\-timed\-\_\-event\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\-P\-S\-\_\-timed\-\_\-event\-\_\-status}}}\label{group__eps__time_ga8a08e679766a496bf509cdc16a4041d9}
+
+
+E\-P\-S state. 
+
+status flag for the timed event service. 
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__time_gafc4bbe218c73c1b84d1fd256309e6cf2}{\index{Eps\-\_\-time@{Eps\-\_\-time}!E\-P\-S\-\_\-time\-\_\-counter\-\_\-get@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}}
+\index{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{E\-P\-S\-\_\-time\-\_\-counter\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t E\-P\-S\-\_\-time\-\_\-counter\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__eps__time_gafc4bbe218c73c1b84d1fd256309e6cf2}
+
+
+Returns the eps\-\_\-timer value. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em E\-P\-S\-\_\-time\-\_\-counter(!global} & ting!) value. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__eps__time_ga06794a87db28fcff055b67f7485f3e67}{\index{Eps\-\_\-time@{Eps\-\_\-time}!E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}}
+\index{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment@{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment}]{\setlength{\rightskip}{0pt plus 5cm}void E\-P\-S\-\_\-time\-\_\-counter\-\_\-increment (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__eps__time_ga06794a87db28fcff055b67f7485f3e67}
+
+
+Incrementss the E\-P\-S\-\_\-time\-\_\-counter. E\-P\-S timer has a time resolution of 50msec. This is done because when in sleep mode the systick is paused. Instead of hal\-\_\-sys\-\_\-tick this function is used when in need and can be multiplied by 50 to get a 1msec resolution. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em none.} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__eps__time_ga7ecc06961ad259810b3ffa53c5425300}{\index{Eps\-\_\-time@{Eps\-\_\-time}!E\-P\-S\-\_\-time\-\_\-counter@{E\-P\-S\-\_\-time\-\_\-counter}}
+\index{E\-P\-S\-\_\-time\-\_\-counter@{E\-P\-S\-\_\-time\-\_\-counter}!Eps_time@{Eps\-\_\-time}}
+\subsubsection[{E\-P\-S\-\_\-time\-\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}volatile uint32\-\_\-t E\-P\-S\-\_\-time\-\_\-counter}}\label{group__eps__time_ga7ecc06961ad259810b3ffa53c5425300}
+a counter that increments at every interrupt every T\-I\-M\-E\-D\-\_\-\-E\-V\-E\-N\-T\-\_\-\-P\-E\-R\-I\-O\-D microseconds 

@@ -19,7 +19,7 @@
  * List of all possible error status.
  */
 typedef enum {
-	EPS_SOFT_ERROR_OK,
+	EPS_SOFT_ERROR_OK=0,
 	EPS_SOFT_ERROR_UNRESOLVED,
 	/*add more cases here that will be returned and handled*/
 	EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED,

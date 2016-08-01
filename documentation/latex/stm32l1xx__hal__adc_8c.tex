@@ -1,0 +1,270 @@
+\hypertarget{stm32l1xx__hal__adc_8c}{\section{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Src/stm32l1xx\-\_\-hal\-\_\-adc.c File Reference}
+\label{stm32l1xx__hal__adc_8c}\index{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Src/stm32l1xx\-\_\-hal\-\_\-adc.\-c@{eps\-Subsystem/\-Drivers/\-S\-T\-M32\-L1xx\-\_\-\-H\-A\-L\-\_\-\-Driver/\-Src/stm32l1xx\-\_\-hal\-\_\-adc.\-c}}
+}
+
+
+This file provides firmware functions to manage the following functionalities of the Analog to Digital Convertor (A\-D\-C) peripheral\-:  
+
+
+{\ttfamily \#include \char`\"{}stm32l1xx\-\_\-hal.\-h\char`\"{}}\\*
+
+
+\subsection{Detailed Description}
+This file provides firmware functions to manage the following functionalities of the Analog to Digital Convertor (A\-D\-C) peripheral\-: \begin{DoxyAuthor}{Author}
+M\-C\-D Application Team 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\-1.\-3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+04-\/\-March-\/2016
+\begin{DoxyItemize}
+\item Initialization and de-\/initialization functions ++ Initialization and Configuration of A\-D\-C
+\item Operation functions ++ Start, stop, get result of conversions of regular group, using 3 possible modes\-: polling, interruption or D\-M\-A.
+\item Control functions ++ Channels configuration on regular group ++ Channels configuration on injected group ++ Analog Watchdog configuration
+\item State functions ++ A\-D\-C state machine management ++ Interrupts and flags management Other functions (extended functions) are available in file \char`\"{}stm32l1xx\-\_\-hal\-\_\-adc\-\_\-ex.\-c\char`\"{}.
+\end{DoxyItemize}
+\end{DoxyDate}
+\begin{DoxyVerb}==============================================================================
+                   ##### ADC peripheral features #####
+==============================================================================
+[..]
+(+) 12-bit, 10-bit, 8-bit or 6-bit configurable resolution
+
+(+) Interrupt generation at the end of regular conversion, end of injected
+    conversion, and in case of analog watchdog or overrun events.
+
+(+) Single and continuous conversion modes.
+
+(+) Scan mode for conversion of several channels sequentially.
+
+(+) Data alignment with in-built data coherency.
+
+(+) Programmable sampling time (channel wise)
+
+(+) ADC conversion of regular group and injected group.
+
+(+) External trigger (timer or EXTI) with configurable polarity
+    for both regular and injected groups.
+
+(+) DMA request generation for transfer of conversions data of regular group.
+
+(+) ADC offset on injected channels
+
+(+) ADC supply requirements: 2.4 V to 3.6 V at full speed and down to 1.8 V at 
+    slower speed.
+
+(+) ADC input range: from Vref- (connected to Vssa) to Vref+ (connected to 
+    Vdda or to an external voltage reference).
+
+
+                   ##### How to use this driver #####
+==============================================================================
+  [..]
+
+   *** Configuration of top level parameters related to ADC ***
+   ============================================================
+   [..]
+
+  (#) Enable the ADC interface
+    (++) As prerequisite, ADC clock must be configured at RCC top level.
+         Caution: On STM32L1, ADC clock frequency max is 16MHz (refer
+                  to device datasheet).
+                  Therefore, ADC clock prescaler must be configured in 
+                  function of ADC clock source frequency to remain below
+                  this maximum frequency.
+
+      (++) Two clock settings are mandatory: 
+           (+++) ADC clock (core clock).
+           (+++) ADC clock (conversions clock).
+                 Only one possible clock source: derived from HSI RC 16MHz oscillator
+                 (HSI). 
+                 ADC is connected directly to HSI RC 16MHz oscillator.
+                 Therefore, RCC PLL setting has no impact on ADC.
+                 PLL can be disabled (".PLL.PLLState = RCC_PLL_NONE") or 
+                 enabled with HSI16 as clock source
+                 (".PLL.PLLSource = RCC_PLLSOURCE_HSI") to be used as device 
+                 main clock source SYSCLK.
+                 The only mandatory setting is ".HSIState = RCC_HSI_ON"
+
+           (+++) Example:
+                 Into HAL_ADC_MspInit() (recommended code location) or with
+                 other device clock parameters configuration:
+             (+++) __HAL_RCC_ADC1_CLK_ENABLE();
+
+             (+++) HAL_RCC_GetOscConfig(&RCC_OscInitStructure);
+             (+++) RCC_OscInitStructure.OscillatorType = (... | RCC_OSCILLATORTYPE_HSI);
+             (+++) RCC_OscInitStructure.HSIState = RCC_HSI_ON;
+             (+++) RCC_OscInitStructure.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+             (+++) RCC_OscInitStructure.PLL.PLLState = RCC_PLL_NONE;
+             (+++) RCC_OscInitStructure.PLL.PLLSource = ...
+             (+++) RCC_OscInitStructure.PLL...
+             (+++) HAL_RCC_OscConfig(&RCC_OscInitStructure);
+
+      (++) ADC clock prescaler is configured at ADC level with
+           parameter "ClockPrescaler" using function HAL_ADC_Init().
+
+  (#) ADC pins configuration
+       (++) Enable the clock for the ADC GPIOs
+            using macro __HAL_RCC_GPIOx_CLK_ENABLE()
+       (++) Configure these ADC pins in analog mode
+            using function HAL_GPIO_Init()
+
+  (#) Optionally, in case of usage of ADC with interruptions:
+       (++) Configure the NVIC for ADC
+            using function HAL_NVIC_EnableIRQ(ADCx_IRQn)
+       (++) Insert the ADC interruption handler function HAL_ADC_IRQHandler() 
+            into the function of corresponding ADC interruption vector 
+            ADCx_IRQHandler().
+
+  (#) Optionally, in case of usage of DMA:
+       (++) Configure the DMA (DMA channel, mode normal or circular, ...)
+            using function HAL_DMA_Init().
+       (++) Configure the NVIC for DMA
+            using function HAL_NVIC_EnableIRQ(DMAx_Channelx_IRQn)
+       (++) Insert the ADC interruption handler function HAL_ADC_IRQHandler() 
+            into the function of corresponding DMA interruption vector 
+            DMAx_Channelx_IRQHandler().
+
+   *** Configuration of ADC, groups regular/injected, channels parameters ***
+   ==========================================================================
+   [..]
+
+  (#) Configure the ADC parameters (resolution, data alignment, ...)
+      and regular group parameters (conversion trigger, sequencer, ...)
+      using function HAL_ADC_Init().
+
+  (#) Configure the channels for regular group parameters (channel number, 
+      channel rank into sequencer, ..., into regular group)
+      using function HAL_ADC_ConfigChannel().
+
+  (#) Optionally, configure the injected group parameters (conversion trigger, 
+      sequencer, ..., of injected group)
+      and the channels for injected group parameters (channel number, 
+      channel rank into sequencer, ..., into injected group)
+      using function HAL_ADCEx_InjectedConfigChannel().
+
+  (#) Optionally, configure the analog watchdog parameters (channels
+      monitored, thresholds, ...)
+      using function HAL_ADC_AnalogWDGConfig().
+
+  (#) Optionally, for devices with several ADC instances: configure the 
+      multimode parameters
+      using function HAL_ADCEx_MultiModeConfigChannel().
+
+   *** Execution of ADC conversions ***
+   ====================================
+   [..]
+
+  (#) ADC driver can be used among three modes: polling, interruption,
+      transfer by DMA.
+
+      (++) ADC conversion by polling:
+        (+++) Activate the ADC peripheral and start conversions
+              using function HAL_ADC_Start()
+        (+++) Wait for ADC conversion completion 
+              using function HAL_ADC_PollForConversion()
+              (or for injected group: HAL_ADCEx_InjectedPollForConversion() )
+        (+++) Retrieve conversion results 
+              using function HAL_ADC_GetValue()
+              (or for injected group: HAL_ADCEx_InjectedGetValue() )
+        (+++) Stop conversion and disable the ADC peripheral 
+              using function HAL_ADC_Stop()
+
+      (++) ADC conversion by interruption: 
+        (+++) Activate the ADC peripheral and start conversions
+              using function HAL_ADC_Start_IT()
+        (+++) Wait for ADC conversion completion by call of function
+              HAL_ADC_ConvCpltCallback()
+              (this function must be implemented in user program)
+              (or for injected group: HAL_ADCEx_InjectedConvCpltCallback() )
+        (+++) Retrieve conversion results 
+              using function HAL_ADC_GetValue()
+              (or for injected group: HAL_ADCEx_InjectedGetValue() )
+        (+++) Stop conversion and disable the ADC peripheral 
+              using function HAL_ADC_Stop_IT()
+
+      (++) ADC conversion with transfer by DMA:
+        (+++) Activate the ADC peripheral and start conversions
+              using function HAL_ADC_Start_DMA()
+        (+++) Wait for ADC conversion completion by call of function
+              HAL_ADC_ConvCpltCallback() or HAL_ADC_ConvHalfCpltCallback()
+              (these functions must be implemented in user program)
+        (+++) Conversion results are automatically transferred by DMA into
+              destination variable address.
+        (+++) Stop conversion and disable the ADC peripheral 
+              using function HAL_ADC_Stop_DMA()
+
+      (++) For devices with several ADCs: ADC multimode conversion 
+           with transfer by DMA:
+        (+++) Activate the ADC peripheral (slave) and start conversions
+              using function HAL_ADC_Start()
+        (+++) Activate the ADC peripheral (master) and start conversions
+              using function HAL_ADCEx_MultiModeStart_DMA()
+        (+++) Wait for ADC conversion completion by call of function
+              HAL_ADC_ConvCpltCallback() or HAL_ADC_ConvHalfCpltCallback()
+              (these functions must be implemented in user program)
+        (+++) Conversion results are automatically transferred by DMA into
+              destination variable address.
+        (+++) Stop conversion and disable the ADC peripheral (master)
+              using function HAL_ADCEx_MultiModeStop_DMA()
+        (+++) Stop conversion and disable the ADC peripheral (slave)
+              using function HAL_ADC_Stop_IT()
+
+   [..]
+
+  (@) Callback functions must be implemented in user program:
+    (+@) HAL_ADC_ErrorCallback()
+    (+@) HAL_ADC_LevelOutOfWindowCallback() (callback of analog watchdog)
+    (+@) HAL_ADC_ConvCpltCallback()
+    (+@) HAL_ADC_ConvHalfCpltCallback
+    (+@) HAL_ADCEx_InjectedConvCpltCallback()
+
+   *** Deinitialization of ADC ***
+   ============================================================
+   [..]
+
+  (#) Disable the ADC interface
+    (++) ADC clock can be hard reset and disabled at RCC top level.
+      (++) Hard reset of ADC peripherals
+           using macro __ADCx_FORCE_RESET(), __ADCx_RELEASE_RESET().
+      (++) ADC clock disable
+           using the equivalent macro/functions as configuration step.
+           (+++) Example:
+                 Into HAL_ADC_MspDeInit() (recommended code location) or with
+                 other device clock parameters configuration:
+             (+++) HAL_RCC_GetOscConfig(&RCC_OscInitStructure);
+             (+++) RCC_OscInitStructure.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+             (+++) RCC_OscInitStructure.HSIState = RCC_HSI_OFF; (if not used for system clock)
+             (+++) HAL_RCC_OscConfig(&RCC_OscInitStructure);
+
+  (#) ADC pins configuration
+       (++) Disable the clock for the ADC GPIOs
+            using macro __HAL_RCC_GPIOx_CLK_DISABLE()
+
+  (#) Optionally, in case of usage of ADC with interruptions:
+       (++) Disable the NVIC for ADC
+            using function HAL_NVIC_EnableIRQ(ADCx_IRQn)
+
+  (#) Optionally, in case of usage of DMA:
+       (++) Deinitialize the DMA
+            using function HAL_DMA_Init().
+       (++) Disable the NVIC for DMA
+            using function HAL_NVIC_EnableIRQ(DMAx_Channelx_IRQn)
+
+  [..]\end{DoxyVerb}
+
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\subsubsection*{\begin{center}\copyright{} C\-O\-P\-Y\-R\-I\-G\-H\-T(c) 2016 S\-T\-Microelectronics\end{center} }
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\-:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\-T\-Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D B\-Y T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S A\-N\-D C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S \char`\"{}\-A\-S I\-S\char`\"{} A\-N\-D A\-N\-Y E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S, I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, T\-H\-E I\-M\-P\-L\-I\-E\-D W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y A\-N\-D F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-R\-E D\-I\-S\-C\-L\-A\-I\-M\-E\-D. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R O\-R C\-O\-N\-T\-R\-I\-B\-U\-T\-O\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y D\-I\-R\-E\-C\-T, I\-N\-D\-I\-R\-E\-C\-T, I\-N\-C\-I\-D\-E\-N\-T\-A\-L, S\-P\-E\-C\-I\-A\-L, E\-X\-E\-M\-P\-L\-A\-R\-Y, O\-R C\-O\-N\-S\-E\-Q\-U\-E\-N\-T\-I\-A\-L D\-A\-M\-A\-G\-E\-S (I\-N\-C\-L\-U\-D\-I\-N\-G, B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O, P\-R\-O\-C\-U\-R\-E\-M\-E\-N\-T O\-F S\-U\-B\-S\-T\-I\-T\-U\-T\-E G\-O\-O\-D\-S O\-R S\-E\-R\-V\-I\-C\-E\-S; L\-O\-S\-S O\-F U\-S\-E, D\-A\-T\-A, O\-R P\-R\-O\-F\-I\-T\-S; O\-R B\-U\-S\-I\-N\-E\-S\-S I\-N\-T\-E\-R\-R\-U\-P\-T\-I\-O\-N) H\-O\-W\-E\-V\-E\-R C\-A\-U\-S\-E\-D A\-N\-D O\-N A\-N\-Y T\-H\-E\-O\-R\-Y O\-F L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N C\-O\-N\-T\-R\-A\-C\-T, S\-T\-R\-I\-C\-T L\-I\-A\-B\-I\-L\-I\-T\-Y, O\-R T\-O\-R\-T (I\-N\-C\-L\-U\-D\-I\-N\-G N\-E\-G\-L\-I\-G\-E\-N\-C\-E O\-R O\-T\-H\-E\-R\-W\-I\-S\-E) A\-R\-I\-S\-I\-N\-G I\-N A\-N\-Y W\-A\-Y O\-U\-T O\-F T\-H\-E U\-S\-E O\-F T\-H\-I\-S S\-O\-F\-T\-W\-A\-R\-E, E\-V\-E\-N I\-F A\-D\-V\-I\-S\-E\-D O\-F T\-H\-E P\-O\-S\-S\-I\-B\-I\-L\-I\-T\-Y O\-F S\-U\-C\-H D\-A\-M\-A\-G\-E. 

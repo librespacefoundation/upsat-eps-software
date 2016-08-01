@@ -1,0 +1,154 @@
+\hypertarget{group__eps__configuration}{\section{Eps\-\_\-configuration}
+\label{group__eps__configuration}\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eps__configuration_ga2c4649c0bbd681a7529df7919b75e0f5}{\#define {\bfseries D\-E\-P\-L\-O\-Y\-\_\-\-B\-U\-R\-N\-O\-U\-T\-\_\-\-D\-E\-L\-A\-Y}~((uint32\-\_\-t)6000)/$\ast$T\-I\-M\-E I\-N M\-I\-L\-L\-I\-S\-E\-C\-O\-N\-D\-S T\-O B\-U\-R\-N T\-H\-E R\-E\-S\-I\-S\-T\-O\-R I\-N D\-E\-P\-L\-O\-Y\-M\-E\-N\-T S\-Y\-S\-T\-E\-M.$\ast$/}\label{group__eps__configuration_ga2c4649c0bbd681a7529df7919b75e0f5}
+
+\item 
+\hypertarget{group__eps__configuration_ga83f774b2ae08a536037412597fa4c947}{\#define {\bfseries M\-P\-P\-T\-\_\-\-S\-T\-E\-P\-\_\-\-S\-I\-Z\-E}~((uint32\-\_\-t)1)}\label{group__eps__configuration_ga83f774b2ae08a536037412597fa4c947}
+
+\item 
+\hypertarget{group__eps__configuration_ga9efa4c317bf3e575acb0b5c50d39a67f}{\#define {\bfseries M\-P\-P\-T\-\_\-\-S\-T\-A\-R\-T\-U\-P\-\_\-\-P\-W\-M\-\_\-\-D\-U\-T\-Y\-C\-Y\-C\-L\-E}~((uint32\-\_\-t) 16)/$\ast$1 -\/ 160 for 0 -\/100\%duty cycle -\/ must not start from 0$\ast$/}\label{group__eps__configuration_ga9efa4c317bf3e575acb0b5c50d39a67f}
+
+\item 
+\hypertarget{group__eps__configuration_ga1a58bf9d62dd0f901a25c1acc8fda35a}{\#define {\bfseries M\-P\-P\-T\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}~((uint32\-\_\-t) 1240)/$\ast$solar cell voltage under which we reset mppt search\-: 0.\-5\-Volt/\-Volt\-: 62012bitadc/\-Volt so 2volt = 1240$\ast$/}\label{group__eps__configuration_ga1a58bf9d62dd0f901a25c1acc8fda35a}
+
+\item 
+\hypertarget{group__eps__configuration_ga0e67fdf46bbbdf4c1f8a0e6ce2bc6567}{\#define {\bfseries T\-C74\-\_\-\-A\-D\-D\-R\-E\-S\-S\-\_\-\-A}~T\-C74\-\_\-\-A2}\label{group__eps__configuration_ga0e67fdf46bbbdf4c1f8a0e6ce2bc6567}
+
+\item 
+\hypertarget{group__eps__configuration_gaa40fe3d73951dfa208df951a5f77147a}{\#define {\bfseries T\-C74\-\_\-\-A\-D\-D\-R\-E\-S\-S\-\_\-\-B}~T\-C74\-\_\-\-A5}\label{group__eps__configuration_gaa40fe3d73951dfa208df951a5f77147a}
+
+\item 
+\hypertarget{group__eps__configuration_ga0a77ce7b6ae596eccda4d65210d241f6}{\#define {\bfseries C\-P\-U\-\_\-\-T\-O\-\_\-\-B\-A\-T\-T\-E\-R\-Y\-\_\-\-T\-E\-M\-P\-E\-R\-A\-T\-U\-R\-E\-\_\-\-O\-F\-F\-S\-E\-T}~((int32\-\_\-t) 2)/$\ast$value to subtract from cpu temp to \char`\"{}match\char`\"{} the battery pack temperature.$\ast$/}\label{group__eps__configuration_ga0a77ce7b6ae596eccda4d65210d241f6}
+
+\item 
+\hypertarget{group__eps__configuration_ga35eef18cd8717c2b190bf2a39dbf6635}{\#define {\bfseries A\-D\-C\-\_\-\-V\-A\-L\-U\-E\-\_\-3\-V\-\_\-\-B\-A\-T\-\_\-\-V\-O\-L\-T\-A\-G\-E}~((uint16\-\_\-t) 670)/$\ast$3 volt value measured at adc...\-for obc service. 0.\-54\-Volt in the adc given the 0.\-18v/v voltage divider -\/ x/4095 $\ast$3.\-3 = 0.\-54 =$>$x=670 the adc measurement for 3\-Volt$\ast$/}\label{group__eps__configuration_ga35eef18cd8717c2b190bf2a39dbf6635}
+
+\item 
+\hypertarget{group__eps__configuration_ga3bac1d082253457a30399d75102c3c0b}{\#define {\bfseries A\-D\-C\-\_\-\-V\-A\-L\-U\-E\-\_\-1\-A\-\_\-\-B\-A\-T\-\_\-\-C\-U\-R\-R\-E\-N\-T}~((uint16\-\_\-t) 3475)/$\ast$1 ampere value measured at adc...\-for obc service. 2.\-8\-Volt in the adc given the 2.\-8v/\-A voltage divider -\/ x/4095 $\ast$3.\-3 = 2.\-8 =$>$x=3475 the adc measurement for 1ampere$\ast$/}\label{group__eps__configuration_ga3bac1d082253457a30399d75102c3c0b}
+
+\item 
+\hypertarget{group__eps__configuration_ga6bdaf2535b08a0d3cbd70a25a56f5fe6}{\#define {\bfseries P\-W\-M\-\_\-\-T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-T\-O\-P}~T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-3}\label{group__eps__configuration_ga6bdaf2535b08a0d3cbd70a25a56f5fe6}
+
+\item 
+\hypertarget{group__eps__configuration_ga7a9821224aac985c8ae4ba0f8399604c}{\#define {\bfseries P\-W\-M\-\_\-\-T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-B\-O\-T\-T\-O\-M}~T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-1}\label{group__eps__configuration_ga7a9821224aac985c8ae4ba0f8399604c}
+
+\item 
+\hypertarget{group__eps__configuration_gab0141f054748907ddd330eec77c792b4}{\#define {\bfseries P\-W\-M\-\_\-\-T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-L\-E\-F\-T}~T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-2}\label{group__eps__configuration_gab0141f054748907ddd330eec77c792b4}
+
+\item 
+\hypertarget{group__eps__configuration_gaa7d166d2398a08ae1715098ae5582043}{\#define {\bfseries P\-W\-M\-\_\-\-T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-R\-I\-G\-H\-T}~T\-I\-M\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-4}\label{group__eps__configuration_gaa7d166d2398a08ae1715098ae5582043}
+
+\item 
+\hypertarget{group__eps__configuration_ga212f05f75d70ead2d599051e76f2e3e8}{\#define {\bfseries A\-D\-C\-\_\-\-C\-U\-R\-R\-E\-N\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-T\-O\-P}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-5}\label{group__eps__configuration_ga212f05f75d70ead2d599051e76f2e3e8}
+
+\item 
+\hypertarget{group__eps__configuration_ga77edb9c9e4873efef25b541df89ecc07}{\#define {\bfseries A\-D\-C\-\_\-\-C\-U\-R\-R\-E\-N\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-B\-O\-T\-T\-O\-M}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-20}\label{group__eps__configuration_ga77edb9c9e4873efef25b541df89ecc07}
+
+\item 
+\hypertarget{group__eps__configuration_ga7fb1c0a818e5840c0ab4eb5fe86c9bc4}{\#define {\bfseries A\-D\-C\-\_\-\-C\-U\-R\-R\-E\-N\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-L\-E\-F\-T}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-11}\label{group__eps__configuration_ga7fb1c0a818e5840c0ab4eb5fe86c9bc4}
+
+\item 
+\hypertarget{group__eps__configuration_ga765685192eecded82dad18c3ae5cca71}{\#define {\bfseries A\-D\-C\-\_\-\-C\-U\-R\-R\-E\-N\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-R\-I\-G\-H\-T}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-18}\label{group__eps__configuration_ga765685192eecded82dad18c3ae5cca71}
+
+\item 
+\hypertarget{group__eps__configuration_ga769167f7a37ce096a2772c603bbf3ee1}{\#define {\bfseries A\-D\-C\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-T\-O\-P}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-6}\label{group__eps__configuration_ga769167f7a37ce096a2772c603bbf3ee1}
+
+\item 
+\hypertarget{group__eps__configuration_gaf6a83239410e6d06cfd9c73bd8aaac34}{\#define {\bfseries A\-D\-C\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-B\-O\-T\-T\-O\-M}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-21}\label{group__eps__configuration_gaf6a83239410e6d06cfd9c73bd8aaac34}
+
+\item 
+\hypertarget{group__eps__configuration_gabc3693920da43f4cf5902196307f1646}{\#define {\bfseries A\-D\-C\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-L\-E\-F\-T}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-10}\label{group__eps__configuration_gabc3693920da43f4cf5902196307f1646}
+
+\item 
+\hypertarget{group__eps__configuration_ga6a96aedf036e488ecaa1cb2e65255eae}{\#define {\bfseries A\-D\-C\-\_\-\-V\-O\-L\-T\-A\-G\-E\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-R\-I\-G\-H\-T}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-19}\label{group__eps__configuration_ga6a96aedf036e488ecaa1cb2e65255eae}
+
+\item 
+\hypertarget{group__eps__configuration_ga6e750989e6f8a21aa562cae84400cd75}{\#define {\bfseries A\-D\-C\-\_\-\-V\-B\-A\-T}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-1;}\label{group__eps__configuration_ga6e750989e6f8a21aa562cae84400cd75}
+
+\item 
+\hypertarget{group__eps__configuration_gaf2e6da531aef67d8c687d8040bf56d29}{\#define {\bfseries A\-D\-C\-\_\-\-I\-B\-A\-T\-\_\-\-P\-L\-U\-S}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-2;}\label{group__eps__configuration_gaf2e6da531aef67d8c687d8040bf56d29}
+
+\item 
+\hypertarget{group__eps__configuration_gac37c20021df51909a2039b5d9815c096}{\#define {\bfseries A\-D\-C\-\_\-\-I\-B\-A\-T\-\_\-\-M\-I\-N\-U\-S}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-3;}\label{group__eps__configuration_gac37c20021df51909a2039b5d9815c096}
+
+\item 
+\hypertarget{group__eps__configuration_ga47eaaf28b8299b92065ef21dc239044c}{\#define {\bfseries A\-D\-C\-\_\-\-I3\-V3}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-4;}\label{group__eps__configuration_ga47eaaf28b8299b92065ef21dc239044c}
+
+\item 
+\hypertarget{group__eps__configuration_ga5dd2743f585f8898aad9301c5c278c39}{\#define {\bfseries A\-D\-C\-\_\-\-I5\-V}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-12;}\label{group__eps__configuration_ga5dd2743f585f8898aad9301c5c278c39}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__eps__configuration_gab34d18603569318563da7959d65fb818}{E\-P\-S\-\_\-umbilical\-\_\-status} \{ \hyperlink{group__eps__configuration_ggab34d18603569318563da7959d65fb818a7547275eed623f8d6589a3fd10f48090}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}, 
+\hyperlink{group__eps__configuration_ggab34d18603569318563da7959d65fb818aa864d476529ba4d3749fce9ca7e263db}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}, 
+\hyperlink{group__eps__configuration_ggab34d18603569318563da7959d65fb818a3fcc21b7ef23ac248c58a9db45947d64}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E}, 
+\hyperlink{group__eps__configuration_ggab34d18603569318563da7959d65fb818a6be8a1f55e84b93444bb75f74db86a63}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em Umbillical connector status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__softerror_ga82875cd4cc1b94ab7e638961c1b79e08}{E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} \hyperlink{group__eps__configuration_gae1047d265564a0b60c266e6a0ba52408}{kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt} (uint32\-\_\-t period\-\_\-in\-\_\-uicroseconds)
+\begin{DoxyCompactList}\small\item\em Initializes timer 6 and starts counting generating an interrupt every time the requested amount of microseconds has elapsed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__eps__configuration_ga0997fc523dfaf4bcecc934fbcd7a4c08}{volatile \hyperlink{group__eps__configuration_gab34d18603569318563da7959d65fb818}{E\-P\-S\-\_\-umbilical\-\_\-status} {\bfseries E\-P\-S\-\_\-umbilical\-\_\-mode}}\label{group__eps__configuration_ga0997fc523dfaf4bcecc934fbcd7a4c08}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__eps__configuration_gab34d18603569318563da7959d65fb818}{\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!E\-P\-S\-\_\-umbilical\-\_\-status@{E\-P\-S\-\_\-umbilical\-\_\-status}}
+\index{E\-P\-S\-\_\-umbilical\-\_\-status@{E\-P\-S\-\_\-umbilical\-\_\-status}!Eps_configuration@{Eps\-\_\-configuration}}
+\subsubsection[{E\-P\-S\-\_\-umbilical\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\-P\-S\-\_\-umbilical\-\_\-status}}}\label{group__eps__configuration_gab34d18603569318563da7959d65fb818}
+
+
+Umbillical connector status. 
+
+Umbilical is the external connector of the satellite. When connected means that the satellite is under debug/development and when connected the sattelite is ready to deploy and start running. This status is used to enter debug mode or not. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}!Eps\-\_\-configuration@{Eps\-\_\-configuration}}\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}}\item[{\em 
+\hypertarget{group__eps__configuration_ggab34d18603569318563da7959d65fb818a7547275eed623f8d6589a3fd10f48090}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-N\-O\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}\label{group__eps__configuration_ggab34d18603569318563da7959d65fb818a7547275eed623f8d6589a3fd10f48090}
+}]Umbilicall connector is not connected -\/ satellite is ready ti deploy \index{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}!Eps\-\_\-configuration@{Eps\-\_\-configuration}}\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}}\item[{\em 
+\hypertarget{group__eps__configuration_ggab34d18603569318563da7959d65fb818aa864d476529ba4d3749fce9ca7e263db}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}\label{group__eps__configuration_ggab34d18603569318563da7959d65fb818aa864d476529ba4d3749fce9ca7e263db}
+}]Umbilicall connector is connected -\/ satellite is in debug mode \index{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E}!Eps\-\_\-configuration@{Eps\-\_\-configuration}}\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E}}\item[{\em 
+\hypertarget{group__eps__configuration_ggab34d18603569318563da7959d65fb818a3fcc21b7ef23ac248c58a9db45947d64}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-C\-O\-N\-N\-E\-C\-T\-O\-R\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D\-\_\-\-S\-T\-A\-T\-E}\label{group__eps__configuration_ggab34d18603569318563da7959d65fb818a3fcc21b7ef23ac248c58a9db45947d64}
+}]Umbilicall connector is in undefined state \index{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}!Eps\-\_\-configuration@{Eps\-\_\-configuration}}\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E@{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}}\item[{\em 
+\hypertarget{group__eps__configuration_ggab34d18603569318563da7959d65fb818a6be8a1f55e84b93444bb75f74db86a63}{U\-M\-B\-I\-L\-I\-C\-A\-L\-\_\-\-L\-A\-S\-T\-\_\-\-V\-A\-L\-U\-E}\label{group__eps__configuration_ggab34d18603569318563da7959d65fb818a6be8a1f55e84b93444bb75f74db86a63}
+}]Umbilicall connector is in undefined state \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__eps__configuration_gae1047d265564a0b60c266e6a0ba52408}{\index{Eps\-\_\-configuration@{Eps\-\_\-configuration}!kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt@{kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt}}
+\index{kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt@{kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt}!Eps_configuration@{Eps\-\_\-configuration}}
+\subsubsection[{kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-P\-S\-\_\-soft\-\_\-error\-\_\-status} kick\-\_\-\-T\-I\-M6\-\_\-timed\-\_\-interrupt (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{period\-\_\-in\-\_\-uicroseconds}
+\end{DoxyParamCaption}
+)}}\label{group__eps__configuration_gae1047d265564a0b60c266e6a0ba52408}
+
+
+Initializes timer 6 and starts counting generating an interrupt every time the requested amount of microseconds has elapsed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em period\-\_\-in\-\_\-uicroseconds} & period of timer6 interrupt \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em E\-P\-S\-\_\-soft\-\_\-error\-\_\-status.} & \\
+\hline
+\end{DoxyRetVals}

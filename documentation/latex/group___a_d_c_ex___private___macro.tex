@@ -1,0 +1,338 @@
+\hypertarget{group___a_d_c_ex___private___macro}{\section{A\-D\-C\-Ex Private Macro}
+\label{group___a_d_c_ex___private___macro}\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}}
+}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___a_d_c_ex__injected__nb__conv__verification}{A\-D\-C\-Ex injected nb conv verification}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_gaaeadff15bb18b98df58b98fc0f57b697}{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X}~(\hyperlink{group___peripheral___registers___bits___definition_gaf974f4fc66a9cdce8bba4572fe2541a1}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q27} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaee53f1b8c03f22d6b5fca762ea286932}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q26} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaadcbe44419351e6f9ce90e37f8395441}{A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q25})
+\begin{DoxyCompactList}\small\item\em Set A\-D\-C ranks available in register S\-Q\-R1. Register S\-Q\-R1 bits availability depends on device category. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga9905dad6b9c2d9173ce71ef8799f2eeb}{A\-D\-C\-\_\-\-S\-M\-P\-R0}(\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, \-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)~((uint32\-\_\-t)0x00000000)
+\begin{DoxyCompactList}\small\item\em Set the A\-D\-C's sample time for channel numbers between 30 and 31. Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro does nothing. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga29f7414128fbbdb81db6ea6ede449f4b}{A\-D\-C\-\_\-\-S\-M\-P\-R1}(\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, \-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ ((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) -\/ 20)))
+\begin{DoxyCompactList}\small\item\em Set the A\-D\-C's sample time for channel numbers between 20 and 26. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga69676d151f6b7ebf3ada32907f78fe00}{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X}~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-26
+\begin{DoxyCompactList}\small\item\em Defines the highest channel available in register S\-M\-P\-R1. Channels availability depends on device category\-: Highest channel in register S\-M\-P\-R1 is channel 26 for devices Cat.\-1, Cat.\-2, Cat.\-3 Highest channel in register S\-M\-P\-R1 is channel 29 for devices Cat.\-4, Cat.\-5. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga836547de9edd1e0dae651e2e8d110fef}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T}()~(\hyperlink{group___peripheral___registers___bits___definition_ga574b4d8e90655d0432882d620e629234}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-E\-N} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga6d1054d6cd017e305cf6e8a864ce96c8}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-S\-E\-L} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaf5950b5a7438a447584f6dd86c343362}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-A\-L\-I\-G\-N} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_gaf9dac2004ab20295e04012060ab24aeb}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-O\-C\-S} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga0d7d75f0c4c8fa190fbf9f86fbe6dfc8}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-D\-S} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga70d08cda9c1473839b560b33ff6fd672}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-E\-L\-S} $\vert$ \hyperlink{group___peripheral___registers___bits___definition_ga49bb71a868c9d88a0f7bbe48918b2140}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T})
+\begin{DoxyCompactList}\small\item\em Define mask of configuration bits of A\-D\-C and regular group in register C\-R2 (bits of A\-D\-C enable, conversion start and injected group are excluded of this mask). \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga649e53d6a9a5716d9dce4d58904a3884}{A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Get the maximum A\-D\-C conversion cycles on all channels. Returns the selected sampling time + conversion time (12.\-5 A\-D\-C clock cycles) Approximation of sampling time within 2 ranges, returns the highest value\-: below 24 cycles \{4 cycles; 9 cycles; 16 cycles; 24 cycles\} between 48 cycles and 384 cycles \{48 cycles; 96 cycles; 192 cycles; 384 cycles\} Unit\-: A\-D\-C clock cycles. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_gab7904b68466d45b918fad7b450f32ee8}{A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)~((0x01) $<$$<$ ((\-A\-D\-C-\/$>$\-C\-C\-R \& A\-D\-C\-\_\-\-C\-C\-R\-\_\-\-A\-D\-C\-P\-R\-E) $>$$>$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\-A\-D\-C\-\_\-\-C\-C\-R\-\_\-\-A\-D\-C\-P\-R\-E)))
+\begin{DoxyCompactList}\small\item\em Get the A\-D\-C clock prescaler from A\-D\-C common control register and convert it to its decimal number setting (refer to reference manual) \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga8dbdcfe7ae0e5bdd4b19dba69e8e6663}{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Clear register S\-M\-P\-R0. Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro performs no action. \end{DoxyCompactList}\item 
+\hypertarget{group___a_d_c_ex___private___macro_gad00b03b06c388c8697193ab6af416478}{\#define {\bfseries A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-L\-E\-A\-R}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)~\hyperlink{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\-\_\-\-\_\-\-N\-O\-P}()}\label{group___a_d_c_ex___private___macro_gad00b03b06c388c8697193ab6af416478}
+
+\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga1e70fe9cf1ff2798afdb13badf58dfcf}{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-)
+\begin{DoxyCompactList}\small\item\em Clear register C\-R2. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___a_d_c_ex___private___macro_ga1281d0f24dba4c7b1e5fa2b5f71a0251}{A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T}(\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-, \-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, \-\_\-\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-\_\-)~\hyperlink{group___c_m_s_i_s___core___instruction_interface_gabd585ddc865fb9b7f2493af1eee1a572}{\-\_\-\-\_\-\-N\-O\-P}()
+\begin{DoxyCompactList}\small\item\em Set the sampling time of selected channel on register S\-M\-P\-R0 Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro performs no action. \end{DoxyCompactList}\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K}(C\-H\-A\-N\-N\-E\-L)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E}(E\-D\-G\-E)
+\item 
+\#define {\bfseries I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C}(R\-E\-G\-T\-R\-I\-G)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___a_d_c_ex___private___macro_gaaeadff15bb18b98df58b98fc0f57b697}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X@{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X}}
+\index{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X@{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{\-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q\-X\-X~({\bf A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q27} $\vert$ {\bf A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q26} $\vert$ {\bf A\-D\-C\-\_\-\-S\-Q\-R1\-\_\-\-S\-Q25})}}\label{group___a_d_c_ex___private___macro_gaaeadff15bb18b98df58b98fc0f57b697}
+
+
+Set A\-D\-C ranks available in register S\-Q\-R1. Register S\-Q\-R1 bits availability depends on device category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-Nbr\-Of\-Conversion$<$/em$>$} & Regular channel sequence length \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga649e53d6a9a5716d9dce4d58904a3884}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E@{A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E}}
+\index{A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E@{A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-O\-N\-V\-C\-Y\-C\-L\-E\-S\-\_\-\-M\-A\-X\-\_\-\-R\-A\-N\-G\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_ga649e53d6a9a5716d9dce4d58904a3884}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(( (((\_\_HANDLE\_\_)->Instance->SMPR3 & ADC\_SAMPLETIME\_ALLCHANNELS\_SMPR3BIT2) == RESET)  &&            \(\backslash\)
+       (((\_\_HANDLE\_\_)->Instance->SMPR2 & ADC\_SAMPLETIME\_ALLCHANNELS\_SMPR2BIT2) == RESET)  &&            \(\backslash\)
+       (((\_\_HANDLE\_\_)->Instance->SMPR1 & ADC\_SAMPLETIME\_ALLCHANNELS\_SMPR1BIT2) == RESET) ) ?            \(\backslash\)
+                                                                                                        \(\backslash\)
+        ADC\_CONVERSIONCLOCKCYCLES\_SAMPLETIME\_24CYCLES : ADC\_CONVERSIONCLOCKCYCLES\_SAMPLETIME\_384CYCLES  \(\backslash\)
+     )
+\end{DoxyCode}
+
+
+Get the maximum A\-D\-C conversion cycles on all channels. Returns the selected sampling time + conversion time (12.\-5 A\-D\-C clock cycles) Approximation of sampling time within 2 ranges, returns the highest value\-: below 24 cycles \{4 cycles; 9 cycles; 16 cycles; 24 cycles\} between 48 cycles and 384 cycles \{48 cycles; 96 cycles; 192 cycles; 384 cycles\} Unit\-: A\-D\-C clock cycles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\-D\-C} & conversion cycles on all channels \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga1e70fe9cf1ff2798afdb13badf58dfcf}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R}}
+\index{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-L\-E\-A\-R(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_ga1e70fe9cf1ff2798afdb13badf58dfcf}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(CLEAR\_BIT((\_\_HANDLE\_\_)->Instance->CR2, (\hyperlink{group___peripheral___registers___bits___definition_ga5eae65bad1a6c975e1911eb5ba117468}{ADC\_CR2\_SWSTART}  | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga574b4d8e90655d0432882d620e629234}{ADC\_CR2\_EXTEN}  | \hyperlink{group___peripheral___registers___bits___definition_ga6d1054d6cd017e305cf6e8a864ce96c8}{ADC\_CR2\_EXTSEL}  |   \(\backslash\)
+                                           \hyperlink{group___peripheral___registers___bits___definition_gac12fe8a6cc24eef2ed2e1f1525855678}{ADC\_CR2\_JSWSTART} | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga07330f702208792faca3a563dc4fd9c6}{ADC\_CR2\_JEXTEN} | \hyperlink{group___peripheral___registers___bits___definition_gaab3aa5d0e2a4b77960ec8f3b425a3eac}{ADC\_CR2\_JEXTSEL} |   \(\backslash\)
+                                           \hyperlink{group___peripheral___registers___bits___definition_gaf5950b5a7438a447584f6dd86c343362}{ADC\_CR2\_ALIGN}    | 
+      \hyperlink{group___peripheral___registers___bits___definition_gaf9dac2004ab20295e04012060ab24aeb}{ADC\_CR2\_EOCS}   | \hyperlink{group___peripheral___registers___bits___definition_ga0d7d75f0c4c8fa190fbf9f86fbe6dfc8}{ADC\_CR2\_DDS}     |   \(\backslash\)
+                                           \hyperlink{group___peripheral___registers___bits___definition_ga017309ac4b532bc8c607388f4e2cbbec}{ADC\_CR2\_DMA}      | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga70d08cda9c1473839b560b33ff6fd672}{ADC\_CR2\_DELS}   |                     \(\backslash\)
+                                           \hyperlink{group___peripheral___registers___bits___definition_ga49bb71a868c9d88a0f7bbe48918b2140}{ADC\_CR2\_CONT}     | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga89b646f092b052d8488d2016f6290f0e}{ADC\_CR2\_ADON}                      )) \(\backslash\)
+  )
+\end{DoxyCode}
+
+
+Clear register C\-R2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga836547de9edd1e0dae651e2e8d110fef}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T}}
+\index{A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T@{A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-C\-R2\-\_\-\-M\-A\-S\-K\-\_\-\-A\-D\-C\-I\-N\-I\-T(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~({\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-E\-N} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-X\-T\-S\-E\-L} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-A\-L\-I\-G\-N} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-E\-O\-C\-S} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-D\-S} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-D\-E\-L\-S} $\vert$ {\bf A\-D\-C\-\_\-\-C\-R2\-\_\-\-C\-O\-N\-T})}}\label{group___a_d_c_ex___private___macro_ga836547de9edd1e0dae651e2e8d110fef}
+
+
+Define mask of configuration bits of A\-D\-C and regular group in register C\-R2 (bits of A\-D\-C enable, conversion start and injected group are excluded of this mask). 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_gab7904b68466d45b918fad7b450f32ee8}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L@{A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L}}
+\index{A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L@{A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-G\-E\-T\-\_\-\-C\-L\-O\-C\-K\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E\-R\-\_\-\-D\-E\-C\-I\-M\-A\-L(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~((0x01) $<$$<$ ((\-A\-D\-C-\/$>$\-C\-C\-R \& A\-D\-C\-\_\-\-C\-C\-R\-\_\-\-A\-D\-C\-P\-R\-E) $>$$>$ P\-O\-S\-I\-T\-I\-O\-N\-\_\-\-V\-A\-L(\-A\-D\-C\-\_\-\-C\-C\-R\-\_\-\-A\-D\-C\-P\-R\-E)))}}\label{group___a_d_c_ex___private___macro_gab7904b68466d45b918fad7b450f32ee8}
+
+
+Get the A\-D\-C clock prescaler from A\-D\-C common control register and convert it to its decimal number setting (refer to reference manual) 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga9905dad6b9c2d9173ce71ef8799f2eeb}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-S\-M\-P\-R0@{A\-D\-C\-\_\-\-S\-M\-P\-R0}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R0@{A\-D\-C\-\_\-\-S\-M\-P\-R0}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R0}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R0(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, }
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((uint32\-\_\-t)0x00000000)}}\label{group___a_d_c_ex___private___macro_ga9905dad6b9c2d9173ce71ef8799f2eeb}
+
+
+Set the A\-D\-C's sample time for channel numbers between 30 and 31. Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro does nothing. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E$<$/em$>$} & Sample time parameter. \\
+\hline
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga1281d0f24dba4c7b1e5fa2b5f71a0251}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T@{A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R0\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-S\-E\-T(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-, }
+\item[{}]{\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, }
+\item[{}]{\-\_\-\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)~{\bf \-\_\-\-\_\-\-N\-O\-P}()}}\label{group___a_d_c_ex___private___macro_ga1281d0f24dba4c7b1e5fa2b5f71a0251}
+
+
+Set the sampling time of selected channel on register S\-M\-P\-R0 Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro performs no action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+{\em $<$em$>$\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E$<$/em$>$} & Sample time parameter. \\
+\hline
+{\em $<$strong$>$\-C\-H\-A\-N\-N\-E\-L$<$/strong$>$} & Channel number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga29f7414128fbbdb81db6ea6ede449f4b}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-S\-M\-P\-R1@{A\-D\-C\-\_\-\-S\-M\-P\-R1}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R1@{A\-D\-C\-\_\-\-S\-M\-P\-R1}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R1}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R1(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-, }
+\item[{}]{\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-}
+\end{DoxyParamCaption}
+)~((\-\_\-\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E\-\_\-) $<$$<$ (3 $\ast$ ((\-\_\-\-C\-H\-A\-N\-N\-E\-L\-N\-B\-\_\-) -\/ 20)))}}\label{group___a_d_c_ex___private___macro_ga29f7414128fbbdb81db6ea6ede449f4b}
+
+
+Set the A\-D\-C's sample time for channel numbers between 20 and 26. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$em$>$\-S\-A\-M\-P\-L\-E\-T\-I\-M\-E$<$/em$>$} & Sample time parameter. \\
+\hline
+{\em $<$em$>$\-C\-H\-A\-N\-N\-E\-L\-N\-B$<$/em$>$} & Channel number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga69676d151f6b7ebf3ada32907f78fe00}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X@{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X@{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-\-M\-A\-X~A\-D\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-\_\-26}}\label{group___a_d_c_ex___private___macro_ga69676d151f6b7ebf3ada32907f78fe00}
+
+
+Defines the highest channel available in register S\-M\-P\-R1. Channels availability depends on device category\-: Highest channel in register S\-M\-P\-R1 is channel 26 for devices Cat.\-1, Cat.\-2, Cat.\-3 Highest channel in register S\-M\-P\-R1 is channel 29 for devices Cat.\-4, Cat.\-5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga8dbdcfe7ae0e5bdd4b19dba69e8e6663}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R@{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R}}
+\index{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R@{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-D\-C\-\_\-\-S\-M\-P\-R1\-\_\-\-C\-L\-E\-A\-R(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-\-\_\-\-H\-A\-N\-D\-L\-E\-\_\-\-\_\-}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_ga8dbdcfe7ae0e5bdd4b19dba69e8e6663}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+CLEAR\_BIT((\_\_HANDLE\_\_)->Instance->SMPR1, (\hyperlink{group___peripheral___registers___bits___definition_ga1066d0cdec3bb382d7fc504beceeb62e}{ADC\_SMPR1\_SMP26} | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga9d1ca3fd62aa8b5dda8d64fa27aacea7}{ADC\_SMPR1\_SMP25} | \hyperlink{group___peripheral___registers___bits___definition_ga364d9bf92d314f8c9c2309931205e316}{ADC\_SMPR1\_SMP24} |   \(\backslash\)
+                                              \hyperlink{group___peripheral___registers___bits___definition_ga5cfda2168e008fcd7f33117bc8090d58}{ADC\_SMPR1\_SMP23} | 
+      \hyperlink{group___peripheral___registers___bits___definition_ga9748941993ba4e228e7c0e13fb669f76}{ADC\_SMPR1\_SMP22} | \hyperlink{group___peripheral___registers___bits___definition_ga2e266f2559667a55159dadee0913c434}{ADC\_SMPR1\_SMP21} |   \(\backslash\)
+                                              \hyperlink{group___peripheral___registers___bits___definition_ga94ce8599a79e518e0ec8681f0b894581}{ADC\_SMPR1\_SMP20}                               
+             ))
+\end{DoxyCode}
+
+
+Clear register S\-M\-P\-R0. Register S\-M\-P\-R0 availability depends on device category. If register is not available on the current device, this macro performs no action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $<$strong$>$\-H\-A\-N\-D\-L\-E$<$/strong$>$} & A\-D\-C handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___a_d_c_ex___private___macro_ga29b3772b6f1a051e2d72dda74d7787ac}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C(
+\begin{DoxyParamCaption}
+\item[{}]{R\-E\-G\-T\-R\-I\-G}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_ga29b3772b6f1a051e2d72dda74d7787ac}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T2\_CC1)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T2\_TRGO)  || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T3\_CC4)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T4\_TRGO)  || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T4\_CC1)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T4\_CC2)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T4\_CC3)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T7\_TRGO)  || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T9\_CC1)   || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T9\_TRGO)  || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_T10\_CC1)  || \(\backslash\)
+                                      ((REGTRIG) == ADC\_EXTERNALTRIGINJECCONV\_EXT\_IT15) || \(\backslash\)
+                                      ((REGTRIG) == ADC\_SOFTWARE\_START)                   )
+\end{DoxyCode}
+\hypertarget{group___a_d_c_ex___private___macro_gaeb4d9f60256873c29590ca8dbbb6942d}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E@{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-E\-X\-T\-T\-R\-I\-G\-I\-N\-J\-E\-C\-\_\-\-E\-D\-G\-E(
+\begin{DoxyParamCaption}
+\item[{}]{E\-D\-G\-E}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_gaeb4d9f60256873c29590ca8dbbb6942d}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((EDGE) == ADC\_EXTERNALTRIGINJECCONV\_EDGE\_NONE)         || \(\backslash\)
+                                        ((EDGE) == ADC\_EXTERNALTRIGINJECCONV\_EDGE\_RISING)       || \(\backslash\)
+                                        ((EDGE) == ADC\_EXTERNALTRIGINJECCONV\_EDGE\_FALLING)      || \(\backslash\)
+                                        ((EDGE) == ADC\_EXTERNALTRIGINJECCONV\_EDGE\_RISINGFALLING)  )
+\end{DoxyCode}
+\hypertarget{group___a_d_c_ex___private___macro_ga564b54a7fa3c47f3b8ca74f67866d139}{\index{A\-D\-C\-Ex Private Macro@{A\-D\-C\-Ex Private Macro}!I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K@{I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K}}
+\index{I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K@{I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K}!ADCEx Private Macro@{A\-D\-C\-Ex Private Macro}}
+\subsubsection[{I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-S\-\_\-\-A\-D\-C\-\_\-\-I\-N\-J\-E\-C\-T\-E\-D\-\_\-\-R\-A\-N\-K(
+\begin{DoxyParamCaption}
+\item[{}]{C\-H\-A\-N\-N\-E\-L}
+\end{DoxyParamCaption}
+)}}\label{group___a_d_c_ex___private___macro_ga564b54a7fa3c47f3b8ca74f67866d139}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((CHANNEL) == ADC\_INJECTED\_RANK\_1) || \(\backslash\)
+                                       ((CHANNEL) == ADC\_INJECTED\_RANK\_2) || \(\backslash\)
+                                       ((CHANNEL) == ADC\_INJECTED\_RANK\_3) || \(\backslash\)
+                                       ((CHANNEL) == ADC\_INJECTED\_RANK\_4)   )
+\end{DoxyCode}
