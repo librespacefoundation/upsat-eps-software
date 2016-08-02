@@ -27,6 +27,7 @@
 #include "eps_bootsequence.h"
 #include "eps_obc_wraps.h"
 #include "eps_time.h"
+#include "sysview.h"
 /*TODO:
  *  -add prototype for remotely setting new limits over comms-obc or generally writing to flash
  *  -check wod values range before transmit and codes for enumeration
@@ -164,11 +165,19 @@ int main(void)
 	/*kick timer interrupt for timed threads.*/
 	error_status = kick_TIM6_timed_interrupt(TIMED_EVENT_PERIOD);
 
+	SEGGER_SYSVIEW_Conf();
+	sysview_init();
 	while (1)
 	{
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+
+		uint32_t time = HAL_sys_GetTick();
+
+		uart_killer(OBC_APP_ID, &eps_data.obc_uart, time);
+		pkt_pool_IDLE(time);
+		queue_IDLE(OBC_APP_ID);
 
 		/*service timed thread every TIMED_EVENT_PERIOD microseconds*/
 		if(EPS_event_period_status==TIMED_EVENT_NOT_SERVICED){

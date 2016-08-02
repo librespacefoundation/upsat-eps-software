@@ -44,10 +44,7 @@ void EPS_set_flash_memory_initial_values(void){
 	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
 
 	memory_write_value = DEPLOYMENT_NOT_KEY_C;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
-
-	memory_write_value = DEPLOYMENT_NOT_KEY_C;
-	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
+	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_write_value );
 
 	memory_write_value = DEPLOYMENT_NOT_KEY_D;
 	EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
