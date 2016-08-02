@@ -187,11 +187,14 @@ void USART1_IRQHandler(void)
 void USART3_IRQHandler(void)
 {
   /* USER CODE BEGIN USART3_IRQn 0 */
-	HAL_EPS_UART_IRQHandler(&huart3);
+  SEGGER_SYSVIEW_RecordEnterISR();
+
+  HAL_EPS_UART_IRQHandler(&huart3);
   /* USER CODE END USART3_IRQn 0 */
   HAL_UART_IRQHandler(&huart3);
-  /* USER CODE BEGIN USART3_IRQn 1 */
 
+  /* USER CODE BEGIN USART3_IRQn 1 */
+  SEGGER_SYSVIEW_RecordExitISR();
   /* USER CODE END USART3_IRQn 1 */
 }
 
