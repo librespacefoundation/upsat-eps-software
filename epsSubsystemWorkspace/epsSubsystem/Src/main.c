@@ -180,7 +180,6 @@ int main(void)
 
 		uint32_t time = HAL_sys_GetTick();
 
-		//uart_killer(OBC_APP_ID, &eps_data.obc_uart, time);
 		pkt_pool_IDLE(time);
 		queue_IDLE(OBC_APP_ID);
 
