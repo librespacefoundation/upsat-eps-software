@@ -122,7 +122,12 @@ int main(void)
 	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
 	//EPS_set_flash_memory_initial_values();
 
-	EPS_bootseq_poweroff_all_rails(&eps_board_state);
+	/*power down subsystems on reset except comms*/
+	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, &eps_board_state);
+	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, &eps_board_state);
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, &eps_board_state);/*This will be powered up in get_battery_pack_measurement - good to reset tc74 when reseting the whole system*/
 
 	/*umbilical check */
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
@@ -175,7 +180,7 @@ int main(void)
 
 		uint32_t time = HAL_sys_GetTick();
 
-		uart_killer(OBC_APP_ID, &eps_data.obc_uart, time);
+		//uart_killer(OBC_APP_ID, &eps_data.obc_uart, time);
 		pkt_pool_IDLE(time);
 		queue_IDLE(OBC_APP_ID);
 
@@ -225,12 +230,23 @@ int main(void)
 		/* handle OBC packets */
 		error_status = EPS_obc_communication_service();
 
-		/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
-		HAL_SuspendTick();
-		/* Enter Sleep Mode , wake up is done once Key push button is pressed */
-		HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-		/* Resume Tick interrupt if disabled prior to sleep mode entry*/
-		HAL_ResumeTick();
+
+		/*if obc uart tx is not busy, put cpu to sleep WFI */
+		HAL_UART_StateTypeDef obc_communication_uart_status = HAL_UART_GetState(&huart3);
+		if (!((obc_communication_uart_status == HAL_UART_STATE_BUSY)
+		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX)
+		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX_RX))) {
+
+			/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
+			HAL_SuspendTick();
+			/* Enter Sleep Mode , wake up is done once Key push button is pressed */
+			HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+			/* Resume Tick interrupt if disabled prior to sleep mode entry*/
+			HAL_ResumeTick();
+
+		}
+
+
 
 	}
   /* USER CODE END 3 */
@@ -410,7 +426,9 @@ void MX_IWDG_Init(void)
 
   hiwdg.Instance = IWDG;
   hiwdg.Init.Prescaler = IWDG_PRESCALER_4;
-  hiwdg.Init.Reload = 1364;
+  hiwdg.Init.Reload = 1900;/*1900 *(1/(37Khz/Prescaler)) = time to watchdog =205.409msec*/
+//  hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
+//  hiwdg.Init.Reload = 4095;/* 4095*(1/37Khz)/Prescaler = time to watchdog = 28.33 sec*/
   HAL_IWDG_Init(&hiwdg);
 
 }

@@ -208,7 +208,10 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 	TC_74_STATUS statusA =DEVICE_STATUS_LAST_VALUE;
 	TC_74_STATUS statusB =DEVICE_STATUS_LAST_VALUE;
 
-	/*add check to turn on tc74power if theyr eoff*/
+	/*add check to turn on tc74power if they are off*/
+	if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
+		EPS_set_rail_switch( TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+	}
 
 	if(battery_temperature_valid_counter<15){
 		/*sleep time*/

@@ -203,14 +203,14 @@ void USART3_IRQHandler(void)
 */
 void TIM6_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM6_IRQn 0 */
-  //SEGGER_SYSVIEW_RecordEnterISR();
+	/* USER CODE BEGIN TIM6_IRQn 0 */
+	//SEGGER_SYSVIEW_RecordEnterISR();
 
-  /* USER CODE END TIM6_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim6);
-  /* USER CODE BEGIN TIM6_IRQn 1 */
+	/* USER CODE END TIM6_IRQn 0 */
+	HAL_TIM_IRQHandler(&htim6);
+	/* USER CODE BEGIN TIM6_IRQn 1 */
 
-   /*update timed event handling status to not serviced*/
+	/*update timed event handling status to not serviced*/
 	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
 
 	/*check for software error and properly handle them if status ok kick watchdog. */
@@ -221,7 +221,7 @@ void TIM6_IRQHandler(void)
 
 	//SEGGER_SYSVIEW_RecordExitISR();
 
-  /* USER CODE END TIM6_IRQn 1 */
+	/* USER CODE END TIM6_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
