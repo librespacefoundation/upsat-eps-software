@@ -28,7 +28,7 @@ static int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sen
   */
 EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 
-	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_INIT;
+	error_status = EPS_SOFT_ERROR_STATE_INIT;
 
 	state->eps_functional_mode = EPS_MODE_LAST_VALUE;
 	state->EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
@@ -41,9 +41,7 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
 	state->battery_temp = 10;//do not initialize to zero so as not to false trigger safety limits during initialization.
 	state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
 
-
-	eps_status = EPS_SOFT_ERROR_OK;
-	return eps_status;
+	return EPS_SOFT_ERROR_STATE_INIT_COMPLETE;
 
 }
 
@@ -55,10 +53,10 @@ EPS_soft_error_status EPS_state_init(volatile EPS_State *state){
   */
 EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleTypeDef *hadc_eps, I2C_HandleTypeDef *h_i2c) {
 
-	EPS_soft_error_status eps_status = EPS_SOFT_ERROR_STATE_UPDATE;
+	error_status = EPS_SOFT_ERROR_STATE_UPDATE;
 
 	/*get eps adc measurements*/
-	eps_status = EPS_update_state_adc_measurements(state, hadc_eps);
+	error_status = EPS_update_state_adc_measurements(state, hadc_eps);
 
 	/*get eps switch states*/
 	//rail
@@ -75,12 +73,12 @@ EPS_soft_error_status EPS_update_state(volatile EPS_State *state, ADC_HandleType
     state->deploy_top_switch  = EPS_get_control_switch_status(DEPLOY_TOP);
     state->heaters_switch = EPS_get_control_switch_status(BATTERY_HEATERS);
 
-    eps_status = EPS_SOFT_ERROR_STATE_UPDATE_BATTERYPACK_TEMP;
+    error_status = EPS_SOFT_ERROR_STATE_UPDATE_BATTERYPACK_TEMP;
     state->battery_temp = get_batterypack_temperature( h_i2c, TC74_ADDRESS_A, TC74_ADDRESS_B, state);
 
 
-	eps_status = EPS_SOFT_ERROR_OK;
-	return eps_status;
+    error_status = EPS_SOFT_ERROR_OK;
+	return EPS_SOFT_ERROR_STATE_UPDATE_COMPLETE;
 
 }
 

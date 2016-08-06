@@ -178,8 +178,8 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 
+		error_status = EPS_SOFT_ERROR_WHILE_LOOP_TOP;
 		uint32_t time = HAL_sys_GetTick();
-
 		pkt_pool_IDLE(time);
 		queue_IDLE(OBC_APP_ID);
 
@@ -224,6 +224,7 @@ int main(void)
 			/*reset event period status so as to be set into the timer interrupt after TIMED_EVENT_PERIOD msec.*/
 			EPS_event_period_status = TIMED_EVENT_SERVICED;
 
+			error_status = EPS_SOFT_ERROR_TIMED_EVENT_END;
 		}
 
 		/* handle OBC packets */
@@ -236,13 +237,14 @@ int main(void)
 		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX)
 		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX_RX))) {
 
+			error_status = EPS_SOFT_ERROR_READY_TO_SLEEP;
 			/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
 			HAL_SuspendTick();
 			/* Enter Sleep Mode , wake up is done once Key push button is pressed */
 			HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 			/* Resume Tick interrupt if disabled prior to sleep mode entry*/
 			HAL_ResumeTick();
-
+			error_status = EPS_SOFT_ERROR_AWAKE_FROM_SLEEP;
 		}
 
 

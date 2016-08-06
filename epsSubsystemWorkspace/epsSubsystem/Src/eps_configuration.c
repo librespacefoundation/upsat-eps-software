@@ -27,7 +27,7 @@ EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds)
 
 	/*configure tim6 peripheral to trigger interrupt every microseconds*/
 
-	EPS_soft_error_status kick_timer_status = EPS_SOFT_ERROR_KICK_TIMER;
+	error_status = EPS_SOFT_ERROR_KICK_TIMER;
 
 	TIM_MasterConfigTypeDef sMasterConfig;
 
@@ -44,9 +44,33 @@ EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds)
 	/*kick timer interupt for timed threads.*/
 	HAL_TIM_Base_Start_IT(&htim6);
 
-	kick_timer_status = EPS_SOFT_ERROR_KICK_TIMER;
-	return kick_timer_status;
+	return EPS_SOFT_ERROR_KICK_TIMER_COMPLETE;
 }
+
+
+
+/**
+  * @brief  Changes countdown time the watchdog timer will be energized - new_reload*(1/(37Khz/new_precaler)) = time to watchdog
+  * @param  new_precaler: must be a valid prescaler value such as IWDG_PRESCALER_4 - IWDG_PRESCALER_256
+  * @param  new_reload: must be a valid reloas value in the range of 0-4095.
+  * @retval EPS_soft_error_status.
+  */
+EPS_soft_error_status IWDG_change_reset_time(IWDG_HandleTypeDef *hiwdg, uint32_t new_precaler, uint32_t new_reload) {
+
+
+	error_status = EPS_SOFT_ERROR_IWDG_CHANGE;
+	hiwdg->Instance = IWDG;
+	hiwdg->Init.Prescaler = new_precaler;
+	hiwdg->Init.Reload = new_reload;/*1900 *(1/(37Khz/Prescaler)) = time to watchdog =205.409msec*/
+	HAL_IWDG_Init(&hiwdg);
+
+	return EPS_SOFT_ERROR_IWDG_CHANGE_COMPLETE;
+}
+
+
+
+
+
 
 /**
   * @}
