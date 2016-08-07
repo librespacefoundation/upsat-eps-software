@@ -70,6 +70,7 @@ extern volatile EPS_umbilical_status EPS_umbilical_mode;/* initialize global umb
 
 EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds);
 
+EPS_soft_error_status IWDG_change_reset_time(IWDG_HandleTypeDef *new_hiwdg, uint32_t new_precaler, uint32_t new_reload);
 
 #endif /* INC_EPS_CONFIGURATION_H_ */
 /**

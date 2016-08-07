@@ -18,7 +18,7 @@
 #include "eps_soft_error_handling.h"
 
 extern EPS_State eps_board_state;/*global eps subsystem state.*/
-
+extern IWDG_HandleTypeDef hiwdg;
 
 /** @addtogroup bootsequence_Functions
   * @{
@@ -136,9 +136,11 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		error_status = EPS_bootseq_poweroff_all_rails(state);
 
 
-		/*Wait for 30 minutes...(make it less for debug) */
-		for (int var = 0; var < 30; ++var) {
-			HAL_Delay(60000);/*wait for 1min*/
+		/*Wait for 30 minutes...(make it less for debug)  30*  (60*1000) msec  = 30* 6 * (10*1000)msec */
+		for (int var = 0; var < 180; ++var) {
+
+			HAL_IWDG_Refresh(&hiwdg);
+			HAL_Delay(10000);/*wait for 1min*/
 		}
 
 

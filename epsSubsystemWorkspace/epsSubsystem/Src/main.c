@@ -93,31 +93,34 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
+	/* USER CODE BEGIN 1 */
 
 
-  /* USER CODE END 1 */
+	/* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+	/* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	/* Configure the system clock */
+	SystemClock_Config();
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_ADC_Init();
-  MX_TIM3_Init();
-  MX_I2C2_Init();
-  MX_USART1_UART_Init();
-  MX_USART3_UART_Init();
-  MX_TIM6_Init();
-  MX_IWDG_Init();
+	/* Initialize all configured peripherals */
+	MX_GPIO_Init();
+	MX_DMA_Init();
+	MX_ADC_Init();
+	MX_TIM3_Init();
+	MX_I2C2_Init();
+	MX_USART1_UART_Init();
+	MX_USART3_UART_Init();
+	MX_TIM6_Init();
+	MX_IWDG_Init();
 
-  /* USER CODE BEGIN 2 */
+	/* USER CODE BEGIN 2 */
+
+	/*start watchdog*/
+	HAL_IWDG_Start(&hiwdg);
 
 	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
 	//EPS_set_flash_memory_initial_values();
@@ -138,16 +141,10 @@ int main(void)
 	/*obc communication initialization*/
 	error_status = EPS_obc_communication_init();
 
+	/* USER CODE END 2 */
 
-#ifdef EPS_DEBUG_MODE
-	/*if in debug mode initialize uart debug session */
-	error_status = EPS_debug_uart_init();
-#endif
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+	/* Infinite loop */
+	/* USER CODE BEGIN WHILE */
 
 	/*load eps limits from memory*/
 	EPS_safety_limits eps_limits;
@@ -164,8 +161,8 @@ int main(void)
 	/* initialize all power modules */
 	error_status = EPS_PowerModule_init_ALL(&power_module_top, &power_module_bottom, &power_module_left, &power_module_right);
 
-	/*init watchdog*/
-	HAL_IWDG_Start(&hiwdg);
+	/*start main loop watchdog*/
+	IWDG_change_reset_time(&hiwdg, IWDG_PRESCALER_4, 1900);/*205.409msec*/
 
 	/*kick timer interrupt for timed threads.*/
 	error_status = kick_TIM6_timed_interrupt(TIMED_EVENT_PERIOD);
@@ -174,9 +171,9 @@ int main(void)
 	sysview_init();
 	while (1)
 	{
-  /* USER CODE END WHILE */
+		/* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
+		/* USER CODE BEGIN 3 */
 
 		error_status = EPS_SOFT_ERROR_WHILE_LOOP_TOP;
 		uint32_t time = HAL_sys_GetTick();
@@ -217,10 +214,6 @@ int main(void)
 			/*check for limit safety issues */
 			error_status = EPS_perform_safety_checks(&eps_board_state, &eps_limits);
 
-#ifdef EPS_DEBUG_MODE
-			EPS_flush_debug_data_to_uart();
-#endif
-
 			/*reset event period status so as to be set into the timer interrupt after TIMED_EVENT_PERIOD msec.*/
 			EPS_event_period_status = TIMED_EVENT_SERVICED;
 
@@ -234,8 +227,8 @@ int main(void)
 		/*if obc uart tx is not busy, put cpu to sleep WFI */
 		HAL_UART_StateTypeDef obc_communication_uart_status = HAL_UART_GetState(&huart3);
 		if (!((obc_communication_uart_status == HAL_UART_STATE_BUSY)
-		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX)
-		        || (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX_RX))) {
+				|| (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX)
+				|| (obc_communication_uart_status == HAL_UART_STATE_BUSY_TX_RX))) {
 
 			error_status = EPS_SOFT_ERROR_READY_TO_SLEEP;
 			/*kill systick and sleep with WaitForInterupt with timer + UART peripherals on*/
@@ -250,7 +243,7 @@ int main(void)
 
 
 	}
-  /* USER CODE END 3 */
+	/* USER CODE END 3 */
 
 }
 
@@ -426,10 +419,8 @@ void MX_IWDG_Init(void)
 {
 
   hiwdg.Instance = IWDG;
-  hiwdg.Init.Prescaler = IWDG_PRESCALER_4;
-  hiwdg.Init.Reload = 1900;/*1900 *(1/(37Khz/Prescaler)) = time to watchdog =205.409msec*/
-//  hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
-//  hiwdg.Init.Reload = 4095;/* 4095*(1/37Khz)/Prescaler = time to watchdog = 28.33 sec*/
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
+  hiwdg.Init.Reload = 4095;/* 4095*(1/37Khz)/Prescaler = time to watchdog = 28.33 sec*/
   HAL_IWDG_Init(&hiwdg);
 
 }

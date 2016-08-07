@@ -55,14 +55,19 @@ EPS_soft_error_status kick_TIM6_timed_interrupt(uint32_t period_in_uicroseconds)
   * @param  new_reload: must be a valid reloas value in the range of 0-4095.
   * @retval EPS_soft_error_status.
   */
-EPS_soft_error_status IWDG_change_reset_time(IWDG_HandleTypeDef *hiwdg, uint32_t new_precaler, uint32_t new_reload) {
-
+EPS_soft_error_status IWDG_change_reset_time(IWDG_HandleTypeDef *new_hiwdg, uint32_t new_precaler, uint32_t new_reload) {
 
 	error_status = EPS_SOFT_ERROR_IWDG_CHANGE;
-	hiwdg->Instance = IWDG;
-	hiwdg->Init.Prescaler = new_precaler;
-	hiwdg->Init.Reload = new_reload;/*1900 *(1/(37Khz/Prescaler)) = time to watchdog =205.409msec*/
-	HAL_IWDG_Init(&hiwdg);
+	/*Refresh previous seting IWDG*/
+	HAL_IWDG_Refresh(new_hiwdg);
+
+	new_hiwdg->Instance = IWDG;
+	new_hiwdg->Init.Prescaler = new_precaler;
+	new_hiwdg->Init.Reload = new_reload;/*1900 *(1/(37Khz/Prescaler)) = time to watchdog =205.409msec*/
+	HAL_IWDG_Init(new_hiwdg);
+
+	/*Start Counting*/
+	HAL_IWDG_Start(new_hiwdg);
 
 	return EPS_SOFT_ERROR_IWDG_CHANGE_COMPLETE;
 }
