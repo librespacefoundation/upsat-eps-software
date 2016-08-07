@@ -27,23 +27,23 @@
 #define DATA_EEPROM_BASE_ADDRESS 0x08080000/**< Data EEPROM addresses:  0x0808 0000 - 0x0808 1FFF  size: 8 Kbytes - cat3 device memory map from stm32l datasheet*/
 
 //**< This word is written in the deployment flag address and read back to check if deployment stage has occured.this memory address mut be cleared the firt time the eps progam launches*/
-#define DEPLOYMENT_KEY_A 0xDEADBEEF
-#define DEPLOYMENT_KEY_B 0xDEADBEE1
-#define DEPLOYMENT_KEY_C 0xDEADBEE2
-#define DEPLOYMENT_KEY_D 0xDEADBEE3
-#define DEPLOYMENT_KEY_E 0xDEADBEE4
-#define DEPLOYMENT_KEY_F 0xDEADBEE5
-#define DEPLOYMENT_KEY_G 0xDEADBEE6
+#define SATELLITE_ARM_KEY_A 0x1312ACAB
+#define SATELLITE_ARM_KEY_B 0x27BCD4FC
+#define SATELLITE_ARM_KEY_C 0xFB54E21D
+#define SATELLITE_ARM_KEY_D 0x312A8D65
+#define SATELLITE_ARM_KEY_E 0x64F83D8A
+#define SATELLITE_ARM_KEY_F 0xE1AB3FE9
+#define SATELLITE_ARM_KEY_G 0x6E4A7320
 
 
 //this word is written in the deployment flag address if no deployment has occurred.
-#define DEPLOYMENT_NOT_KEY_A 0xB16B00B5
-#define DEPLOYMENT_NOT_KEY_B 0xB16B00B1
-#define DEPLOYMENT_NOT_KEY_C 0xB16B00B2
-#define DEPLOYMENT_NOT_KEY_D 0xB16B00B3
-#define DEPLOYMENT_NOT_KEY_E 0xB16B00B4
-#define DEPLOYMENT_NOT_KEY_F 0xB16B00B7
-#define DEPLOYMENT_NOT_KEY_G 0xB16B00B6
+#define SATELLITE_DISARM_KEY_A 0xE8AB9C66
+#define SATELLITE_DISARM_KEY_B 0x2E3DF504
+#define SATELLITE_DISARM_KEY_C 0x9CD19D03
+#define SATELLITE_DISARM_KEY_D 0x80A932ED
+#define SATELLITE_DISARM_KEY_E 0x660C1871
+#define SATELLITE_DISARM_KEY_F 0xE281C7B0
+#define SATELLITE_DISARM_KEY_G 0x1FFE271A
 
 #define DEPLOYMENT_FLAG_ADDRESS_OFFSET 64/**< FLASH MEMORY  ADDRESS OFFSET */
 
@@ -63,14 +63,17 @@
 #define LIMIT_BATTERY_TEMPERATURE_LOW_ADDRESS (DATA_EEPROM_BASE_ADDRESS+28)/**< FLASH MEMORY  ADDRESS OF TEMPERATURE LOW THRESHOLD */
 #define LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS (DATA_EEPROM_BASE_ADDRESS+32)/**< FLASH MEMORY  ADDRESS OF TEMPERATURE HIGH THRESHOLD */
 
+#define SOFT_ERROR_STATUS_ADDRESS (DATA_EEPROM_BASE_ADDRESS+64)/**< FLASH MEMORY  ADDRESS OF SOFT ERROR STATUS */
+
+
 /**
  * @brief Deployment flag status.
  *
  * This datatype is used to define the status of the umbilical connector.
  */
 typedef enum {
-	DEPLOYMENT_NOT,/**< deployment has not happened but satellite is properly armed */
-	DEPLOYMENT_OK,/**< deployment has  happened but satellite is properly dissarmed */
+	DEPLOYMENT_SAT_ARMED,/**< deployment has not happened but satellite is properly armed */
+	DEPLOYMENT_SAT_DISARMED,/**< deployment has  happened but satellite is properly disarmed */
 	DEPLOYMENT_UNDEFINED,/**< deployment sequence droped in unresolved situation */
 	DEPLOYMENT_LAST_VALUE/**< deployment status non valid. */
 }EPS_deployment_status;

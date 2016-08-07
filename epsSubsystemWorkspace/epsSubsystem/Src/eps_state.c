@@ -209,6 +209,7 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 	/*add check to turn on tc74power if they are off*/
 	if(EPS_get_rail_switch_status(TEMP_SENSOR)==EPS_SWITCH_RAIL_OFF){
 		EPS_set_rail_switch( TEMP_SENSOR, EPS_SWITCH_RAIL_ON, state);
+		battery_temperature_valid_counter=0;//start the tc74 temperature cycle from start.
 	}
 
 	if(battery_temperature_valid_counter<15){
@@ -217,7 +218,7 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 		battery_temperature_valid_counter++;/*update counter*/
 	}
 	else if((battery_temperature_valid_counter>=15)&&(battery_temperature_valid_counter<18)){
-		//waky-waky
+		/*waky-waky*/
 		statusA = TC74_read_device_status(h_i2c, sensor_A_i2c_address);
 		statusB = TC74_read_device_status(h_i2c, sensor_B_i2c_address);
 
@@ -280,6 +281,7 @@ int16_t get_batterypack_temperature(I2C_HandleTypeDef *h_i2c, uint8_t sensor_A_i
 		else{
 			//TODO: handle this ...
 			state->batterypack_health_status = EPS_BATTERY_SENSOR_LAST_VALUE;
+			battery_temperature_valid_counter=0;//reset tc74 cycle.
 		}
 
 		battery_temperature_valid_counter++;/*update counter*/

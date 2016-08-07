@@ -60,7 +60,7 @@ EPS_soft_error_status EPS_bootseq_poweron_all_rails(volatile EPS_State *state){
 	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, state);
 	HAL_Delay(50);
 	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_ON, state);
-	HAL_sys_delay(50);
+	HAL_Delay(50);
 	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_ON, state);
 	HAL_sys_delay(50);
  	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, state);
@@ -109,6 +109,8 @@ EPS_soft_error_status EPS_bootseq_umbilical_check(volatile EPS_State *state) {
 		//error handling for undefined umbilical behavior.
 		error_status = EPS_SOFT_ERROR_UMBILICAL_UNPREDICTED;
 		EPS_umbilical_mode = UMBILICAL_CONNECTOR_UNDEFINED_STATE;
+		/*if we are in an undefined situation favor deployment since a failed deployment equals a dead satellite*/
+		EPS_bootseq_enter_deployment_stage(&eps_board_state);
 	}
 
 	return EPS_SOFT_ERROR_BOOTSEQ_UMBILICAL_CHECK_COMPLETE;
@@ -129,7 +131,7 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 
 	EPS_deployment_status curret_deployment_status = EPS_check_deployment_status();
 	//perfrom deployment check and if needed enter deployment mode.
-	if(curret_deployment_status == DEPLOYMENT_NOT){
+	if(curret_deployment_status == DEPLOYMENT_SAT_ARMED){
 
 
 		/* power of all rails */
@@ -140,7 +142,7 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		for (int var = 0; var < 180; ++var) {
 
 			HAL_IWDG_Refresh(&hiwdg);
-			HAL_Delay(10000);/*wait for 1min*/
+			HAL_Delay(10000);/*wait for 10sec*/
 		}
 
 
@@ -149,66 +151,72 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
+
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_RIGHT;
 		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_ON, state);
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_RIGHT, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_BOTTOM;
 		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_ON, state);
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_BOTTOM, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_TOP;
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_ON, state);
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_ANT1;
 		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
 
 
 		/* set deployment flag that deployment is completed */
 		uint32_t memory_write_value;
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_A;
-		memory_write_value = DEPLOYMENT_KEY_A;
+		memory_write_value = SATELLITE_DISARM_KEY_A;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_A, &memory_write_value );
 		HAL_Delay(1);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_B;
-		memory_write_value = DEPLOYMENT_KEY_B;
+		memory_write_value = SATELLITE_DISARM_KEY_B;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_B, &memory_write_value );
 		HAL_Delay(1);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_C;
-		memory_write_value = DEPLOYMENT_KEY_C;
+		memory_write_value = SATELLITE_DISARM_KEY_C;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_C, &memory_write_value );
 		HAL_Delay(1);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_D;
-		memory_write_value = DEPLOYMENT_KEY_D;
+		memory_write_value = SATELLITE_DISARM_KEY_D;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_D, &memory_write_value );
 		HAL_Delay(1);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_E;
-		memory_write_value = DEPLOYMENT_KEY_E;
+		memory_write_value = SATELLITE_DISARM_KEY_E;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_E, &memory_write_value );
 		HAL_Delay(1);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_F;
-		memory_write_value = DEPLOYMENT_KEY_F;
+		memory_write_value = SATELLITE_DISARM_KEY_F;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_F, &memory_write_value );
 		HAL_Delay(1);
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_KEY_G;
-		memory_write_value = DEPLOYMENT_KEY_G;
+		memory_write_value = SATELLITE_DISARM_KEY_G;
 		EPS_set_memory_word( DEPLOYMENT_FLAG_ADDRESS_G, &memory_write_value );
 		HAL_Delay(1);
 	}
-	else if(curret_deployment_status == DEPLOYMENT_OK){
-		/* Deployment has succesfully occured.*/
+	else if(curret_deployment_status == DEPLOYMENT_SAT_DISARMED){
+		/* Deployment has successfully occurred.*/
 	}
 	else{
 		/*TON PINOUME*/

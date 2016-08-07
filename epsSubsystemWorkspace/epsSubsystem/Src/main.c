@@ -28,13 +28,6 @@
 #include "eps_obc_wraps.h"
 #include "eps_time.h"
 #include "sysview.h"
-/*TODO:
- *  -add prototype for remotely setting new limits over comms-obc or generally writing to flash
- *  -check wod values range before transmit and codes for enumeration
- *  -uart debug monitor
- *  -doxy commenting
- *  -flow diagram
- */
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -125,12 +118,8 @@ int main(void)
 	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
 	//EPS_set_flash_memory_initial_values();
 
-	/*power down subsystems on reset except comms*/
-	EPS_set_rail_switch(COMM, EPS_SWITCH_RAIL_ON, &eps_board_state);
-	EPS_set_rail_switch(OBC, EPS_SWITCH_RAIL_OFF, &eps_board_state);
-	EPS_set_rail_switch(ADCS, EPS_SWITCH_RAIL_OFF, &eps_board_state);
-	EPS_set_rail_switch(SU, EPS_SWITCH_RAIL_OFF, &eps_board_state);
-	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, &eps_board_state);/*This will be powered up in get_battery_pack_measurement - good to reset tc74 when reseting the whole system*/
+	/*This will be powered up in get_battery_pack_measurement - good to reset tc74 when reseting the whole system*/
+	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, &eps_board_state);
 
 	/*umbilical check */
 	error_status = EPS_bootseq_umbilical_check(&eps_board_state);
@@ -216,8 +205,11 @@ int main(void)
 
 			/*reset event period status so as to be set into the timer interrupt after TIMED_EVENT_PERIOD msec.*/
 			EPS_event_period_status = TIMED_EVENT_SERVICED;
+			/* resfresh watchdog*/
+			HAL_IWDG_Refresh(&hiwdg);
 
 			error_status = EPS_SOFT_ERROR_TIMED_EVENT_END;
+
 		}
 
 		/* handle OBC packets */
