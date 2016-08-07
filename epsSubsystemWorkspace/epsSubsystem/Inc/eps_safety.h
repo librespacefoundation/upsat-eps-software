@@ -21,6 +21,18 @@
 #define LIMIT_BATTERY_TEMPERATURE_LOW_DEFAULT ((uint32_t) 5)//**< 5 Celcius degree */
 #define LIMIT_BATTERY_TEMPERATURE_HIGH_DEFAULT ((uint32_t) 55)/**< 55 Celcius degree */
 
+/*Specified range for limit values - any value out of this range will not be considered*/
+#define LIMIT_BATTERY_LOW_MAX ((uint32_t) 1784)/**< 8Volt  X 222,93651*/
+#define LIMIT_BATTERY_LOW_MIN ((uint32_t) 666)/**<  3Volt  X 222,93651*/
+#define LIMIT_BATTERY_HIGH_MAX ((uint32_t) 3344)/**< 15Volt  X 222,93651*/
+#define LIMIT_BATTERY_HIGH_MIN ((uint32_t) 2007)/**< 9.1Volt  X 222,93651*/
+#define LIMIT_BATTERY_CRITICAL_MAX ((uint32_t) 2006)/**< 9Volt  X 222,93651*/
+#define LIMIT_BATTERY_CRITICAL_MIN ((uint32_t) 1785)/**< 8.1Volt  X 222,93651*/
+#define LIMIT_BATTERY_TEMPERATURE_LOW__MAX ((uint32_t) 10)/**<  Celcius degree*/
+#define LIMIT_BATTERY_TEMPERATURE_LOW__MIN ((uint32_t) 0)/**<  Celcius degree*/
+#define LIMIT_BATTERY_TEMPERATURE_HIGH__MAX ((uint32_t) 100)/**<  Celcius degree*/
+#define LIMIT_BATTERY_TEMPERATURE_HIGH__MIN ((uint32_t) 7)/**<  Celcius degree*/
+
 /**
  * @brief safety system limit values.
  *
