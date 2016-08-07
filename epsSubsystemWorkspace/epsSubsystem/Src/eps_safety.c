@@ -193,15 +193,39 @@ EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limi
 
 	uint32_t memory_read_value;
 
+	/*get battery voltage low limit*/
 	EPS_get_memory_word( LIMIT_BATTERY_LOW_ADDRESS, &memory_read_value );
+	if( (memory_read_value>=LIMIT_BATTERY_LOW_MAX)||(memory_read_value<=LIMIT_BATTERY_LOW_MIN)){
+		memory_read_value = LIMIT_BATTERY_VOLTAGE_LOW_DEFAULT;
+	}
 	limits->limit_battery_low = memory_read_value;
+
+	/*get battery voltage high limit*/
 	EPS_get_memory_word( LIMIT_BATTERY_HIGH_ADDRESS, &memory_read_value );
+	if( (memory_read_value>=LIMIT_BATTERY_HIGH_MAX)||(memory_read_value<=LIMIT_BATTERY_HIGH_MIN)){
+		memory_read_value = LIMIT_BATTERY_VOLTAGE_HIGH_DEFAULT;
+	}
 	limits->limit_battery_high = memory_read_value;
+
+	/*get battery voltage critical limit*/
 	EPS_get_memory_word( LIMIT_BATTERY_CRITICAL_ADDRESS, &memory_read_value );
+	if( (memory_read_value>=LIMIT_BATTERY_CRITICAL_MAX)||(memory_read_value<=LIMIT_BATTERY_CRITICAL_MIN)){
+		memory_read_value = LIMIT_BATTERY_VOLTAGE_CRITICAL_DEFAULT;
+	}
 	limits->limit_battery_critical = memory_read_value;
+
+	/*get battery temperature low limit*/
 	EPS_get_memory_word( LIMIT_BATTERY_TEMPERATURE_LOW_ADDRESS, &memory_read_value );
+	if( (memory_read_value>=LIMIT_BATTERY_TEMPERATURE_LOW__MAX)||(memory_read_value<=LIMIT_BATTERY_TEMPERATURE_LOW__MIN)){
+		memory_read_value = LIMIT_BATTERY_TEMPERATURE_LOW_DEFAULT;
+	}
 	limits->limit_battery_temperature_low = memory_read_value;
+
+	/*get battery temperature high limit*/
 	EPS_get_memory_word( LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS, &memory_read_value );
+	if( (memory_read_value>=LIMIT_BATTERY_TEMPERATURE_HIGH__MAX)||(memory_read_value<=LIMIT_BATTERY_TEMPERATURE_HIGH__MIN)){
+		memory_read_value = LIMIT_BATTERY_TEMPERATURE_HIGH_DEFAULT;
+	}
 	limits->limit_battery_temperature_high = memory_read_value;
 
 	return EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS_COMPLETE;
