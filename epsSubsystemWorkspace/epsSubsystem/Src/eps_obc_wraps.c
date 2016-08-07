@@ -30,8 +30,6 @@ EPS_soft_error_status EPS_obc_communication_init(void){
 
 	uint16_t size = 0;
 
-	event_boot(0, 0);
-
 	/*Uart inits*/
 	HAL_UART_Receive_IT(&huart3, eps_data.obc_uart.uart_buf, UART_BUF_SIZE);
 
