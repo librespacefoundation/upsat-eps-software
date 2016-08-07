@@ -111,12 +111,11 @@ int main(void)
 	MX_IWDG_Init();
 
 	/* USER CODE BEGIN 2 */
+	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
+	//EPS_set_flash_memory_initial_values();
 
 	/*start watchdog*/
 	HAL_IWDG_Start(&hiwdg);
-
-	/*this is used only once to arm the satellite - this should by no means stay in the code.*/
-	//EPS_set_flash_memory_initial_values();
 
 	/*This will be powered up in get_battery_pack_measurement - good to reset tc74 when reseting the whole system*/
 	EPS_set_rail_switch(TEMP_SENSOR, EPS_SWITCH_RAIL_OFF, &eps_board_state);

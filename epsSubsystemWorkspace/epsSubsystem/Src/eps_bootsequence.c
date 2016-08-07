@@ -145,7 +145,11 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 			HAL_Delay(10000);/*wait for 10sec*/
 		}
 
-
+		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_ANT1;
+		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
+		HAL_Delay(DEPLOY_BURNOUT_DELAY);
+		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
+		HAL_IWDG_Refresh(&hiwdg);
 
 		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_LEFT;
 		EPS_set_control_switch(DEPLOY_LEFT, EPS_SWITCH_CONTROL_ON, state);
@@ -171,13 +175,6 @@ EPS_soft_error_status EPS_bootseq_enter_deployment_stage(volatile EPS_State *sta
 		HAL_Delay(DEPLOY_BURNOUT_DELAY);
 		EPS_set_control_switch(DEPLOY_TOP, EPS_SWITCH_CONTROL_OFF, state);
 		HAL_IWDG_Refresh(&hiwdg);
-
-		error_status = EPS_SOFT_ERROR_BOOTSEQ_DEPLOYMENT_ANT1;
-		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_ON, state);
-		HAL_Delay(DEPLOY_BURNOUT_DELAY);
-		EPS_set_control_switch(DEPLOY_ANT1, EPS_SWITCH_CONTROL_OFF, state);
-		HAL_IWDG_Refresh(&hiwdg);
-
 
 		/* set deployment flag that deployment is completed */
 		uint32_t memory_write_value;
