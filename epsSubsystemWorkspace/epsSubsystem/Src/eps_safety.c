@@ -38,7 +38,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 
 
 
-	EPS_soft_error_status safety_check_status = EPS_SOFT_ERROR_SAFETY_CHECK;
+	error_status = EPS_SOFT_ERROR_SAFETY_CHECK;
 
 	/* turn on (if previously closed or keep them on - solar cell power modules)*/
 	power_module_top.module_state = POWER_MODULE_ON;
@@ -132,7 +132,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 		power_module_right.pwm_duty_cycle = MPPT_STARTUP_PWM_DUTYCYCLE;
 
 		state->EPS_safety_battery_mode = EPS_SAFETY_MODE_BATTERY_NOT_SET;
-		safety_check_status = EPS_SOFT_ERROR_SAFETY_CHECK_BATTERY_VOLTAGE_UNPREDICTED;
+		error_status = EPS_SOFT_ERROR_SAFETY_CHECK_BATTERY_VOLTAGE_UNPREDICTED;
 	}
 
 
@@ -172,13 +172,11 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
 	else{
 		/* undefined temperature state handle with soft error handling*/
 		state->EPS_safety_temperature_mode = EPS_SAFETY_MODE_TEMPERATURE_NOT_SET;
-		safety_check_status = EPS_SOFT_ERROR_SAFETY_CHECK_BATTERY_TEMPERATURE_UNPREDICTED;
+		error_status = EPS_SOFT_ERROR_SAFETY_CHECK_BATTERY_TEMPERATURE_UNPREDICTED;
 	}
 
 
-
-	safety_check_status = EPS_SOFT_ERROR_OK;
-	return safety_check_status;
+	return EPS_SOFT_ERROR_SAFETY_CHECK_COMPLETE;
 }
 
 /**
@@ -191,7 +189,7 @@ EPS_soft_error_status EPS_perform_safety_checks(EPS_State *state, EPS_safety_lim
   */
 EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limits){
 
-	EPS_soft_error_status limits_status = EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS;
+	error_status = EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS;
 
 	uint32_t memory_read_value;
 
@@ -206,8 +204,7 @@ EPS_soft_error_status EPS_load_safety_limits_from_memory(EPS_safety_limits *limi
 	EPS_get_memory_word( LIMIT_BATTERY_TEMPERATURE_HIGH_ADDRESS, &memory_read_value );
 	limits->limit_battery_temperature_high = memory_read_value;
 
-	limits_status = EPS_SOFT_ERROR_OK;
-	return limits_status;
+	return EPS_SOFT_ERROR_LOAD_SAFETY_LIMITS_COMPLETE;
 
 }
 /**

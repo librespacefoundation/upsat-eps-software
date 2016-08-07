@@ -19,7 +19,7 @@
  * debug data every timed event period microseconds. The error handling also reports to console the occured
  * error status and the line that it has been collected.
 */
-#define EPS_DEBUG_MODE
+//#define EPS_DEBUG_MODE
 
 EPS_soft_error_status EPS_flush_debug_data_to_uart(void);
 
