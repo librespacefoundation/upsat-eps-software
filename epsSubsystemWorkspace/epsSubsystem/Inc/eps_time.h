@@ -16,8 +16,8 @@
 
 #define TIMED_EVENT_PERIOD ((uint32_t)50000)/**<  50msec to serve the main task o eps state update and safety handling*/
 
-#define SUBSYSTEM_TIMEOUT_PERIOD 7200 /**< this value times TIMED_EVENT_PERIOD *50msec is the period that eps waits a timeout ping from every subsystem or it resets the subsystem that has not responded in time.*/
-                                 //24000 is 20 minutes
+#define SUBSYSTEM_TIMEOUT_PERIOD 24000/**< this value times TIMED_EVENT_PERIOD *50msec is the period that eps waits a timeout ping from every subsystem or it resets the subsystem that has not responded in time.*/
+
 extern volatile uint32_t EPS_time_counter; /**< a counter that increments at every interrupt every TIMED_EVENT_PERIOD microseconds */
 
 
