@@ -214,7 +214,7 @@ void TIM6_IRQHandler(void)
 	EPS_event_period_status = TIMED_EVENT_NOT_SERVICED;
 
 	/*check for software error and properly handle them if status ok kick watchdog. */
-	EPS_soft_error_handling(error_status);
+	/*EPS_soft_error_handling(error_status);*/
 
 	/*increment eps time counter*/
 	EPS_time_counter_increment();

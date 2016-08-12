@@ -29,7 +29,7 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 
 	case EPS_SOFT_ERROR_OK:
 		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
+		//HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_UNRESOLVED:
 		//report and soft reset
@@ -99,23 +99,15 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 		break;
 	case EPS_SOFT_ERROR_OBC_COMM_SERVICE:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_OBC_COMM_SERVICE_COMPLETE:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_OBC_COMM_SERVICE_CHECK_TIMEOUTS:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_OBC_COMM_SERVICE_EXPORT_PKT:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_SAFETY_CHECK:
 		//report and soft reset
@@ -179,23 +171,15 @@ void EPS_soft_error_handling(EPS_soft_error_status eps_error_status){
 		break;
 	case EPS_SOFT_ERROR_WHILE_LOOP_TOP:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_TIMED_EVENT_END:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_READY_TO_SLEEP:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_AWAKE_FROM_SLEEP:
 		//report and soft reset
-		/*Refresh watchdog. */
-		HAL_IWDG_Refresh(&hiwdg);
 		break;
 	case EPS_SOFT_ERROR_LAST_VALUE:
 		//report and soft reset
